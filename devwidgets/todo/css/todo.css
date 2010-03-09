@@ -19,17 +19,23 @@
 
 /* TODO CONTENT */
 
-#todo_header {
-    text-align:center;
-}
-
 #todo_widget {
-    width:500px;
-    height:300px;
+/*
+    width:100%;
+    height:100%;
+*/
+    height:100%;
+ 
 }
 
 #todo_table {
-    height:230px;
+    /*height:230px;*/
+	/*height:45%;*/
+}
+
+#todo_input {
+	position:absolute;
+	bottom:0px;
 }
 
 #thDate, #thDone, #thPriority, #thTask {
@@ -37,29 +43,36 @@
 }
 
 #thDate {
-    width:100px;
+    /*width:100px;*/
+	width:20%;
 }
 
 #thDone {
-    width:60px;
+    /*width:60px;*/
+	width:12%;
 }
 
 #thPriority {
-    width:60px;
+    /*width:60px;*/
+	width:12%;
 }
 
 #thTask {
-    width:280px;
+    /*width:280px;*/
+	width:56%;
 }
 
 #subject {
-    width:340px;
+    /*width:340px;*/
+	width:68%;
 }
 
 #date {
-    width:60px;
+    /*width:60px;*/
+	width:12%;
 }
 
 #button {
-    width:100px;
+	/*width:100px;*/
+    width:20%;
 }
