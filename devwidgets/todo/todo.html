@@ -1,0 +1,50 @@
+<!-- CSS -->
+<link	rel="stylesheet" type="text/css" href="/devwidgets/todo/css/todo.css" />
+
+<!-- JQUERY LIBS -->
+
+<script type="text/javascript" src="/devwidgets/todo/lib/jquery-1.4.2.js"></script> 
+<script type="text/javascript" src="/devwidgets/todo/lib/jquery.tablesorter.js"></script> 
+
+<!-- ERRORS -->
+<div id="todo_error" style="display:none;">
+    <div id="todo_error_notconnected" class="todo_error">__MSG__NOT_CONNECTED__</div>
+</div>
+
+<!-- CONTENT -->
+<div id="todo_widget">
+	<!-- CONTENT HEADER -->
+	<div id="todo_header">
+		<p>Todo</p>
+	</div>	
+	
+	<!-- CONTENT TABLE -->
+	<div id="todo_table">
+		<table>
+			<thead> 
+				<tr> 
+				    <th>Done</th> 
+				    <th>Task</th> 
+				    <th>Importance</th> 
+				    <th>Date</th> 
+				</tr> 
+			</thead> 
+			<tbody> 
+				<tr> 
+				    <td>true</td> 
+				    <td>Something</td> 
+				    <td>4</td> 
+				    <td>12/03</td> 
+				</tr> 
+			</tbody> 
+		</table> 
+	</div>
+	
+	<!-- CONTENT INPUT -->
+	<div id="todo_input">
+		<form>
+			<input type="Subject" name="subject" />
+			<input type="Subject" name="date" />
+			<button type="button">Add</button>
+	</div>
+</div>
