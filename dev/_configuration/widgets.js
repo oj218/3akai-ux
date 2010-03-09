@@ -232,7 +232,7 @@ var Widgets = {
             url:"/devwidgets/quiz/quiz.html"
         },
         recentmessages: {
-            description:"Your recent messages",
+            description:"Your recent messages, test test test",
             i18n: {
                 "default": "/devwidgets/recentmessages/bundles/default.json",
                 "en_US": "/devwidgets/recentmessages/bundles/en_US.json"
@@ -320,6 +320,18 @@ var Widgets = {
             showinsakaigoodies:true,
             url:"/devwidgets/tangler/tangler.html"
         },
+	
+	todo: {
+            description:"Todo Widget",
+            hasSettings:true,
+            id:"todo",
+            name:"todo",
+	    personalportal:true,
+	    showinsakaigoodies:true,
+	    iframe:true,
+            url:"/devwidgets/todo/todo.html"
+        },
+	
         twitter: {
             description:"Twitter Widget",
             hasSettings:true,

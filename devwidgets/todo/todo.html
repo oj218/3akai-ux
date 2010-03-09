@@ -4,7 +4,11 @@
 <!-- JQUERY LIBS -->
 
 <script type="text/javascript" src="/devwidgets/todo/lib/jquery-1.4.2.js"></script> 
-<script type="text/javascript" src="/devwidgets/todo/lib/jquery.tablesorter.js"></script> 
+<script type="text/javascript" src="/devwidgets/todo/lib/jquery.tablesorter.js"></script>
+<link type="text/css" href="/devwidgets/todo/css/ui-lightness/jquery-ui-1.7.2.custom.css" rel="stylesheet" />
+<script type="text/javascript" src="/devwidgets/todo/lib/jquery-ui-1.7.2.custom.min.js"></script>
+<script type="text/javascript" src="/devwidgets/todo/lib/timepicker.js"></script>
+<script type="text/javascript" src="/devwidgets/todo/javascript/todo.js"></script>
 
 <!-- ERRORS -->
 <div id="todo_error" style="display:none;">
@@ -12,26 +16,21 @@
 </div>
 
 <!-- CONTENT -->
-<div id="todo_widget">
-	<!-- CONTENT HEADER -->
-	<div id="todo_header">
-		<p>Todo</p>
-	</div>	
-	
+<div id="todo_widget">	
 	<!-- CONTENT TABLE -->
 	<div id="todo_table">
 		<table>
 			<thead> 
 				<tr> 
-				    <th>Done</th> 
-				    <th>Task</th> 
-				    <th>Importance</th> 
-				    <th>Date</th> 
+				    <th id='thDone'>Done</th> 
+				    <th id='thTask'>Task</th> 
+				    <th id='thPriority'>Priority</th> 
+				    <th id='thDate'>Date</th> 
 				</tr> 
 			</thead> 
 			<tbody> 
 				<tr> 
-				    <td>true</td> 
+				    <td><input type="checkbox" name="done" /></td> 
 				    <td>Something</td> 
 				    <td>4</td> 
 				    <td>12/03</td> 
@@ -43,8 +42,8 @@
 	<!-- CONTENT INPUT -->
 	<div id="todo_input">
 		<form>
-			<input type="Subject" name="subject" />
-			<input type="Subject" name="date" />
-			<button type="button">Add</button>
+			<input type="text" name="subject" />
+			<input  type="text" name="datetime" id="datetime" value=""/>
+			<button id="add_button" type="button">Add</button>
 	</div>
 </div>
