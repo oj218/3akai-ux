@@ -6,6 +6,8 @@ $(function() {
      });
 });
 
-$('#add_button').click(function() {
-  alert('Handler for .click() called.');
-});
+
+$(document).ready(function() 
+    { 
+        $("#todo_table_header").tablesorter(); 
+    }); 
