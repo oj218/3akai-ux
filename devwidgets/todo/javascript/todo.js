@@ -20,20 +20,42 @@
 
 var sakai = sakai || {};
 
-sakai.todo = function(tuid,placement,showSettings){
-   console.log(placement)
-    };
-/*
-$(document).ready(function() 
-    { 
-        $("#todo_table_header").tablesorter(); 
-		$(datetime).datepicker();
- 		 $('#timepicker').jtimepicker({
-		 secView : false
-        });
-    }); 
+sakai.todo = function(tuid, placement, showSettings){
 
-*/
-	
-	
+console.log(placement)
+console.log(tuid)
+	/////////////////////////////
+	// Configuration variables //
+	/////////////////////////////
+
+	// - ID
+
+	var todo = "#todo";
+	var todoDate = todo + "_date";
+	var todoMin = "todo_min";
+
+
+
+	var addBinding = function(){
+      $(todoDate).datepicker({
+     });
+    }
+addBinding();
+
+var makeBindDiv = function(input,count){
+  for (var i = 0; i < count; i++) {
+     var a = document.createElement('a');
+     a.setAttribute('class', input);
+     a.setAttribute('id', input+i);
+     a.setAttribute('href', "java-event");
+     var text = document.createTextNode(extractToTwo(i)+"");
+     a.appendChild(text);
+     $("#"+input+"_div").append(a);
+  }
+}
+
+};
+
+
+
 sdata.widgets.WidgetLoader.informOnLoad("todo");
