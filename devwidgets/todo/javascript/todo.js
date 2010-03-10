@@ -22,7 +22,6 @@ var sakai = sakai || {};
 
 sakai.todo = function(tuid,placement,showSettings){
    console.log(placement)
-   
     };
 /*
 $(document).ready(function() 

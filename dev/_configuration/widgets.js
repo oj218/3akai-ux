@@ -326,12 +326,10 @@ var Widgets = {
             hasSettings:true,
             id:"todo",
             name:"todo",
-	    personalportal:true,
-	    showinsakaigoodies:true,
-	    iframe:true,
+            personalportal:true,
             url:"/devwidgets/todo/todo.html"
         },
-	
+
         twitter: {
             description:"Twitter Widget",
             hasSettings:true,
