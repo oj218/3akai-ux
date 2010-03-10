@@ -21,7 +21,7 @@
 $.extend($.datepicker._defaults, {
     'stepMinutes': 1, // Number of minutes to step up/down
     'stepHours': 1, // Number of hours to step up/down
-    'time24h': false, // True if 24h time
+    'time24h': true, // True if 24h time
     'showTime': false, // Show timepicker with datepicker
     'altTimeField': '' // Selector for an alternate field to store time into
 });
@@ -179,6 +179,7 @@ Timepicker.prototype = {
     init: function()
     {
         this._mainDivId = 'ui-timepicker-div';
+		
         this._inputId   = null;
         this._orgValue  = null;
         this._orgHour   = null;
