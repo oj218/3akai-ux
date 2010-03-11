@@ -33,48 +33,37 @@ console.log(tuid)
     var todo = "#todo";
     var todoDate = todo + "_date";
     var todoHourClass = "todo_hour";
-	var todoMinClass = "todo_min";
-	
-	var $todoWidget = $("#todo_widget",rootel)
-	var todoTemplates = "todo_template";
-
+    var todoMinClass = "todo_min";
+    var todoSubject = $("#todo_subject",rootel);
+    var todoDate = $("#todo_date",rootel);
+    var todoWidget = $("#todo_widget", rootel);
+    var todoAddButton = $('#todo_add_button',rootel);
+    var todoPriority = $('#todo_priority',rootel);
+    var todoWidgetContainer = $('#todo_widget_container ',rootel);
+    var todoTemplate = 'todo_template';
     var json = false;
 	var resetValues = function(){
 	    json = {
             "error":"",
+            "subject": "",
+            "id": "",
+            "doBy": "",
+            "priority" :""
         };
-        json.error = "";
-        json.subject = "";
-        json.id = "";
-        json.doBy= "";
-		json.priority= "";
-	}
-	resetValues();
-    /*
+
+    }
+    resetValues();
+    
+    /**
      * 
+     * @param {Object} json
      */
-    var init = function (){
-        //cach this
-	$('#add_button').click(function() {
-        //
-		var val = $("#todo_subject",rootel).val();
-		json.subject = val;
-		json.doBy = 
-        $("#todo_widget", rootel).html($.Template.render('todo_template',json));
-		
-     });
-
-	}
-	init();
-
-    var renderTodolist = function(response){
-            console.log(response);
-            $recentactivitiesContainer.html($.Template.render(recentactivitiesTemplate, response));
-
+    
+    var renderTodolist = function(json){
+         todoWidgetContainer.html($.Template.render(todoTemplate, json));
         }
-
-
-/**
+    
+    /**
  * 
  * @param {Object} response
  */
@@ -88,27 +77,56 @@ console.log(tuid)
         }
     };
 
-
 var getTodolist = function(){
-	$.ajax({
-	url: "/devwidgets/todo/data.json",
+    $.ajax({
+    url: placement + "todo/" + tuid + ".json",
+    
     success: function(data){
        loadTodolist(data);
      },
        error: function(){
        loadTodolist(false);
      }
-	});
+    });
 };
+
+    function sendDateComplete(){
+       getTodolist();
+    }
+
+/**
+ * 
+ * @param {Object} json
+ */
+    function sendDataTodo(json){
+        //Concatinate the url to post to
+        postUrl = placement + "todo/" + tuid;
+        
+        // post the data from the form (in a json object), 
+        // to the server then execute the comlete function
+        sdata.preference.save(postUrl,json,sendDateComplete);
+    }
+
+
+    var init = function (){
+	todoAddButton.click(function() {
+        json.subject = todoSubject.val();
+        json.doBy = todoDate.val();
+        json.priority = todoPriority.val();
+        sendDataTodo(json);
+		
+     });
+
+	}
 
 
 	var addBinding = function(){
-      $(todo_Date).datepicker({
+      $(todoDate).datepicker({
      });
     }
 addBinding();
 
-
+init();
 };
 
 sdata.widgets.WidgetLoader.informOnLoad("todo");

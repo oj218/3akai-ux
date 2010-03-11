@@ -14,35 +14,23 @@
             <!-- CONTENT INPUT -->
             <div id="todo_input">
                 <form><!-- ==> method action -->
-                    <input type="text" id="todo_subject" name="subject" size="30" /><input type="text" id="todo_date"/>
-                    <div id="todo_priority">
+                    <input type="text" id="todo_subject" name="subject" size="30" />
+                    <input type="text" id="todo_date"/>
+                    <input type="text" id="todo_priority">
                     </div>
-                    <button id="add_button" type="button">
+                    <button id="todo_add_button" type="button">
                         Add
                     </button>
                 </form>
             </div>
-	<!-- CONTENT TABLE -->
-	<div id="todo_template">
-		<table id="todo_table_header">
-			<thead> 
-				<tr> 
-				    <th id='thDone'>Done</th> 
-				    <th id='thTask'>Task</th> 
-				    <th id='thPriority'>Priority</th> 
-				    <th id='thDate'>Date</th> 
-				</tr> 
-			</thead> 
-			<tbody>
-			    <div><!--{for todo in items}
-                    <tr>
-                        ${activity.name}
-                    
-                     </tr>
-            {/for}-->
-            </div
-			</tbody> 
-		</table> 
+            <!-- CONTENT TABLE-->
+            
+            <div id="todo_widget_container">
+            </div>
+            <div id="todo_template"><!--
+                        ${subject}
+                -->
+            </div>
     </div>
 </div>
 <!-- FOOTER LINKS -->
