@@ -40,7 +40,10 @@ console.log(tuid)
     var todoAddButton = $('#todo_add_button',rootel);
     var todoPriority = $('#todo_priority',rootel);
     var todoWidgetContainer = $('#todo_widget_container ',rootel);
+    var todoContainer = $('#todo_container ',rootel);
     var todoTemplate = 'todo_template';
+    var todoInputTemplate = 'todo_input_template';
+    var todoInput = $('#todo_input',rootel);
     var json = false;
 	var resetValues = function(){
 	    json = {
@@ -60,7 +63,7 @@ console.log(tuid)
      */
     
     var renderTodolist = function(json){
-         todoWidgetContainer.html($.Template.render(todoTemplate, json));
+         todoContainer.html($.Template.render(todoTemplate, json));
         }
     
     /**
@@ -83,9 +86,14 @@ var getTodolist = function(){
     
     success: function(data){
        loadTodolist(data);
+       if(data !== null)
+       {return true;}
+       else
+       {return false;}
      },
        error: function(){
        loadTodolist(false);
+       
      }
     });
 };
@@ -98,7 +106,7 @@ var getTodolist = function(){
  * 
  * @param {Object} json
  */
-    function sendDataTodo(json){
+    function sendDataTodoFirstTime(json){
         //Concatinate the url to post to
         postUrl = placement + "todo/" + tuid;
         
@@ -107,14 +115,39 @@ var getTodolist = function(){
         sdata.preference.save(postUrl,json,sendDateComplete);
     }
 
+var addDataTodo = function(json){
+    postUrl = placement + "todo/" + tuid;
+    var pref_data_string = $.toJSON(json)
+    $.ajax({
+                url: postUrl,
+                type: "PUT",
+                data: {
+                    ":operation": "createTree",
+                    "tree": pref_data_string
+            },
+
+            success: function(data) {
+                sendDateComplete(data);
+            },
+
+            error: function(xhr, status, e) {
+                sendDateComplete(false);
+            }
+        });
+    
+    
+}
 
     var init = function (){
 	todoAddButton.click(function() {
         json.subject = todoSubject.val();
         json.doBy = todoDate.val();
         json.priority = todoPriority.val();
-        sendDataTodo(json);
-		
+        if (getTodolist() === false) {
+            sendDataTodoFirstTime(json);
+        }else{
+            addDataTodo(json);
+        }
      });
 
 	}

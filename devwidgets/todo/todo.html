@@ -10,33 +10,39 @@
 
 <!-- CONTENT -->
 <div id="todo_widget">	
+<div class="fl-widget-content" id="todo_container">
+    </div>
 
-            <!-- CONTENT INPUT -->
-            <div id="todo_input">
-                <form><!-- ==> method action -->
+    
+            <div id="todo_template"><!--
+             <div id="todo_list">
+            <form>
+                <ul>
+                    <li id="todo_li_done"><input type=checkbox name=""></li>
+                    <li id="todo_li_task"><a href="http://">${subject}</a></li>
+                    <li id="todo_li_priority">${priority}</li>
+                    <li id="todo_li_date">${doBy}</li>
+                </ul>
+            </form>
+        </div>
+                        
+                -->
+            </div>
+    
+</div>
+<!-- FOOTER LINKS -->
+    <div class="fl-widget-options fl-fix">
+        <div class="widget-options-inner" id="input_template">
+           <form><!-- ==> method action -->
                     <input type="text" id="todo_subject" name="subject" size="30" />
                     <input type="text" id="todo_date"/>
                     <input type="text" id="todo_priority">
-                    </div>
                     <button id="todo_add_button" type="button">
                         Add
                     </button>
                 </form>
-            </div>
-            <!-- CONTENT TABLE-->
-            
-            <div id="todo_widget_container">
-            </div>
-            <div id="todo_template"><!--
-                        ${subject}
-                -->
-            </div>
+        </div>
     </div>
-</div>
-<!-- FOOTER LINKS -->
-<div class="fl-widget-no-options fl-fix">
-    <div class="widget-no-options-inner"><!-- --></div>
-</div>
 	
 <!-- JQUERY LIBS -->
 

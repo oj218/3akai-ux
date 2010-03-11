@@ -19,11 +19,24 @@
 
 /* TODO CONTENT */
 
+#todo_date{
+width:70px;
+}
+
+#todo_subject{
+width:170px;
+}
+
+#todo_priority{
+width:10px;
+}
+
 #todo_widget {
 }
 
 #todo_btn_add {
 	width:50px;
+   
 }
 
 #todo_list ul
