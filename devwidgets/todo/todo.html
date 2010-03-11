@@ -17,12 +17,14 @@
             <div id="todo_template"><!--
              <div id="todo_list">
             <form>
+            {for todo in all}
                 <ul>
                     <li id="todo_li_done"><input type=checkbox name=""></li>
-                    <li id="todo_li_task"><a href="http://">${subject}</a></li>
-                    <li id="todo_li_priority">${priority}</li>
-                    <li id="todo_li_date">${doBy}</li>
+                    <li id="todo_li_task"><a href="http://">${todo.subject}</a></li>
+                    <li id="todo_li_priority">${todo.priority}</li>
+                    <li id="todo_li_date">${todo.doBy}</li>
                 </ul>
+              {/for}
             </form>
         </div>
                         

@@ -53,7 +53,6 @@ console.log(tuid)
             "doBy": "",
             "priority" :""
         };
-
     }
     resetValues();
     
@@ -63,7 +62,10 @@ console.log(tuid)
      */
     
     var renderTodolist = function(json){
-         todoContainer.html($.Template.render(todoTemplate, json));
+        var pagingArray = {
+            all : json
+        };
+        todoContainer.html($.Template.render(todoTemplate, pagingArray));
         }
     
     /**
@@ -79,6 +81,19 @@ console.log(tuid)
             renderTodolist(json);
         }
     };
+    
+    
+    
+    var addToTodoList = function(response,json){
+        //Check if the request was succesful
+        if(response){
+            var jsonArray = [];
+            jsonArray.push( $.evalJSON(response));
+            jsonArray.push(json);
+            //Render the todolist for the current user.
+            renderTodolist(jsonArray);
+        }
+    };
 
 var getTodolist = function(){
     $.ajax({
@@ -86,10 +101,6 @@ var getTodolist = function(){
     
     success: function(data){
        loadTodolist(data);
-       if(data !== null)
-       {return true;}
-       else
-       {return false;}
      },
        error: function(){
        loadTodolist(false);
@@ -97,6 +108,21 @@ var getTodolist = function(){
      }
     });
 };
+
+var getAllTodo = function(json){
+       $.ajax({
+    url: placement + "todo/" + tuid + ".json",
+    
+    success: function(data){
+        //Add new json object to the array
+       addToTodoList(data,json);
+     },
+       error: function(){
+       //loadTodolist(false);
+       
+     }
+    });
+}
 
     function sendDateComplete(){
        getTodolist();
@@ -115,27 +141,8 @@ var getTodolist = function(){
         sdata.preference.save(postUrl,json,sendDateComplete);
     }
 
-var addDataTodo = function(json){
-    postUrl = placement + "todo/" + tuid;
-    var pref_data_string = $.toJSON(json)
-    $.ajax({
-                url: postUrl,
-                type: "PUT",
-                data: {
-                    ":operation": "createTree",
-                    "tree": pref_data_string
-            },
-
-            success: function(data) {
-                sendDateComplete(data);
-            },
-
-            error: function(xhr, status, e) {
-                sendDateComplete(false);
-            }
-        });
-    
-    
+var addTodoTask = function (json){
+    getAllTodo(json);
 }
 
     var init = function (){
@@ -143,11 +150,9 @@ var addDataTodo = function(json){
         json.subject = todoSubject.val();
         json.doBy = todoDate.val();
         json.priority = todoPriority.val();
-        if (getTodolist() === false) {
-            sendDataTodoFirstTime(json);
-        }else{
-            addDataTodo(json);
-        }
+         //Send all data directly 
+         //sendDataTodoFirstTime(json);
+         addTodoTask(json);
      });
 
 	}
