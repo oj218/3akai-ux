@@ -29,63 +29,85 @@ console.log(tuid)
 	/////////////////////////////
 
 	// - ID
+    var rootel = $("#" + tuid)
+    var todo = "#todo";
+    var todoDate = todo + "_date";
+    var todoHourClass = "todo_hour";
+	var todoMinClass = "todo_min";
+	
+	var $todoWidget = $("#todo_widget",rootel)
+	var todoTemplates = "todo_template";
 
-	var todo = "#todo";
-	var todoDate = todo + "_date";
-	var todoMin = "todo_min";
+    var json = false;
+	var resetValues = function(){
+	    json = {
+            "error":"",
+        };
+        json.error = "";
+        json.subject = "";
+        json.id = "";
+        json.doBy= "";
+		json.priority= "";
+	}
+	resetValues();
+    /*
+     * 
+     */
+    var init = function (){
+        //cach this
+	$('#add_button').click(function() {
+        //
+		var val = $("#todo_subject",rootel).val();
+		json.subject = val;
+		json.doBy = 
+        $("#todo_widget", rootel).html($.Template.render('todo_template',json));
+		
+     });
 
+	}
+	init();
+
+    var renderTodolist = function(response){
+            console.log(response);
+            $recentactivitiesContainer.html($.Template.render(recentactivitiesTemplate, response));
+
+        }
+
+
+/**
+ * 
+ * @param {Object} response
+ */
+    var loadTodolist = function(response){
+        //Check if the request was succesful
+        if(response){
+            var json = $.evalJSON(response);
+            
+            //Render the todolist for the current user.
+            renderTodolist(json);
+        }
+    };
+
+
+var getTodolist = function(){
+	$.ajax({
+	url: "/devwidgets/todo/data.json",
+    success: function(data){
+       loadTodolist(data);
+     },
+       error: function(){
+       loadTodolist(false);
+     }
+	});
+};
 
 
 	var addBinding = function(){
-      $(todoDate).datepicker({
+      $(todo_Date).datepicker({
      });
     }
 addBinding();
 
-var makeBindDiv = function(input,count){
-  for (var i = 0; i < count; i++) {
-     var a = document.createElement('a');
-     a.setAttribute('class', input);
-     a.setAttribute('id', input+i);
-     a.setAttribute('href', "java-event");
-     var text = document.createTextNode(extractToTwo(i)+"");
-     a.appendChild(text);
-     $("#"+input+"_div").append(a);
-  }
-  
-  // If you click on a field, insert the value into the input box and change class
-        $("#" + input + "_div a", rootel).bind("click",function(e,ui){
-
-            // Get the original id (the id from the element you clicked on)
-            var id_original = e.target.id;
-
-            // Remove the front part of the id (only keep the last part e.g. 21)
-            var id = id_original.replace(input, "");
-
-            // Remove the active class from the other elements
-            $("#" + input + "_div a", rootel).removeClass(pollTimeActiveClass);
-
-            // Set the text in the inputbox (above the drop down) to the number you clicked on
-            $("#" + input).val(extractToTwo(id)+"");
-
-            // Add the active class to the number you clicked
-            $("#" + id_original, rootel).addClass(pollTimeActiveClass);
-
-            // Hide the div containing all the numbers
-            $("#"+ input + "_div").hide();
-
-            // We do this to not reload the page again
-            return false;
-        });
-		
-		   // Add the binding to the input field and the image to show the dropdown
-        $("#"+ input, rootel).bind("click",function(e,ui){
-            toggleTime($("#"+ input + "_div"), $("#"+ input));
-        });
-        $("#"+ input + "_down", rootel).bind("click",function(e,ui){
-            toggleTime($("#"+ input + "_div"), $("#"+ input));
-        });
-     }
 
 };
 

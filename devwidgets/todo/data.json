@@ -1,0 +1,11 @@
+{
+    "items": [{
+            description: "Do al the kern-665 relqted JIRA'S",
+			name: "Fix BigStore",
+			id: "fix-bigstore",
+			doBy: "2010-03-10T12:00:00",
+			jcr:created: "Thu Mar 04 2010 18:15:00 GMT+000",
+			priority: 5,
+			jcr:primaryType: "sling:folder"
+    }]
+}

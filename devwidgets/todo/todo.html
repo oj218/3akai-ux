@@ -1,12 +1,6 @@
 <!-- CSS -->
 <link	rel="stylesheet" type="text/css" href="/devwidgets/todo/css/todo.css" />
 
-<link rel="stylesheet" type="text/css" href="/devwidgets/todo/css/ui/base/ui.core.css" />
-<link rel="stylesheet" type="text/css" href="/devwidgets/todo/css/ui/base/ui.theme.css" />
-<link rel="stylesheet" type="text/css" href="/devwidgets/todo/css/ui/base/ui.slider.css" />
-<link rel="stylesheet" type="text/css" href="/devwidgets/todo/css/jquery.timepicker.css" />
-
-
 
 
 <!-- ERRORS -->
@@ -17,27 +11,19 @@
 <!-- CONTENT -->
 <div id="todo_widget">	
 
-			<!-- CONTENT INPUT -->
-	<div id="todo_input">
-		<form>
-			<input type="text" name="subject" size="30" />
-			 <div id="poll_date_left">
-                    
-                    <input type="text" id="todo_date"/>
-
-                    <input type="text" id="todo_hour" class="poll_time_input"/>
-                    <div id="todo_starthour_div" class="todo_time"></div>
-
-                    <input type="text" id="poll_min" class="poll_time_input" />
-                    <div id="todo_min_div" class="todo_time"></div>
-
-                </div>
-			<div id="timepicker"></div>
-			<button id="add_button" type="button">Add</button>
-		</form>
-	</div>
+            <!-- CONTENT INPUT -->
+            <div id="todo_input">
+                <form><!-- ==> method action -->
+                    <input type="text" id="todo_subject" name="subject" size="30" /><input type="text" id="todo_date"/>
+                    <div id="todo_priority">
+                    </div>
+                    <button id="add_button" type="button">
+                        Add
+                    </button>
+                </form>
+            </div>
 	<!-- CONTENT TABLE -->
-	<div id="todo_table">
+	<div id="todo_template">
 		<table id="todo_table_header">
 			<thead> 
 				<tr> 
@@ -47,31 +33,21 @@
 				    <th id='thDate'>Date</th> 
 				</tr> 
 			</thead> 
-			<tbody> 
-				<tr> 
-				    <td><input type="checkbox" name="done" /></td> 
-				    <td>Something</td> 
-				    <td>4</td> 
-				    <td>12/03</td> 
-				</tr> 
-					<tr> 
-				    <td><input type="checkbox" name="done" /></td> 
-				    <td>Something</td> 
-				    <td>4</td> 
-				    <td>12/03</td> 
-				</tr> 
-					<tr> 
-				    <td><input type="checkbox" name="done" /></td> 
-				    <td>Something</td> 
-				    <td>4</td> 
-				    <td>12/03</td> 
-				</tr> 
-		
+			<tbody>
+			    <div><!--{for todo in items}
+                    <tr>
+                        ${activity.name}
+                    
+                     </tr>
+            {/for}-->
+            </div
 			</tbody> 
 		</table> 
-		
-
+    </div>
 </div>
+<!-- FOOTER LINKS -->
+<div class="fl-widget-no-options fl-fix">
+    <div class="widget-no-options-inner"><!-- --></div>
 </div>
 	
 <!-- JQUERY LIBS -->
