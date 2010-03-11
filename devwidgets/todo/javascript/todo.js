@@ -44,15 +44,9 @@ console.log(tuid)
     var todoTemplate = 'todo_template';
     var todoInputTemplate = 'todo_input_template';
     var todoInput = $('#todo_input',rootel);
-    var json = false;
+    var json;
 	var resetValues = function(){
-	    json = {
-            "error":"",
-            "subject": "",
-            "id": "",
-            "doBy": "",
-            "priority" :""
-        };
+	    
     }
     resetValues();
     
@@ -87,40 +81,56 @@ console.log(tuid)
     var addToTodoList = function(response,json){
         //Check if the request was succesful
         if(response){
-            var jsonArray = [];
-            jsonArray.push( $.evalJSON(response));
-            jsonArray.push(json);
+            var jsonList = {};
+            jsonList =  $.evalJSON(response);
+            jsonList [json.subject] = json;
             //Render the todolist for the current user.
-            renderTodolist(jsonArray);
+            sendDataTodoFirstTime(jsonList);
         }
     };
 
 var getTodolist = function(){
     $.ajax({
-    url: placement + "todo/" + tuid + ".json",
-    
-    success: function(data){
-       loadTodolist(data);
-     },
-       error: function(){
-       loadTodolist(false);
-       
-     }
+        url: placement + "todo/" + tuid + ".infinity.json",
+        
+        success: function(data){
+            
+            loadTodolist(data);
+        },
+        error: function(){
+             loadTodolist(false);
+            
+        }
     });
 };
 
 var getAllTodo = function(json){
-       $.ajax({
-    url: placement + "todo/" + tuid + ".json",
+    //Get the values
+    var json;
+    json = {
+            "error":"",
+            "subject": "",
+            "id": "",
+            "doBy": "",
+            "priority" :""
+        };
+    json.subject = todoSubject.val();
+    json.doBy = todoDate.val();
+    json.priority = todoPriority.val();
     
-    success: function(data){
-        //Add new json object to the array
-       addToTodoList(data,json);
-     },
-       error: function(){
-       //loadTodolist(false);
-       
-     }
+    $.ajax({
+        url: placement + "todo/" + tuid + ".infinity.json",
+        
+        success: function(data){
+            //the file exists, so both are passed to be merged
+            //addToTodoList(data, json);
+            sendDataTodoFirstTime(json);
+        },
+        error: function(){
+            //No file was found, so we send a new ojbect
+            sendDataTodoFirstTime(json);
+            
+        }
     });
 }
 
@@ -135,10 +145,11 @@ var getAllTodo = function(json){
     function sendDataTodoFirstTime(json){
         //Concatinate the url to post to
         postUrl = placement + "todo/" + tuid;
-        
+        var jsonArray = {};
+        jsonArray[json.subject] = json;
         // post the data from the form (in a json object), 
         // to the server then execute the comlete function
-        sdata.preference.save(postUrl,json,sendDateComplete);
+        sdata.preference.save(postUrl,jsonArray,sendDateComplete);
     }
 
 var addTodoTask = function (json){
@@ -147,14 +158,9 @@ var addTodoTask = function (json){
 
     var init = function (){
 	todoAddButton.click(function() {
-        json.subject = todoSubject.val();
-        json.doBy = todoDate.val();
-        json.priority = todoPriority.val();
-         //Send all data directly 
-         //sendDataTodoFirstTime(json);
-         addTodoTask(json);
+       //Try to get the todo items
+        getAllTodo()
      });
-
 	}
 
 
