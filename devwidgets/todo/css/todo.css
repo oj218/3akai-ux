@@ -19,62 +19,46 @@
 
 /* TODO CONTENT */
 
-#datetime:{ width:50 px;}
-
 #todo_widget {
-/*
-    width:100%;
-    height:100%;
-*/
-    height:100%;
- 
 }
 
-#todo_table {
-    /*height:230px;*/
-	/*height:45%;*/
+#todo_btn_add {
+	width:50px;
 }
 
-#todo_input {
-
-	bottom:0px;
+#todo_list ul
+{
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
 }
 
-#thDate, #thDone, #thPriority, #thTask {
-    text-align:left;
+#todo_list ul li { 
+    display: inline-block;
+    vertical-align:top;
 }
 
-#thDate {
-    /*width:100px;*/
-	width:20%;
+#todo_list a{
+    font-color:#000000;
 }
 
-#thDone {
-    /*width:60px;*/
-	width:12%;
+#todo_list a:hover{
+    background-color:#FFFF99;
+    text-decoration:none;
 }
 
-#thPriority {
-    /*width:60px;*/
-	width:12%;
+#todo_li_done{
+    width:20px;
 }
 
-#thTask {
-    /*width:280px;*/
-	width:56%;
+#todo_li_task{
+    width:200px;
 }
 
-#subject {
-    /*width:340px;*/
-	width:68%;
+#todo_li_priority{
+    width:60px;
 }
 
-#date {
-    /*width:60px;*/
-	width:12%;
-}
-
-#button {
-	/*width:100px;*/
-    width:20%;
+#todo_li_date{
+    width:100px;
 }
