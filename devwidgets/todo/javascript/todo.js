@@ -33,6 +33,7 @@ sakai.todo = function(tuid, placement, showSettings){
     var todoAddButton = $('#todo_add_button',rootel);
     var todoPriority = $('#todo_priority',rootel);
     var todoContainer = $('#todo_container ',rootel);
+    var todoTasks = $('#todo_tasks',rootel);
     var todoTemplate = 'todo_template';
     var priorityOptions = {
         1: '1',
@@ -58,7 +59,7 @@ sakai.todo = function(tuid, placement, showSettings){
         var pagingArray = {
             all : json
         };
-        todoContainer.html($.Template.render(todoTemplate, pagingArray));
+        todoTasks.html($.Template.render(todoTemplate, pagingArray));
         };
     
     /**
