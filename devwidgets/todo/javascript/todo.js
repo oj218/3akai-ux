@@ -33,8 +33,8 @@ sakai.todo = function(tuid, placement, showSettings){
     var todoAddButton = $('#todo_add_button',rootel);
     var todoPriority = $('#todo_priority',rootel);
     var todoContainer = $('#todo_container ',rootel);
-    
-    
+      var todoDelete = $('#todo_delete',rootel);
+    var todoCheck = $('#todo_check',rootel);
     var todoTasks = $('#todo_tasks',rootel);
     var todoTemplate = 'todo_template';
     var priorityOptions = {
@@ -91,10 +91,22 @@ sakai.todo = function(tuid, placement, showSettings){
     
  
  
-var resetValues = function(){
- 
-    };
-    resetValues();
+
+    var getCurrentUser = function(){
+    $.ajax({
+                url: "http://localhost:8080/system/me",
+                type: "GET",
+
+            success: function(data) {
+              $currentUser = $.evalJSON(data);
+               getTodolist();
+            },
+
+            error: function(xhr, status, e) {
+               console.log("error");
+            }
+        });
+}
     
 /**
 *
@@ -121,7 +133,7 @@ var resetValues = function(){
             all : parseglobalArray.slice(pageCurrent * pageSize, (pageCurrent * pageSize) + pageSize)
         };
         
-        console.log(pagingArray.all.length);
+    
          
         //parseglobal.all = parseglobal.all.slice(pageCurrent * pageSize, (pageCurrent * pageSize) + pageSize); 
         todoTasks.html($.Template.render(todoTemplate, pagingArray));
@@ -154,7 +166,7 @@ var resetValues = function(){
     
 var getTodolist = function(){
     $.ajax({
-        url: placement + "todo/" + tuid + ".infinity.json",
+        url:   "/todo/" + $currentUser.user.userid + "/todo"+".infinity.json",
         
         success: function(data){          
              loadTodolist(data);
@@ -176,7 +188,7 @@ var getTodolist = function(){
 */
     function sendDataTodoFirstTime(json){
         //Concatinate the url to post to
-        var postUrl = placement + "todo/" + tuid;
+       var postUrl = "/todo/" + $currentUser.user.userid + "/todo";
         var jsonArray = {};
         jsonArray[json.subject] = json;
         // post the data from the form (in a json object),
@@ -184,9 +196,61 @@ var getTodolist = function(){
         sdata.preference.save(postUrl,jsonArray,sendDataComplete);
     }
  
+     var deleteTasks = function(todoList){
+        var i = 0;
+        //Do an ajax call for every task in the list, to delete it.
+        $.each(todoList, function(i, l){
+            var pref_url = "/todo/" + $currentUser.user.userid + "/todo/" + l;
+            $.ajax({
+                url: pref_url,
+                type: "POST",
+                data: {
+                    ":operation": "delete"
+                },
+                
+                success: function(data){
+                    //Everytime a item is deleted 1 is added to the counter (i)
+                    i = i + 1;
+                    // When the counter reaches the number of items in the list
+                    // the list is reloaded
+                    
+                    //This is to avoid too many calls (overhead)
+                    if (todoList.length === i) {
+                        getTodolist();
+                    }
+                },
+                
+                error: function(xhr, status, e){
+                    console.log("error");
+                }
+            });
+        });
+        
+    };
  
 var init = function (){
-    getTodolist();
+    getCurrentUser();
+    
+    
+        todoDelete.live('click', function(){
+            var itemsToDelete = [];
+            todoCheck = $('#todo_check', rootel);
+            //Have to assign the variable again because the first time 
+            //the ajax call isn't completed
+            // So there are no checkboxes with that id yet.
+            //So need to put it back in the cash
+            
+            //Get all the names of the checked checkboxes (name = subject)
+            todoCheck.each(function(){
+                if ($(this).attr('checked')) {
+                    itemsToDelete.push($(this).attr('name'));
+                }
+            });
+            //Delete the tasks
+            deleteTasks(itemsToDelete);
+            
+        });
+    
     todoAddButton.click(function() {
         var json;
     json = {

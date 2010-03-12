@@ -11,6 +11,13 @@
 <!-- CONTENT -->
 <div id="todo_widget">
     <div class="fl-widget-content" id="todo_container">
+       <div id="todo_management">
+            <form>
+                <button id="todo_delete" type="button">
+                Delete tasks
+            </button>
+            </form>
+        </div>
         <div id="todo_tasks">
         </div>
         <div id="todo_paging" class="jq_pager">
@@ -23,7 +30,7 @@
     {for todo in all}
     {if todo.subject !== undefined }
     <ul>
-    <li id="todo_li_done"><input type=checkbox name=""></li>
+    <li id="todo_li_done"><input type=checkbox name="${todo.subject}" id="todo_check" ></li>
     <li id="todo_li_task"><a href="http://">${todo.subject}</a></li>
     <li id="todo_li_priority">${todo.priority}</li>
     <li id="todo_li_date">${todo.doBy}</li>
