@@ -18,12 +18,14 @@
              <div id="todo_list">
             <form>
             {for todo in all}
+                {if todo.subject !== undefined }
                 <ul>
                     <li id="todo_li_done"><input type=checkbox name=""></li>
                     <li id="todo_li_task"><a href="http://">${todo.subject}</a></li>
                     <li id="todo_li_priority">${todo.priority}</li>
                     <li id="todo_li_date">${todo.doBy}</li>
                 </ul>
+                {/if}
               {/for}
             </form>
         </div>
@@ -38,7 +40,9 @@
            <form><!-- ==> method action -->
                     <input type="text" id="todo_subject" name="subject" size="30" />
                     <input type="text" id="todo_date"/>
-                    <input type="text" id="todo_priority">
+                    <select id="todo_priority">
+                    
+                    </select>
                     <button id="todo_add_button" type="button">
                         Add
                     </button>

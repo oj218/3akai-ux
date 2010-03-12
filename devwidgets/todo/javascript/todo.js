@@ -22,32 +22,31 @@ var sakai = sakai || {};
 
 sakai.todo = function(tuid, placement, showSettings){
 
-console.log(placement)
-console.log(tuid)
 	/////////////////////////////
 	// Configuration variables //
 	/////////////////////////////
 
 	// - ID
-    var rootel = $("#" + tuid)
-    var todo = "#todo";
-    var todoDate = todo + "_date";
-    var todoHourClass = "todo_hour";
-    var todoMinClass = "todo_min";
+    var rootel = $("#" + tuid);
     var todoSubject = $("#todo_subject",rootel);
     var todoDate = $("#todo_date",rootel);
-    var todoWidget = $("#todo_widget", rootel);
     var todoAddButton = $('#todo_add_button',rootel);
     var todoPriority = $('#todo_priority',rootel);
-    var todoWidgetContainer = $('#todo_widget_container ',rootel);
     var todoContainer = $('#todo_container ',rootel);
     var todoTemplate = 'todo_template';
-    var todoInputTemplate = 'todo_input_template';
-    var todoInput = $('#todo_input',rootel);
-    var json;
+    var priorityOptions = {
+        1: '1',
+        2: '2',
+        3: '3',
+        4: '4',
+        5: '5'
+    };
+    
+
+
 	var resetValues = function(){
 	    
-    }
+    };
     resetValues();
     
     /**
@@ -60,7 +59,7 @@ console.log(tuid)
             all : json
         };
         todoContainer.html($.Template.render(todoTemplate, pagingArray));
-        }
+        };
     
     /**
  * 
@@ -76,19 +75,6 @@ console.log(tuid)
         }
     };
     
-    
-    
-    var addToTodoList = function(response,json){
-        //Check if the request was succesful
-        if(response){
-            var jsonList = {};
-            jsonList =  $.evalJSON(response);
-            jsonList [json.subject] = json;
-            //Render the todolist for the current user.
-            sendDataTodoFirstTime(jsonList);
-        }
-    };
-
 var getTodolist = function(){
     $.ajax({
         url: placement + "todo/" + tuid + ".infinity.json",
@@ -99,7 +85,6 @@ var getTodolist = function(){
         },
         error: function(){
              loadTodolist(false);
-            
         }
     });
 };
@@ -115,7 +100,7 @@ var getTodolist = function(){
  */
     function sendDataTodoFirstTime(json){
         //Concatinate the url to post to
-        postUrl = placement + "todo/" + tuid;
+        var postUrl = placement + "todo/" + tuid;
         var jsonArray = {};
         jsonArray[json.subject] = json;
         // post the data from the form (in a json object), 
@@ -123,11 +108,9 @@ var getTodolist = function(){
         sdata.preference.save(postUrl,jsonArray,sendDateComplete);
     }
 
-var addTodoTask = function (json){
-    getAllTodo(json);
-}
 
     var init = function (){
+    getTodolist();
 	todoAddButton.click(function() {
         var json;
     json = {
@@ -142,13 +125,20 @@ var addTodoTask = function (json){
     json.priority = todoPriority.val();
     sendDataTodoFirstTime(json);
      });
-	}
+	};
 
 
 	var addBinding = function(){
       $(todoDate).datepicker({
      });
-    }
+     
+     $.each(priorityOptions, function(val, text) {
+    todoPriority.append(
+        $('<option></option>').val(val).html(text)
+    );
+});
+     
+    };
 addBinding();
 
 init();
