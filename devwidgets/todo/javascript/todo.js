@@ -104,35 +104,6 @@ var getTodolist = function(){
     });
 };
 
-var getAllTodo = function(json){
-    //Get the values
-    var json;
-    json = {
-            "error":"",
-            "subject": "",
-            "id": "",
-            "doBy": "",
-            "priority" :""
-        };
-    json.subject = todoSubject.val();
-    json.doBy = todoDate.val();
-    json.priority = todoPriority.val();
-    
-    $.ajax({
-        url: placement + "todo/" + tuid + ".infinity.json",
-        
-        success: function(data){
-            //the file exists, so both are passed to be merged
-            //addToTodoList(data, json);
-            sendDataTodoFirstTime(json);
-        },
-        error: function(){
-            //No file was found, so we send a new ojbect
-            sendDataTodoFirstTime(json);
-            
-        }
-    });
-}
 
     function sendDateComplete(){
        getTodolist();
@@ -158,8 +129,18 @@ var addTodoTask = function (json){
 
     var init = function (){
 	todoAddButton.click(function() {
-       //Try to get the todo items
-        getAllTodo()
+        var json;
+    json = {
+            "error":"",
+            "subject": "",
+            "id": "",
+            "doBy": "",
+            "priority" :""
+        };
+    json.subject = todoSubject.val();
+    json.doBy = todoDate.val();
+    json.priority = todoPriority.val();
+    sendDataTodoFirstTime(json);
      });
 	}
 
