@@ -21,7 +21,7 @@
        <div id="todo_management">
             <form>
                 <button id="todo_delete" type="button">
-                Delete tasks
+                __MSG__DELETE_TASKS__
             </button>
             </form>
         </div>
@@ -36,10 +36,10 @@
     <div id="todo_list">
     <form>
     <ul>
-        <li id="todo_li_head_done">Done</li>
-        <li id="todo_li_head_task" ><a href= "javascript:;" >Subject</a></li>
-        <li id="todo_li_head_priority"><a href= "javascript:;" >Priority</a></li>
-        <li id="todo_li_head_date" ><a href="javascript:;">Do By</a></li>
+        <li id="todo_li_head_done">__MSG__COLUMN_DONE__</li>
+        <li id="todo_li_head_task" ><a href= "javascript:;" >__MSG__COLUMN_DESCRIPTION__</a></li>
+        <li id="todo_li_head_priority"><a href= "javascript:;" >__MSG__COLUMN_PRIORITY__</a></li>
+        <li id="todo_li_head_date" ><a href="javascript:;">__MSG__COLUMN_DATE__</a></li>
         
     </ul>
     {for todo in all}
@@ -60,12 +60,10 @@
     <div class="widget-options-inner" id="input_template">
         <form id="todo_add_form">
             <!-- ==> method action -->
-            <input type="text" id="todo_subject" name="subject" size="30" value="Description"/><input type="text" id="todo_date" value="do by"/>
+            <input type="text" id="todo_subject" name="subject" size="30" value="__MSG__ENTER_DESCRIPTION__"/><input type="text" id="todo_date" value="__MSG__ENTER_DATE__"/>
             <select id="todo_priority">
             </select>
-            <button id="todo_add_button" type="button">
-                Add
-            </button>
+            <button id="todo_add_button" type="button">__MSG__ADD__</button>
         </form>
     </div>
 </div>

@@ -62,6 +62,9 @@ sakai.todo = function(tuid, placement, showSettings){
     var $todoSubject = $("#todo_subject_text", rootel);
     var $todoEnterTask = $("#todo_enter_task_label", rootel); 
     
+    var todoSubjectSelected = false;
+    var todoDateSelected = false;
+    
     
     // Paging
     var pageCurrent = 0;        // The page you are currently on
@@ -376,7 +379,7 @@ var getTodolist = function(){
         todoSubject.addClass('errorStyle');
         errorCount = errorCount + 1;
         }
-     if((json.doBy ==="")||(json.doBy ===undefined)){
+     if((json.doBy ==="")||(json.doBy ===undefined)||(todoSubjectSelected==false)){
         
         todoDate.addClass('errorStyle');
         todoDate.removeClass('normalStyle');
@@ -432,14 +435,16 @@ var init = function (){
         });
         todoSubject.focus(function(){
             todoSubject.addClass('normalStyle');
-            if(todoSubject.val()==="Description"){
-            todoSubject.val('');
+            if (todoSubjectSelected === false) {
+                todoSubject.val('');
+                todoSubjectSelected = true;
             }
         });
         todoDate.focus(function(){
             todoDate.addClass('normalStyle');
-              if(todoDate.val()==="do by"){
-            todoDate.val('');
+            if (todoDateSelected === false) {
+                todoDate.val('');
+                todoDateSelected = true;
             }
         });
         

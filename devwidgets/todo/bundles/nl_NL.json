@@ -1,6 +1,13 @@
 {
 "name": "Todo",
 "description": "Jouw takenlijst",
-"ENTER_TASK": "Voeg een nieuwe taak toe",
+"ADD": "Toevoegen",
+"COLUMN_DONE": "",
+"COLUMN_DESCRIPTION": "Omschrijving",
+"COLUMN_PRIORITY": "Prioriteit",
+"COLUMN_DATE": "Datum",
+"DELETE_TASKS": "Verwijder taken",
+"ENTER_DATE": "Datum",
+"ENTER_DESCRIPTION": "Omschrijving",
 "NOT_CONNECTED": "The todo widget kon geen verbinding met de server maken."
 }
