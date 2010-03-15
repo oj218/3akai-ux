@@ -27,6 +27,13 @@
 <div id="todo_template"><!--
     <div id="todo_list">
     <form>
+    <ul>
+        <li id="todo_li_head_done">Done</li>
+        <li id="todo_li_head_task" ><a href= "javascript:;" >Subject</a></li>
+        <li id="todo_li_head_priority"><a href= "javascript:;" >Priority</a></li>
+        <li id="todo_li_head_date" ><a href="javascript:;">Do By</a></li>
+        
+    </ul>
     {for todo in all}
         {if todo.subject !== undefined }
             <ul>

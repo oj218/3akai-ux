@@ -39,6 +39,17 @@ sakai.todo = function(tuid, placement, showSettings){
     var todoTemplate = 'todo_template';
     var subjectError;
     var dateError;
+    var todoHeadDone = $('#todo_li_head_done',rootel);
+    var todoHeadSubject = $('#todo_li_head_task',rootel);
+    var todoHeadPriority = $('#todo_li_head_priority',rootel);
+    var todoHeadDate = $('#todo_li_head_date',rootel);
+    
+    var clickCountSubjectSorting = 0;
+    var clickCountPrioritySorting = 0;
+    var clickCountDoBySorting = 0;
+   
+    
+    var sortHeader;
     var priorityOptions = {
         1: '1',
         2: '2',
@@ -115,6 +126,112 @@ sakai.todo = function(tuid, placement, showSettings){
 * @param {Object} json
 */
     
+var BubbleSortSubject = function(arrayName, length){
+    if (clickCountSubjectSorting % 2 !== 0) {
+    var i,j;
+    for ( i = 0; i < (length - 1); i++) 
+        for ( j = i + 1; j < length; j++) 
+            if (arrayName[j].subject < arrayName[i].subject) {
+                 var dummy = arrayName[i].subject;
+                var dummy2 = arrayName[i].priority;
+                var dummy3 = arrayName[i].doBy;
+                arrayName[i].subject = arrayName[j].subject;
+                arrayName[i].priority = arrayName[j].priority;
+                arrayName[i].doBy = arrayName[j].doBy;
+                arrayName[j].subject = dummy;
+                arrayName[j].priority = dummy2;
+                arrayName[j].doBy = dummy3;
+            }
+}else{
+     for ( i = 0; i < (length - 1); i++) 
+        for ( j = i + 1; j < length; j++) 
+            if (arrayName[j].subject > arrayName[i].subject) {
+                var dummy = arrayName[i].subject;
+                var dummy2 = arrayName[i].priority;
+                var dummy3 = arrayName[i].doBy;
+                arrayName[i].subject = arrayName[j].subject;
+                arrayName[i].priority = arrayName[j].priority;
+                arrayName[i].doBy = arrayName[j].doBy;
+                arrayName[j].subject = dummy;
+                arrayName[j].priority = dummy2;
+                arrayName[j].doBy = dummy3;
+            }
+    
+}
+    return arrayName;
+}
+
+var BubbleSortPrio = function(arrayName, length){
+    if (clickCountPrioritySorting % 2 !== 0) {
+    var i,j;
+    for ( i = 0; i < (length - 1); i++) 
+        for ( j = i + 1; j < length; j++) 
+            if (arrayName[j].priority < arrayName[i].priority) {
+                 var dummy = arrayName[i].subject;
+                var dummy2 = arrayName[i].priority;
+                var dummy3 = arrayName[i].doBy;
+                arrayName[i].subject = arrayName[j].subject;
+                arrayName[i].priority = arrayName[j].priority;
+                arrayName[i].doBy = arrayName[j].doBy;
+                arrayName[j].subject = dummy;
+                arrayName[j].priority = dummy2;
+                arrayName[j].doBy = dummy3;
+            }
+}else{
+     for ( i = 0; i < (length - 1); i++) 
+        for ( j = i + 1; j < length; j++) 
+            if (arrayName[j].priority > arrayName[i].priority) {
+                var dummy = arrayName[i].subject;
+                var dummy2 = arrayName[i].priority;
+                var dummy3 = arrayName[i].doBy;
+                arrayName[i].subject = arrayName[j].subject;
+                arrayName[i].priority = arrayName[j].priority;
+                arrayName[i].doBy = arrayName[j].doBy;
+                arrayName[j].subject = dummy;
+                arrayName[j].priority = dummy2;
+                arrayName[j].doBy = dummy3;
+            }
+    
+}
+    return arrayName;
+}
+
+var BubbleSortDoBy = function(arrayName, length){
+    if (clickCountDoBySorting % 2 !== 0) {
+    var i,j;
+    for ( i = 0; i < (length - 1); i++) 
+        for ( j = i + 1; j < length; j++) 
+            if (arrayName[j].doBy < arrayName[i].doBy) {
+                 var dummy = arrayName[i].subject;
+                var dummy2 = arrayName[i].priority;
+                var dummy3 = arrayName[i].doBy;
+                arrayName[i].subject = arrayName[j].subject;
+                arrayName[i].priority = arrayName[j].priority;
+                arrayName[i].doBy = arrayName[j].doBy;
+                arrayName[j].subject = dummy;
+                arrayName[j].priority = dummy2;
+                arrayName[j].doBy = dummy3;
+            }
+}else{
+     for ( i = 0; i < (length - 1); i++) 
+        for ( j = i + 1; j < length; j++) 
+            if (arrayName[j].doBy > arrayName[i].doBy) {
+                var dummy = arrayName[i].subject;
+                var dummy2 = arrayName[i].priority;
+                var dummy3 = arrayName[i].doBy;
+                arrayName[i].subject = arrayName[j].subject;
+                arrayName[i].priority = arrayName[j].priority;
+                arrayName[i].doBy = arrayName[j].doBy;
+                arrayName[j].subject = dummy;
+                arrayName[j].priority = dummy2;
+                arrayName[j].doBy = dummy3;
+            }
+    
+}
+    return arrayName;
+}
+
+    
     var renderTodolist = function(){       
         
         var test= Object;
@@ -127,8 +244,17 @@ sakai.todo = function(tuid, placement, showSettings){
                 }
             }
         }
+         // clickCountSubjectSorting 
+        if(sortHeader==="subject"){
+           parseglobalArray = BubbleSortSubject(parseglobalArray,parseglobalArray.length);
+        }else if(sortHeader==="prio"){
+            parseglobalArray = BubbleSortPrio(parseglobalArray,parseglobalArray.length);
+            
+        }else if(sortHeader==="date"){
+            parseglobalArray = BubbleSortDoBy(parseglobalArray,parseglobalArray.length);
+            
+        }
         
-
        
         
         var pagingArray = {
@@ -143,9 +269,7 @@ sakai.todo = function(tuid, placement, showSettings){
         if(parseglobalArray.length >= 0){//pageSize
             renderPaging();
         }
-        
-        
-        
+
         };
     
 /**
@@ -230,41 +354,11 @@ var getTodolist = function(){
         
     };
  
-var init = function (){
-    getCurrentUser();
-    
-    
-        todoDelete.live('click', function(){
-            var itemsToDelete = [];
-            todoCheck = $('#todo_check', rootel);
-            //Have to assign the variable again because the first time 
-            //the ajax call isn't completed
-            // So there are no checkboxes with that id yet.
-            //So need to put it back in the cash
-            
-            //Get all the names of the checked checkboxes (name = subject)
-            todoCheck.each(function(){
-                if ($(this).attr('checked')) {
-                    itemsToDelete.push($(this).attr('name'));
-                }
-            });
-            //Delete the tasks
-            deleteTasks(itemsToDelete);
-            
-        });
-    todoSubject.click(function(){
-        todoSubject.addClass('normalStyle');
-    });
-    todoDate.click(function(){
-        todoDate.addClass('normalStyle');
-    });
-    todoAddButton.click(function() {
+ 	var addData = function(){
         var json;
         var errorCount = 0;
     json = {
-            "error":"",
             "subject": "",
-            "id": "",
             "doBy": "",
             "priority" :""
         };
@@ -290,8 +384,58 @@ var init = function (){
         todoDate.val('');
          todoSubject.val('');
         sendDataTodoFirstTime(json);
-    }
-     });
+    }};
+    var sortSubject = function (){
+         clickCountSubjectSorting = clickCountSubjectSorting +1;
+         sortHeader = 'subject';
+         getTodolist();
+    };
+    var sortPriority = function (){
+         clickCountPrioritySorting = clickCountPrioritySorting +1;
+          sortHeader = 'prio';
+         getTodolist();
+    };
+    var sortDate = function (){
+         clickCountDoBySorting = clickCountDoBySorting +1;
+         sortHeader = 'date';
+         getTodolist();
+    };
+var init = function (){
+    getCurrentUser();
+    
+    
+        todoDelete.live('click', function(){
+            var itemsToDelete = [];
+            todoCheck = $('#todo_check', rootel);
+            //Have to assign the variable again because the first time 
+            //the ajax call isn't completed
+            // So there are no checkboxes with that id yet.
+            //So need to put it back in the cash
+            
+            //Get all the names of the checked checkboxes (name = subject)
+            todoCheck.each(function(){
+                if ($(this).attr('checked')) {
+                    itemsToDelete.push($(this).attr('name'));
+                }
+            });
+            //Delete the tasks
+            deleteTasks(itemsToDelete);
+            
+        });
+        todoSubject.click(function(){
+            todoSubject.addClass('normalStyle');
+        });
+        todoDate.click(function(){
+
+            todoDate.addClass('normalStyle');
+        });
+        
+        todoHeadSubject.live('click',sortSubject);
+        todoHeadSubject.addClass('errorStyle');
+        todoHeadPriority.live('click',sortPriority);
+        todoHeadDate.live('click',sortDate);
+        
+        todoAddButton.click(addData);
 };
  
  

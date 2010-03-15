@@ -19,6 +19,23 @@
 
 /* TODO CONTENT */
 
+
+#todo_li_head_done{
+    width:40px;
+}
+
+#todo_li_head_task{
+    width:200px;
+}
+
+#todo_li_head_priority{
+    width:60px;
+}
+
+#todo_li_head_date{
+    width:100px;
+}
+
 .errorStyle{
     background-color:#FF6262;
 }
@@ -65,7 +82,7 @@ width:170px;
 }
 
 #todo_li_done{
-    width:20px;
+    width:30px;
 }
 
 #todo_li_task{
@@ -79,6 +96,8 @@ width:170px;
 #todo_li_date{
     width:100px;
 }
+
+
 
 #todo_add_form{
     padding:13px 6px 0;
