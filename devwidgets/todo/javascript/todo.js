@@ -37,6 +37,9 @@ sakai.todo = function(tuid, placement, showSettings){
     var todoCheck = $('#todo_check',rootel);
     var todoTasks = $('#todo_tasks',rootel);
     var todoTemplate = 'todo_template';
+    var subjectError;
+    var dateError;
+    var 
     var priorityOptions = {
         1: '1',
         2: '2',
@@ -126,7 +129,7 @@ sakai.todo = function(tuid, placement, showSettings){
             }
         }
         
-        console.log(parseglobalArray.length);
+
        
         
         var pagingArray = {
