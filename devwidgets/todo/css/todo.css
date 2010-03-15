@@ -46,17 +46,32 @@
     background-color:#FFFFFF;
 }
 
+#todo_paging{
+  margin-top:20px;
+  padding-top:5px;
+  border-top-color:#D4DADE;
+  border-top-style: solid;
+
+   
+}
+
+#todo_hr{
+    margin-top:20px;
+    color:#B2AD9A;
+    
+    
+}
+
 #todo_date{
 width:70px;
 }
 
 #todo_subject{
-width:170px;
+width:230px;
 }
 
 
-#todo_widget {
-}
+
 
 #todo_btn_add {
 	width:50px;
