@@ -33,7 +33,7 @@ sakai.todo = function(tuid, placement, showSettings){
     var todoAddButton = $('#todo_add_button',rootel);
     var todoPriority = $('#todo_priority',rootel);
     var todoContainer = $('#todo_container ',rootel);
-      var todoDelete = $('#todo_delete',rootel);
+    var todoDelete = $('#todo_delete',rootel);
     var todoCheck = $('#todo_check',rootel);
     var todoTasks = $('#todo_tasks',rootel);
     var todoTemplate = 'todo_template';
@@ -57,6 +57,10 @@ sakai.todo = function(tuid, placement, showSettings){
         4: '4',
         5: '5'
     };
+    
+    var $todoErrorNotConnected = $("#todo_error_notconnected", rootel);
+    var $todoSubject = $("#todo_subject_text", rootel);
+    var $todoEnterTask = $("#todo_enter_task_label", rootel); 
     
     
     // Paging
@@ -101,10 +105,6 @@ sakai.todo = function(tuid, placement, showSettings){
         });
     };
     
-    
- 
- 
-
     var getCurrentUser = function(){
     $.ajax({
                 url: "http://localhost:8080/system/me",
@@ -119,7 +119,7 @@ sakai.todo = function(tuid, placement, showSettings){
                console.log("error");
             }
         });
-}
+};
     
 /**
 *
@@ -159,7 +159,7 @@ var BubbleSortSubject = function(arrayName, length){
     
 }
     return arrayName;
-}
+};
 
 var BubbleSortPrio = function(arrayName, length){
     if (clickCountPrioritySorting % 2 !== 0) {
@@ -194,7 +194,7 @@ var BubbleSortPrio = function(arrayName, length){
     
 }
     return arrayName;
-}
+};
 
 var BubbleSortDoBy = function(arrayName, length){
     if (clickCountDoBySorting % 2 !== 0) {
@@ -229,48 +229,46 @@ var BubbleSortDoBy = function(arrayName, length){
     
 }
     return arrayName;
-}
+};
 
     
-    var renderTodolist = function(){       
-        
-        var test= Object;
-         
-        parseglobalArray = []; 
-        for (var c in parseglobal.all) {
-            if (parseglobal.all.hasOwnProperty(c) ) {
-                if(typeof(parseglobal.all[c]) === "object" ){
+var renderTodolist = function(){
+    var test = Object;
+    parseglobalArray = [];
+    for (var c in parseglobal.all) {
+        if (parseglobal.all.hasOwnProperty(c)) {
+            if (typeof(parseglobal.all[c]) === "object") {
                 parseglobalArray.push(parseglobal.all[c]);
-                }
             }
         }
-         // clickCountSubjectSorting 
-        if(sortHeader==="subject"){
-           parseglobalArray = BubbleSortSubject(parseglobalArray,parseglobalArray.length);
-        }else if(sortHeader==="prio"){
-            parseglobalArray = BubbleSortPrio(parseglobalArray,parseglobalArray.length);
-            
-        }else if(sortHeader==="date"){
-            parseglobalArray = BubbleSortDoBy(parseglobalArray,parseglobalArray.length);
+    }
+    // clickCountSubjectSorting 
+    if (sortHeader === "subject") {
+        parseglobalArray = BubbleSortSubject(parseglobalArray, parseglobalArray.length);
+    }
+    else 
+        if (sortHeader === "prio") {
+            parseglobalArray = BubbleSortPrio(parseglobalArray, parseglobalArray.length);
             
         }
-        
-       
-        
-        var pagingArray = {
-            all : parseglobalArray.slice(pageCurrent * pageSize, (pageCurrent * pageSize) + pageSize)
-        };
-        
-    
-         
-        //parseglobal.all = parseglobal.all.slice(pageCurrent * pageSize, (pageCurrent * pageSize) + pageSize); 
-        todoTasks.html($.Template.render(todoTemplate, pagingArray));
-        
-        if(parseglobalArray.length >= 0){//pageSize
-            renderPaging();
-        }
+        else 
+            if (sortHeader === "date") {
+                parseglobalArray = BubbleSortDoBy(parseglobalArray, parseglobalArray.length);
+                
+            }
 
-        };
+    var pagingArray = {
+        all: parseglobalArray.slice(pageCurrent * pageSize, (pageCurrent * pageSize) + pageSize)
+    };
+    
+
+    //parseglobal.all = parseglobal.all.slice(pageCurrent * pageSize, (pageCurrent * pageSize) + pageSize); 
+    todoTasks.html($.Template.render(todoTemplate, pagingArray));
+    
+    if (parseglobalArray.length >= 0) {//pageSize
+        renderPaging();
+    }
+};
     
 /**
 *
@@ -287,6 +285,11 @@ var BubbleSortDoBy = function(arrayName, length){
             
             //Render the todolist for the current user.
             renderTodolist();
+            
+            $todoSubject.html($todoEnterTask);
+        }else{
+            // If it wasn't possible to connect to the server, show the not connected error
+            $todoContainer.html($todoErrorNotConnected);
         }
     };
     
