@@ -19,6 +19,13 @@
 
 /* TODO CONTENT */
 
+.errorStyle{
+    background-color:#FF6262;
+}
+.normalStyle{
+    background-color:#FFFFFF;
+}
+
 #todo_date{
 width:70px;
 }

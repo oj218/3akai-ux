@@ -28,14 +28,14 @@
     <div id="todo_list">
     <form>
     {for todo in all}
-    {if todo.subject !== undefined }
-    <ul>
-    <li id="todo_li_done"><input type=checkbox name="${todo.subject}" id="todo_check" ></li>
-    <li id="todo_li_task"><a href="http://">${todo.subject}</a></li>
-    <li id="todo_li_priority">${todo.priority}</li>
-    <li id="todo_li_date">${todo.doBy}</li>
-    </ul>
-    {/if}
+        {if todo.subject !== undefined }
+            <ul>
+                <li id="todo_li_done"><input type=checkbox name="${todo.subject}" id="todo_check" ></li>
+                <li id="todo_li_task"><a href="http://">${todo.subject}</a></li>
+                <li id="todo_li_priority">${todo.priority}</li>
+                <li id="todo_li_date">${todo.doBy}</li>
+            </ul>
+        {/if}
     {/for}
     </form>
     </div>-->

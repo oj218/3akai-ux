@@ -39,7 +39,6 @@ sakai.todo = function(tuid, placement, showSettings){
     var todoTemplate = 'todo_template';
     var subjectError;
     var dateError;
-    var 
     var priorityOptions = {
         1: '1',
         2: '2',
@@ -253,9 +252,15 @@ var init = function (){
             deleteTasks(itemsToDelete);
             
         });
-    
+    todoSubject.click(function(){
+        todoSubject.addClass('normalStyle');
+    });
+    todoDate.click(function(){
+        todoDate.addClass('normalStyle');
+    });
     todoAddButton.click(function() {
         var json;
+        var errorCount = 0;
     json = {
             "error":"",
             "subject": "",
@@ -266,7 +271,26 @@ var init = function (){
     json.subject = todoSubject.val();
     json.doBy = todoDate.val();
     json.priority = todoPriority.val();
-    sendDataTodoFirstTime(json);
+    //Validation
+    // Check if the textboxes are empty
+    //If they're empty, colour them red and incase the normal style is still applied , remove it
+    if((json.subject ==="")||(json.subject ===undefined)){
+        todoSubject.removeClass('normalStyle');
+        todoSubject.addClass('errorStyle');
+        errorCount = errorCount + 1;
+        }
+     if((json.doBy ==="")||(json.doBy ===undefined)){
+        
+        todoDate.addClass('errorStyle');
+        todoDate.removeClass('normalStyle');
+        errorCount = errorCount + 1;
+        }
+     // Everytime there is an error, the counter goes up. Only when there are no errors (so 0), the data can be sent 
+    if (errorCount === 0) {
+        todoDate.val('');
+         todoSubject.val('');
+        sendDataTodoFirstTime(json);
+    }
      });
 };
  
