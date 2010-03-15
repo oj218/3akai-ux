@@ -18,52 +18,49 @@
 <!-- CONTENT -->
 <div id="todo_widget">
     <div class="fl-widget-content" id="todo_container">
-       <div id="todo_management">
-            <form>
-                <button id="todo_delete" type="button">
-                __MSG__DELETE_TASKS__
-            </button>
-            </form>
+    <div id="todo_tasks">
+    </div>
+    <div id="todo_management">
+        <div class="buttonBar todo_buttonBarDelete">
+            <a class="button todo_button" href="javascript:;" id="todo_delete">__MSG__DELETE__</a>
         </div>
-        <div id="todo_tasks">
-        </div>
-       
-        <div id="todo_paging" class="jq_pager">
-        </div>
+    </div>
+    <div id="todo_paging" class="jq_pager">
+    </div>
     </div>
 </div>
 <div id="todo_template"><!--
     <div id="todo_list">
     <form>
-    <ul>
+    <ul id="todo_li_head">
         <li id="todo_li_head_done">__MSG__COLUMN_DONE__</li>
         <li id="todo_li_head_task" ><a href= "javascript:;" >__MSG__COLUMN_DESCRIPTION__</a></li>
         <li id="todo_li_head_priority"><a href= "javascript:;" >__MSG__COLUMN_PRIORITY__</a></li>
         <li id="todo_li_head_date" ><a href="javascript:;">__MSG__COLUMN_DATE__</a></li>
-        
-    </ul>
+    </ul>    
     {for todo in all}
         {if todo.subject !== undefined }
             <ul>
                 <li id="todo_li_done"><input type=checkbox name="${todo.subject}" id="todo_check" ></li>
-                <li id="todo_li_task"><a href="http://">${todo.subject}</a></li>
+                <li id="todo_li_task">${todo.subject}</li>
                 <li id="todo_li_priority">${todo.priority}</li>
                 <li id="todo_li_date">${todo.doBy}</li>
             </ul>
         {/if}
     {/for}
-    </form>
-    </div>-->
-</div>
+        </form>
+    </div>
+    --></div>
 <!-- FOOTER LINKS -->
 <div class="fl-widget-options fl-fix">
     <div class="widget-options-inner" id="input_template">
         <form id="todo_add_form">
             <!-- ==> method action -->
             <input type="text" id="todo_subject" name="subject" size="30" value="__MSG__ENTER_DESCRIPTION__"/><input type="text" id="todo_date" value="__MSG__ENTER_DATE__"/>
-            <select id="todo_priority">
-            </select>
-            <button id="todo_add_button" type="button">__MSG__ADD__</button>
+            <select id="todo_priority"></select>
+            <div class="buttonBar todo_buttonBarAdd">
+                <a class="button todo_button" href="javascript:;" id="todo_add_button">__MSG__ADD__</a>
+            </div>
         </form>
     </div>
 </div>

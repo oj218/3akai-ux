@@ -2,11 +2,11 @@
 "name": "Todo",
 "description": "Your list of tasks",
 "ADD": "Add",
-"COLUMN_DONE": "Done",
+"COLUMN_DONE": "",
 "COLUMN_DESCRIPTION": "Description",
 "COLUMN_PRIORITY": "Priority",
 "COLUMN_DATE": "Date",
-"DELETE_TASKS": "Delete tasks",
+"DELETE": "Delete",
 "ENTER_DATE": "Date",
 "ENTER_DESCRIPTION": "Description",
 "NOT_CONNECTED": "The todo widget couldn't connect to the server."
