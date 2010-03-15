@@ -330,7 +330,7 @@ var Widgets = {
                 "nl_NL": "/devwidgets/todo/bundles/nl_NL.json"
             },
             id:"todo",
-            name:"todo",
+            name:"Todo",
             personalportal:true,
             url:"/devwidgets/todo/todo.html"
         },
