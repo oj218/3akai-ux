@@ -422,12 +422,15 @@ var init = function (){
             deleteTasks(itemsToDelete);
             
         });
-        todoSubject.click(function(){
+        todoSubject.focus(function(){
             todoSubject.addClass('normalStyle');
+            if(todoSubject.val()==="Description"){
+            todoSubject.val('');
+            }
         });
-        todoDate.click(function(){
-
+        todoDate.focus(function(){
             todoDate.addClass('normalStyle');
+            alert("test");
         });
         
         todoHeadSubject.live('click',sortSubject);
