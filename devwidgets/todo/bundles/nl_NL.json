@@ -1,0 +1,6 @@
+{
+"name": "Todo",
+"description": "Jouw takenlijst",
+"ENTER_TASK": "Voeg een nieuwe taak toe",
+"NOT_CONNECTED": "The todo widget kon geen verbinding met de server maken."
+}

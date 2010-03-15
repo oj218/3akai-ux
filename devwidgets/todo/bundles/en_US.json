@@ -1,0 +1,6 @@
+{
+"name": "Todo",
+"description": "Your list of tasks",
+"ENTER_TASK": "Enter a new task",
+"NOT_CONNECTED": "The todo widget couldn't connect to the server."
+}

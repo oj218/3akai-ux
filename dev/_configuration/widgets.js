@@ -321,9 +321,14 @@ var Widgets = {
             url:"/devwidgets/tangler/tangler.html"
         },
 	
-	todo: {
+	    todo: {
             description:"Todo Widget",
             hasSettings:true,
+            i18n: {
+                "default": "/devwidgets/todo/bundles/default.json",
+                "en_US": "/devwidgets/todo/bundles/en_US.json",
+                "nl_NL": "/devwidgets/todo/bundles/nl_NL.json"
+            },
             id:"todo",
             name:"todo",
             personalportal:true,

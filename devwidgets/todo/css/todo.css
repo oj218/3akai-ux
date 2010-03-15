@@ -19,6 +19,9 @@
 
 /* TODO CONTENT */
 
+/*#todo_container{
+    padding:10px 20px;
+}*/
 
 #todo_li_head_done{
     width:40px;
@@ -57,7 +60,6 @@ width:170px;
 
 #todo_btn_add {
 	width:50px;
-   
 }
 
 #todo_list ul
@@ -96,8 +98,6 @@ width:170px;
 #todo_li_date{
     width:100px;
 }
-
-
 
 #todo_add_form{
     padding:13px 6px 0;
