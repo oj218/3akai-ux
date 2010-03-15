@@ -382,6 +382,11 @@ var getTodolist = function(){
         todoDate.removeClass('normalStyle');
         errorCount = errorCount + 1;
         }
+       if(todoDate.val()==="do by"){
+           todoDate.addClass('errorStyle');
+        todoDate.removeClass('normalStyle');
+        errorCount = errorCount + 1;
+       }
      // Everytime there is an error, the counter goes up. Only when there are no errors (so 0), the data can be sent 
     if (errorCount === 0) {
         todoDate.val('');
@@ -433,7 +438,9 @@ var init = function (){
         });
         todoDate.focus(function(){
             todoDate.addClass('normalStyle');
-            alert("test");
+              if(todoDate.val()==="do by"){
+            todoDate.val('');
+            }
         });
         
         todoHeadSubject.live('click',sortSubject);
