@@ -41,7 +41,7 @@
     {for todo in all}
         {if todo.subject !== undefined }
             <ul class="todo_listitem">
-                <li class="todo_li_done"><input type=checkbox name="${todo.subject}" id="todo_check" ></li>
+                <li class="todo_li_done"><input type=checkbox name="${todo.id}" id="todo_check" ></li>
                 <li id="todo_li_task" class="flc-inlineEditable"><span class="flc-inlineEdit-text">${todo.subject}</span></li>
                 <li class="todo_li_priority">
                     <div class="inlineEditableAlt">

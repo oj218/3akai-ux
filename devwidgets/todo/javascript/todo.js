@@ -255,7 +255,7 @@ $(".dropdownbox").live("mouseout", function(){
         //Concatinate the url to post to
         var postUrl = "/todo/" + sdata.me.user.userid + "/todo";
         var jsonArray = {};
-        jsonArray[json.subject] = json;
+        jsonArray[json.id] = json;
         // post the data from the form (in a json object),
         // to the server then execute the comlete function
         sdata.preference.save(postUrl, jsonArray, sendDataComplete);
@@ -297,10 +297,12 @@ $(".dropdownbox").live("mouseout", function(){
         var json;
         var errorCount = 0;
         json = {
+            "id":"",
             "subject": "",
             "doBy": "",
             "priority": ""
         };
+        json.id = parseglobalArray[parseglobalArray.length-1].id +1;
         json.subject = todoSubject.val();
         json.doBy = todoDate.val();
         json.priority = todoPriority.val();
