@@ -39,9 +39,6 @@ sakai.todo = function(tuid, placement, showSettings){
     var todoHeadPriority = $('#todo_li_head_priority', rootel);
     var todoHeadDate = $('#todo_li_head_date', rootel);
     var $currentUser;
-    var clickCountSubjectSorting = 0;
-    var clickCountPrioritySorting = 0;
-    var clickCountDoBySorting = 0;
     var renderPaging;
     var sortHeader;
     var priorityOptions = {
@@ -67,143 +64,46 @@ sakai.todo = function(tuid, placement, showSettings){
     
     var todoId = "#todo";
     var $todoContainer = $(todoId + "_container");
+    
+    var sortBySubject = true;
+    var sortByPriority = true;
+    var sortByDoBy = true;
 
-
-
-    /**
-     * 
-     * @param {Object} arrayName
-     * @param {Object} length
-     */
-    //Sorting function for the diffrent properties
-    //Alphabetical Sorting
-    var BubbleSortSubject = function(arrayName, length){
-        if (clickCountSubjectSorting % 2 !== 0) {
-            for (var i = 0; i < (length - 1); i++) {
-                for (var j = i + 1; j < length; j++) {
-                    if (arrayName[j].subject < arrayName[i].subject) {
-                        var dummy = arrayName[i].subject;
-                        var dummy2 = arrayName[i].priority;
-                        var dummy3 = arrayName[i].doBy;
-                        arrayName[i].subject = arrayName[j].subject;
-                        arrayName[i].priority = arrayName[j].priority;
-                        arrayName[i].doBy = arrayName[j].doBy;
-                        arrayName[j].subject = dummy;
-                        arrayName[j].priority = dummy2;
-                        arrayName[j].doBy = dummy3;
-                    }
-                }
-            }
-        }else {
-            //reverse alphabetical
-            for (var k = 0; k < (length - 1); k++) {
-                for (var l = k + 1; l < length; l++) {
-                    if (arrayName[l].subject > arrayName[l].subject) {
-                        var dummy4 = arrayName[k].subject;
-                        var dummy5 = arrayName[k].priority;
-                        var dummy6 = arrayName[k].doBy;
-                        arrayName[k].subject = arrayName[l].subject;
-                        arrayName[k].priority = arrayName[l].priority;
-                        arrayName[k].doBy = arrayName[l].doBy;
-                        arrayName[l].subject = dummy4;
-                        arrayName[l].priority = dummy5;
-                        arrayName[l].doBy = dummy6;
-                    }
-                }
-            }
-        }
-        return arrayName;
-    };
-
-    /**
-     * 
-     * @param {Object} arrayName
-     * @param {Object} length
-     */
-    var BubbleSortPrio = function(arrayName, length){
-        if (clickCountPrioritySorting % 2 !== 0) {
-            for (var i = 0; i < (length - 1); i++) {
-                for (var j = i + 1; j < length; j++) {
-                    if (arrayName[j].priority < arrayName[i].priority) {
-                        var dummy4 = arrayName[i].subject;
-                        var dummy5 = arrayName[i].priority;
-                        var dummy6 = arrayName[i].doBy;
-                        arrayName[i].subject = arrayName[j].subject;
-                        arrayName[i].priority = arrayName[j].priority;
-                        arrayName[i].doBy = arrayName[j].doBy;
-                        arrayName[j].subject = dummy4;
-                        arrayName[j].priority = dummy5;
-                        arrayName[j].doBy = dummy6;
-                    }
-                }
-            }
-        } else {
-            for (var k = 0; k < (length - 1); k++) {
-                for (var l = k + 1; l < length; l++) {
-                    if (arrayName[l].priority > arrayName[k].priority) {
-                        var dummy = arrayName[k].subject;
-                        var dummy2 = arrayName[k].priority;
-                        var dummy3 = arrayName[k].doBy;
-                        arrayName[k].subject = arrayName[l].subject;
-                        arrayName[k].priority = arrayName[l].priority;
-                        arrayName[k].doBy = arrayName[l].doBy;
-                        arrayName[l].subject = dummy;
-                        arrayName[l].priority = dummy2;
-                        arrayName[l].doBy = dummy3;
-                    }
-                }
-            }
-        }
-        return arrayName;
-    };
-
-    /**
-     * 
-     * @param {Object} arrayName
-     * @param {Object} length
-     */
-    var BubbleSortDoBy = function(arrayName, length){
-        //Check if it has to be alphabetical
-        //by doing modulo 2
-        // 1 % 2 = 1 ; so alphabetical
-        // 2 % 2 = 0 ; so reversed
-        if (clickCountDoBySorting % 2 !== 0) {
-            for (var i = 0; i < (length - 1); i++) {
-                for (var j = i + 1; j < length; j++) {
-                    if (arrayName[j].doBy < arrayName[i].doBy) {
-                        var dummy = arrayName[i].subject;
-                        var dummy2 = arrayName[i].priority;
-                        var dummy3 = arrayName[i].doBy;
-                        arrayName[i].subject = arrayName[j].subject;
-                        arrayName[i].priority = arrayName[j].priority;
-                        arrayName[i].doBy = arrayName[j].doBy;
-                        arrayName[j].subject = dummy;
-                        arrayName[j].priority = dummy2;
-                        arrayName[j].doBy = dummy3;
-                    }
-                }
-            }
-        }
-        else {
-            //for (var i = 0, j = splitted.length; i < j; i++) {
-            for (var k = 0; k < (length - 1); k++) {
-                for (var l = k + 1; l < length; l++) {
-                    if (arrayName[l].doBy > arrayName[k].doBy) {
-                        var dummy4 = arrayName[k].subject;
-                        var dummy5 = arrayName[k].priority;
-                        var dummy6 = arrayName[k].doBy;
-                        arrayName[k].subject = arrayName[l].subject;
-                        arrayName[k].priority = arrayName[l].priority;
-                        arrayName[k].doBy = arrayName[l].doBy;
-                        arrayName[l].subject = dummy4;
-                        arrayName[l].priority = dummy5;
-                        arrayName[l].doBy = dummy6;
-                    }
-                }
-            }
-        }
-        return arrayName;
-    };
+    function sortBySubjectAsc(a, b){
+        var x = a.subject.toLowerCase();
+        var y = b.subject.toLowerCase();
+        return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+    }
+    
+    function sortBySubjectDesc(a, b){
+        var x = a.subject.toLowerCase();
+        var y = b.subject.toLowerCase();
+        return ((x > y) ? -1 : ((x < y) ? 1 : 0));
+    }
+    
+    function sortByPriorityAsc(a, b){
+        var x = a.priority;
+        var y = b.priority;
+        return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+    }
+    
+    function sortByPriorityDesc(a, b){
+        var x = a.priority;
+        var y = b.priority;
+        return ((x > y) ? -1 : ((x < y) ? 1 : 0));
+    }
+    
+    function sortByDoByAsc(a, b){
+        var x = a.doBy;
+        var y = b.doBy;
+        return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+    }
+    
+    function sortByDoByDesc(a, b){
+        var x = a.doBy;
+        var y = b.doBy;
+        return ((x > y) ? -1 : ((x < y) ? 1 : 0));
+    }
 
     var renderTodolist = function(){
         //Atm there is only an object with properties of json objects
@@ -217,13 +117,31 @@ sakai.todo = function(tuid, placement, showSettings){
                 }
             }
         }
-        // Depending on which column is clickedm sort it 
+        // Depending on which column is clicked, sort it 
         if (sortHeader === "subject") {
-            parseglobalArray = new BubbleSortSubject(parseglobalArray, parseglobalArray.length);
+            if (sortBySubject===true) {
+                parseglobalArray.sort(sortBySubjectAsc);
+                sortBySubject = false;
+            }else{
+                parseglobalArray.sort(sortBySubjectDesc);
+                sortBySubject = true;
+            }
         }else if(sortHeader === "prio") {
-            parseglobalArray = new BubbleSortPrio(parseglobalArray, parseglobalArray.length);
+            if (sortByPriority===true) {
+                parseglobalArray.sort(sortByPriorityAsc);
+                sortByPriority = false;
+            }else{
+                parseglobalArray.sort(sortByPriorityDesc);
+                sortByPriority = true;
+            }
         } else if(sortHeader === "date")  {
-            parseglobalArray = new BubbleSortDoBy(parseglobalArray, parseglobalArray.length);
+            if (sortByDoBy===true) {
+                parseglobalArray.sort(sortByDoByAsc);
+                sortByDoBy = false;
+            }else{
+                parseglobalArray.sort(sortByDoByDesc);
+                sortByDoBy = true;
+            }
         }
 
         var pagingArray = {
@@ -406,19 +324,16 @@ sakai.todo = function(tuid, placement, showSettings){
 
     //Incremate the counter to see if it has to be alphabetical or not
     var sortSubject = function(){
-        clickCountSubjectSorting = clickCountSubjectSorting + 1;
         sortHeader = 'subject';
         getTodolist();
     };
 
     var sortPriority = function(){
-        clickCountPrioritySorting = clickCountPrioritySorting + 1;
         sortHeader = 'prio';
         getTodolist();
     };
 
     var sortDate = function(){
-        clickCountDoBySorting = clickCountDoBySorting + 1;
         sortHeader = 'date';
         getTodolist();
     };

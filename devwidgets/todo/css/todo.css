@@ -15,139 +15,92 @@
  * KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
  */
-/* TODO CONTENT */
+
+
+/* TODO CONTAINER */
+
+#todo_widget #todo_container {
+    padding: 15px;
+}
+
+#todo_widget #todo_container #todo_tasks #todo_list ul li {
+    display: inline-block;
+    vertical-align: top;
+}
+
+#todo_container #todo_tasks #todo_list #todo_li_head {
+    padding-bottom: 10px;
+}
+
+#todo_container #todo_tasks #todo_list #todo_li_head #todo_li_head_date, #todo_container #todo_tasks #todo_list #todo_li_date {
+    float: right;
+    width: 65px;
+}
+
+#todo_container #todo_tasks #todo_list #todo_li_head #todo_li_head_done, #todo_container #todo_tasks #todo_list #todo_li_done {
+    width: 25px;
+}
+
+#todo_container #todo_tasks #todo_list #todo_li_head #todo_li_head_priority, #todo_container #todo_tasks #todo_list #todo_li_priority {
+    width: 50px;
+}
+
+#todo_container #todo_tasks #todo_list #todo_li_head #todo_li_head_task, #todo_container #todo_tasks #todo_list #todo_li_task {
+    width: 260px;
+}
+
+/* TODO INPUT */
+
+.fl-widget-options .widget-options-inner #todo_add_form {
+    padding: 13px 6px 0;
+}
+
+.fl-widget-options .widget-options-inner #todo_add_form .todo_buttonBarAdd {
+    float: right;
+    margin-top: -20px;
+}
+
+.fl-widget-options .widget-options-inner #todo_add_form #todo_input #todo_date {
+    width: 70px;
+}
+
+.fl-widget-options .widget-options-inner #todo_add_form #todo_input #todo_subject {
+    width: 230px;
+}
+
+#todo_widget #todo_management .buttonBar #todo_delete {
+    margin-top: 15px;
+    margin-left: 0; /*position the button at the absolute left*/
+    position: absolute;
+}
+
+/* TODO PAGER */
+
+#todo_widget .sakai_pager li {
+    background: transparent !important;
+}
+
+#todo_widget .sakai_pager li > span {
+    background: none !important;
+}
+
+#todo_widget .sakai_pager li.dots {
+    margin-left: 0px;
+    clear: none;
+}
+
+#todo_widget #todo_container #todo_paging {
+    border-top: #D4DADE 3px solid; /*horizontal line seperating input zone from paging*/
+    margin-top: 55px;
+    padding-top: 10px;
+}
+
+/* TODO STYLE */
+
 .errorStyle {
     background-color: #FF6262;
 }
 
 .normalStyle {
     background-color: #FFFFFF;
-}
-
-#todo_add_form {
-    padding: 13px 6px 0;
-}
-
-/*#todo_btn_add {
- width: 50px;
- }*/
-#todo_container {
-    padding: 15px;
-}
-
-#todo_date {
-    width: 70px;
-}
-
-#todo_hr {
-    color: #B2AD9A;
-    /*margin-top: 20px;*/
-}
-
-#todo_li_head {
-    padding-bottom: 10px;
-}
-
-#todo_li_head_date, #todo_li_date {
-    float: right;
-    width: 65px;
-}
-
-#todo_li_head_done, #todo_li_done {
-    width: 25px;
-}
-
-#todo_li_head_priority, #todo_li_priority {
-    width: 50px;
-}
-
-#todo_li_head_task, #todo_li_task {
-    width: 260px;
-}
-
-/*#todo_list a {
- font-color: #000000;
- }
- 
- #todo_list a:hover {
- background-color: #FFFF99;
- text-decoration: none;
- }*/
-#todo_list ul {
-    /*list-style-type: inherit;
-     margin: 0;
-     padding: 0;*/
-}
-
-#todo_list ul li {
-    display: inline-block;
-    vertical-align: top;
-}
-
-#todo_paging {
-    border-top-color: #D4DADE;
-    border-top-style: solid;
-    margin-top: 55px;
-    padding-top: 10px;
-}
-
-#todo_subject {
-    width: 230px;
-}
-
-/* BUTTONS */
-.todo_buttonBarAdd {
-    float: right;
-    margin-top: 2px;
-}
-
-#todo_delete {
-    margin-top: 15px;
-    margin-left: 0; /*positions the button at the left*/
-    position: absolute;
-}
-
-/* DROPDOWN */
-#todo_status .todo_chat_status_dropdown {
-    background-image: url("/dev/_images/arrow_down_sm2.png");
-    background-repeat: no-repeat;
-    width: 9px;
-    height: 5px;
-    position: relative;
-    top: 17px;
-    left: 3px;
-}
-
-.todo_chat_status {
-    color:#666;
-    display:inline;
-}
-
-/* PAGER */
-.sakai_pager li {
-    float: left;
-    display: inline-block;
-    list-style: none;
-    font-size: 0.95em;
-    height: 18px;
-    background: transparent url(../../_images/pager-left.png) top left no-repeat;
-    margin: 0px 5px;
-}
-
-.sakai_pager li > span {
-    display: inline-block;
-    background: url(../../_images/pager-right.png) top right no-repeat;
-    margin: 0;
-    border: none;
-    font-weight: bold;
-    cursor: pointer;
-    height: 18px;
-    margin-right: -5px;
-    padding: 1px 10px 0px 10px;
-    color: #006e96;
-}
-
-.sakai_pager li.dots {
-    margin-left: 10px;
-    clear: none;
 }

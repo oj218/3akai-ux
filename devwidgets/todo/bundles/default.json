@@ -2,7 +2,6 @@
 "name": "Todo",
 "description": "Your list of tasks",
 "ADD": "Add",
-"COLUMN_DONE": "",
 "COLUMN_DESCRIPTION": "Description",
 "COLUMN_PRIORITY": "Priority",
 "COLUMN_DATE": "Date",
