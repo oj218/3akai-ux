@@ -42,20 +42,7 @@
             <ul >
                 <li id="todo_li_done"><input type=checkbox name="${todo.subject}" id="todo_check" ></li>
                 <li id="todo_li_task" class="flc-inlineEditable"><span class="flc-inlineEdit-text">${todo.subject}</span></li>
-                <li id="todo_li_priority">
-                    <span class="flc-inlineEdit-text">${todo.priority}</span>
-                    <span class="flc-inlineEdit-editContainer dropdown">
-                          <select class="flc-inlineEdit-edit" name="myselectbox" tabindex="1">
-                                <option value="1" selected="selected">1</option>
-                                <option value="2">2</option>
-                                <option value="Refuse to be Categorized">Refuse to be Categorized</option>
-                          </select>
-                    </span>
-                </li>
-                
-                
-                
-                
+                <li id="todo_li_priority"><span>${todo.priority}</span></li>
                 <li id="todo_li_date"><span>${todo.doBy}</span></li>
             </ul>
         {/if}
@@ -82,5 +69,7 @@
 </div>
 	
 <!-- JQUERY LIBS -->
+
 <script type="text/javascript" src="/devwidgets/todo/javascript/todo.js"></script>
+<script type="text/javascript" src="/devwidgets/todo/lib/jquery.selectbox-0.5.js"></script>
 <script type="text/javascript" src="/devwidgets/todo/javascript/jquery-ui-1.7.custom.min.js"></script>

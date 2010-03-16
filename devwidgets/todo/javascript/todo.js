@@ -378,12 +378,12 @@ sakai.todo = function(tuid, placement, showSettings){
         //Validation
         // Check if the textboxes are empty
         //If they're empty, colour them red and in case the normal style is still applied , remove it
-        if (json.subject) {
+        if ((json.subject === '')&&(json.subject === undefined)) {
             todoSubject.removeClass('normalStyle');
             todoSubject.addClass('errorStyle');
             errorCount = errorCount + 1;
         }
-        if (json.doBy) {
+        if ((json.date === '')&&(json.date === undefined)){
             todoDate.addClass('errorStyle');
             todoDate.removeClass('normalStyle');
             errorCount = errorCount + 1;
