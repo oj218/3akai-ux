@@ -2,7 +2,6 @@
 <link rel="stylesheet" type="text/css" href="/devwidgets/todo/css/todo.css" />
 <link rel="stylesheet" type="text/css" href="/devwidgets/todo/css/todo_datepicker.css" />
 
-
 <!-- ERRORS -->
 <div id="todo_error" style="display:none;">
     <div id="todo_error_notconnected" class="todo_error">__MSG__NOT_CONNECTED__</div>
@@ -10,7 +9,7 @@
 
 <!-- LABELS -->
 <div id="todo_label" style="display:none;">
-    <label class="todo_enter_task_label" for="todo_input_get">
+    <label class="todo_enter_task_label" for="todo_subject">
         __MSG__ENTER_TASK__
     </label>
 </div>
@@ -51,13 +50,17 @@
         </form>
     </div>
     --></div>
+    
 <!-- FOOTER LINKS -->
 <div class="fl-widget-options fl-fix">
     <div class="widget-options-inner" id="input_template">
-        <form id="todo_add_form">
+        <form id="todo_add_form" action="POST">
             <!-- ==> method action -->
-            <input type="text" id="todo_subject" name="subject" size="30" value="__MSG__ENTER_DESCRIPTION__"/><input type="text" id="todo_date" value="__MSG__ENTER_DATE__"/>
-            <select id="todo_priority"></select>
+            <div id="todo_input">
+                <input type="text" id="todo_subject" name="subject" value="__MSG__ENTER_DESCRIPTION__"/>
+                <input type="text" id="todo_date" value="__MSG__ENTER_DATE__"/>
+                <select id="todo_priority"><option>1</option></select>
+            </div>
             <div class="buttonBar todo_buttonBarAdd">
                 <a class="button todo_button" href="javascript:;" id="todo_add_button">__MSG__ADD__</a>
             </div>
@@ -66,6 +69,5 @@
 </div>
 	
 <!-- JQUERY LIBS -->
-
 <script type="text/javascript" src="/devwidgets/todo/javascript/todo.js"></script>
 <script type="text/javascript" src="/devwidgets/todo/javascript/jquery-ui-1.7.custom.min.js"></script>
