@@ -64,46 +64,24 @@ sakai.todo = function(tuid, placement, showSettings){
     
     var todoId = "#todo";
     var $todoContainer = $(todoId + "_container");
-    
-    var sortBySubject = true;
-    var sortByPriority = true;
-    var sortByDoBy = true;
 
-    function sortBySubjectAsc(a, b){
-        var x = a.subject.toLowerCase();
-        var y = b.subject.toLowerCase();
-        return ((x < y) ? -1 : ((x > y) ? 1 : 0));
-    }
-    
-    function sortBySubjectDesc(a, b){
-        var x = a.subject.toLowerCase();
-        var y = b.subject.toLowerCase();
-        return ((x > y) ? -1 : ((x < y) ? 1 : 0));
-    }
-    
-    function sortByPriorityAsc(a, b){
-        var x = a.priority;
-        var y = b.priority;
-        return ((x < y) ? -1 : ((x > y) ? 1 : 0));
-    }
-    
-    function sortByPriorityDesc(a, b){
-        var x = a.priority;
-        var y = b.priority;
-        return ((x > y) ? -1 : ((x < y) ? 1 : 0));
-    }
-    
-    function sortByDoByAsc(a, b){
-        var x = a.doBy;
-        var y = b.doBy;
-        return ((x < y) ? -1 : ((x > y) ? 1 : 0));
-    }
-    
-    function sortByDoByDesc(a, b){
-        var x = a.doBy;
-        var y = b.doBy;
-        return ((x > y) ? -1 : ((x < y) ? 1 : 0));
-    }
+    // sorting
+    var sortDict = {};
+    var sortColumns = function(a,b){
+        var x = a[sortHeader];
+        var y = b[sortHeader];
+        
+        if (sortHeader == "doBy"){
+            x = Date.parse(x);
+            y = Date.parse(y);
+        }
+        
+        if (sortDict[sortHeader]){
+            return ((x < y) ? -1 : ((x > y) ? 1 : 0)); // asc
+        }else{
+            return ((x > y) ? -1 : ((x < y) ? 1 : 0)); // desc
+        }
+    };
 
 sakai._inlineedits = [];
 sakai.inlineEdits = function(container, options){
@@ -162,6 +140,8 @@ $(".dropdownbox").live("mouseout", function(){
 
 
     var renderTodolist = function(){
+        // fill array
+        
         //Atm there is only an object with properties of json objects
         //2 of these json objects are irrelevantm, so these need to be deleted
         //To be able to slice the object has to be transformed into an array
@@ -173,33 +153,19 @@ $(".dropdownbox").live("mouseout", function(){
                 }
             }
         }
-        // Depending on which column is clicked, sort it 
-        if (sortHeader === "subject") {
-            if (sortBySubject===true) {
-                parseglobalArray.sort(sortBySubjectAsc);
-                sortBySubject = false;
-            }else{
-                parseglobalArray.sort(sortBySubjectDesc);
-                sortBySubject = true;
-            }
-        }else if(sortHeader === "prio") {
-            if (sortByPriority===true) {
-                parseglobalArray.sort(sortByPriorityAsc);
-                sortByPriority = false;
-            }else{
-                parseglobalArray.sort(sortByPriorityDesc);
-                sortByPriority = true;
-            }
-        } else if(sortHeader === "date")  {
-            if (sortByDoBy===true) {
-                parseglobalArray.sort(sortByDoByAsc);
-                sortByDoBy = false;
-            }else{
-                parseglobalArray.sort(sortByDoByDesc);
-                sortByDoBy = true;
-            }
+        
+        // sorting
+        
+        parseglobalArray.sort(sortColumns);
+        
+        if (sortDict[sortHeader]){
+            sortDict[sortHeader] = false;
+        }else{
+            sortDict[sortHeader] = true;
         }
 
+        // paging
+        
         var pagingArray = {
             all: parseglobalArray.slice(pageCurrent * pageSize, (pageCurrent * pageSize) + pageSize)
         };
@@ -208,7 +174,8 @@ $(".dropdownbox").live("mouseout", function(){
         //Fluidinfusion line to make editable text
         fluid.inlineEdits("#todo_task_list");
         
-       //Dropdowns
+        // dropdowns
+        
         sakai.inlineEdits("#todo_task_list", {
             useTooltip: true,
             //finishedEditing: doHomeContact,
@@ -391,16 +358,22 @@ $(".dropdownbox").live("mouseout", function(){
     };
 
     var sortPriority = function(){
-        sortHeader = 'prio';
+        sortHeader = 'priority';
         getTodolist();
     };
 
     var sortDate = function(){
-        sortHeader = 'date';
+        sortHeader = 'doBy';
         getTodolist();
     };
 
     var init = function(){
+        // sorting
+        sortDict.subject = true;
+        sortDict.priority = true;
+        sortDict.doBy = true;
+        
+        
         getCurrentUser();
         todoDelete.live('click', function(){
             var itemsToDelete = [];
