@@ -140,7 +140,7 @@ $(".dropdownbox").live("mouseout", function(){
 
     var renderTodolist = function(){
         // fill array
-        
+
         //Atm there is only an object with properties of json objects
         //2 of these json objects are irrelevantm, so these need to be deleted
         //To be able to slice the object has to be transformed into an array
@@ -152,11 +152,11 @@ $(".dropdownbox").live("mouseout", function(){
                 }
             }
         }
-        
+
         // sorting
-        
+
         parseglobalArray.sort(sortColumns);
-        
+
         if (sortDict[sortHeader]){
             sortDict[sortHeader] = false;
         }else{
@@ -164,7 +164,7 @@ $(".dropdownbox").live("mouseout", function(){
         }
 
         // paging
-        
+
         var pagingArray = {
             all: parseglobalArray.slice(pageCurrent * pageSize, (pageCurrent * pageSize) + pageSize)
         };
@@ -172,15 +172,14 @@ $(".dropdownbox").live("mouseout", function(){
         todoTasks.html($.Template.render(todoTemplate, pagingArray));
         //Fluidinfusion line to make editable text
         fluid.inlineEdits("#todo_task_list");
-        
+
         // dropdowns
-        
         sakai.inlineEdits("#todo_task_list", {
             useTooltip: true,
             //finishedEditing: doHomeContact,
             defaultViewText: " "
         });
-        
+
         if (parseglobalArray.length >= 0) {//pageSize
             renderPaging();
         }
@@ -210,7 +209,7 @@ $(".dropdownbox").live("mouseout", function(){
      */
     var loadTodolist = function(response){
         //Check if the request was successful
-        
+
         if (response) {
             //parseglobal = ;
             parseglobal = {
@@ -231,7 +230,6 @@ $(".dropdownbox").live("mouseout", function(){
     var getTodolist = function(){
         $.ajax({
             url: "/todo/" + sdata.me.user.userid + "/todo" + ".infinity.json",
-            
             success: function(data){
                 loadTodolist(data);
             },
@@ -282,7 +280,6 @@ $(".dropdownbox").live("mouseout", function(){
                     i = i + 1;
                     // When the counter reaches the number of items in the list
                     // the list is reloaded
-                    
                     //This is to avoid too many calls (overhead)
                     if (todoList.length === i) {
                         getTodolist();
