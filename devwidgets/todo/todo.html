@@ -30,7 +30,7 @@
 </div>
 <div id="todo_template"><!--
     <div id="todo_list">
-    <form>
+    <form id="todo_task_list" class="fl-theme-mist" >
     <ul id="todo_li_head">
         <li id="todo_li_head_done">__MSG__COLUMN_DONE__</li>
         <li id="todo_li_head_task" ><a href= "javascript:;" >__MSG__COLUMN_DESCRIPTION__</a></li>
@@ -39,11 +39,24 @@
     </ul>    
     {for todo in all}
         {if todo.subject !== undefined }
-            <ul>
+            <ul >
                 <li id="todo_li_done"><input type=checkbox name="${todo.subject}" id="todo_check" ></li>
-                <li id="todo_li_task">${todo.subject}</li>
-                <li id="todo_li_priority">${todo.priority}</li>
-                <li id="todo_li_date">${todo.doBy}</li>
+                <li id="todo_li_task" class="flc-inlineEditable"><span class="flc-inlineEdit-text">${todo.subject}</span></li>
+                <li id="todo_li_priority">
+                    <span class="flc-inlineEdit-text">${todo.priority}</span>
+                    <span class="flc-inlineEdit-editContainer dropdown">
+                          <select class="flc-inlineEdit-edit" name="myselectbox" tabindex="1">
+                                <option value="1" selected="selected">1</option>
+                                <option value="2">2</option>
+                                <option value="Refuse to be Categorized">Refuse to be Categorized</option>
+                          </select>
+                    </span>
+                </li>
+                
+                
+                
+                
+                <li id="todo_li_date"><span>${todo.doBy}</span></li>
             </ul>
         {/if}
     {/for}
