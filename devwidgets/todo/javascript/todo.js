@@ -105,6 +105,62 @@ sakai.todo = function(tuid, placement, showSettings){
         return ((x > y) ? -1 : ((x < y) ? 1 : 0));
     }
 
+sakai._inlineedits = [];
+sakai.inlineEdits = function(container, options){
+    var defaultViewText = "Click here to edit";
+    if (options.defaultViewText){
+        defaultViewText = options.defaultViewText;
+    }
+
+    var els = $(".inlineEditableAlt", rootel);
+    for (var i = 0; i < els.length; i++){
+        var el = $(els[i]);
+        var dropdown = $(".dropdownbox", el);
+        if (dropdown.length > 0){
+
+            if (dropdown.html() === ""){
+                dropdown.html(defaultViewText);
+            }
+
+            var tochangeTo = $(".editContainer",el);
+            var changedel = $(".options", tochangeTo);
+
+            dropdown.bind("click", function(ev){
+                var parent = $(ev.target).parent();
+                var dropdown = $(".dropdownbox",parent);
+                var tochangeTo = $(".editContainer", parent);
+
+                var value = dropdown.text();
+                $(".options" + " option[value=" + value + "]", tochangeTo).attr("selected", true);
+                if (dropdown.css("display") !== "none"){
+                    dropdown.hide();
+                    tochangeTo.show();
+                    changedel.focus();
+                    changedel.click();
+                }
+            });
+            changedel.children().bind("click", function(ev){
+                var parent = $(ev.target).parent().parent().parent().parent(); //this is the li
+                var dropdown = $(".dropdownbox",parent);
+                var newvalue = $("select.options", parent).val();
+                dropdown.html(newvalue);
+                $(".editContainer", parent).hide();
+                tochangeTo.hide();
+                dropdown.show();
+            });
+        }
+    }
+
+};
+
+$(".dropdownbox").live("mouseover", function(){
+    $(this).addClass("fl-inlineEdit-invitation");
+});
+$(".dropdownbox").live("mouseout", function(){
+    $(this).removeClass("fl-inlineEdit-invitation");
+});
+
+
     var renderTodolist = function(){
         //Atm there is only an object with properties of json objects
         //2 of these json objects are irrelevantm, so these need to be deleted
@@ -151,7 +207,13 @@ sakai.todo = function(tuid, placement, showSettings){
         todoTasks.html($.Template.render(todoTemplate, pagingArray));
         //Fluidinfusion line to make editable text
         fluid.inlineEdits("#todo_task_list");
-        fluid.inlineEdit.dropdown("#todo_li_priority");
+        
+       //Dropdowns
+        sakai.inlineEdits("#todo_task_list", {
+            useTooltip: true,
+            //finishedEditing: doHomeContact,
+            defaultViewText: " "
+        });
         
         if (parseglobalArray.length >= 0) {//pageSize
             renderPaging();

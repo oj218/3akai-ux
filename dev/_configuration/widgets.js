@@ -323,7 +323,6 @@ var Widgets = {
 	
 	    todo: {
             description:"Todo Widget",
-            hasSettings:true,
             i18n: {
                 "default": "/devwidgets/todo/bundles/default.json",
                 "en_US": "/devwidgets/todo/bundles/en_US.json",
