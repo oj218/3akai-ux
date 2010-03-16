@@ -38,11 +38,9 @@ sakai.todo = function(tuid, placement, showSettings){
     var todoHeadSubject = $('#todo_li_head_task', rootel);
     var todoHeadPriority = $('#todo_li_head_priority', rootel);
     var todoHeadDate = $('#todo_li_head_date', rootel);
-    var $currentUser;
     var renderPaging;
     var sortHeader;
     var priorityOptions = {
-        1: '1',
         2: '2',
         3: '3',
         4: '4',
@@ -54,7 +52,8 @@ sakai.todo = function(tuid, placement, showSettings){
     var $todoEnterTask = $("#todo_enter_task_label", rootel);
     var todoSubjectSelected = false;
     var todoDateSelected;
-
+    var todoSubjectValue;
+    var todoDateValue;
     // Paging
     var pageCurrent = 0; // The page you are currently on
     var pageSize = 10; // How many items you want to see on 1 page
@@ -231,7 +230,7 @@ $(".dropdownbox").live("mouseout", function(){
 
     var getTodolist = function(){
         $.ajax({
-            url: "/todo/" + $currentUser.user.userid + "/todo" + ".infinity.json",
+            url: "/todo/" + sdata.me.user.userid + "/todo" + ".infinity.json",
             
             success: function(data){
                 loadTodolist(data);
@@ -242,21 +241,7 @@ $(".dropdownbox").live("mouseout", function(){
         });
     };
 
-    var getCurrentUser = function(){
-        $.ajax({
-            url: "http://localhost:8080/system/me",
-            type: "GET",
-            
-            success: function(data){
-                $currentUser = $.evalJSON(data);
-                getTodolist();
-            },
-            
-            error: function(xhr, status, e){
-                //console.log("error");
-            }
-        });
-    };
+
 
 
     function sendDataComplete(){
@@ -270,7 +255,7 @@ $(".dropdownbox").live("mouseout", function(){
      */
     function sendDataTodoFirstTime(json){
         //Concatinate the url to post to
-        var postUrl = "/todo/" + $currentUser.user.userid + "/todo";
+        var postUrl = "/todo/" + sdata.me.user.userid + "/todo";
         var jsonArray = {};
         jsonArray[json.subject] = json;
         // post the data from the form (in a json object),
@@ -285,7 +270,7 @@ $(".dropdownbox").live("mouseout", function(){
     var deleteTasks = function(todoList){
         //Do an ajax call for every task in the list, to delete it.
         $.each(todoList, function(i, l){
-            var pref_url = "/todo/" + $currentUser.user.userid + "/todo/" + l;
+            var pref_url = "/todo/" + sdata.me.user.userid + "/todo/" + l;
             $.ajax({
                 url: pref_url,
                 type: "POST",
@@ -348,6 +333,10 @@ $(".dropdownbox").live("mouseout", function(){
             todoDate.val('');
             todoSubject.val('');
             sendDataTodoFirstTime(json);
+            todoSubject.val(todoSubjectValue);
+            todoDate.val(todoDateValue);
+            todoPriority.val("selected", 1);
+            
         }
     };
 
@@ -368,13 +357,16 @@ $(".dropdownbox").live("mouseout", function(){
     };
 
     var init = function(){
+
         // sorting
         sortDict.subject = true;
         sortDict.priority = true;
         sortDict.doBy = true;
-        
-        
-        getCurrentUser();
+
+        todoSubjectValue = todoSubject.val();
+        todoDateValue = todoDate.val();
+        getTodolist();
+
         todoDelete.live('click', function(){
             var itemsToDelete = [];
             todoCheck = $('#todo_check', rootel);
@@ -414,6 +406,7 @@ $(".dropdownbox").live("mouseout", function(){
         todoHeadPriority.live('click', sortPriority);
         todoHeadDate.live('click', sortDate);
         todoAddButton.click(addData);
+
     };
 
 
