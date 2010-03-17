@@ -402,7 +402,7 @@ var saveDataAfterTextEdit = function(newValue, oldValue, editNode, viewNode){
          if(parseglobalArray.length === 0){
             json.id = 1;
         }else{
-           json.id = parseglobalArray[parseglobalArray.length-1].id +1;
+           json.id = parseInt(parseglobalArray[parseglobalArray.length-1].id) +1;
         }
         json.subject = todoSubject.val();
         json.doBy = todoDate.val();
