@@ -121,6 +121,7 @@ sakai.inlineEdits = function(container, options){
                     changedel.focus();
                     changedel.click();
                 }
+                $(".options",parent).focus();
             });
             changedel.children().bind("click", function(ev){
                 var parent = $(ev.target).parent().parent().parent().parent(); //this is the li
@@ -163,14 +164,11 @@ sakai.inlineDateEdits = function(container, options){
                     if ($todoDate.css("display") !== "none"){
                         $todoDate.hide();
                         tochangeTo.show();
-                        tochangeTo.focus();
+                         $(".todoDatepick",parent).focus();
+                        
                     }
    });
 
-   tochangeTo.bind("blur", function(ev){
-     alert("test");
-       
-   });
 }
   
 
