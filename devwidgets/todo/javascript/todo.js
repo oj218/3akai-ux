@@ -32,7 +32,7 @@ sakai.todo = function(tuid, placement, showSettings){
     var todoAddButton = $('#todo_add_button', rootel);
     var todoPriority = $('#todo_priority', rootel);
     var todoDelete = $('#todo_delete', rootel);
-    var todoCheck = $('#todo_check', rootel);
+    var todoCheck = $('.todo_check', rootel);
     var todoTasks = $('#todo_tasks', rootel);
     var todoTemplate = 'todo_template';
     var todoHeadSubject = $('#todo_li_head_task', rootel);
@@ -40,6 +40,8 @@ sakai.todo = function(tuid, placement, showSettings){
     var todoHeadDate = $('#todo_li_head_date', rootel);
     var renderPaging;
     var sortHeader;
+    var tochangeTo ;
+    var selectedBox ;
     var priorityOptions = {
         2: '2',
         3: '3',
@@ -82,7 +84,12 @@ sakai.todo = function(tuid, placement, showSettings){
         }
     };
 
+var updateTask =  function(json){
+    sendDataTodoFirstTime(json);
+}
+
 sakai._inlineedits = [];
+//Inline edit for dropdowbox
 sakai.inlineEdits = function(container, options){
     var defaultViewText = "Click here to edit";
     if (options.defaultViewText){
@@ -98,7 +105,6 @@ sakai.inlineEdits = function(container, options){
             if (dropdown.html() === ""){
                 dropdown.html(defaultViewText);
             }
-
             var tochangeTo = $(".editContainer",el);
             var changedel = $(".options", tochangeTo);
 
@@ -124,11 +130,50 @@ sakai.inlineEdits = function(container, options){
                 $(".editContainer", parent).hide();
                 tochangeTo.hide();
                 dropdown.show();
+                changedel.focus();
+                var json;
+                json = {
+                    "id":parent.parent().find(".todo_hidden").text(),
+                    "subject":parent.parent().find(".todo_li_task").text() ,
+                    "doBy": parent.parent().find(".todoDatepick").val(),
+                    "priority": parent.parent().find(".dropdownbox").text()
+                };
+                updateTask(json);
+            });
+            changedel.bind("blur", function(ev){
+                var parent = $(ev.target).parent().parent().parent(); //this is the li
+                var dropdown = $(".dropdownbox",parent);
+                $(".editContainer", parent).hide();
+                dropdown.show();
             });
         }
     }
 
 };
+
+sakai.inlineDateEdits = function(container, options){
+
+   var $todoDate =  $(".todoDate",rootel);
+   tochangeTo = $(".editContainer", rootel);
+   $todoDate.bind("click", function(ev){
+                     selectedBox = $(ev.target);
+                    var parent = $(ev.target).parent();
+                    var $todoDate = $(".todoDate",parent);
+                     tochangeTo = $(".editContainer", parent);
+                    if ($todoDate.css("display") !== "none"){
+                        $todoDate.hide();
+                        tochangeTo.show();
+                        tochangeTo.focus();
+                    }
+   });
+
+   tochangeTo.bind("blur", function(ev){
+     alert("test");
+       
+   });
+}
+  
+
 
 $(".dropdownbox").live("mouseover", function(){
     $(this).addClass("fl-inlineEdit-invitation");
@@ -137,6 +182,40 @@ $(".dropdownbox").live("mouseout", function(){
     $(this).removeClass("fl-inlineEdit-invitation");
 });
 
+$(".todoDate").live("mouseover", function(){
+    $(this).addClass("fl-inlineEdit-invitation");
+});
+$(".todoDate").live("mouseout", function(){
+    $(this).removeClass("fl-inlineEdit-invitation");
+});
+
+var todoHideText = function(){
+    selectedBox.html((tochangeTo.find("input")).val());
+    tochangeTo.hide();
+     selectedBox.show();
+     parent = selectedBox.parent().parent();
+     var json;
+     json = {
+         "id": parent.parent().find(".todo_hidden").text(),
+         "subject": parent.parent().find(".todo_li_task").text(),
+         "doBy": parent.parent().find(".todoDatepick").val(),
+         "priority": parent.parent().find(".dropdownbox").text()
+     };
+     updateTask(json); 
+};
+
+var saveDataAfterTextEdit = function(newValue, oldValue, editNode, viewNode){
+    test = $(viewNode);
+    parent = test.parent();
+   var json;
+     json = {
+         "id": parent.parent().find(".todo_hidden").text(),
+         "subject": parent.parent().find(".todo_li_task").text(),
+         "doBy": parent.parent().find(".todoDatepick").val(),
+         "priority": parent.parent().find(".dropdownbox").text()
+     };
+     updateTask(json); 
+};
 
     var renderTodolist = function(){
         // fill array
@@ -170,16 +249,33 @@ $(".dropdownbox").live("mouseout", function(){
         };
         //Render the list
         todoTasks.html($.Template.render(todoTemplate, pagingArray));
+        
+        var opts = {
+            listeners: {
+                afterFinishEdit: saveDataAfterTextEdit
+            }
+        };
+        
+
         //Fluidinfusion line to make editable text
-        fluid.inlineEdits("#todo_task_list");
+        fluid.inlineEdits("#todo_task_list",opts);
 
         // dropdowns
         sakai.inlineEdits("#todo_task_list", {
             useTooltip: true,
-            //finishedEditing: doHomeContact,
             defaultViewText: " "
         });
-
+        //Datepicker
+        sakai.inlineDateEdits("#todo_task_list", {
+            useTooltip: true,
+            defaultViewText: " "
+        });
+        
+         $todoDatepick = $(".todoDatepick",rootel);
+        $($todoDatepick).datepicker({
+            onClose: todoHideText
+            
+        });
         if (parseglobalArray.length >= 0) {//pageSize
             renderPaging();
         }
@@ -302,7 +398,12 @@ $(".dropdownbox").live("mouseout", function(){
             "doBy": "",
             "priority": ""
         };
-        json.id = parseglobalArray[parseglobalArray.length-1].id +1;
+        
+         if(parseglobalArray.length === 0){
+            json.id = 1;
+        }else{
+           json.id = parseglobalArray[parseglobalArray.length-1].id +1;
+        }
         json.subject = todoSubject.val();
         json.doBy = todoDate.val();
         json.priority = todoPriority.val();
@@ -368,7 +469,7 @@ $(".dropdownbox").live("mouseout", function(){
 
         todoDelete.live('click', function(){
             var itemsToDelete = [];
-            todoCheck = $('#todo_check', rootel);
+            todoCheck = $('.todo_check', rootel);
             //Have to assign the variable again because the first time 
             //the ajax call isn't completed
             // So there are no checkboxes with that id yet.
@@ -377,7 +478,7 @@ $(".dropdownbox").live("mouseout", function(){
             //Get all the names of the checked checkboxes (name = subject)
             todoCheck.each(function(){
                 if ($(this).attr('checked')) {
-                    itemsToDelete.push($(this).attr('name'));
+                    itemsToDelete.push($(this).parent().parent().find(".todo_hidden").text());
                 }
             });
             //Delete the tasks
@@ -411,6 +512,8 @@ $(".dropdownbox").live("mouseout", function(){
 
     var addBinding = function(){
         $(todoDate).datepicker({});
+        
+       
 
         $.each(priorityOptions, function(val, text){
             todoPriority.append($('<option></option>').val(val).html(text));

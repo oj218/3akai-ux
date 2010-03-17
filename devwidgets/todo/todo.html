@@ -41,11 +41,13 @@
     {for todo in all}
         {if todo.subject !== undefined }
             <ul class="todo_listitem">
-                <li class="todo_li_done"><input type=checkbox name="${todo.id}" id="todo_check" ></li>
-                <li id="todo_li_task" class="flc-inlineEditable"><span class="flc-inlineEdit-text">${todo.subject}</span></li>
-                <li class="todo_li_priority">
+                <span class="todo_hidden">${todo.id}</span>
+                <li class="todo_li_done"><input type=checkbox class="todo_check" ></li>
+                <li class="flc-inlineEditable todo_li_task"><span class="flc-inlineEdit-text">${todo.subject}</span></li>
+                
+                <li class="todo_li_priority" name="${todo.id}">
                     <div class="inlineEditableAlt">
-                        <div id="txt_unirole" class="dropdownbox">
+                        <div class="dropdownbox">
                         ${todo.priority}
                         </div>
                         <div class="editContainer" style="display:none;">
@@ -60,7 +62,16 @@
                         </div>
                     </div>
                  </li>
-                <li id="todo_li_date"><span>${todo.doBy}</span></li>
+                <li class="todo_li_date">
+                <div class="inlineEditableAlt">
+                        <div class="todoDate">
+                        ${todo.doBy}
+                        </div>
+                        <div class="editContainer" style="display:none;">
+                          <input type="text" class="todoDatepick" value="${todo.doBy}"/>
+                        </div>
+                    </div>
+                </li>
             </ul>
         {/if}
     {/for}

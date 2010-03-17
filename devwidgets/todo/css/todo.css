@@ -19,6 +19,13 @@
 
 /* TODO CONTAINER */
 
+/* added wednesday */
+
+.todo_hidden{
+    display:none;
+    
+}
+
 #todo_widget #todo_container {
     padding: 15px;
 }
@@ -36,7 +43,7 @@
     padding-bottom: 10px;
 }
 
-#todo_container #todo_tasks #todo_list #todo_li_head #todo_li_head_date, #todo_container #todo_tasks #todo_list #todo_li_date {
+#todo_container #todo_tasks #todo_list #todo_li_head #todo_li_head_date, #todo_container #todo_tasks #todo_list .todo_li_date {
     float: right;
     width: 65px;
 }
@@ -49,7 +56,7 @@
     width: 50px;
 }
 
-#todo_container #todo_tasks #todo_list #todo_li_head #todo_li_head_task, #todo_container #todo_tasks #todo_list #todo_li_task {
+#todo_container #todo_tasks #todo_list #todo_li_head #todo_li_head_task, #todo_container #todo_tasks #todo_list .todo_li_task {
     width: 260px;
 }
 
