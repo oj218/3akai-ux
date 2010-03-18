@@ -8,5 +8,5 @@
 "DELETE": "Delete",
 "ENTER_DATE": "Date",
 "ENTER_DESCRIPTION": "Description",
-"NOT_CONNECTED": "The todo widget couldn't connect to the server."
+"NO_TASKS": "You currently have no tasks",
 }

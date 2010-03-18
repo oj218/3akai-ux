@@ -65,6 +65,7 @@ sakai.todo = function(tuid, placement, showSettings){
     
     var todoId = "#todo";
     var $todoContainer = $(todoId + "_container");
+    var $todoTasksAndDelete = $(todoId + "_tasks_and_delete");
 
     // sorting
     var sortDict = {};
@@ -86,10 +87,10 @@ sakai.todo = function(tuid, placement, showSettings){
 
 var updateTask =  function(json){
     sendDataTodoFirstTime(json);
-}
+};
 
 sakai._inlineedits = [];
-//Inline edit for dropdowbox
+//Inline edit for dropdownbox
 sakai.inlineEdits = function(container, options){
     var defaultViewText = "Click here to edit";
     if (options.defaultViewText){
@@ -169,7 +170,7 @@ sakai.inlineDateEdits = function(container, options){
                     }
    });
 
-}
+};
   
 
 
@@ -234,11 +235,6 @@ var saveDataAfterTextEdit = function(newValue, oldValue, editNode, viewNode){
 
         parseglobalArray.sort(sortColumns);
 
-        if (sortDict[sortHeader]){
-            sortDict[sortHeader] = false;
-        }else{
-            sortDict[sortHeader] = true;
-        }
 
         // paging
 
@@ -274,8 +270,15 @@ var saveDataAfterTextEdit = function(newValue, oldValue, editNode, viewNode){
             onClose: todoHideText
             
         });
-        if (parseglobalArray.length >= 0) {//pageSize
+        if (parseglobalArray.length > pageSize) {
+            document.getElementById('todo_paging').style.visibility = "visible";
             renderPaging();
+        }else{
+            document.getElementById('todo_paging').style.visibility = "hidden";
+            
+            if(parseglobalArray.length === 0){
+                $todoTasksAndDelete.html($todoErrorNoTasks);
+            }
         }
     };
 
@@ -316,7 +319,7 @@ var saveDataAfterTextEdit = function(newValue, oldValue, editNode, viewNode){
             $todoSubject.html($todoEnterTask);
         }else {
             // If it wasn't possible to connect to the server, show the not connected error
-            $todoContainer.html($todoErrorNotConnected);
+            sendDataTodoFirstTime(false);
         }
     };
 
@@ -400,7 +403,7 @@ var saveDataAfterTextEdit = function(newValue, oldValue, editNode, viewNode){
          if(parseglobalArray.length === 0){
             json.id = 1;
         }else{
-           json.id = parseInt(parseglobalArray[parseglobalArray.length-1].id) +1;
+           json.id = parseInt(parseglobalArray[parseglobalArray.length-1].id,10) +1;
         }
         json.subject = todoSubject.val();
         json.doBy = todoDate.val();
@@ -437,29 +440,44 @@ var saveDataAfterTextEdit = function(newValue, oldValue, editNode, viewNode){
             
         }
     };
+    
+    var swapSortHeader = function(){
+        // sort the column in opposite order next time
+        if (sortDict[sortHeader]) {
+            sortDict[sortHeader] = false;
+        }
+        else {
+            sortDict[sortHeader] = true;
+        }
+    };
 
     //Incremate the counter to see if it has to be alphabetical or not
     var sortSubject = function(){
         sortHeader = 'subject';
+        sortDict.priority = true; // reset other columns so that they will sort ascending the next time
+        sortDict.doBy = true;
         getTodolist();
+        swapSortHeader();
     };
 
     var sortPriority = function(){
         sortHeader = 'priority';
+        sortDict.subject = true; // reset other columns so that they will sort ascending the next time
+        sortDict.doBy = true;
         getTodolist();
+        swapSortHeader();
     };
 
     var sortDate = function(){
         sortHeader = 'doBy';
+        sortDict.subject = true; // reset other columns so that they will sort ascending the next time
+        sortDict.priority = true;
         getTodolist();
+        swapSortHeader();
     };
 
     var init = function(){
 
-        // sorting
-        sortDict.subject = true;
-        sortDict.priority = true;
-        sortDict.doBy = true;
 
         todoSubjectValue = todoSubject.val();
         todoDateValue = todoDate.val();

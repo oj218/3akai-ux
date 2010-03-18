@@ -8,5 +8,5 @@
 "DELETE": "Verwijder",
 "ENTER_DATE": "Datum",
 "ENTER_DESCRIPTION": "Omschrijving",
-"NOT_CONNECTED": "The todo widget kon geen verbinding met de server maken."
+"NO_TASKS": "Je hebt momenteel geen taken",
 }

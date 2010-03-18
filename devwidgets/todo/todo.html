@@ -5,7 +5,7 @@
 
 <!-- ERRORS -->
 <div id="todo_error" style="display:none;">
-    <div id="todo_error_notconnected" class="todo_error">__MSG__NOT_CONNECTED__</div>
+    <div id="todo_error_notasks" class="todo_error">__MSG__NO_TASKS__</div>
 </div>
 
 <!-- LABELS -->
@@ -18,15 +18,24 @@
 <!-- CONTENT -->
 <div id="todo_widget">
     <div class="fl-widget-content" id="todo_container">
-    <div id="todo_tasks">
-    </div>
-    <div id="todo_management">
-        <div class="buttonBar todo_buttonBarDelete">
-            <a class="button todo_button" href="javascript:;" id="todo_delete">__MSG__DELETE__</a>
+        <div id="todo_tasks_and_delete">
+            <div id="todo_tasks">
+            </div>
+            <div class="buttonBar todo_buttonBarDelete">
+                <a class="button todo_button" href="javascript:;" id="todo_delete">__MSG__DELETE__</a>
+            </div>
         </div>
-    </div>
-    <div id="todo_paging" class="jq_pager">
-    </div>
+        <form id="todo_add_form" action="POST">
+            <div id="todo_input">
+                <input type="text" id="todo_subject" name="subject" value="__MSG__ENTER_DESCRIPTION__"/><input type="text" id="todo_date" value="__MSG__ENTER_DATE__"/>
+                <select id="todo_priority">
+                    <option>1</option>
+                </select>
+            </div>
+            <div class="buttonBar todo_buttonBarAdd">
+                <a class="button todo_button" href="javascript:;" id="todo_add_button">__MSG__ADD__</a>
+            </div>
+        </form>
     </div>
 </div>
 <div id="todo_template"><!--
@@ -81,17 +90,7 @@
 <!-- FOOTER LINKS -->
 <div class="fl-widget-options fl-fix">
     <div class="widget-options-inner" id="input_template">
-        <form id="todo_add_form" action="POST">
-            <!-- ==> method action -->
-            <div id="todo_input">
-                <input type="text" id="todo_subject" name="subject" value="__MSG__ENTER_DESCRIPTION__"/>
-                <input type="text" id="todo_date" value="__MSG__ENTER_DATE__"/>
-                <select id="todo_priority"><option>1</option></select>
-            </div>
-            <div class="buttonBar todo_buttonBarAdd">
-                <a class="button todo_button" href="javascript:;" id="todo_add_button">__MSG__ADD__</a>
-            </div>
-        </form>
+        <div id="todo_paging" class="jq_pager"/>
     </div>
 </div>
 	

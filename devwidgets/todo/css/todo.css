@@ -62,24 +62,38 @@
 
 /* TODO INPUT */
 
-.fl-widget-options .widget-options-inner #todo_add_form {
-    padding: 13px 6px 0;
+#todo_add_form {
+    padding:55px 0px 0px 0px;
 }
 
-.fl-widget-options .widget-options-inner #todo_add_form .todo_buttonBarAdd {
+#todo_add_form .todo_buttonBarAdd {
     float: right;
-    margin-top: -20px;
+    margin: -20px -5px 0 0;
 }
 
-.fl-widget-options .widget-options-inner #todo_add_form #todo_input #todo_date {
-    width: 70px;
+#todo_add_form #todo_input #todo_date {
+    width: 71px;
+    margin-right:5px;
 }
 
-.fl-widget-options .widget-options-inner #todo_add_form #todo_input #todo_subject {
-    width: 230px;
+#todo_add_form #todo_input #todo_subject {
+    width: 180px;
+    margin-right:5px;
 }
 
-#todo_widget #todo_management .buttonBar #todo_delete {
+#todo_input{
+    border-top: #D4DADE 3px solid;
+    padding-top:15px;
+}
+
+#todo_subject, #todo_date {
+    border:1px solid #DDDDDD;
+    height:19px;
+    padding-left:3px;
+    padding-top:3px;
+}
+
+#todo_widget .buttonBar #todo_delete {
     margin-top: 15px;
     margin-left: 0; /*position the button at the absolute left*/
     position: absolute;
@@ -87,23 +101,22 @@
 
 /* TODO PAGER */
 
-#todo_widget .sakai_pager li {
+#input_template .sakai_pager li {
     background: transparent !important;
 }
 
-#todo_widget .sakai_pager li > span {
+#input_template .sakai_pager li > span {
     background: none !important;
 }
 
-#todo_widget .sakai_pager li.dots {
-    margin-left: 0px;
+#input_template .sakai_pager li.dots {
     clear: none;
 }
 
-#todo_widget #todo_container #todo_paging {
-    border-top: #D4DADE 3px solid; /*horizontal line seperating input zone from paging*/
-    margin-top: 55px;
-    padding-top: 10px;
+.fl-widget .fl-widget-options #todo_paging {
+    color:#666666;
+    font-size:0.85em;
+    font-weight:bold;
 }
 
 /* TODO STYLE */
