@@ -107,7 +107,7 @@ sakai.inlineEdits = function(container, options){
             }
             var tochangeTo = $(".editContainer",el);
             var changedel = $(".options", tochangeTo);
-
+            //Click on the the label
             dropdown.bind("click", function(ev){
                 var parent = $(ev.target).parent();
                 var dropdown = $(".dropdownbox",parent);
