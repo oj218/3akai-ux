@@ -36,50 +36,51 @@
 </div>
 <div id="todo_template"><!--
     <div id="todo_list">
-    <form id="todo_task_list" class="fl-theme-mist" >
-    <ul id="todo_li_head">
-        <li id="todo_li_head_done"> </li>
-        <li id="todo_li_head_task" ><a href= "javascript:;" >__MSG__COLUMN_DESCRIPTION__</a></li>
-        <li id="todo_li_head_priority"><a href= "javascript:;" >__MSG__COLUMN_PRIORITY__</a></li>
-        <li id="todo_li_head_date" ><a href="javascript:;">__MSG__COLUMN_DATE__</a></li>
-    </ul>    
-    {for todo in all}
-        {if todo.subject !== undefined }
-            <ul class="todo_listitem">
-                <span class="todo_hidden">${todo.id}</span>
-                <li class="todo_li_done"><input type=checkbox class="todo_check" ></li>
-                <li class="flc-inlineEditable todo_li_task"><span class="flc-inlineEdit-text">${todo.subject}</span></li>
-                
-                <li class="todo_li_priority" name="${todo.id}">
-                    <div class="inlineEditableAlt">
-                        <div class="dropdownbox">
-                        ${todo.priority}
-                        </div>
-                        <div class="editContainer" style="display:none;">
-                            <select class="options">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                            </select>
-                        </div>
-                    </div>
-                 </li>
-                <li class="todo_li_date">
-                <div class="inlineEditableAlt">
-                        <div class="todoDate">
-                        ${todo.doBy}
-                        </div>
-                        <div class="editContainer" style="display:none;">
-                          <input type="text" class="todoDatepick" value="${todo.doBy}"/>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        {/if}
-    {/for}
-        </form>
+        <form id="todo_task_list" class="fl-theme-mist" >
+        <ul id="todo_li_head">
+            <li id="todo_li_head_done"> </li>
+            <li id="todo_li_head_task" ><a href= "javascript:;" >__MSG__COLUMN_DESCRIPTION__</a></li>
+            <li id="todo_li_head_priority"><a href= "javascript:;" >__MSG__COLUMN_PRIORITY__</a></li>
+            <li id="todo_li_head_date" ><a href="javascript:;">__MSG__COLUMN_DATE__</a></li>
+        </ul>    
+                {for todo in all}
+                    {if todo.subject !== undefined }
+                        <ul class="todo_listitem">
+                            <span class="todo_hidden">${todo.id}</span>
+                            <li class="todo_li_done"><input type=checkbox class="todo_check" ></li>
+                            <li class="flc-inlineEditable todo_li_task"><span class="flc-inlineEdit-text">${todo.subject}</span></li>
+                            
+                            <li class="todo_li_priority">
+                                <div class="inlineEditableAlt">
+                                    <div class="dropdownbox">
+                                    ${todo.priority}
+                                    </div>
+                                    <div class="editContainer" style="display:none;">
+                                        <select class="options">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                        </select>
+                                    </div>
+                                </div>
+                             </li>
+                            <li class="todo_li_date">
+                            
+                            <div class="inlineEditableAlt">
+                                    <div class="todoDate">
+                                        ${todo.doBy}
+                                    </div>
+                                    <div class="editContainer" style="display:none;">
+                                        <input type="text" class="todoDatepick" value="${todo.doBy}"/>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    {/if}
+                {/for}
+            </form>
     </div>
     --></div>
     
