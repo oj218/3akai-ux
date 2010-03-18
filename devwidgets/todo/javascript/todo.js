@@ -38,6 +38,7 @@
         var $todoHeadPriority = $('#todo_li_head_priority', $rootel);
         var $todoHeadDate = $('#todo_li_head_date', $rootel);
         var $todoErrorNoTasks = $("#todo_error_notasks", $rootel);
+        var $todoContent = $("#todo_content", $rootel);
         var renderPaging;
         var tochangeTo ;
         var selectedBox ;
@@ -194,6 +195,8 @@
         };
 
         renderTodolist = function(){
+            $todoTasksAndDelete.html($todoContent);
+        
             // fill array
 
             //Atm there is only an object with properties of json objects
