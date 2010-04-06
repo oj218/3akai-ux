@@ -1691,6 +1691,7 @@ sakai.site.site_admin = function(){
     */
     var addDashboardPage = function(title){
 
+        //Hide recent activities, site management, pages
         // Create unique page elements
         var pageUniques = sakai.site.createPageUniqueElements(title, sakai.site.site_info._pages[sakai.site.selectedpage]["pageFolder"]);
 
