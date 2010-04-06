@@ -1,0 +1,87 @@
+/*The dasboard options*/
+#dashboard_options{
+    display:none;
+}
+
+/*The bottomline of the dashboard options */
+.nav_bottom {
+    background:url("/dev/_images/content_bl.png") no-repeat scroll left bottom transparent;
+    height:5px;
+    padding:0 0 0 10px;
+}
+
+/*The bottomline of the dashboard options */
+.nav_bottom_inner {
+    background:url("/dev/_images/content_br.png") no-repeat scroll right bottom transparent;
+    height:5px;
+}
+
+/*The topline of the dashboard options */
+.nav_top {
+    background:url("/dev/_images/content_tl.gif") no-repeat scroll left bottom transparent;
+    height:5px;
+    padding:0 0 0 10px;
+}
+
+/*The topline of the dashboard options */
+.nav_top_inner {
+    background:url("/dev/_images/content_tr.gif") no-repeat scroll right bottom transparent;
+    height:5px;
+}
+
+/*The header of the accordion in the dashboard part*/
+.dashboard_accordion_header {
+    color: #fff;
+    background-color: #454A4F;
+    padding: 5px 0 5px 0;
+    text-align: center;
+    width:200px;
+    display:block;
+}
+/*the hover on the accordion headers */
+.dashboard_accordion_header:hover{
+    background-color:#006E96;
+    text-decoration: none;
+}
+/*list with all the dashboard options, these can be found in the accordion*/
+#dashboard_accordeon ul{
+    margin:5px;
+    padding:0px;
+}
+
+/* A single element aka a dashboard option */
+#dashboard_accordeon ul li{
+    list-style:none;
+    width:185px;
+}
+
+/* The image that represents the option */
+#dashboard_accordeon img{
+    float:left;
+    padding-right:5px;
+}
+
+/*the title of the option */
+.dashboard_layout_titel{
+    font-size:0.95em;
+    font-weight: bold;
+}
+
+/*the text of the option */
+.dashboard_layout_text{
+    font-size:0.9em;
+}
+
+/*the inner accordion divs, where you can find the uls */
+.dashboard_accordeon_inner{
+    margin-bottom:30px;
+}
+
+/* A hr to seperate the ils, because float: left doesn't work */
+.dashboard_accordeon_inner hr{
+    display:block;
+    clear:left;
+    margin:0;
+    visibility:hidden;
+    padding-top:5px
+}

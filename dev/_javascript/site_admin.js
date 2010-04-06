@@ -53,6 +53,11 @@ sakai.site.site_admin = function(){
     var $more_menu = $("#more_menu");
     var $title_input_container = $("#title-input-container");
     var $fl_tab_content_editor = $("#fl-tab-content-editor");
+    var $site_management = $("#site_management"); //Sidebar
+    var $page_nav_content = $("#page_nav_content"); //recent activities, pages
+    var $content_page_options = $("#content_page_options"); //top right menu
+    var $dashboard_options = $("#dashboard_options"); //The dashboard options at the leftside
+    var $dashboard_accordeon = $("#dashboard_accordeon"); //The inner part of the dashboard option part
 
     // TinyMCE selectors, please note that it is not possible to cache these
     // since they get created at runtime
@@ -1692,6 +1697,12 @@ sakai.site.site_admin = function(){
     var addDashboardPage = function(title){
 
         //Hide recent activities, site management, pages
+        $site_management.hide(); //site managment
+        $page_nav_content.hide(); //Pages, recent activities
+        $content_page_options.hide(); //print page, more
+        $dashboard_options.show(); //show the dashboard options
+        $dashboard_accordeon.accordion(); //Transform the dashboard option div into an accordion
+
         // Create unique page elements
         var pageUniques = sakai.site.createPageUniqueElements(title, sakai.site.site_info._pages[sakai.site.selectedpage]["pageFolder"]);
 
