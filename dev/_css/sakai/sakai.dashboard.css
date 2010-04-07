@@ -55,6 +55,13 @@
     width:185px;
 }
 
+#dashboard_accordeon ul li:hover{
+    background-color:#006E96;
+    color:#fff;
+    border:2px solid #999;
+    cursor:pointer;
+}
+
 /* The image that represents the option */
 #dashboard_accordeon img{
     float:left;
@@ -84,4 +91,26 @@
     margin:0;
     visibility:hidden;
     padding-top:5px
+}
+
+.dashboard_hidden_span{
+    display:none;
+}
+
+.contentTemplate {
+    margin-top:30px;
+}
+
+.contentTemplateDiv{
+    width:210px;
+    height:400px;
+    background-color:#ccc;
+    display:inline-block;
+}
+
+.dashBoardHeader{
+    width:637px;
+    background-color:#ccc;
+    height:110px;
+    margin-bottom:5px;
 }

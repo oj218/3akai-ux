@@ -1048,7 +1048,7 @@ sakai.site = function(){
                 var el = document.createElement("div");
                 el.id = sakai.site.selectedpage;
                 el.className = "content";
-                el.innerHTML = $.TemplateRenderer("dashboard_container_template", final2);
+                //el.innerHTML = $.TemplateRenderer("dashboard_container_template", final2);
 
                 $main_content_div.append(el);
 

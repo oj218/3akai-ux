@@ -65,6 +65,21 @@
 
     </div>
 
+    <div id="main-content-div-template"><!--
+        <div></div>
+        <div></div>
+        <div></div>
+    --></div>
+    
+    <div id="main-content-div-header-template"><!--
+        <div id="dashboard_header_row"></div>
+        <div id="dashboard_inner_colums">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+ --></div>
+
     <!-- CONTENT -->
     <div class="fl-fix fl-centered fixed-container">
 
@@ -102,7 +117,8 @@
                         <div class="dashboard_accordeon_inner">
                             <ul>
                                 <!--A Dashboard option-->
-                                <li>
+                                <li id="dashboard_3_column">
+                                    <span class="dashboard_hidden_span"></span>
                                     <div>
                                         <img src="/dev/_images/cross.jpg" /><span class="dashboard_layout_titel">3 column</span>
                                         <br/>
@@ -111,7 +127,7 @@
                                         <hr/>
                                     </div>
                                 </li>
-                                <li>
+                                <li id="dashboard_header">
                                     <div>
                                         <img src="/dev/_images/cross.jpg" /><span class="dashboard_layout_titel">3 column with header</span>
                                         <br/>
@@ -163,7 +179,7 @@
                         <a href="#" class="dashboard_accordion_header">Page Elements</a>
 
                         <!--The second accordion content-->
-                        <div class="dashboard_accordeon_inner">
+                        <div class="dashboard_accordeon_inner" id="dashboard_second_accordeon">
                             <ul>
                                 <li>
                                     <div>

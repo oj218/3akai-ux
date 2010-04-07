@@ -58,6 +58,11 @@ sakai.site.site_admin = function(){
     var $content_page_options = $("#content_page_options"); //top right menu
     var $dashboard_options = $("#dashboard_options"); //The dashboard options at the leftside
     var $dashboard_accordeon = $("#dashboard_accordeon"); //The inner part of the dashboard option part
+    var $sakai_site_contents_main = $(".sakai_site_contents_main"); //The main content div
+    var $mainContentDiv = $("#main-content-div"); //The div where content is added
+    var $dashboardOptions = $(".dashboard_accordeon_inner ul li");
+    var mainContentDivTemplate = "main-content-div-template";
+    var mainContentDivHeaderTemplate = "main-content-div-header-template";
 
     // TinyMCE selectors, please note that it is not possible to cache these
     // since they get created at runtime
@@ -1686,9 +1691,28 @@ sakai.site.site_admin = function(){
     );
 
 
-    /////////////////////////////
-    // ADD NEW: DASHBOARD
-    /////////////////////////////
+    //////////////////////////////////////
+    // Clicks ON THE DASHBOARD OPTIONS //
+    /////////////////////////////////////
+
+    var showInContent = function(ev){
+        var dashBoardLi = $(ev.currentTarget).attr("id");
+        var test = {};
+        if (dashBoardLi === "dashboard_3_column") {
+            $mainContentDiv.html($.TemplateRenderer(mainContentDivTemplate,test));
+            $mainContentDiv.addClass('contentTemplate');
+            $mainContentDiv.children().addClass("contentTemplateDiv");
+        }else if( dashBoardLi ==="dashboard_header"){
+            $mainContentDiv.html($.TemplateRenderer(mainContentDivHeaderTemplate,test));
+            $("#dashboard_header_row").addClass('dashBoardHeader');
+            $("#dashboard_inner_colums div").addClass("contentTemplateDiv");
+        }
+        mainContentDivHeaderTemplate
+    };
+
+    ////////////////////////
+    // ADD NEW: DASHBOARD //
+    ////////////////////////
 
     /**
     * Adds a dashboard page to the site.
@@ -1702,6 +1726,10 @@ sakai.site.site_admin = function(){
         $content_page_options.hide(); //print page, more
         $dashboard_options.show(); //show the dashboard options
         $dashboard_accordeon.accordion(); //Transform the dashboard option div into an accordion
+
+        //When the user clicks on a dashboard option, it will be shown in  the content div
+        $dashboardOptions.click(showInContent);
+        
 
         // Create unique page elements
         var pageUniques = sakai.site.createPageUniqueElements(title, sakai.site.site_info._pages[sakai.site.selectedpage]["pageFolder"]);
