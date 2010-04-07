@@ -105,7 +105,8 @@
     width:210px;
     height:400px;
     background-color:#ccc;
-    display:inline-block;
+    float:left;
+    margin-right:3px;
 }
 
 .dashBoardHeader{
@@ -114,3 +115,10 @@
     height:110px;
     margin-bottom:5px;
 }
+.dashboard_input{
+   border:1px solid #777;
+    font-size:2em;
+    margin:5px 5px 0px 10px;
+    width:80%!important;
+    height:1.5em;
+    }

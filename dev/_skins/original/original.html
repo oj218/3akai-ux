@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="/dev/_css/sakai/sakai.core.2.css" />
     <link rel="stylesheet" type="text/css" href="/dev/_css/sakai/sakai.3.css" />
     <link rel="stylesheet" type="text/css" href="/dev/_css/sakai/sakai.dashboard.css" />
+    <link rel="stylesheet" type="text/css" href="/dev/_css/sakai/jquery.contextMenu.css" />
 
     <!-- Sakai Page CSS -->
     <link rel="stylesheet" type="text/css" href="/dev/_css/sakai/sakai.site.css"/>
@@ -65,20 +66,36 @@
 
     </div>
 
+    <div id="dashboard_title_template"><!--
+        <input class="dashboard_input" type="text" name="title" value ="Your title here" />
+        <input class="dashboard_input" type="text" name="subtitle"value="Your subtitle here" />
+         <button class="s3d-button" id="flickr_login">
+                <span class="s3d-button-inner">__MSG__LOGIN__</span>
+         </button>
+    --></div>
+
     <div id="main-content-div-template"><!--
-        <div></div>
-        <div></div>
-        <div></div>
+        <div> </div>
+        <div> </div>
+        <div> </div>
     --></div>
     
     <div id="main-content-div-header-template"><!--
-        <div id="dashboard_header_row"></div>
+        <div id="dashboard_header_row"> </div>
         <div id="dashboard_inner_colums">
-            <div></div>
-            <div></div>
-            <div></div>
+            <div> </div>
+            <div> </div>
+            <div> </div>
         </div>
  --></div>
+        <ul id="myMenu" class="contextMenu"> 
+            <li><a href="#title">Title</a></li> 
+            <li><a href="#Title with subtitle">Title with subtitle</a></li> 
+            <li><a href="#Text">Text</a></li> 
+            <li><a href="#List">List</a></li> 
+            <li><a href="#Image">Image</a></li> 
+            <li><a href="#Background Image">Background Image</a></li> 
+        </ul> 
 
     <!-- CONTENT -->
     <div class="fl-fix fl-centered fixed-container">
@@ -118,7 +135,6 @@
                             <ul>
                                 <!--A Dashboard option-->
                                 <li id="dashboard_3_column">
-                                    <span class="dashboard_hidden_span"></span>
                                     <div>
                                         <img src="/dev/_images/cross.jpg" /><span class="dashboard_layout_titel">3 column</span>
                                         <br/>
@@ -977,5 +993,8 @@
         <script type="text/javascript" language="JavaScript" src="/dev/_javascript/site.js"></script>
         <script type="text/javascript" language="JavaScript" src="/dev/_lib/tiny_mce/tiny_mce.js"></script>
         <script type="text/javascript" language="JavaScript" src="/dev/_lib/jquery/accordion.js"></script>
+        <script type="text/javascript" language="JavaScript" src="/dev/_lib/jquery/draggable.js"></script>
+        <script type="text/javascript" language="JavaScript" src="/dev/_lib/jquery/ui.droppable.js"></script>
+        <script type="text/javascript" language="JavaScript" src="/dev/_lib/jquery/jquery.contextMenu.js"></script>
     </body>
 </html>

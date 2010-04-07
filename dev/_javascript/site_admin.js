@@ -60,9 +60,14 @@ sakai.site.site_admin = function(){
     var $dashboard_accordeon = $("#dashboard_accordeon"); //The inner part of the dashboard option part
     var $sakai_site_contents_main = $(".sakai_site_contents_main"); //The main content div
     var $mainContentDiv = $("#main-content-div"); //The div where content is added
-    var $dashboardOptions = $(".dashboard_accordeon_inner ul li");
+    var $dashboardOptions = $(".dashboard_accordeon_inner ul li");//The dashboard options
+    var $dashboardSecondAccordeon = $("#dashboard_second_accordeon"); //The second accordeon div
+    var $dashboardMenu = $("#dashboardMenu");
+    
+    //Templates
     var mainContentDivTemplate = "main-content-div-template";
     var mainContentDivHeaderTemplate = "main-content-div-header-template";
+    var dashboardTitleTemplate = "dashboard_title_template";
 
     // TinyMCE selectors, please note that it is not possible to cache these
     // since they get created at runtime
@@ -1695,19 +1700,79 @@ sakai.site.site_admin = function(){
     // Clicks ON THE DASHBOARD OPTIONS //
     /////////////////////////////////////
 
-    var showInContent = function(ev){
-        var dashBoardLi = $(ev.currentTarget).attr("id");
+
+    /**
+     * 
+     * @param {Object} ev
+     * @param {Object} ui
+     */
+    var renderHtml = function(what,where){
         var test = {};
+        $(where).html($.TemplateRenderer(dashboardTitleTemplate,test));
+        alert("the div is "+$(where).width());
+        $(where).find("input").css("width",($(where).width()-50));
+        alert("the input is "+($(where).find("input").width()));
+    };
+
+    /**
+     * These function will show the required template based on the id in the li
+     * @param {Object} ev
+     */
+    var showInContent = function(ev){
+
+        //Get the id of the li
+        var dashBoardLi = $(ev.currentTarget).attr("id");
+
+        //Make an empty object to use in the template rendering
+        var test = {};
+
+        //Check the value of the id
         if (dashBoardLi === "dashboard_3_column") {
+
+            //Render the matching template in the content div
             $mainContentDiv.html($.TemplateRenderer(mainContentDivTemplate,test));
+
+            //Add the necessary css to the template
             $mainContentDiv.addClass('contentTemplate');
             $mainContentDiv.children().addClass("contentTemplateDiv");
+
+            //Add the droppable functionality to the template div
+            $mainContentDiv.children().droppable({
+                drop: function(event,ui){
+                        renderHtml($(ui.draggable).find(".dashboard_layout_titel").html(),event.target);
+                }
+            });
+
+            //Add the contextmenu functionality to the template divs
+            $mainContentDiv.children().contextMenu({
+                    menu: 'myMenu'
+                }, function(action, el, pos) {
+                    renderHtml(action,el);
+                });
+
+        //Check the value of the id
         }else if( dashBoardLi ==="dashboard_header"){
+
+            //Render the matching template in the content div
             $mainContentDiv.html($.TemplateRenderer(mainContentDivHeaderTemplate,test));
+
+            //Add the necessary css to the template
             $("#dashboard_header_row").addClass('dashBoardHeader');
             $("#dashboard_inner_colums div").addClass("contentTemplateDiv");
+
+            //Add the droppable functionality to the template div
+            $("#dashboard_inner_colums div, #dashboard_header_row").droppable({
+                drop: function(event,ui){
+                    renderHtml($(ui.draggable).find(".dashboard_layout_titel").html(),event.target);
+                }
+            });
+
+            $("#dashboard_inner_colums div, #dashboard_header_row").contextMenu({
+                menu: 'myMenu'
+            }, function(action, el, pos){
+                renderHtml(action, el);
+            });
         }
-        mainContentDivHeaderTemplate
     };
 
     ////////////////////////
@@ -1726,10 +1791,14 @@ sakai.site.site_admin = function(){
         $content_page_options.hide(); //print page, more
         $dashboard_options.show(); //show the dashboard options
         $dashboard_accordeon.accordion(); //Transform the dashboard option div into an accordion
+        $dashboardSecondAccordeon.children().children().draggable({
+            helper: 'clone'
+            });
 
         //When the user clicks on a dashboard option, it will be shown in  the content div
         $dashboardOptions.click(showInContent);
-        
+
+        $dashboardMenu.children("li").click(renderHtml);
 
         // Create unique page elements
         var pageUniques = sakai.site.createPageUniqueElements(title, sakai.site.site_info._pages[sakai.site.selectedpage]["pageFolder"]);
