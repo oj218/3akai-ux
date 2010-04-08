@@ -93,14 +93,12 @@
     padding-top:5px
 }
 
-.dashboard_hidden_span{
-    display:none;
-}
-
+/* The template for the content */
 .contentTemplate {
     margin-top:30px;
 }
 
+/* The template div */
 .contentTemplateDiv{
     width:210px;
     height:400px;
@@ -109,16 +107,59 @@
     margin-right:3px;
 }
 
+/* The header of the dashboard*/
 .dashBoardHeader{
     width:637px;
     background-color:#ccc;
     height:110px;
     margin-bottom:5px;
 }
-.dashboard_input{
+
+/* The title input fields*/
+.dashboard_input_tile{
    border:1px solid #777;
-    font-size:2em;
+    font-size:1.5em;
+    margin:30px 5px 0px 10px;
+    width:80%!important;
+    height:1.5em;
+}
+
+.dashboard_input_subtitle{
+   border:1px solid #777;
+    font-size:1.5em;
     margin:5px 5px 0px 10px;
     width:80%!important;
     height:1.5em;
-    }
+}
+
+.dashboard_title_button{
+    margin:5px 0 0 10px;
+}
+
+.dashboard_input_title_final{
+    display:none;
+    font-size:1.5em;
+    margin:5px 5px 0px 10px;
+    padding-top:30px;
+    width:80%!important;
+}
+
+.dashboard_input_subtitle_final{
+    font-size:1.2em;
+    display:none;
+    margin:5px 5px 0px 10px;
+    width:80%!important;
+    padding-top:10px;
+}
+
+.dashboard_input_title_final span:hover{
+    background-color:#6E8596;
+    cursor:pointer;
+    display:inline;
+}
+
+.dashboard_input_subtitle_final span:hover{
+    background-color:#6E8596;
+    cursor:pointer;
+    display:inline;
+}

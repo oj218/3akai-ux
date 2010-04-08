@@ -63,6 +63,7 @@ sakai.site.site_admin = function(){
     var $dashboardOptions = $(".dashboard_accordeon_inner ul li");//The dashboard options
     var $dashboardSecondAccordeon = $("#dashboard_second_accordeon"); //The second accordeon div
     var $dashboardMenu = $("#dashboardMenu");
+    var $dashboardTitleButton = $("#dashboard_title_button");
     
     //Templates
     var mainContentDivTemplate = "main-content-div-template";
@@ -1700,18 +1701,134 @@ sakai.site.site_admin = function(){
     // Clicks ON THE DASHBOARD OPTIONS //
     /////////////////////////////////////
 
+    var editsubTitle = function(where){
+
+        //Get the text and put it in the inputbox
+        where.find('.dashboard_input_subtitle').val(where.find('.dashboard_input_subtitle_final').children().html());
+
+        //Hide the text
+        where.find('.dashboard_input_subtitle_final').hide();
+
+        //Show the inputbox
+        where.find('.dashboard_input_subtitle').show();
+
+        //Put the focus on the input box
+        where.find('.dashboard_input_subtitle').focus();
+
+        //If the user clicks outside the textbox it'll be transformed back to text
+        where.find('.dashboard_input_subtitle').bind("blur",function(){
+            reverseSubtitle(where);
+        });
+
+        //If the user presses enter during the edit mode it'll be transformed back to text
+        where.find('.dashboard_input_subtitle').keyup(function(e) {
+            if(e.keyCode == 13) {
+                where.find('.dashboard_input_subtitle').blur();
+            }
+        });
+     };
+
+    var editTitle = function(where){
+
+        //Get the text and put it in the inputbox
+        where.find('.dashboard_input_tile').val(where.find('.dashboard_input_title_final').children().html());
+
+        //Hide the text
+        where.find('.dashboard_input_title_final').hide();
+
+        //Show the inputbox
+        where.find('.dashboard_input_tile').show();
+
+        //Put the focus on the input box
+        where.find('.dashboard_input_tile').focus();
+
+        //If the user clicks outside the textbox it'll be transformed back to text
+        where.find('.dashboard_input_tile').bind("blur",function(){
+            reverseTitle(where);
+        });
+
+        //If the user presses enter during the edit mode it'll be transformed back to text
+        where.find('.dashboard_input_tile').keyup(function(e){
+            if (e.keyCode == 13) {
+                where.find('.dashboard_input_tile').blur();
+            }
+        });
+    };
+
+    var reverseTitle= function(where){
+
+        //Set the value of the text with the value of the inputbox
+        where.find('.dashboard_input_title_final').children().html(where.find('.dashboard_input_tile').val());
+
+        //Show the text
+        where.find('.dashboard_input_title_final').show();
+
+        //Hide the inputfield
+        where.find('.dashboard_input_tile').hide();
+    };
+
+    var reverseSubtitle = function(where){
+
+        //Set the value of the text with the value of the inputbox
+        where.find('.dashboard_input_subtitle_final').children().html(where.find('.dashboard_input_subtitle').val());
+
+        //Show the text
+        where.find('.dashboard_input_subtitle_final').show();
+
+        //Hide the inputfield
+        where.find('.dashboard_input_subtitle').hide();
+    };
+ 
+    var confirmTitles = function(where){
+
+        //Get the values from the inputfields and assign it to the <p> tags
+        where.find('.dashboard_input_title_final').children().html(where.find('.dashboard_input_tile').val());
+        where.find('.dashboard_input_subtitle_final').children().html(where.find('.dashboard_input_subtitle').val());
+
+        //Show the plaintext
+        where.find('.dashboard_input_title_final').show();
+        where.find('.dashboard_input_subtitle_final').show();
+
+        //Hide the input fields and button
+        where.find('.dashboard_input_subtitle').hide();
+        where.find('.dashboard_input_tile').hide();
+        where.find('.dashboard_title_button').hide();
+
+        //If the user clicks on the text, it'll be transformed into an inputfield
+        where.find('.dashboard_input_title_final').click(function(){
+            editTitle(where);
+        });
+
+        //If the user clicks on the text, it'll be transformed into an inputfield
+        where.find('.dashboard_input_subtitle_final').click(function(){
+            editsubTitle(where);
+        });
+
+    };
 
     /**
-     * 
+     * This function will render the compontent the user selected
      * @param {Object} ev
      * @param {Object} ui
      */
     var renderHtml = function(what,where){
-        var test = {};
-        $(where).html($.TemplateRenderer(dashboardTitleTemplate,test));
-        alert("the div is "+$(where).width());
-        $(where).find("input").css("width",($(where).width()-50));
-        alert("the input is "+($(where).find("input").width()));
+
+        //Check which item the user wants to place on the page
+        if(what === "Title"){
+
+            //Make an empty object, this will be used in the rendering of the html
+            var test = {};
+
+            //Render the input boxes ans button
+            $(where).html($.TemplateRenderer(dashboardTitleTemplate,test));
+
+            //Bind the click on the button
+            $(where).find('.dashboard_title_button').live("click", function(){
+
+               //call a function that will hide the input boxes and show text
+               confirmTitles($(this).parent());
+            });
+        }
     };
 
     /**
