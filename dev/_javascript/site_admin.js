@@ -64,11 +64,14 @@ sakai.site.site_admin = function(){
     var $dashboardSecondAccordeon = $("#dashboard_second_accordeon"); //The second accordeon div
     var $dashboardMenu = $("#dashboardMenu");
     var $dashboardTitleButton = $("#dashboard_title_button");
-    
+    var $dashboardDeleteElement = $(".dashboard_delete_element");
+    var $dashboardThirdAccordeon = $("#dashboard_third_accordeon");
+
     //Templates
     var mainContentDivTemplate = "main-content-div-template";
     var mainContentDivHeaderTemplate = "main-content-div-header-template";
     var dashboardTitleTemplate = "dashboard_title_template";
+    var dashboardDiscussionTemplate = "dashboard_discussion_template";
 
     // TinyMCE selectors, please note that it is not possible to cache these
     // since they get created at runtime
@@ -1553,9 +1556,9 @@ sakai.site.site_admin = function(){
      */
     sakai.site.widgetFinish = function(tuid){
         // Add widget to the editor
-        $("#insert_screen2_preview").html("");
-        tinyMCE.get("elm1").execCommand('mceInsertContent', false, '<img src="' + Widgets.widgets[sakai.site.newwidget_id].img + '" id="' + sakai.site.newwidget_uid + '" class="widget_inline" style="display:block; padding: 10px; margin: 4px" border="1"/>');
-        $('#insert_dialog').jqmHide();
+       // $("#insert_screen2_preview").html("");
+       // tinyMCE.get("elm1").execCommand('mceInsertContent', false, '<img src="' + Widgets.widgets[sakai.site.newwidget_id].img + '" id="' + sakai.site.newwidget_uid + '" class="widget_inline" style="display:block; padding: 10px; margin: 4px" border="1"/>');
+       // $('#insert_dialog').jqmHide();
     };
 
 
@@ -1608,10 +1611,7 @@ sakai.site.site_admin = function(){
             onShow: renderSelectedWidget,
             onHide: hideSelectedWidget
         });
-    };
-
-
-
+    }; 
 
 
 
@@ -1779,6 +1779,35 @@ sakai.site.site_admin = function(){
         where.find('.dashboard_input_subtitle').hide();
     };
  
+    var removeDeleteImage = function(toDelete){
+        //Check if the image exists and then delete it
+         if (!toDelete.find($dashboardDeleteElement).length) {
+            $dashboardDeleteElement.remove();
+        }
+    };
+ 
+    var showDeleteButton = function (where,toDelete){
+
+        //Set the display of the image on block
+        $dashboardDeleteElement.css('display','block');
+
+        //IF the image doesn't exist allready add it to the page
+        if (!toDelete.find($dashboardDeleteElement).length) {
+            toDelete.append($dashboardDeleteElement);
+            $dashboardDeleteElement.show();
+        }
+
+        //Add a click event to the delete image
+        $dashboardDeleteElement.click(function(){
+            $dashboardDeleteElement.parent().remove();
+        });
+
+        //If the users mouse leaves the <p> the image should disappear
+        toDelete.mouseleave(function(){
+            removeDeleteImage(toDelete);
+        });
+    };
+ 
     var confirmTitles = function(where){
 
         //Get the values from the inputfields and assign it to the <p> tags
@@ -1804,6 +1833,13 @@ sakai.site.site_admin = function(){
             editsubTitle(where);
         });
 
+        where.find('.dashboard_input_title_final').mouseover(function(){
+            showDeleteButton(where,where.find('.dashboard_input_title_final'));
+        });
+
+        where.find('.dashboard_input_subtitle_final').mouseover(function(){
+            showDeleteButton(where,where.find('.dashboard_input_subtitle_final'));
+        });
     };
 
     /**
@@ -1828,6 +1864,12 @@ sakai.site.site_admin = function(){
                //call a function that will hide the input boxes and show text
                confirmTitles($(this).parent());
             });
+        }else if( what === "Map"){
+
+           var test = {};
+           $(where).html($.TemplateRenderer(dashboardDiscussionTemplate,test));
+            //sdata.widgets.WidgetLoader.insertWidgets(sakai.site.selectedpage, null, sakai.site.currentsite.id + "/_widgets/");
+            sdata.widgets.WidgetLoader.insertWidgets(null,true,sakai.site.currentsite.id + "/_widgets/");
         }
     };
 
@@ -1911,6 +1953,9 @@ sakai.site.site_admin = function(){
         $dashboardSecondAccordeon.children().children().draggable({
             helper: 'clone'
             });
+        $dashboardThirdAccordeon.children().children().draggable({
+            helper: 'clone'
+        });
 
         //When the user clicks on a dashboard option, it will be shown in  the content div
         $dashboardOptions.click(showInContent);

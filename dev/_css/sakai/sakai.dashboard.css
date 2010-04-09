@@ -155,11 +155,16 @@
 .dashboard_input_title_final span:hover{
     background-color:#6E8596;
     cursor:pointer;
-    display:inline;
 }
 
 .dashboard_input_subtitle_final span:hover{
     background-color:#6E8596;
     cursor:pointer;
-    display:inline;
 }
+
+.dashboard_delete_element{
+    display:none;
+    z-index:9999;
+    cursor:hand;
+}
+

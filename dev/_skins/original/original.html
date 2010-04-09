@@ -66,6 +66,10 @@
 
     </div>
 
+    <div id="dashboard_discussion_template"><!--
+        <div id="widget_rss" class="widget_inline"></div>
+    --></div>
+
     <div id="dashboard_title_template"><!--
         <input class="dashboard_input_tile" type="text" name="title" value ="Your title here" />
         <p class="dashboard_input_title_final"><span></span></p>
@@ -77,7 +81,7 @@
     --></div>
 
     <div id="main-content-div-template"><!--
-        <div id="dashboard_3_1"> </div>
+        <div id="dashboard_3_1">  </div>
         <div id="dashboard_3_2"> </div>
         <div id="dashboard_3_3"> </div>
     --></div>
@@ -99,6 +103,7 @@
             <li><a href="#Background Image">Background Image</a></li> 
         </ul> 
 
+    <img src='/dev/_images/delete.png' alt='delete' class="dashboard_delete_element"/>
     <!-- CONTENT -->
     <div class="fl-fix fl-centered fixed-container">
 
@@ -260,7 +265,7 @@
                         <a  href="#" class="dashboard_accordion_header">Widgets</a>
 
                         <!--The third accordion content-->
-                        <div class="dashboard_accordeon_inner">
+                        <div class="dashboard_accordeon_inner" id="dashboard_third_accordeon">
                             <ul>
                                 <li>
                                     <div>
@@ -648,8 +653,6 @@
 
 <!-- FOOTER WIDGET -->
 <div id="widget_footer" class="widget_inline footercontainer"></div>
-
-
 
 
 <!-- DIALOGS, MENUS, MISC STUFF -->
