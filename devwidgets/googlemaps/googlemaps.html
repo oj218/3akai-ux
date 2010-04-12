@@ -6,10 +6,10 @@
     <form id="googlemaps_form_search" style="display:none;">
 
         <!-- The small and large radio button -->
-        <label for="googlemaps_radio_small">__MSG__SIZE__:</label>
-        <input id="googlemaps_radio_large" name="googlemaps_radio" type="radio" value="Large" /><label for="googlemaps_radio_large">__MSG__LARGE__</label><br/>
-        <input id="googlemaps_radio_small" name="googlemaps_radio" type="radio" value="Small" /><label for="googlemaps_radio_small">__MSG__SMALL__</label><br/>
-        <label for="googlemaps_input_text_location">__MSG__LOCATION__:</label><br/>
+        <label for="googlemaps_radio_small" style="display:none">__MSG__SIZE__:</label>
+        <input id="googlemaps_radio_large" name="googlemaps_radio" type="radio" value="Large" style="display:none" /><label for="googlemaps_radio_large" style="display:none">__MSG__LARGE__</label><br/>
+        <input id="googlemaps_radio_small" name="googlemaps_radio" type="radio" value="Small" style="display:none" /><label for="googlemaps_radio_small" style="display:none">__MSG__SMALL__</label><br/>
+        <label for="googlemaps_input_text_location" style="margin-left:5px" >__MSG__LOCATION__:</label><br/>
 
         <!-- The search input textfield -->
         <input type="text" id="googlemaps_input_text_location" />
@@ -22,12 +22,15 @@
     </form>
 
     <!-- The map iframe -->
-    <iframe id="googlemaps_iframe_map" class="fl-fix" src="/devwidgets/googlemaps/map.html" frameborder="0"></iframe>
+    <iframe id="googlemaps_iframe_map" class="fl-fix" src="/devwidgets/googlemaps/map.html" frameborder="0"></iframe
+
+    <input type="submit" id="googlemaps_edit_button" class="button submit_button" value="Edit"/>
+    <input type="submit" id="googlemaps_cancel" class="button submit_button cancel-button delete-button" value="Delete"/>
 
     <!-- The submit and cancel button -->
     <div class="dialog_buttons" id="googlemaps_save_cancel_container" style="display:none;">
         <a class="button-default submit_button" href="javascript:;" id="googlemaps_save">__MSG__SAVE__</a>
-        <a class="button cancel-button" href="javascript:;" id="googlemaps_cancel">__MSG__CANCEL__</a>
+        <a class="button cancel-button" href="javascript:;" id="googlemaps_cancel">delete</a>
     </div>
 </div>
 

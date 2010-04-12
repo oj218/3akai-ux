@@ -124,6 +124,7 @@
     height:1.5em;
 }
 
+/*The input Subtitle */
 .dashboard_input_subtitle{
    border:1px solid #777;
     font-size:1.5em;
@@ -132,10 +133,12 @@
     height:1.5em;
 }
 
+/* the title button for the submit */
 .dashboard_title_button{
     margin:5px 0 0 10px;
 }
 
+/*Input box that gets rendered in the edit mode*/
 .dashboard_input_title_final{
     display:none;
     font-size:1.5em;
@@ -144,6 +147,7 @@
     width:80%!important;
 }
 
+/*Input box that gets rendered in the edit mode*/
 .dashboard_input_subtitle_final{
     font-size:1.2em;
     display:none;
@@ -152,19 +156,48 @@
     padding-top:10px;
 }
 
+/*Hover effect of the input title */
 .dashboard_input_title_final span:hover{
     background-color:#6E8596;
     cursor:pointer;
 }
 
+/*Hover effect of the input subtitle */
 .dashboard_input_subtitle_final span:hover{
     background-color:#6E8596;
     cursor:pointer;
 }
 
+/*The delete x button */
 .dashboard_delete_element{
     display:none;
     z-index:9999;
     cursor:hand;
 }
 
+/*the textarea that gets rendered when a textelement is dropped into the layout */
+.dashboard_textarea{
+    margin:20px 0 0 10px;
+    width:190px;
+    height:180px;
+}
+
+.dashboard_input_font{
+    width:30px!important;
+    margin:10px 5px 0px 10px
+    float:left;
+}
+
+.dashboard_font_label{
+    margin-left:10px;
+    float:left;
+    margin-top:5px;
+}
+
+.submit_button{
+    float:left;
+}
+
+.italic_button{
+
+}

@@ -35,7 +35,8 @@ sakai.googlemaps = function(tuid, showSettings){
      * To finish the widget
      */
     var finish = function() {
-        sdata.container.informFinish(tuid);
+        sdata.container.informFinish(tuid,$('#'+tuid).parent());
+        getFromJCR();
     };
 
     /**
@@ -46,12 +47,12 @@ sakai.googlemaps = function(tuid, showSettings){
 
         // Set the value of mapsize according to the radio button selection status
         if ($("#googlemaps_radio_large", rootel).is(":checked")) {
-            json.mapsize = "LARGE";
+            json.mapsize = "SMALL";
         }
         else {
             json.mapsize = "SMALL";
         }
-
+        showSettings = false;
         // Store the corresponded map data into backend server
         sakai.api.Widgets.saveWidgetData(tuid, json, finish);
     };
@@ -62,10 +63,13 @@ sakai.googlemaps = function(tuid, showSettings){
     var setMapSize = function(callback) {
         if(!showSettings) {
             if (json && json.mapsize == "SMALL") {
-
+                $("#googlemaps_form_search", rootel).hide();
+                $("#googlemaps_save_cancel_container", rootel).hide();
+                $("#googlemaps_save_cancel_container", rootel).hide();
+                $("#googlemaps_edit_button").show();
+                $(".delete-button").show();
+                
                 // Set the size of map according to the data stored on the backend server
-                $("#googlemaps_iframe_map", rootel).width("50%");
-                $("#googlemaps_iframe_map", rootel).css({"float": "right"});
             }
             else {
                 $("#googlemaps_iframe_map", rootel).width("95%");
@@ -76,7 +80,8 @@ sakai.googlemaps = function(tuid, showSettings){
             // Show the search input textfield and save, search, cancel buttons
             $("#googlemaps_form_search", rootel).show();
             $("#googlemaps_save_cancel_container", rootel).show();
-
+            $("#googlemaps_edit_button").hide();
+            $(".delete-button").hide();
             // Add a submit listener so that the search function can be executed
             $("#googlemaps_form_search", rootel).submit(function() {
                 var input = $("#googlemaps_input_text_location", rootel).val();
@@ -99,7 +104,7 @@ sakai.googlemaps = function(tuid, showSettings){
 
             // Add listerner to cancel button
             $("#googlemaps_cancel", rootel).bind("click", function(e, ui) {
-                sdata.container.informCancel(tuid);
+                $("#"+tuid).remove();
             });
 
             if (json) {
@@ -195,8 +200,12 @@ sakai.googlemaps = function(tuid, showSettings){
             // Get the map zoom and center property data from backend server
             getFromJCR();
         });
-    };
 
+        $("#googlemaps_edit_button").click(function(){
+            showSettings = true;
+            getFromJCR();
+        });
+    };
     init();
 
 };

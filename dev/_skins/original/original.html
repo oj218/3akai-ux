@@ -12,6 +12,7 @@
     <link rel="stylesheet" type="text/css" href="/dev/_css/sakai/sakai.3.css" />
     <link rel="stylesheet" type="text/css" href="/dev/_css/sakai/sakai.dashboard.css" />
     <link rel="stylesheet" type="text/css" href="/dev/_css/sakai/jquery.contextMenu.css" />
+    <link rel="stylesheet" type="text/css" href="/dev/_css/sakai/jPicker-1.0.13.css" />
 
     <!-- Sakai Page CSS -->
     <link rel="stylesheet" type="text/css" href="/dev/_css/sakai/sakai.site.css"/>
@@ -67,7 +68,7 @@
     </div>
 
     <div id="dashboard_discussion_template"><!--
-        <div id="widget_rss" class="widget_inline"></div>
+        <div id="widget_googlemaps" class="widget_inline"></div>
     --></div>
 
     <div id="dashboard_title_template"><!--
@@ -76,7 +77,9 @@
         <input class="dashboard_input_subtitle" type="text" name="subtitle"value="Your subtitle here" />
         <p class ="dashboard_input_subtitle_final"><span></span></p>
          <button class="s3d-button dashboard_title_button">
-                <span class="s3d-button-inner">Done</span>
+                <span>
+                    <span class="s3d-button-inner">Done</span>
+                </span>
          </button>
     --></div>
 
@@ -94,6 +97,7 @@
             <div> </div>
         </div>
  --></div>
+
         <ul id="myMenu" class="contextMenu"> 
             <li><a href="#Title">Title</a></li> 
             <li><a href="#Title with subtitle">Title with subtitle</a></li> 
@@ -995,6 +999,7 @@
             </div>
         </div>
 
+        <script type="text/javascript" language="JavaScript" src="/dev/_lib/jquery/jpicker-1.0.13.js"></script>
         <script type="text/javascript" language="JavaScript" src="/dev/_javascript/site.js"></script>
         <script type="text/javascript" language="JavaScript" src="/dev/_lib/tiny_mce/tiny_mce.js"></script>
         <script type="text/javascript" language="JavaScript" src="/dev/_lib/jquery/accordion.js"></script>

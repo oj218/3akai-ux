@@ -72,6 +72,8 @@ sakai.site.site_admin = function(){
     var mainContentDivHeaderTemplate = "main-content-div-header-template";
     var dashboardTitleTemplate = "dashboard_title_template";
     var dashboardDiscussionTemplate = "dashboard_discussion_template";
+    //var dashboardDiscussionTemplate = "dashboard_edit_template";
+    
 
     // TinyMCE selectors, please note that it is not possible to cache these
     // since they get created at runtime
@@ -1786,7 +1788,7 @@ sakai.site.site_admin = function(){
         }
     };
  
-    var showDeleteButton = function (where,toDelete){
+    var showDeleteButton = function (toDelete){
 
         //Set the display of the image on block
         $dashboardDeleteElement.css('display','block');
@@ -1834,11 +1836,11 @@ sakai.site.site_admin = function(){
         });
 
         where.find('.dashboard_input_title_final').mouseover(function(){
-            showDeleteButton(where,where.find('.dashboard_input_title_final'));
+            showDeleteButton(where.find('.dashboard_input_title_final'));
         });
 
         where.find('.dashboard_input_subtitle_final').mouseover(function(){
-            showDeleteButton(where,where.find('.dashboard_input_subtitle_final'));
+            showDeleteButton(where.find('.dashboard_input_subtitle_final'));
         });
     };
 
@@ -1848,12 +1850,12 @@ sakai.site.site_admin = function(){
      * @param {Object} ui
      */
     var renderHtml = function(what,where){
-
+        var test = {};
         //Check which item the user wants to place on the page
         if(what === "Title"){
 
             //Make an empty object, this will be used in the rendering of the html
-            var test = {};
+            
 
             //Render the input boxes ans button
             $(where).html($.TemplateRenderer(dashboardTitleTemplate,test));
@@ -1866,10 +1868,34 @@ sakai.site.site_admin = function(){
             });
         }else if( what === "Map"){
 
-           var test = {};
            $(where).html($.TemplateRenderer(dashboardDiscussionTemplate,test));
-            //sdata.widgets.WidgetLoader.insertWidgets(sakai.site.selectedpage, null, sakai.site.currentsite.id + "/_widgets/");
             sdata.widgets.WidgetLoader.insertWidgets(null,true,sakai.site.currentsite.id + "/_widgets/");
+            
+        }else if(what === "Text"){
+            $(where).append('<div><textarea rows="10" cols="30" class ="dashboard_textarea"> </textarea><br /><p class="dashboard_font_label">Font-size: <p><input type="text" class="dashboard_input_font" > <input type="submit" class="button submit_button" value="B"/><input type="submit" class="button italic_button" value="I"/>');
+            console.log(where);
+            $(where).find(".dashboard_input_font").keyup(function(){
+                $(where).find(".dashboard_textarea").css('font-size',parseInt($(where).find('.dashboard_input_font').val()))
+            });
+
+            $(where).find(".submit_button").toggle(function(){
+                $(where).find(".dashboard_textarea").css("font-weight","bold");
+            }, function(){
+                $(where).find(".dashboard_textarea").css("font-weight","normal");
+            });
+
+            $(where).find(".italic_button").toggle(function(){
+                $(where).find(".dashboard_textarea").css("font-style","italic");
+            }, function(){
+                $(where).find(".dashboard_textarea").css("font-style","normal");
+            });
+            
+            
+            /*where.jPicker({
+                window: {
+                    expandable: true
+                }
+            });*/
         }
     };
 
