@@ -64,7 +64,6 @@ sakai.site.site_admin = function(){
     var $dashboardSecondAccordeon = $("#dashboard_second_accordeon"); //The second accordeon div
     var $dashboardMenu = $("#dashboardMenu");
     var $dashboardTitleButton = $("#dashboard_title_button");
-    var $dashboardDeleteElement = $(".dashboard_delete_element");
     var $dashboardThirdAccordeon = $("#dashboard_third_accordeon");
 
     //Templates
@@ -72,7 +71,7 @@ sakai.site.site_admin = function(){
     var mainContentDivHeaderTemplate = "main-content-div-header-template";
     var dashboardTitleTemplate = "dashboard_title_template";
     var dashboardDiscussionTemplate = "dashboard_discussion_template";
-    //var dashboardDiscussionTemplate = "dashboard_edit_template";
+    var dashboardRssTemplate = "dashboard_rss_template";
     
 
     // TinyMCE selectors, please note that it is not possible to cache these
@@ -1703,147 +1702,6 @@ sakai.site.site_admin = function(){
     // Clicks ON THE DASHBOARD OPTIONS //
     /////////////////////////////////////
 
-    var editsubTitle = function(where){
-
-        //Get the text and put it in the inputbox
-        where.find('.dashboard_input_subtitle').val(where.find('.dashboard_input_subtitle_final').children().html());
-
-        //Hide the text
-        where.find('.dashboard_input_subtitle_final').hide();
-
-        //Show the inputbox
-        where.find('.dashboard_input_subtitle').show();
-
-        //Put the focus on the input box
-        where.find('.dashboard_input_subtitle').focus();
-
-        //If the user clicks outside the textbox it'll be transformed back to text
-        where.find('.dashboard_input_subtitle').bind("blur",function(){
-            reverseSubtitle(where);
-        });
-
-        //If the user presses enter during the edit mode it'll be transformed back to text
-        where.find('.dashboard_input_subtitle').keyup(function(e) {
-            if(e.keyCode == 13) {
-                where.find('.dashboard_input_subtitle').blur();
-            }
-        });
-     };
-
-    var editTitle = function(where){
-
-        //Get the text and put it in the inputbox
-        where.find('.dashboard_input_tile').val(where.find('.dashboard_input_title_final').children().html());
-
-        //Hide the text
-        where.find('.dashboard_input_title_final').hide();
-
-        //Show the inputbox
-        where.find('.dashboard_input_tile').show();
-
-        //Put the focus on the input box
-        where.find('.dashboard_input_tile').focus();
-
-        //If the user clicks outside the textbox it'll be transformed back to text
-        where.find('.dashboard_input_tile').bind("blur",function(){
-            reverseTitle(where);
-        });
-
-        //If the user presses enter during the edit mode it'll be transformed back to text
-        where.find('.dashboard_input_tile').keyup(function(e){
-            if (e.keyCode == 13) {
-                where.find('.dashboard_input_tile').blur();
-            }
-        });
-    };
-
-    var reverseTitle= function(where){
-
-        //Set the value of the text with the value of the inputbox
-        where.find('.dashboard_input_title_final').children().html(where.find('.dashboard_input_tile').val());
-
-        //Show the text
-        where.find('.dashboard_input_title_final').show();
-
-        //Hide the inputfield
-        where.find('.dashboard_input_tile').hide();
-    };
-
-    var reverseSubtitle = function(where){
-
-        //Set the value of the text with the value of the inputbox
-        where.find('.dashboard_input_subtitle_final').children().html(where.find('.dashboard_input_subtitle').val());
-
-        //Show the text
-        where.find('.dashboard_input_subtitle_final').show();
-
-        //Hide the inputfield
-        where.find('.dashboard_input_subtitle').hide();
-    };
- 
-    var removeDeleteImage = function(toDelete){
-        //Check if the image exists and then delete it
-         if (!toDelete.find($dashboardDeleteElement).length) {
-            $dashboardDeleteElement.remove();
-        }
-    };
- 
-    var showDeleteButton = function (toDelete){
-
-        //Set the display of the image on block
-        $dashboardDeleteElement.css('display','block');
-
-        //IF the image doesn't exist allready add it to the page
-        if (!toDelete.find($dashboardDeleteElement).length) {
-            toDelete.append($dashboardDeleteElement);
-            $dashboardDeleteElement.show();
-        }
-
-        //Add a click event to the delete image
-        $dashboardDeleteElement.click(function(){
-            $dashboardDeleteElement.parent().remove();
-        });
-
-        //If the users mouse leaves the <p> the image should disappear
-        toDelete.mouseleave(function(){
-            removeDeleteImage(toDelete);
-        });
-    };
- 
-    var confirmTitles = function(where){
-
-        //Get the values from the inputfields and assign it to the <p> tags
-        where.find('.dashboard_input_title_final').children().html(where.find('.dashboard_input_tile').val());
-        where.find('.dashboard_input_subtitle_final').children().html(where.find('.dashboard_input_subtitle').val());
-
-        //Show the plaintext
-        where.find('.dashboard_input_title_final').show();
-        where.find('.dashboard_input_subtitle_final').show();
-
-        //Hide the input fields and button
-        where.find('.dashboard_input_subtitle').hide();
-        where.find('.dashboard_input_tile').hide();
-        where.find('.dashboard_title_button').hide();
-
-        //If the user clicks on the text, it'll be transformed into an inputfield
-        where.find('.dashboard_input_title_final').click(function(){
-            editTitle(where);
-        });
-
-        //If the user clicks on the text, it'll be transformed into an inputfield
-        where.find('.dashboard_input_subtitle_final').click(function(){
-            editsubTitle(where);
-        });
-
-        where.find('.dashboard_input_title_final').mouseover(function(){
-            showDeleteButton(where.find('.dashboard_input_title_final'));
-        });
-
-        where.find('.dashboard_input_subtitle_final').mouseover(function(){
-            showDeleteButton(where.find('.dashboard_input_subtitle_final'));
-        });
-    };
-
     /**
      * This function will render the compontent the user selected
      * @param {Object} ev
@@ -1853,20 +1711,16 @@ sakai.site.site_admin = function(){
         var test = {};
         //Check which item the user wants to place on the page
         if(what === "Title"){
-            //Render the input boxes ans button
             $(where).html($.TemplateRenderer(dashboardTitleTemplate,test));
-
-            //Bind the click on the button
-            $(where).find('.dashboard_title_button').live("click", function(){
-
-               //call a function that will hide the input boxes and show text
-               confirmTitles($(this).parent());
-            });
+            sdata.widgets.WidgetLoader.insertWidgets(null,true,sakai.site.currentsite.id + "/_widgets/");
         }else if( what === "Map"){
            $(where).html($.TemplateRenderer(dashboardDiscussionTemplate,test));
             sdata.widgets.WidgetLoader.insertWidgets(null,true,sakai.site.currentsite.id + "/_widgets/");
         }else if(what === "Text"){
-            $(where).append('<div id="textfield' + Math.floor(Math.random() * 50) +'" ><div id="widget_textfield" class="widget_inline"></div></div>');
+            $(where).append('<div class="dashboard_border"><div id="textfield' + Math.floor(Math.random() * 50) +'" ><div id="widget_textfield" class="widget_inline"></div></div></div>');
+            sdata.widgets.WidgetLoader.insertWidgets(null,true,sakai.site.currentsite.id + "/_widgets/");
+        }else if(what === 'RSS'){
+            $(where).html($.TemplateRenderer(dashboardRssTemplate,test));
             sdata.widgets.WidgetLoader.insertWidgets(null,true,sakai.site.currentsite.id + "/_widgets/");
         }
     };

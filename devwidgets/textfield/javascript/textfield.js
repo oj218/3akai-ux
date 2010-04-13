@@ -99,7 +99,7 @@ sakai.textfield = function(tuid, placement, showSettings){
 
         //Delete the entire widget
         $(".textfield_delete").click(function(){
-            $(this).parent().parent().parent().remove();
+            $(this).parent().parent().parent().parent().remove();
         });
 
         //Edit the text when it's in saved mode

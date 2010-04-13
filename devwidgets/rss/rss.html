@@ -4,7 +4,7 @@
 <!-- SETTINGS VIEW -->
 <div id="rss_settings" class="fl-widget-content" style="display:none">
     <p>
-         "<span class="rss_quote">http://www.website.com/rss.xml</span>"
+         Add a url feed
     </p>
     <form class="rss_settings_form" method="post">
         <label for="rss_settings_txtTitle">Title:</label>
@@ -37,12 +37,7 @@
             </div>
             {/for}
         --></div>
-        <p>
-            <br />
-            <span>Show the latest </span><input type="text" id="rss_settings_numEntries"/><span> entries.</span><br />
-            <input type="checkbox" id="rss_setting_displaySource" /><label class="rss_setting_label" for="rss_setting_displaySource">Display source</label><br />
-            <input type="checkbox" id="rss_setting_displayHeadlines" /><label class="rss_setting_label"  for="rss_setting_displayHeadlines">Display headlines only</label><br />
-        </p>
+            <span style="display:none">Show the latest </span><input style="display:none" type="text" id="rss_settings_numEntries"/><span style="display:none"> entries.</span><br />
         <div class="rss_settings_buttonbar">
             <a class="button-default fl-force-left"  id="rss_setting_cancel" href="javascript:;">Cancel</a>
             <a class="button-default fl-force-right" id="rss_setting_finish" href="javascript:;">Finish</a>
@@ -63,8 +58,6 @@
 <div id="rss_output_template" style="display:none"><!--
         <div class="rss_output_header">
             <h1>${title}</h1>
-            <a class="button-default rss_output_order fl-force-right" id="rss_output_order_date" href="javascript:;">sort by date</a>
-            <a class="button-default rss_output_order fl-force-right" id="rss_output_order_source" href="javascript:;">sort by source</a>
         </div>
 
         {for i in shownEntries}
@@ -94,6 +87,12 @@
             </div>
         {/for}
         <div class="jq_pager rss_jq_pager"></div>
+            <button class="s3d-button rss_delete">
+                    <span class="s3d-button-inner">delete</span>
+            </button>
+            <button class="s3d-button rss_edit">
+                    <span class="s3d-button-inner">edit</span>
+            </button>
     --></div>
 <!-- SEND MESSAGE CONTAINER -->
 <div id="rss_sendmessagecontainer" style="display:none;">

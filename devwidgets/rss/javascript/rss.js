@@ -273,7 +273,7 @@ sakai.rss = function(tuid, showSettings){
         // if you don't make a clone, the splice-method will also remove entries form the original JSON-object
         var shownEntries = cloneObject(resultJSON);
         // only 3 entries per page
-        shownEntries.entries = shownEntries.entries.splice(page*3, 3);
+        shownEntries.entries = shownEntries.entries.splice(page*2, 2);
 
         return shownEntries.entries;
     };
@@ -292,7 +292,7 @@ sakai.rss = function(tuid, showSettings){
         // change the pageNumeber
         $(rssPager,rootel).pager({
             pagenumber: pageClicked,
-            pagecount: Math.ceil(resultJSON.entries.length / 3),
+            pagecount: 10,
             buttonClickCallback: pagerClickHandler
         });
     };
@@ -406,7 +406,7 @@ sakai.rss = function(tuid, showSettings){
             return false;
         }
         resultJSON.title = $(rssTxtTitle,rootel).val();
-        resultJSON.numEntries = parseInt($(rssNumEntries,rootel).val(),10);
+        resultJSON.numEntries = 10;
         if((resultJSON.numEntries + "") === "NaN"){
             alert("Number of entries should be a number");
             return false;
@@ -415,8 +415,8 @@ sakai.rss = function(tuid, showSettings){
             alert("Pages should be bigger then 0");
             return false;
         }
-        resultJSON.displaySource =  $(rssDisplaySource, rootel).attr("checked");
-        resultJSON.displayHeadlines =  $(rssDisplayHeadlines, rootel).attr("checked");
+        resultJSON.displaySource =  false;
+        resultJSON.displayHeadlines =  false;
         resultJSON.urlFeeds = [];
         for(var i= 0; i< resultJSON.feeds.length;i++){
             resultJSON.urlFeeds.push(resultJSON.feeds[i].id);
@@ -445,13 +445,8 @@ sakai.rss = function(tuid, showSettings){
         var object = getSettingsObject();
         if(object !== false){
             sakai.api.Widgets.saveWidgetData(tuid, object, function(success, data){
-                if ($(".sakai_dashboard_page").is(":visible")) {
                     showSettings = false;
                     showHideSettings(showSettings);
-                }
-                else {
-                    sdata.container.informFinish(tuid);
-                }
             });
         }
     });
@@ -499,9 +494,13 @@ sakai.rss = function(tuid, showSettings){
      * @param {Object} show
      */
     var showHideSettings = function(show){
-
+        $(".rss_delete").live("click",function(){
+            $(this).parent().parent().parent().parent().remove();
+        });
+        $(".rss_edit").live("click",function(){
+            showHideSettings(true);
+        });
         if(show){
-
             sakai.api.Widgets.loadWidgetData(tuid, function(success, data){
                 if (success) {
                     resultJSON = data;

@@ -101,10 +101,11 @@
 /* The template div */
 .contentTemplateDiv{
     width:210px;
-    height:400px;
+    height:500px;
     background-color:#ccc;
     float:left;
     margin-right:3px;
+    overflow:hidden;
 }
 
 /* The header of the dashboard*/
@@ -175,3 +176,11 @@
     cursor:hand;
 }
 
+.dashboard_border{
+    border-style:dashed;
+    border-color:#666;
+}
+
+.pgNext, .pgPrev{
+    display:none!important;
+}

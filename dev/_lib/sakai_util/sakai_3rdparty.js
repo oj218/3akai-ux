@@ -652,7 +652,7 @@ function get_cookie( cookie_name ) {
 
         // pager currently only handles 10 viewable pages ( could be easily parameterized, maybe in next version ) so handle edge cases
         var startPoint = 1;
-        var endPoint = 5;
+        var endPoint = 2;
 
         if (pagenumber > 3) {
             startPoint = pagenumber - 2;

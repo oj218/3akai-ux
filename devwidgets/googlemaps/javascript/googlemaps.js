@@ -198,12 +198,12 @@ sakai.googlemaps = function(tuid, showSettings){
 
         // Add listerner to the cancel button
         $("#googlemaps_cancel", rootel).bind("click", function(e, ui){
-            $("#" + tuid).remove();
+            $("#" + tuid).parent().remove();
         });
 
          // Add listerner to the delete button
         $("#googlemaps_delete", rootel).bind("click", function(e, ui){
-            $("#" + tuid).remove();
+            $("#" + tuid).parent().remove();
         });
 
         $("#googlemaps_edit_button").click(function(){
