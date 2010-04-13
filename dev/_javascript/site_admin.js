@@ -1853,10 +1853,6 @@ sakai.site.site_admin = function(){
         var test = {};
         //Check which item the user wants to place on the page
         if(what === "Title"){
-
-            //Make an empty object, this will be used in the rendering of the html
-            
-
             //Render the input boxes ans button
             $(where).html($.TemplateRenderer(dashboardTitleTemplate,test));
 
@@ -1867,35 +1863,11 @@ sakai.site.site_admin = function(){
                confirmTitles($(this).parent());
             });
         }else if( what === "Map"){
-
            $(where).html($.TemplateRenderer(dashboardDiscussionTemplate,test));
             sdata.widgets.WidgetLoader.insertWidgets(null,true,sakai.site.currentsite.id + "/_widgets/");
-            
         }else if(what === "Text"){
-            $(where).append('<div><textarea rows="10" cols="30" class ="dashboard_textarea"> </textarea><br /><p class="dashboard_font_label">Font-size: <p><input type="text" class="dashboard_input_font" > <input type="submit" class="button submit_button" value="B"/><input type="submit" class="button italic_button" value="I"/>');
-            console.log(where);
-            $(where).find(".dashboard_input_font").keyup(function(){
-                $(where).find(".dashboard_textarea").css('font-size',parseInt($(where).find('.dashboard_input_font').val()))
-            });
-
-            $(where).find(".submit_button").toggle(function(){
-                $(where).find(".dashboard_textarea").css("font-weight","bold");
-            }, function(){
-                $(where).find(".dashboard_textarea").css("font-weight","normal");
-            });
-
-            $(where).find(".italic_button").toggle(function(){
-                $(where).find(".dashboard_textarea").css("font-style","italic");
-            }, function(){
-                $(where).find(".dashboard_textarea").css("font-style","normal");
-            });
-            
-            
-            /*where.jPicker({
-                window: {
-                    expandable: true
-                }
-            });*/
+            $(where).append('<div id="textfield' + Math.floor(Math.random() * 50) +'" ><div id="widget_textfield" class="widget_inline"></div></div>');
+            sdata.widgets.WidgetLoader.insertWidgets(null,true,sakai.site.currentsite.id + "/_widgets/");
         }
     };
 

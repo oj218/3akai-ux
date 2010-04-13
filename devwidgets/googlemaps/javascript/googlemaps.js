@@ -102,11 +102,6 @@ sakai.googlemaps = function(tuid, showSettings){
                 saveToJCR();
             });
 
-            // Add listerner to cancel button
-            $("#googlemaps_cancel", rootel).bind("click", function(e, ui) {
-                $("#"+tuid).remove();
-            });
-
             if (json) {
                 if (json.mapsize == "SMALL") {
 
@@ -199,6 +194,16 @@ sakai.googlemaps = function(tuid, showSettings){
 
             // Get the map zoom and center property data from backend server
             getFromJCR();
+        });
+
+        // Add listerner to the cancel button
+        $("#googlemaps_cancel", rootel).bind("click", function(e, ui){
+            $("#" + tuid).remove();
+        });
+
+         // Add listerner to the delete button
+        $("#googlemaps_delete", rootel).bind("click", function(e, ui){
+            $("#" + tuid).remove();
         });
 
         $("#googlemaps_edit_button").click(function(){

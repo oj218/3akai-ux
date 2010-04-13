@@ -320,6 +320,22 @@ var Widgets = {
             showinsakaigoodies:true,
             url:"/devwidgets/tangler/tangler.html"
         },
+        textfield: {
+            ca:true,
+            description:"Textfield for the dashboard",
+            id:"textfield",
+            name:"textfield",
+            showinsakaigoodies:true,
+            url:"/devwidgets/textfield/textfield.html"
+        },
+        titlebox: {
+            ca:true,
+            description:"titlebox for the dashboard",
+            id:"titlebox",
+            name:"titlebox",
+            showinsakaigoodies:true,
+            url:"/devwidgets/titlebox/titlebox.html"
+        },
         twitter: {
             description:"Twitter Widget",
             hasSettings:true,

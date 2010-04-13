@@ -7,7 +7,7 @@
  * "License"); you may not use this file except in compliance
  * with the License. You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *  http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
@@ -16,22 +16,11 @@
  * specific language governing permissions and limitations under the License.
  */
 
-/* Googlemaps CSS */
-#googlemaps_form_search { margin: 5px 0; }
+/*global $, sdata, Config, addBinding */
 
-#googlemaps_iframe_map { width: 95%; height: 220px; border: none; margin: 10px 0; margin-left:5px}
-#googlemaps_input_text_location { margin-left:5px; width:80%; }
+var sakai = sakai || {};
 
-#googlemaps_radio_large { margin: 0 5px 5px 5px; }
-#googlemaps_radio_small { margin: 0 5px 5px 37px; }
-#googlemaps_save_cancel_container { margin: 15px 0 5px 5px; text-align: left; }
-
-#googlemaps_search_container { margin: 10px 0; text-align: right; }
-
-#googlemaps_button_search {
-    margin-right:30px;
-}
-
-#googlemaps_edit_button, #googlemaps_cancel{
-    display:none;
-}
+sakai.titlebox = function(tuid, placement, showSettings){
+    
+};
+sdata.widgets.WidgetLoader.informOnLoad("titlebox");
