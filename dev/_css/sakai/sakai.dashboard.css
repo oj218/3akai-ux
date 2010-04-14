@@ -3,6 +3,10 @@
     display:none;
 }
 
+#content_page_options{
+    display:block;
+}
+
 /*The bottomline of the dashboard options */
 .nav_bottom {
     background:url("/dev/_images/content_bl.png") no-repeat scroll left bottom transparent;
@@ -108,11 +112,20 @@
     overflow:hidden;
 }
 
+.contentTemplateDiv2{
+    width:317px;
+    height:500px;
+    background-color:#ccc;
+    float:left;
+    margin-right:3px;
+    overflow:hidden;
+}
+
 /* The header of the dashboard*/
 .dashBoardHeader{
     width:637px;
     background-color:#ccc;
-    height:110px;
+    height:140px;
     margin-bottom:5px;
 }
 
@@ -176,11 +189,15 @@
     cursor:hand;
 }
 
-.dashboard_border{
+.dashboard_border:hover{
     border-style:dashed;
     border-color:#666;
 }
 
 .pgNext, .pgPrev{
     display:none!important;
+}
+
+.textfield_edit_mode{
+    height:80%;
 }

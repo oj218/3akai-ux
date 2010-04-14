@@ -1,8 +1,8 @@
 /*the textarea that gets rendered when a textelement is dropped into the layout */
 .dashboard_textarea{
     margin:20px 0 0 10px;
-    width:190px;
-    height:180px;
+    width:90%;
+    height:50%;
 }
 
 .dashboard_input_font{

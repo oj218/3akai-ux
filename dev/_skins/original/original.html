@@ -85,6 +85,14 @@
         <div id="dashboard_3_3"> </div>
     --></div>
     
+        <div id="3-colum-div-template"><!--
+        <div id="dashboard_header_row"> </div>
+        <div id="dashboard_inner_colums">
+            <div> </div>
+            <div> </div>
+        </div>
+    --></div>
+    
     <div id="main-content-div-header-template"><!--
         <div id="dashboard_header_row"> </div>
         <div id="dashboard_inner_colums">
@@ -126,7 +134,7 @@
                 <div id="dashboard_options">
 
                     <!-- Grey rounded border at the top of the bar-->
-                    <div class="nav_top">
+                    <div class="nav_top" id="dash_board_top">
                         <div class="nav_top_inner">
                         </div>
                     </div>
@@ -159,11 +167,11 @@
                                         <hr/>
                                     </div>
                                 </li>
-                                <li>
+                                <li id="dashboard_2_column" >
                                     <div>
-                                        <img src="/dev/_images/cross.jpg" /><span class="dashboard_layout_titel">Group page</span>
+                                        <img src="/dev/_images/cross.jpg" /><span class="dashboard_layout_titel">2 Column</span>
                                         <br/>
-                                        <span class="dashboard_layout_text">5 column with header</span>
+                                        <span class="dashboard_layout_text">Good for dashboard pages</span>
                                         <br/>
                                         <hr/>
                                     </div>
@@ -367,9 +375,7 @@
             <!-- TOP RIGHT MENU -->
             <div class="content_page_options" id="content_page_options">
                 <ul class="fl-force-right">
-                    <li id="li_edit_page" style="display:none"><a href="javascript:;" id="edit_page">__MSG__EDIT_PAGE__</a></li>
-                    <li><a href="javascript:;" id="print_page">Print page</a></li>
-                    <li><a href="javascript:;" id="more_link">More</a></li>
+                    <li><a href="javascript:;" id="preview_dashboard">Preview</a></li>
                 </ul>
             </div>
 

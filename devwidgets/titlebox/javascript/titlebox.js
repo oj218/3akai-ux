@@ -115,10 +115,9 @@ sakai.titlebox = function(tuid, placement, showSettings){
         $dashboardDeleteElement.css('display','block');
 
         //IF the image doesn't exist allready add it to the page
-        console.log(toDelete)
         if (!toDelete.parent().parent().find($dashboardDeleteElement).length) {
-            console.log("Didn't find any image");
-            toDelete.append($dashboardDeleteElement);
+            console.log($dashboardDeleteElement.length);
+            toDelete.append($dashboardDeleteElement[0]);
             $dashboardDeleteElement.show();
         }
 

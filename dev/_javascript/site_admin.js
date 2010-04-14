@@ -65,6 +65,7 @@ sakai.site.site_admin = function(){
     var $dashboardMenu = $("#dashboardMenu");
     var $dashboardTitleButton = $("#dashboard_title_button");
     var $dashboardThirdAccordeon = $("#dashboard_third_accordeon");
+    var $previewDashboard = $("#preview_dashboard");
 
     //Templates
     var mainContentDivTemplate = "main-content-div-template";
@@ -72,7 +73,7 @@ sakai.site.site_admin = function(){
     var dashboardTitleTemplate = "dashboard_title_template";
     var dashboardDiscussionTemplate = "dashboard_discussion_template";
     var dashboardRssTemplate = "dashboard_rss_template";
-    
+    var dashboard2Column = '3-colum-div-template';
 
     // TinyMCE selectors, please note that it is not possible to cache these
     // since they get created at runtime
@@ -80,6 +81,9 @@ sakai.site.site_admin = function(){
     var elm1_menu_fontselect = "#menu_elm1_elm1_fontselect_menu";
     var elm1_menu_fontsizeselect = "#menu_elm1_elm1_fontsizeselect_menu";
 
+
+    var activated;
+    var tocheck;
 
     /////////////////////////////
     // PAGE UTILITY FUNCTIONS
@@ -1702,6 +1706,34 @@ sakai.site.site_admin = function(){
     // Clicks ON THE DASHBOARD OPTIONS //
     /////////////////////////////////////
 
+    function checkExistanceTextarea(){
+        var t;
+        //Check if the textarea exists
+        if($(tocheck).find("textarea").length ){
+            //Stop the timer
+            clearTimeout(t);
+
+            //The textarea has been found, so the timer has to be stopped
+            activated = true;
+ 
+            //Check where the textarea has been rendered
+            if ($(tocheck).attr("id") === "dashboard_header_row") {
+
+                //If it's in the titlebar set the rows attribute to 2
+                $(tocheck).find("textarea").attr('rows', 2);
+            }
+            else {
+                //Anywhere else it'll be 10
+                $(tocheck).find("textarea").attr('rows', 10);
+            }
+        }
+
+        //Check if the timer has been stopped
+        if (!activated) {
+            t = setTimeout(checkExistanceTextarea, 50);
+        }
+    }
+
     /**
      * This function will render the compontent the user selected
      * @param {Object} ev
@@ -1711,16 +1743,41 @@ sakai.site.site_admin = function(){
         var test = {};
         //Check which item the user wants to place on the page
         if(what === "Title"){
+            //Render a div with the id of the title widget
             $(where).html($.TemplateRenderer(dashboardTitleTemplate,test));
+
+            //Render the widget
             sdata.widgets.WidgetLoader.insertWidgets(null,true,sakai.site.currentsite.id + "/_widgets/");
         }else if( what === "Map"){
+
+            //Render te div with the googlemaps id
            $(where).html($.TemplateRenderer(dashboardDiscussionTemplate,test));
+
+            //Render the widget
             sdata.widgets.WidgetLoader.insertWidgets(null,true,sakai.site.currentsite.id + "/_widgets/");
         }else if(what === "Text"){
+
+            //Render the div with the id of the text widget
             $(where).append('<div class="dashboard_border"><div id="textfield' + Math.floor(Math.random() * 50) +'" ><div id="widget_textfield" class="widget_inline"></div></div></div>');
+
+            //Render the widget
             sdata.widgets.WidgetLoader.insertWidgets(null,true,sakai.site.currentsite.id + "/_widgets/");
+
+            //A boolean that is used in the timer to see if the timer has to be stopped
+            activated = false;
+
+            //Store the div in a global varialbe because it can't be passed every time to the timer function
+            tocheck = where;
+
+            //Check if the textarea existm if it does check where it's rendered and then change the heigth
+            checkExistanceTextarea();
+
         }else if(what === 'RSS'){
+
+            //Render the div for the rss widget
             $(where).html($.TemplateRenderer(dashboardRssTemplate,test));
+
+            //Render the widget
             sdata.widgets.WidgetLoader.insertWidgets(null,true,sakai.site.currentsite.id + "/_widgets/");
         }
     };
@@ -1783,12 +1840,130 @@ sakai.site.site_admin = function(){
             }, function(action, el, pos){
                 renderHtml(action, el);
             });
+        }else if(dashBoardLi ==="dashboard_2_column"){
+
+            //Render the matching template in the content div
+            $mainContentDiv.html($.TemplateRenderer(dashboard2Column,test));
+            $("#dashboard_header_row").addClass('dashBoardHeader');
+            $("#dashboard_inner_colums div").addClass("contentTemplateDiv2");
+
+            //Add the droppable functionality to the template div
+            $("#dashboard_inner_colums div, #dashboard_header_row").droppable({
+                drop: function(event,ui){
+                    renderHtml($(ui.draggable).find(".dashboard_layout_titel").html(),event.target);
+                }
+            });
+
+            $("#dashboard_inner_colums div, #dashboard_header_row").contextMenu({
+                menu: 'myMenu'
+            }, function(action, el, pos){
+                renderHtml(action, el);
+            });
         }
     };
 
     ////////////////////////
     // ADD NEW: DASHBOARD //
     ////////////////////////
+
+    function checkExistanceEditButton(){
+        var t;
+        //Check if the textarea exists
+        if ($(".sakai_site_contents_main .rss_edit").length) {
+            //Stop the timer
+            clearTimeout(t);
+
+            //The textarea has been found, so the timer has to be stopped
+            activated = true;
+            $(".sakai_site_contents_main .rss_edit").hide();
+        }
+        
+        //Check if the timer has been stopped
+        if (!activated) {
+            t = setTimeout(checkExistanceEditButton, 700);
+        }
+    }
+
+   function checkExistanceEditDelete(){
+        var t;
+        //Check if the textarea exists
+        if ($(".sakai_site_contents_main .rss_delete").length) {
+            console.log("Found the delete button");
+            //Stop the timer
+            clearTimeout(t);
+
+            //The textarea has been found, so the timer has to be stopped
+            activated = true;
+            $(".sakai_site_contents_main .rss_delete").hide();
+        }
+        
+        //Check if the timer has been stopped
+        if (!activated) {
+            t = setTimeout(checkExistanceEditDelete, 700);
+        }
+    }
+
+    function checkExistanceEditGoogle(){
+        var t;
+        
+        //Check if the textarea exists
+        if ($(".sakai_site_contents_main #googlemaps_save").length) {
+            console.log('found it');
+            //Stop the timer
+            clearTimeout(t);
+            
+            //The textarea has been found, so the timer has to be stopped
+            activated = true;
+            $(".sakai_site_contents_main .submit_button").hide();
+        }
+        
+        //Check if the timer has been stopped
+        if (!activated) {
+            t = setTimeout(checkExistanceEditGoogle, 700);
+        }
+    }
+
+    var goIntoPreview = function(){
+        $("#dashboard_accordeon").hide();
+        $('#dash_board_top').hide();
+        $page_nav_content.show();
+        $(".contentTemplateDiv").css("background-color", "white");
+        $(".contentTemplateDiv2").css("background-color", "white");
+        $('.dashboard_header_row').css('background-color","white');
+        $('.dashBoardHeader').css("background-color","white");
+        $(".sakai_site_contents_main #googlemapscontainer").parent().html('<div class="dashboard_border"><div id="widget_googlemaps" class="widget_inline"></div></div>');
+        $(".sakai_site_contents_main #rsscontainer").parent().html('<div class="dashboard_border"><div id="widget_rss" class="widget_inline"></div></div>');
+        sdata.widgets.WidgetLoader.insertWidgets(null,false,sakai.site.currentsite.id + "/_widgets/");
+        $(".dashboard_title_button").trigger('click');
+        $(".textfield_save").trigger('click');
+        $(".dashboard_border").removeClass('dashboard_border');
+        activated = false;
+        checkExistanceEditButton();
+        checkExistanceEditDelete();
+        checkExistanceEditGoogle();
+        $(".sakai_site_contents_main .s3d-button").hide();
+        
+    };
+
+    var goIntoEdit = function(){
+        $("#dashboard_accordeon").show();
+        $('#dash_board_top').show();
+        $page_nav_content.hide();
+        $(".contentTemplateDiv").css("background-color", "#ccc");
+        $(".contentTemplateDiv").css("background-color", "#ccc");
+        $('.dashboard_header_row').css('background-color","#ccc');
+        $(".contentTemplateDiv2").css("background-color", "#ccc");
+        $('.dashBoardHeader').css("background-color","#ccc");
+        $(".sakai_site_contents_main #googlemapscontainer").parent().html('<div class="dashboard_border"><div id="widget_googlemaps" class="widget_inline"></div></div>');
+        $(".sakai_site_contents_main #rsscontainer").parent().html('<div class="dashboard_border"><div id="widget_rss" class="widget_inline"></div></div>');
+        sdata.widgets.WidgetLoader.insertWidgets(null,true,sakai.site.currentsite.id + "/_widgets/");
+        $(".rss_edit").trigger('click');
+        $("#googlemaps_edit_button").trigger('click');
+        $(".sakai_site_contents_main .s3d-button").show();
+        $(".textfield_save").parent().parent().addClass('dashboard_border');
+        $(".dashboard_title_button").parent().parent().addClass('dashboard_border');
+        
+    };
 
     /**
     * Adds a dashboard page to the site.
@@ -1800,6 +1975,7 @@ sakai.site.site_admin = function(){
         $site_management.hide(); //site managment
         $page_nav_content.hide(); //Pages, recent activities
         $content_page_options.hide(); //print page, more
+        $("#content_page_options").show();
         $dashboard_options.show(); //show the dashboard options
         $dashboard_accordeon.accordion(); //Transform the dashboard option div into an accordion
         $dashboardSecondAccordeon.children().children().draggable({
@@ -1808,6 +1984,15 @@ sakai.site.site_admin = function(){
         $dashboardThirdAccordeon.children().children().draggable({
             helper: 'clone'
         });
+
+        $previewDashboard.toggle(function(){
+            $previewDashboard.html("Edit");
+            goIntoPreview();
+        }, function(){
+            $previewDashboard.html("preview");
+            goIntoEdit();
+        });
+
 
         //When the user clicks on a dashboard option, it will be shown in  the content div
         $dashboardOptions.click(showInContent);
