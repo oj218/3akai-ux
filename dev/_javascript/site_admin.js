@@ -1734,6 +1734,7 @@ sakai.site.site_admin = function(){
         }
     }
 
+
     /**
      * This function will render the compontent the user selected
      * @param {Object} ev
@@ -1744,21 +1745,29 @@ sakai.site.site_admin = function(){
         //Check which item the user wants to place on the page
         if(what === "Title"){
             //Render a div with the id of the title widget
-            $(where).html($.TemplateRenderer(dashboardTitleTemplate,test));
+            $(where).find('ul').append('<li><div class="dashboard_border"><div id="widget_titlebox" class="widget_inline"></div></div></li>');
 
             //Render the widget
             sdata.widgets.WidgetLoader.insertWidgets(null,true,sakai.site.currentsite.id + "/_widgets/");
+            activated = false;
+            container = where;
+            console.log('Check existance');
+
         }else if( what === "Map"){
 
             //Render te div with the googlemaps id
-           $(where).html($.TemplateRenderer(dashboardDiscussionTemplate,test));
+
+           $(where).find('ul').append('<li><div class="dashboard_border"><div id="widget_googlemaps" class="widget_inline"></div></div></li>');
 
             //Render the widget
             sdata.widgets.WidgetLoader.insertWidgets(null,true,sakai.site.currentsite.id + "/_widgets/");
+            activated = false;
+            container = where;
+
         }else if(what === "Text"){
 
             //Render the div with the id of the text widget
-            $(where).append('<div class="dashboard_border"><div id="textfield' + Math.floor(Math.random() * 50) +'" ><div id="widget_textfield" class="widget_inline"></div></div></div>');
+            $(where).find("ul").append('<li><div class="dashboard_border"><div id="textfield' + Math.floor(Math.random() * 50) +'" ><div id="widget_textfield" class="widget_inline"></div></div></div></li>');
 
             //Render the widget
             sdata.widgets.WidgetLoader.insertWidgets(null,true,sakai.site.currentsite.id + "/_widgets/");
@@ -1775,12 +1784,15 @@ sakai.site.site_admin = function(){
         }else if(what === 'RSS'){
 
             //Render the div for the rss widget
-            $(where).html($.TemplateRenderer(dashboardRssTemplate,test));
+            $(where).find('ul').append('<li><div class="dashboard_border"><div id="widget_rss" class="widget_inline"></div></div></li>');
+
 
             //Render the widget
             sdata.widgets.WidgetLoader.insertWidgets(null,true,sakai.site.currentsite.id + "/_widgets/");
         }
     };
+
+
 
     /**
      * These function will show the required template based on the id in the li
@@ -1804,10 +1816,19 @@ sakai.site.site_admin = function(){
             $mainContentDiv.addClass('contentTemplate');
             $mainContentDiv.children().addClass("contentTemplateDiv");
 
+            $('.dashboard_container" ul').sortable({
+                cursor: 'pointer', //change the cursor when dragging
+                connectWith: [".dashboard_container ul"],
+                //appendTo: $(".dashboard_container"),
+                revert:true
+            });
+
             //Add the droppable functionality to the template div
             $mainContentDiv.children().droppable({
                 drop: function(event,ui){
-                        renderHtml($(ui.draggable).find(".dashboard_layout_titel").html(),event.target);
+                        if ($(ui.draggable).find(".dashboard_layout_titel").html() !== null) {
+                            renderHtml($(ui.draggable).find(".dashboard_layout_titel").html(), event.target);
+                        }
                 }
             });
 
@@ -1858,6 +1879,21 @@ sakai.site.site_admin = function(){
                 menu: 'myMenu'
             }, function(action, el, pos){
                 renderHtml(action, el);
+            });
+            
+            $(".dashboard_sort ul").sortable({
+                cursor: 'pointer', //change the cursor when dragging
+                connectWith: [".dashboard_sort ul"],
+                //appendTo: $("#dashboard_header_row"),
+                revert:true,
+                stop: function(event, ui) {
+                    var $test  = $(event)[0].originalTarget;
+                    if($($test).parents('#dashboard_header_row').length){
+                        $($test).find(".dashboard_textarea").attr('rows',2);
+                    }else if($($test).parents('.contentTemplateDiv2').length){
+                        $($test).find(".dashboard_textarea").attr('rows',10);
+                    }
+                }
             });
         }
     };

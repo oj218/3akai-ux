@@ -495,7 +495,7 @@ sakai.rss = function(tuid, showSettings){
      */
     var showHideSettings = function(show){
         $(".rss_delete").live("click",function(){
-            $(this).parent().parent().parent().parent().remove();
+            $(this).parent().parent().parent().parent().parent().remove();
         });
         $(".rss_edit").live("click",function(){
             showHideSettings(true);

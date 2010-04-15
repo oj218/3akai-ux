@@ -127,7 +127,7 @@ sakai.titlebox = function(tuid, placement, showSettings){
             var dottedline = toDelete.parent().parent().parent();
             $dashboardDeleteElement.parent().remove();
             if(!containerDiv.find('.dashboard_input_title_final').length&&!containerDiv.find('.dashboard_input_subtitle_final').length){
-                dottedline.remove();
+                dottedline.parent().remove();
             }
         });
 

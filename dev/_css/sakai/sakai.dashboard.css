@@ -191,7 +191,9 @@
 
 .dashboard_border:hover{
     border-style:dashed;
+    cursor:pointer;
     border-color:#666;
+    z-index:9999!important;
 }
 
 .pgNext, .pgPrev{
@@ -200,4 +202,12 @@
 
 .textfield_edit_mode{
     height:80%;
+}
+
+.dashboard_border{
+    z-index:9999!important;
+}
+
+.dashboard_container ul li{
+     list-style-type:none;
 }

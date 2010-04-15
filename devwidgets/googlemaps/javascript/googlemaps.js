@@ -203,7 +203,7 @@ sakai.googlemaps = function(tuid, showSettings){
 
          // Add listerner to the delete button
         $("#googlemaps_delete", rootel).bind("click", function(e, ui){
-            $("#" + tuid).parent().remove();
+            $("#" + tuid).parent().parent().remove();
         });
 
         $("#googlemaps_edit_button").click(function(){
