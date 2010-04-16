@@ -1706,6 +1706,15 @@ sakai.site.site_admin = function(){
     // Clicks ON THE DASHBOARD OPTIONS //
     /////////////////////////////////////
 
+
+      /**
+       * The Drag and drop has been tried with fluid and this wasn't possible because
+       * for example if you have a layout with a header. I'll allways be dropped into the header bar.
+       * 
+       * The sortable plug-in works but the normal draggable and dropple plug-in will be better
+       */
+
+
     function checkExistanceTextarea(){
         var t;
         //Check if the textarea exists
