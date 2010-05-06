@@ -32,13 +32,11 @@
 .navigation .nav_title
 { background:transparent url(/dev/_images/pages_icon.png) no-repeat scroll left top; color:#878A8C; font-size:1em; padding-left: 25px; }
 
+
+
 /* CONTENT */
 .navigation .nav_content
-{background:none repeat scroll 0 0 #FFFFFF;
-margin:0 auto;
-padding:0px 5px;
-    max-width:1284px;
-    min-width:694px; }
+{ border-left: 3px solid #D4DADE; border-right: 3px solid #D4DADE; padding: 10px 5px 10px 5px; margin: 0; overflow:auto; }
 
 /* Template - Main */
 #navigation_page_children
@@ -54,10 +52,8 @@ padding:0px 5px;
 { padding: 0 0 5px 0; }
 
 .navigation .nav_content ul
-{ margin-bottom:50px; }
+{ margin: 0; }
 
-.navigation .nav_content ul li
-{ display:inline; }
 
 .navigation .nav_content .rootpage
 { font-weight: normal; background: #FFFFFF url(/dev/_images/page_18.png) no-repeat scroll left top; padding: 2px 5px 0px 25px; }
@@ -65,15 +61,6 @@ padding:0px 5px;
 .navigation .nav_content .subpage
 { font-weight: normal; background: #FFFFFF url(/dev/_images/subpages_18.png) no-repeat scroll left top; padding: 2px 5px 0px 25px; }
 
-#nav_content ul li a{
-    color:#003C79;
-    font-size:1.4em;
-    font-weight:bold;
-}
-
-#nav_content ul li a ins{
-    display:none;
-}
 
 /* BOTTOM */
 .navigation .nav_bottom

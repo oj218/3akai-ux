@@ -6,8 +6,12 @@
     <title>Sakai 3 R&amp;D - Site View</title>
 
     <!-- Sakai Core CSS -->
-    <link rel="stylesheet" type="text/css" href="/dev/_skins/cikc/css/cikc.css" />
+    <link rel="stylesheet" type="text/css" href="/dev/_css/FSS/fss-base.css" />
+    <link rel="stylesheet" type="text/css" href="/dev/_css/sakai/sakai.base.css"/>
+    <link rel="stylesheet" type="text/css" href="/dev/_css/sakai/sakai.core.2.css" />
+    <link rel="stylesheet" type="text/css" href="/dev/_css/sakai/sakai.3.css" />
 
+    <link rel="stylesheet" type="text/css" href="/dev/_skins/cikc/css/cikc.css" />
 
     <!-- Sakai Page CSS -->
     <link rel="stylesheet" type="text/css" href="/dev/_css/sakai/sakai.site.css"/>
@@ -50,9 +54,14 @@
     </head>
 
     <body id="root" class="fl-centered fl-container sakai_site i18nable">
+    <div class="header" id="cikc_header">
+        <div id="branding">
+            <a accesskey="1" href="http://www.cam.ac.uk/"><img class="header-logo" alt="University of Cambridge" src="/dev/_skins/camuniversity/identifier4.gif"/></a><a href="http://www.cam.ac.uk/800/"><img alt="800 Years, 1209 - 2009" src="/dev/_skins/camuniversity/800-2.gif"/></a>
+        </div>
+    </div>
 
     <!-- EXPLORE BAR -->
-    <div id="widget_navigationchat" class="widget_inline"></div>
+    
 
     <!-- HEADER -->
     <div class="fl-container-flex header" >
@@ -68,7 +77,10 @@
         </div>
 
     </div>
+                <!-- Page navigation -->
+                <div id="page_nav_content" class="pages page_nav_content">
 
+                </div>
     <!-- CONTENT -->
     <div class="fl-fix fl-centered fixed-container">
 
@@ -78,53 +90,11 @@
             <!-- Page Nav -->
             <div class="fl-col page_nav">
 
-                <div class="add_a_new_container">
-                <a class="add_a_new" id="add_a_new" style="display:none" href="javascript:;">Add a New ...</a>
-                </div>
-
-                <!-- Page navigation -->
-                <div id="page_nav_content" class="pages page_nav_content">
-
-                </div>
-
-                <!-- Site Management -->
-                <div class="site_management" id="site_management" style="display:none">
-
-                    <div class="sm_titlebar">
-                    <div class="sm_titlebar_inner"><h2 class="sm_title">Site Management</h2></div>
-                    </div>
-
-                    <div class="sm_content">
-                        <ul>
-                            <li><a id="site_management_basic_link" href="/dev/site_management_basic_settings.html?siteid=">Site Settings</a></li>
-                            <!-- <li><a id="site_management_files_link" href="/dev/content_media.html?siteid=">Site Files</a></li> -->
-                            <li><a id="site_management_members_link" href="/dev/site_management_members_manage.html?siteid=">Members</a></li>
-                            <li><a id="site_management_appearance_link" href="/dev/site_management_appearance.html?siteid=">Appearance</a></li>
-                            <li><a href="javascript:;" id="edit_sidebar">Edit Sidebar</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="sm_bottom">
-                        <div class="sm_bottom_inner"><!-- --></div>
-                    </div>
-                </div>
-
-            </div>
-
-            <!-- TOP RIGHT MENU -->
-            <div class="content_page_options" id="content_page_options">
-                <ul class="fl-force-right">
-                    <li id="li_edit_page" style="display:none"><a href="javascript:;" id="edit_page">__MSG__EDIT_PAGE__</a></li>
-                    <li><a href="javascript:;" id="print_page">Print page</a></li>
-                    <li><a href="javascript:;" id="more_link">More</a></li>
-                </ul>
             </div>
 
             <!-- MAIN CONTENT -->
             <div class="fl-col-fixed content_container">
 
-                <!-- TOP BORDER -->
-                <div class="content_top"><div class="content_top_inner"><!-- --></div></div>
 
                 <div class="sakai_site_contents_main fl-fix">
 
@@ -315,9 +285,6 @@
 
                 </div>
                 </div>
-                <!-- BOTTOM BORDER -->
-                <div class="content_bottom"><div class="content_bottom_inner"><!-- --></div></div>
-
             </div>
 
         </div>
@@ -397,11 +364,38 @@
         </div>
         </div>
     </div>
+    <div id="footer_line_container"><hr id="footer_line" /></div>
+    <!-- FOOTER copyright -->
+    <div class="fl-container footer_copyright">
+        <div class="fl-force-left">
+Cambridge University Engineering Dept
+Information provided by Mark Leadbeater (mll35)
+Last updated: 20 April 2010
+            </div>
+            
+            <!-- TOP RIGHT MENU -->
+            <div class="content_page_options" id="content_page_options">
+                <ul class="fl-force-right">
+                    <li>
+                        <a id="site_management_basic_link" href="/dev/site_management_basic_settings.html?siteid=">Site Settings</a>
+                    </li>
+                    <!-- <li><a id="site_management_files_link" href="/dev/content_media.html?siteid=">Site Files</a></li> -->
+                    <li>
+                        <a id="site_management_members_link" href="/dev/site_management_members_manage.html?siteid=">Members</a>
+                    </li>
+                    <li>
+                        <a id="site_management_appearance_link" href="/dev/site_management_appearance.html?siteid=">Appearance</a>
+                    </li>
+                    <li id="li_edit_page" style="display:none">
+                        <a href="javascript:;" id="edit_page">__MSG__EDIT_PAGE__</a>
+                    </li>
+                    <li>
+                        <a class="add_a_new" id="add_a_new" style="display:none" href="javascript:;">Add a New ...</a>
+                    </li>
+                </ul>
+            </div>
 
-<!-- FOOTER WIDGET -->
-<div id="widget_footer" class="widget_inline footercontainer"></div>
-
-
+        </div>
 
 
 <!-- DIALOGS, MENUS, MISC STUFF -->

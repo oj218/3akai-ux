@@ -253,15 +253,9 @@ sakai.site = function(){
                     $li_edit_page.show();
                     $add_a_new.show();
                     $site_management.show();
-                    $('#site_management_basic_link').show();
-                    $('#site_management_members_link').show();
-                    $('#site_management_appearance_link').show();
+
                     // Load admin part from a separate file
                     $.Load.requireJS(sakai.site.siteAdminJS);
-                }else{
-                    $('#site_management_appearance_link').hide();
-                    $('#site_management_basic_link').hide();
-                    $('#site_management_members_link').hide();
                 }
 
                 // Check user's login status
@@ -456,10 +450,9 @@ sakai.site = function(){
               async: false,
               success: function(response){
                 sakai.site.pagecontents._navigation = response;
-                $page_nav_content.html(response.split('</p>')[0]+'</p>');
+                $page_nav_content.html(response);
                 sdata.widgets.WidgetLoader.insertWidgets("page_nav_content",null,sakai.site.currentsite.id + "/_widgets/");
                 History.history_change();
-                $('#siterecentactivity_output').hide();
             },
             error: function(xhr, textStatus, thrownError) {
                 History.history_change();

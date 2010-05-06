@@ -1,0 +1,1575 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+    
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Sakai 3 R&amp;D - Site View</title>
+
+    <!-- Sakai Core CSS -->
+    <link rel="stylesheet" type="text/css" 
+href="cikc2_files/fss-base.css">
+    <link rel="stylesheet" type="text/css" 
+href="cikc2_files/sakai_004.css">
+    <link rel="stylesheet" type="text/css" href="cikc2_files/sakai.css">
+    <link rel="stylesheet" type="text/css" 
+href="cikc2_files/sakai_003.css">
+
+    <link rel="stylesheet" type="text/css" href="cikc2_files/cikc.css">
+
+    <!-- Sakai Page CSS -->
+    <link rel="stylesheet" type="text/css" 
+href="cikc2_files/sakai_006.css">
+
+    <!-- 3rd party CSS -->
+    <link rel="stylesheet" type="text/css" 
+href="cikc2_files/sakai_005.css">
+    <link rel="stylesheet" type="text/css" 
+href="cikc2_files/sakai_002.css">
+
+    <!-- Sakai Config JS -->
+    <script type="text/javascript" src="cikc2_files/widgets.js"></script>
+    <script type="text/javascript" src="cikc2_files/config.js"></script>
+
+    <!-- Core 3rd-party JS -->
+    <script type="text/javascript" src="cikc2_files/jquery_004.js"></script>
+    <script type="text/javascript" src="cikc2_files/jquery-ui.js"></script>
+    <script type="text/javascript" src="cikc2_files/3akai_Infusion.js"></script>
+    <script type="text/javascript" src="cikc2_files/jquery_005.js"></script>
+
+    <!-- Sakai Core JS -->
+    <script type="text/javascript" src="cikc2_files/sakai_magic.js"></script>
+    <script type="text/javascript" src="cikc2_files/sdata.js"></script>
+    <script type="text/javascript" src="cikc2_files/i18n.js"></script>
+    <script type="text/javascript" src="cikc2_files/site_authz.js"></script>
+    <script type="text/javascript" src="cikc2_files/notifications.js"></script>
+
+    <!-- 3rd party JS -->
+    <script type="text/javascript" src="cikc2_files/trimpath.js"></script>
+    <script type="text/javascript" src="cikc2_files/querystring.js"></script>
+    <script type="text/javascript" src="cikc2_files/jqmodal.js"></script>
+    <script type="text/javascript" src="cikc2_files/jquery_002.js"></script>
+    <script type="text/javascript" src="cikc2_files/jquery.js"></script>
+    <script type="text/javascript" src="cikc2_files/rsh.js"></script>
+    <script type="text/javascript" src="cikc2_files/site_history.js"></script>
+    <script type="text/javascript" src="cikc2_files/jquery_003.js"></script>
+    <script type="text/javascript" src="cikc2_files/BrowserDetect.js"></script>
+    <script type="text/javascript" src="cikc2_files/jqScrollPane.js"></script>
+    <script type="text/javascript" src="cikc2_files/jquery_006.js"></script>
+
+
+    <style type="text/css">/* TREE LAYOUT */ .tree ul { margin:0 0 0 5px; padding:0 0 0 0; list-style-type:none; } .tree li { display:block; min-height:18px; line-height:18px; padding:0 0 0 15px; margin:0 0 0 0; /* Background fix */ clear:both; } .tree li ul { display:none; } .tree li a, .tree li span { display:inline-block;line-height:16px;height:16px;color:black;white-space:nowrap;text-decoration:none;padding:1px 4px 1px 4px;margin:0; } .tree li a:focus { outline: none; } .tree li a input, .tree li span input { margin:0;padding:0 0;display:inline-block;height:12px !important;border:1px solid white;background:white;font-size:10px;font-family:Verdana; } .tree li a input:not([class="xxx"]), .tree li span input:not([class="xxx"]) { padding:1px 0; } /* FOR DOTS */ .tree .ltr li.last { float:left; } .tree > ul li.last { overflow:visible; } /* OPEN OR CLOSE */ .tree li.open ul { display:block; } .tree li.closed ul { display:none !important; } /* FOR DRAGGING */ #jstree-dragged { position:absolute; top:-10px; left:-10px; margin:0; padding:0; } #jstree-dragged ul ul ul { display:none; } #jstree-marker { padding:0; margin:0; line-height:5px; font-size:1px; overflow:hidden; height:5px; position:absolute; left:-45px; top:-30px; z-index:1000; background-color:transparent; background-repeat:no-repeat; display:none; } #jstree-marker.marker { width:45px; background-position:-32px top; } #jstree-marker.marker_plus { width:5px; background-position:right top; } /* BACKGROUND DOTS */ .tree li li { overflow:hidden; } .tree > .ltr > li { display:table; } /* ICONS */ .tree ul ins { display:inline-block; text-decoration:none; width:16px; height:16px; } .tree .ltr ins { margin:0 4px 0 0px; } </style><script type="text/javascript" src="cikc2_files/site_admin.js"></script><link
+ rel="stylesheet" type="text/css" href="cikc2_files/navigationchat.css"><script type="text/javascript" src="cikc2_files/navigationchat.js"></script><link
+ rel="stylesheet" type="text/css" href="cikc2_files/footer.css"><script type="text/javascript" src="cikc2_files/footer.js"></script><link
+ rel="stylesheet" type="text/css" href="cikc2_files/navigation.css"><script type="text/javascript" src="cikc2_files/navigation.js"></script><link
+ rel="stylesheet" type="text/css" 
+href="cikc2_files/siterecentactivity.css"><script type="text/javascript" src="cikc2_files/siterecentactivity.js"></script><link
+ href="cikc2_files/style.css" media="all" type="text/css" 
+rel="stylesheet"><style type="text/css">#nav_content li > a ins {  background-image:url(/dev/_images/page_18.png);  background-position:0 -1px; } </style><style type="text/css" charset="utf-8">/* See license.txt for terms of usage */
+.firebugCanvas {
+    position:fixed;
+    top: 0;
+    left: 0;
+    display:none;
+    border: 0 none;
+    margin: 0;
+    padding: 0;
+    outline: 0;
+}
+
+.firebugCanvas:before, .firebugCanvas:after {
+    content: "";
+}
+
+.firebugHighlight {
+    z-index: 2147483646;
+    position: fixed;
+    background-color: #3875d7;
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    border: 0 none;
+}
+
+.firebugHighlight:before, .firebugHighlight:after {
+    content: "";
+}
+
+.firebugLayoutBoxParent {
+    z-index: 2147483646;
+    position: fixed;
+    background-color: transparent;
+    border-top: 0 none;
+    border-right: 1px dashed #E00 !important;
+    border-bottom: 1px dashed #E00 !important;
+    border-left: 0 none;
+    margin: 0;
+    padding: 0;
+    outline: 0;
+}
+
+.firebugRuler {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    border: 0 none;
+}
+
+.firebugRuler:before, .firebugRuler:after {
+    content: "";
+}
+
+.firebugRulerH {
+    top: -15px;
+    left: 0;
+    width: 100%;
+    height: 14px;
+    background: url("data:image/png,%89PNG%0D%0A%1A%0A%00%00%00%0DIHDR%00%00%13%88%00%00%00%0E%08%02%00%00%00L%25a%0A%00%00%00%04gAMA%00%00%D6%D8%D4OX2%00%00%00%19tEXtSoftware%00Adobe%20ImageReadyq%C9e%3C%00%00%04%F8IDATx%DA%EC%DD%D1n%E2%3A%00E%D1%80%F8%FF%EF%E2%AF2%95%D0D4%0E%C1%14%B0%8Fa-%E9%3E%CC%9C%87n%B9%81%A6W0%1C%A6i%9A%E7y%0As8%1CT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AATE9%FE%FCw%3E%9F%AF%2B%2F%BA%97%FDT%1D~K(%5C%9D%D5%EA%1B%5C%86%B5%A9%BDU%B5y%80%ED%AB*%03%FAV9%AB%E1%CEj%E7%82%EF%FB%18%BC%AEJ8%AB%FA'%D2%BEU9%D7U%ECc0%E1%A2r%5DynwVi%CFW%7F%BB%17%7Dy%EACU%CD%0E%F0%FA%3BX%FEbV%FEM%9B%2B%AD%BE%AA%E5%95v%AB%AA%E3E5%DCu%15rV9%07%B5%7F%B5w%FCm%BA%BE%AA%FBY%3D%14%F0%EE%C7%60%0EU%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5JU%88%D3%F5%1F%AE%DF%3B%1B%F2%3E%DAUCNa%F92%D02%AC%7Dm%F9%3A%D4%F2%8B6%AE*%BF%5C%C2Ym~9g5%D0Y%95%17%7C%C8c%B0%7C%18%26%9CU%CD%13i%F7%AA%90%B3Z%7D%95%B4%C7%60%E6E%B5%BC%05%B4%FBY%95U%9E%DB%FD%1C%FC%E0%9F%83%7F%BE%17%7DkjMU%E3%03%AC%7CWj%DF%83%9An%BCG%AE%F1%95%96yQ%0Dq%5Dy%00%3Et%B5'%FC6%5DS%95pV%95%01%81%FF'%07%00%00%00%00%00%00%00%00%00%F8x%C7%F0%BE%9COp%5D%C9%7C%AD%E7%E6%EBV%FB%1E%E0(%07%E5%AC%C6%3A%ABi%9C%8F%C6%0E9%AB%C0'%D2%8E%9F%F99%D0E%B5%99%14%F5%0D%CD%7F%24%C6%DEH%B8%E9rV%DFs%DB%D0%F7%00k%FE%1D%84%84%83J%B8%E3%BA%FB%EF%20%84%1C%D7%AD%B0%8E%D7U%C8Y%05%1E%D4t%EF%AD%95Q%BF8w%BF%E9%0A%BF%EB%03%00%00%00%00%00%00%00%00%00%B8vJ%8E%BB%F5%B1u%8Cx%80%E1o%5E%CA9%AB%CB%CB%8E%03%DF%1D%B7T%25%9C%D5(%EFJM8%AB%CC'%D2%B2*%A4s%E7c6%FB%3E%FA%A2%1E%80~%0E%3E%DA%10x%5D%95Uig%15u%15%ED%7C%14%B6%87%A1%3B%FCo8%A8%D8o%D3%ADO%01%EDx%83%1A~%1B%9FpP%A3%DC%C6'%9C%95gK%00%00%00%00%00%00%00%00%00%20%D9%C9%11%D0%C0%40%AF%3F%EE%EE%92%94%D6%16X%B5%BCMH%15%2F%BF%D4%A7%C87%F1%8E%F2%81%AE%AAvzr%DA2%ABV%17%7C%E63%83%E7I%DC%C6%0Bs%1B%EF6%1E%00%00%00%00%00%00%00%00%00%80cr%9CW%FF%7F%C6%01%0E%F1%CE%A5%84%B3%CA%BC%E0%CB%AA%84%CE%F9%BF)%EC%13%08WU%AE%AB%B1%AE%2BO%EC%8E%CBYe%FE%8CN%ABr%5Dy%60~%CFA%0D%F4%AE%D4%BE%C75%CA%EDVB%EA(%B7%F1%09g%E5%D9%12%00%00%00%00%00%00%00%00%00H%F6%EB%13S%E7y%5E%5E%FB%98%F0%22%D1%B2'%A7%F0%92%B1%BC%24z3%AC%7Dm%60%D5%92%B4%7CEUO%5E%F0%AA*%3BU%B9%AE%3E%A0j%94%07%A0%C7%A0%AB%FD%B5%3F%A0%F7%03T%3Dy%D7%F7%D6%D4%C0%AAU%D2%E6%DFt%3F%A8%CC%AA%F2%86%B9%D7%F5%1F%18%E6%01%F8%CC%D5%9E%F0%F3z%88%AA%90%EF%20%00%00%00%00%00%00%00%00%00%C0%A6%D3%EA%CFi%AFb%2C%7BB%0A%2B%C3%1A%D7%06V%D5%07%A8r%5D%3D%D9%A6%CAu%F5%25%CF%A2%99%97zNX%60%95%AB%5DUZ%D5%FBR%03%AB%1C%D4k%9F%3F%BB%5C%FF%81a%AE%AB'%7F%F3%EA%FE%F3z%94%AA%D8%DF%5B%01%00%00%00%00%00%00%00%00%00%8E%FB%F3%F2%B1%1B%8DWU%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*UiU%C7%BBe%E7%F3%B9%CB%AAJ%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5*%AAj%FD%C6%D4%5Eo%90%B5Z%ADV%AB%D5j%B5Z%ADV%AB%D5j%B5Z%ADV%AB%D5j%B5Z%ADV%AB%D5j%B5Z%ADV%AB%D5j%B5Z%ADV%AB%D5j%B5Z%ADV%AB%D5j%B5%86%AF%1B%9F%98%DA%EBm%BBV%AB%D5j%B5Z%ADV%AB%D5j%B5Z%ADV%AB%D5j%B5Z%ADV%AB%D5j%B5Z%ADV%AB%D5j%B5Z%ADV%AB%D5j%B5Z%ADV%AB%D5j%B5Z%AD%D6%E4%F58%01%00%00%00%00%00%00%00%00%00%00%00%00%00%40%85%7F%02%0C%008%C2%D0H%16j%8FX%00%00%00%00IEND%AEB%60%82") repeat-x;
+    border-top: 1px solid #BBBBBB;
+    border-right: 1px dashed #BBBBBB;
+    border-bottom: 1px solid #000000;
+}
+
+.firebugRulerV {
+    top: 0;
+    left: -15px;
+    width: 14px;
+    height: 100%;
+    background: url("data:image/png,%89PNG%0D%0A%1A%0A%00%00%00%0DIHDR%00%00%00%0E%00%00%13%88%08%02%00%00%00%0E%F5%CB%10%00%00%00%04gAMA%00%00%D6%D8%D4OX2%00%00%00%19tEXtSoftware%00Adobe%20ImageReadyq%C9e%3C%00%00%06~IDATx%DA%EC%DD%D1v%A20%14%40Qt%F1%FF%FF%E4%97%D9%07%3BT%19%92%DC%40(%90%EEy%9A5%CB%B6%E8%F6%9Ac%A4%CC0%84%FF%DC%9E%CF%E7%E3%F1%88%DE4%F8%5D%C7%9F%2F%BA%DD%5E%7FI%7D%F18%DDn%BA%C5%FB%DF%97%BFk%F2%10%FF%FD%B4%F2M%A7%FB%FD%FD%B3%22%07p%8F%3F%AE%E3%F4S%8A%8F%40%EEq%9D%BE8D%F0%0EY%A1Uq%B7%EA%1F%81%88V%E8X%3F%B4%CEy%B7h%D1%A2E%EBohU%FC%D9%AF2fO%8BBeD%BE%F7X%0C%97%A4%D6b7%2Ck%A5%12%E3%9B%60v%B7r%C7%1AI%8C%BD%2B%23r%00c0%B2v%9B%AD%CA%26%0C%1Ek%05A%FD%93%D0%2B%A1u%8B%16-%95q%5Ce%DCSO%8E%E4M%23%8B%F7%C2%FE%40%BB%BD%8C%FC%8A%B5V%EBu%40%F9%3B%A72%FA%AE%8C%D4%01%CC%B5%DA%13%9CB%AB%E2I%18%24%B0n%A9%0CZ*Ce%9C%A22%8E%D8NJ%1E%EB%FF%8F%AE%CAP%19*%C3%BAEKe%AC%D1%AAX%8C*%DEH%8F%C5W%A1e%AD%D4%B7%5C%5B%19%C5%DB%0D%EF%9F%19%1D%7B%5E%86%BD%0C%95%A12%AC%5B*%83%96%CAP%19%F62T%86%CAP%19*%83%96%CA%B8Xe%BC%FE)T%19%A1%17xg%7F%DA%CBP%19*%C3%BA%A52T%86%CAP%19%F62T%86%CA%B0n%A9%0CZ%1DV%C6%3D%F3%FCH%DE%B4%B8~%7F%5CZc%F1%D6%1F%AF%84%F9%0F6%E6%EBVt9%0E~%BEr%AF%23%B0%97%A12T%86%CAP%19%B4T%86%CA%B8Re%D8%CBP%19*%C3%BA%A52huX%19%AE%CA%E5%BC%0C%7B%19*CeX%B7h%A9%0C%95%E1%BC%0C%7B%19*CeX%B7T%06%AD%CB%5E%95%2B%BF.%8F%C5%97%D5%E4%7B%EE%82%D6%FB%CF-%9C%FD%B9%CF%3By%7B%19%F62T%86%CA%B0n%D1R%19*%A3%D3%CA%B0%97%A12T%86uKe%D0%EA%B02*%3F1%99%5DB%2B%A4%B5%F8%3A%7C%BA%2B%8Co%7D%5C%EDe%A8%0C%95a%DDR%19%B4T%C66%82fA%B2%ED%DA%9FC%FC%17GZ%06%C9%E1%B3%E5%2C%1A%9FoiB%EB%96%CA%A0%D5qe4%7B%7D%FD%85%F7%5B%ED_%E0s%07%F0k%951%ECr%0D%B5C%D7-g%D1%A8%0C%EB%96%CA%A0%A52T%C6)*%C3%5E%86%CAP%19%D6-%95A%EB*%95q%F8%BB%E3%F9%AB%F6%E21%ACZ%B7%22%B7%9B%3F%02%85%CB%A2%5B%B7%BA%5E%B7%9C%97%E1%BC%0C%EB%16-%95%A12z%AC%0C%BFc%A22T%86uKe%D0%EA%B02V%DD%AD%8A%2B%8CWhe%5E%AF%CF%F5%3B%26%CE%CBh%5C%19%CE%CB%B0%F3%A4%095%A1%CAP%19*Ce%A8%0C%3BO*Ce%A8%0C%95%A12%3A%AD%8C%0A%82%7B%F0v%1F%2FD%A9%5B%9F%EE%EA%26%AF%03%CA%DF9%7B%19*Ce%A8%0C%95%A12T%86%CA%B8Ze%D8%CBP%19*Ce%A8%0C%95%D1ae%EC%F7%89I%E1%B4%D7M%D7P%8BjU%5C%BB%3E%F2%20%D8%CBP%19*Ce%A8%0C%95%A12T%C6%D5*%C3%5E%86%CAP%19*Ce%B4O%07%7B%F0W%7Bw%1C%7C%1A%8C%B3%3B%D1%EE%AA%5C%D6-%EBV%83%80%5E%D0%CA%10%5CU%2BD%E07YU%86%CAP%19*%E3%9A%95%91%D9%A0%C8%AD%5B%EDv%9E%82%FFKOee%E4%8FUe%A8%0C%95%A12T%C6%1F%A9%8C%C8%3D%5B%A5%15%FD%14%22r%E7B%9F%17l%F8%BF%ED%EAf%2B%7F%CF%ECe%D8%CBP%19*Ce%A8%0C%95%E1%93~%7B%19%F62T%86%CAP%19*Ce%A8%0C%E7%13%DA%CBP%19*Ce%A8%0CZf%8B%16-Z%B4h%D1R%19f%8B%16-Z%B4h%D1R%19%B4%CC%16-Z%B4h%D1R%19%B4%CC%16-Z%B4h%D1%A2%A52%CC%16-Z%B4h%D1%A2%A52h%99-Z%B4h%D1%A2%A52h%99-Z%B4h%D1%A2EKe%98-Z%B4h%D1%A2EKe%D02%5B%B4h%D1%A2EKe%D02%5B%B4h%D1%A2E%8B%96%CA0%5B%B4h%D1%A2E%8B%96%CA%A0e%B6h%D1%A2E%8B%96%CA%A0e%B6h%D1%A2E%8B%16-%95a%B6h%D1%A2E%8B%16-%95A%CBl%D1%A2E%8B%16-%95A%CBl%D1%A2E%8B%16-Z*%C3l%D1%A2E%8B%16-Z*%83%96%D9%A2E%8B%16-Z*%83%96%D9%A2E%8B%16-Z%B4T%86%D9%A2E%8B%16-Z%B4T%06-%B3E%8B%16-Z%B4T%06-%B3E%8B%16-Z%B4h%A9%0C%B3E%8B%16-Z%B4h%A9%0CZf%8B%16-Z%B4h%A9%0CZf%8B%16-Z%B4h%D1R%19f%8B%16-Z%B4h%D1R%19%B4%CC%16-Z%B4h%D1R%19%B4%CC%16-Z%B4h%D1%A2%A52%CC%16-Z%B4h%D1%A2%A52h%99-Z%B4h%D1%A2%A52h%99-Z%B4h%D1%A2EKe%98-Z%B4h%D1%A2EKe%D02%5B%B4h%D1%A2EKe%D02%5B%B4h%D1%A2E%8B%96%CA0%5B%B4h%D1%A2E%8B%96%CA%A0e%B6h%D1%A2E%8B%96%CA%A0e%B6h%D1%A2E%8B%16-%95a%B6h%D1%A2E%8B%16-%95A%CBl%D1%A2E%8B%16-%95A%CBl%D1%A2E%8B%16-Z*%C3l%D1%A2E%8B%16-Z*%83%96%D9%A2E%8B%16-Z*%83%96%D9%A2E%8B%16-Z%B4T%86%D9%A2E%8B%16-Z%B4T%06-%B3E%8B%16-Z%B4T%06-%B3E%8B%16-Z%B4h%A9%0C%B3E%8B%16-Z%B4h%A9%0CZf%8B%16-Z%B4h%A9%0CZf%8B%16-Z%B4h%D1R%19f%8B%16-Z%B4h%D1R%19%B4%CC%16-Z%B4h%D1R%19%B4%CC%16-Z%B4h%D1%A2%A52%CC%16-Z%B4h%D1%A2%A52h%99-Z%B4h%D1%A2%A52h%99-Z%B4h%D1%A2EKe%98-Z%B4h%D1%A2EKe%D02%5B%B4h%D1%A2EKe%D02%5B%B4h%D1%A2E%8B%96%CA0%5B%B4h%D1%A2E%8B%96%CA%A0e%B6h%D1%A2E%8B%96%CA%A0e%B6h%D1%A2E%8B%16-%95a%B6h%D1%A2E%8B%16-%95A%CBl%D1%A2E%8B%16-%95A%CBl%D1%A2E%8B%16-Z*%C3l%D1%A2E%8B%16-Z*%83%96%D9%A2E%8B%16-Z*%83%96%D9%A2E%8B%16-Z%B4T%86%D9%A2E%8B%16-Z%B4T%06-%B3E%8B%16-Z%B4%AE%A4%F5%25%C0%00%DE%BF%5C'%0F%DA%B8q%00%00%00%00IEND%AEB%60%82") repeat-y;
+    border-left: 1px solid #BBBBBB;
+    border-right: 1px solid #000000;
+    border-bottom: 1px dashed #BBBBBB;
+}
+
+.overflowRulerX > .firebugRulerV {
+    left: 0;
+}
+
+.overflowRulerY > .firebugRulerH {
+    top: 0;
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+.firebugLayoutBox {
+    margin: 0;
+    padding: 0;
+    border: 0 none;
+    outline: 0;
+}
+
+.firebugLayoutBox:before, .firebugLayoutBox:after {
+    content: "";
+}
+
+.firebugLayoutBoxOffset {
+    z-index: 2147483646;
+    position: fixed;
+    opacity: 0.8;
+}
+
+.firebugLayoutBoxMargin {
+    background-color: #EDFF64;
+}
+
+.firebugLayoutBoxBorder {
+    background-color: #666666;
+}
+
+.firebugLayoutBoxPadding {
+    background-color: SlateBlue;
+}
+
+.firebugLayoutBoxContent {
+    background-color: SkyBlue;
+}
+
+.firebugLayoutLine {
+    z-index: 2147483646;
+    background-color: #000000;
+    opacity: 0.4;
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    border: 0 none;
+}
+
+.firebugLayoutLine:before, .firebugLayoutLine:after {
+    content: "";
+}
+
+.firebugLayoutLineLeft, .firebugLayoutLineRight {
+    position: fixed;
+    width: 1px;
+    height: 100%;
+}
+
+.firebugLayoutLineTop, .firebugLayoutLineBottom {
+    position: fixed;
+    width: 100%;
+    height: 1px;
+}
+
+.firebugLayoutLineTop {
+    margin-top: -1px;
+    border-top: 1px solid #999999;
+}
+
+.firebugLayoutLineRight {
+    border-right: 1px solid #999999;
+}
+
+.firebugLayoutLineBottom {
+    border-bottom: 1px solid #999999;
+}
+
+.firebugLayoutLineLeft {
+    margin-left: -1px;
+    border-left: 1px solid #999999;
+}
+
+.fbProxyElement {
+    position: absolute;
+    background-color: transparent;
+    z-index: 2147483646;
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    border: 0 none;
+}
+</style></head><div firebugversion="1.5.2" style="display: none;" 
+id="_firebugConsole"></div><body style="display: block;" id="root" 
+class="fl-centered fl-container sakai_site i18nable">
+    <div class="header">
+        <div id="branding">
+            <a accesskey="1" href="http://www.cam.ac.uk/"><img 
+class="header-logo" alt="University of Cambridge" 
+src="cikc2_files/identifier4.gif"></a><a 
+href="http://www.cam.ac.uk/800/"><img alt="800 Years, 1209 - 2009" 
+src="cikc2_files/800-2.gif"></a>
+        </div>
+    </div>
+
+    <!-- EXPLORE BAR -->
+    <div id="navigationchatcontainer" 
+class="inline_class_widget_nofloat"><div>
+
+<!-- EXPLORE NAV CONTAINER -->
+<div id="explore_nav_container" style="">
+    <div class="fl-container explore_nav">
+        <ul class="explore">
+            <li id="nav_my_sakai_link"><a 
+href="http://localhost:8080/dev/my_sakai.html">My Sakai</a></li>
+            <li id="nav_content_media_link"><a href="javascript:;">Content
+ &amp; Media</a></li>
+            <li id="nav_people_link" class="chat_has_dropdown 
+nav_people_link"><a href="http://localhost:8080/dev/people.html">People</a></li>
+            <li id="nav_courses_sites_link" class="chat_has_dropdown 
+nav_courses_sites_link explore_nav_selected"><a href="javascript:;" 
+style="color: rgb(136, 136, 136);">Courses &amp; Sites</a></li>
+            <li id="nav_events_link"><a href="javascript:;" 
+style="color: rgb(136, 136, 136);">Calendar</a></li>
+        </ul>
+
+        <!-- PERSONAL CONTAINER -->
+        <div class="personal-container fl-force-right">
+
+            <div class="personal">
+
+                <ul>
+                    <li id="other_logins_button_container" 
+style="display: none;"><a class="other_logins" href="javascript:;">Institutional
+ login</a></li>
+                    <li id="register_button_container" style="display: 
+none;"><a class="register" 
+href="http://localhost:8080/dev/create_new_account.html">Register</a></li>
+                    <li id="login_button_container" style="display: 
+none;"><a class="log_in" href="javascript:;">Login</a></li>
+
+                    <!-- CHAT STATUS DROPDOWN -->
+                    <li id="user_link_container">
+                        <a id="user_link" class="user_link 
+chat_available_status_online" href="javascript:;">
+                            <span id="userid">admin admin</span>
+                        </a>
+                    </li>
+
+                    <li><a class="mail" 
+href="http://localhost:8080/dev/inbox.html"><img 
+src="cikc2_files/mail_icon.png" alt="Mail Icon"> (<span 
+id="chat_unreadMessages">0</span>)</a></li>
+                    <li><a class="help" 
+href="http://confluence.sakaiproject.org/display/SAKDEV/Sakai+3" 
+target="_blank">Help</a></li>
+                    <li><a class="sign_out" 
+href="http://localhost:8080/dev/logout.html">Sign out</a></li>
+                </ul>
+
+                <div id="login_container" style="display: none;">
+                    <form id="login_form" method="POST">
+                        <label for="login_username">Username</label>
+                        <br>
+                        <input alt="Username" id="login_username" 
+name="login_username" type="text">
+                        <br>
+                        <label for="login_password">Password</label>
+                        <br>
+                        <input alt="Password" id="login_password" 
+name="login_password" type="password">
+
+                        <div id="login_error_message" style="display: 
+none;">Login failed! NOTE: Every time this server is being redeployed, 
+data is being trashed and you will need to recreate your user account!</div>
+                        <div id="login_busy" class="fl-force-right" 
+style="display: none;"></div>
+
+                        <div class="login-container-button 
+fl-force-right">
+                            <button id="login_cancel_button" 
+type="button" class="s3d-button s3d-button"><span 
+class="s3d-button-inner">Cancel</span></button>
+                            <button id="login_submit_button" 
+type="button" class="s3d-button s3d-button-primary"><span 
+class="s3d-button-inner">Sign In</span></button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- USER LINK MENU -->
+<div id="user_link_menu" style="display: none;">
+    <div class="user_link_menu_border">
+        <ul>
+            <li class="insert_more_menu_inactive">Chat Status</li>
+            <li><a id="user_link_chat_status_online" 
+class="user_link_chat_status" href="javascript:;">Available</a></li>
+            <li><a id="user_link_chat_status_busy" 
+class="user_link_chat_status" href="javascript:;">Busy</a></li>
+            <li><a id="user_link_chat_status_offline" 
+class="user_link_chat_status" href="javascript:;">Offline</a></li>
+        </ul>
+    </div>
+    <div>
+        <ul>
+            <li><a href="http://localhost:8080/dev/inbox.html">My Inbox</a></li>
+            <li><a href="http://localhost:8080/dev/people.html">My 
+Contacts</a></li>
+            <li><a href="http://localhost:8080/dev/profile.html">My 
+Profile</a></li>
+            <li><a 
+href="http://localhost:8080/dev/account_preferences.html">My Account</a></li>
+        </ul>
+    </div>
+</div>
+
+<!-- SEARCH -->
+<div id="genaral_search_container">
+    <form class="fl-force-right" method="post" action="">
+        <input id="general_search_input" class="general_search_input" 
+value="Search for media, people and sites" type="text">
+        <button id="general_search_submit_button" 
+class="s3d-search-button s3d-button s3d-button-primary" type="submit"><span
+ class="s3d-button-inner"><span class="s3d-button-icon-right">Search</span></span></button>
+        <br class="clear">
+    </form>
+</div>
+
+<div id="chat_available_template" style="display: none;"><!--
+    <span class="chat_button_image">
+        <a href="javascript:;" id="chat_available_minimize">
+            <img src="/devwidgets/navigationchat/images/chat_minimize.png" alt="" />
+        </a>
+    </span>
+    <table>
+        <tbody>
+            <tr id="chat_available_me" class="chat_top_container">
+                {if me}
+                <td class="chat_available_image">
+                    {if me.photo}
+                        <img src="${me.photo}" alt="" />
+                    {else}
+                        <img src="/dev/_images/person_icon.jpg" alt="" />
+                    {/if}
+                </td>
+                <td>
+                    <span class="chat_available_name chat_available_status_${me.chatstatus}">${me.name}</span><br />
+                    <span class="chat_available_statusmessage">${me.statusmessage}</span>
+                </td>
+                {/if}
+            </tr>
+        </tbody>
+    </table>
+    <div id="chat_available_others" {if totalitems > 4} class="chat_available_others_overflow" {else} class="chat_available_others_nooverflow" {/if}>
+        <table>
+            <tbody>
+                {for i in items}
+                    {if i['sakai:status'] == "online" && i.chatstatus != "offline"}
+                        <tr class="chat_available_friend">
+                            <td class="chat_available_image">
+                                {if i.photo}
+                                    <img src="${i.photo}" alt="" />
+                                {else}
+                                    <img src="/dev/_images/person_icon.jpg" alt="" />
+                                {/if}
+                            </td>
+                            <td>
+                                <a href="javascript:;" class="chat_available_status_${i.chatstatus} initiate_chat_window" id="initiate_chat_window_${i.user}">${i.name}</a><br />
+                                <span class="chat_available_statusmessage">${i.statusmessage}</span>
+                            </td>
+                        </tr>
+                    {/if}
+                {forelse}
+                <tr>
+                    <td id="chat_no_online_connections">
+                        No online connections found
+                    </td>
+                </tr>
+                {/for}
+            </tbody>
+        </table>
+    </div>
+--></div>
+
+<!-- CHAT WINDOW -->
+<div style="display: none;" id="chat_windows_template"><!--
+    {var index = 0}
+    {for i in items}
+        {if special != false}
+            {if special == 0}
+            <span class="user_chat_first">
+            {else}
+            <span>
+            {/if}
+            <span id="online_button_${i.userid}" class="user_chat">
+
+        {else}
+            {if index == 0}
+            <span class="user_chat_first">
+            {else}
+            <span>
+            {/if}
+            <span id="online_button_${i.userid}" class="user_chat">
+        {/if}
+        <a href="javascript:;" id="chat_window_chatstatus_${i.userid}" class="chat_name_link chat_available_status_${i.chatstatus}">${i.name}</a>
+        </span>
+        </span>
+
+        ${index++|eat}
+    {/for}
+--></div>
+
+<!-- CHAT WINDOW -->
+<div style="display: none;" id="chat_windows_windows_template"><!--
+    {var index = 0}
+    {for i in items}
+
+        {if special != false}
+            <div id="chat_with_${i.userid}" class="chat_with_user" style="left: ${(special*150)}px; display:none">
+        {else}
+            <div id="chat_with_${i.userid}" class="chat_with_user" style="left: ${(index*150)}px; display:none">
+        {/if}
+
+                <table class="chat_top_table">
+                    <tr class="chat_top_container">
+                        <td class="chat_available_image">
+                            {if i.photo}
+                                <img src="${i.photo}" id="chat_window_photo_${i.userid}" alt="" />
+                            {else}
+                                <img src="_images/person_icon.png" id="chat_window_photo_${i.userid}" alt="" />
+                            {/if}
+                        </td>
+                        <td>
+                            <span class="chat_user_button_image">
+                                <a href="javascript:;" id="chat_minimize_${i.userid}" class="chat_minimize">
+                                    <img src="/devwidgets/navigationchat/images/chat_minimize.png" alt="" />
+                                </a>
+                                <a href="javascript:;" id="chat_close_${i.userid}" class="chat_close">
+                                    <img src="/devwidgets/navigationchat/images/chat_close.png" alt="" />
+                                </a>
+                            </span>
+                            <span id="chat_window_name_${i.userid}" class="chat_window_name">${i.name}</span><br />
+                            <span id="chat_window_statusmessage_${i.userid}" class="chat_available_statusmessage">${i.statusmessage}</span>
+                        </td>
+                    </tr>
+                </table>
+                <div id="chat_with_${i.userid}_content" class="chat_with_content_nooverflow"></div>
+                <input id="chat_with_${i.userid}_txt" class="chat_with_txt" type="text"/>
+            </div>
+
+        ${index++|eat}
+    {/for}
+--></div>
+
+<!-- CHAT MESSAGE -->
+<div style="display: none;" id="chat_content_template"><!--
+    <div class="chat_content_container">
+        <span class="chat_content_name">${name}</span><span class="chat_content_time">${time}</span><br />
+        <span class="chat_content_message">${message}</span>
+    </div>
+--></div>
+
+<!-- CHAT BOTTOM CONTAINER -->
+<div class="chat_main_container doFixed" id="chat_main_container" 
+style="left: 0px;">
+    <div id="chat_container" style="height: 30px;">
+        <table class="chat_main_table" summary="Chat">
+            <tbody><tr>
+                <td id="chat_windows">  </td>
+                <td id="chat_online_connections_link">
+                    <span id="online_button">
+                        <img src="cikc2_files/people.png" 
+class="chat_people_icon" alt="Online" width="16px">
+                        <a href="javascript:;" 
+class="chat_straight_link" id="chat_online">(0)</a>
+
+                        <!-- SHOW ONLINE FRIENDS -->
+                        <div id="show_online" style="display: none; 
+bottom: 113px;">
+                            <div id="chat_available">    <span 
+class="chat_button_image">
+        <a href="javascript:;" id="chat_available_minimize">
+            <img src="cikc2_files/chat_minimize.png" alt="">
+        </a>
+    </span>
+    <table>
+        <tbody>
+            <tr id="chat_available_me" class="chat_top_container">
+                <td class="chat_available_image">
+                        <img src="cikc2_files/person_icon.jpg" alt="">
+                </td>
+                <td>
+                    <span class="chat_available_name 
+chat_available_status_online">admin admin</span><br>
+                    <span class="chat_available_statusmessage">No status
+ message</span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div id="chat_available_others" 
+class="chat_available_others_nooverflow">
+        <table>
+            <tbody>
+                <tr>
+                    <td id="chat_no_online_connections">
+                        No online connections found
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div></div>
+                        </div>
+
+                    </span>
+                </td>
+            </tr>
+        </tbody></table>
+        <div id="chat_windows_container" style="position: relative;">  </div>
+    </div>
+</div>
+
+<!-- JAVASCRIPT -->
+
+</div></div>
+
+    <!-- HEADER -->
+    <div class="fl-container-flex header">
+
+        <div class="fl-fix fl-centered fixed-container">
+
+            <div class="decor"><!-- --></div>
+
+            <!-- TITLE BAR  -->
+            <div class="s3d-site-heading">
+                <h1 id="sitetitle">CIKC</h1>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- CONTENT -->
+    <div class="fl-fix fl-centered fixed-container">
+
+        <!-- MAIN PAGE -->
+        <div class="fl-fix fl-col-fixed main_container" 
+id="show_view_container">
+
+            <!-- Page Nav -->
+            <div class="fl-col page_nav">
+
+                <div class="add_a_new_container">
+                <a class="add_a_new" id="add_a_new" style="" 
+href="javascript:;">Add a New ...</a>
+                </div>
+
+                <!-- Page navigation -->
+                <div id="page_nav_content" class="pages 
+page_nav_content"><p><div id="id759008084" 
+class="inline_class_widget_nofloat"><div>
+
+<!-- SETTINGS -->
+<div id="navigation_settings" style="display: none;">
+    <p>No settings available</p>
+    <div class="dialog_buttons">
+        <a class="button-default submit_button" href="javascript:;" 
+id="navigation_settings_submit">Finish</a>
+        <a class="button cancel-button" href="javascript:;" 
+id="navigation_settings_cancel">Cancel</a>
+    </div>
+</div>
+
+<!-- OUTPUT -->
+<div id="navigation_output" class="navigation">
+
+    <div class="nav_titlebar">
+            <div class="nav_titlebar_inner"><h2 class="nav_title">Pages</h2></div>
+        </div>
+
+        <div style="direction: ltr;" id="nav_content" class="nav_content
+ tree tree-default"><ul class="ltr no_dots"><li class="last leaf" 
+id="nav_sitescikc2welcome"><a href="" style="" class="clicked"><ins>&nbsp;</ins>Home</a></li></ul></div>
+
+        <div class="nav_bottom">
+            <div class="nav_bottom_inner"></div>
+        </div>
+</div>
+
+<!-- JAVASCRIPT -->
+
+</div></div></p><p><div id="id669827676" 
+class="inline_class_widget_nofloat"><div>
+
+<div id="siterecentactivity_settings" style="display: none;">
+    <p>No settings available</p>
+    <div class="dialog_buttons">
+        <a class="button-default submit_button" href="javascript:;" 
+id="siterecentactivity_settings_submit">Finish</a>
+        <a class="button cancel-button" href="javascript:;" 
+id="siterecentactivity_settings_cancel">Cancel</a>
+    </div>
+</div>
+<div id="siterecentactivity_output">
+    <div class="siterecentactivity">
+
+        <div class="si_titlebar">
+            <div class="si_titlebar_inner"><h2 class="si_title">Recent 
+Activity</h2></div>
+        </div>
+
+        <div id="siterecentactivity_container" class="si_content">      
+      <ul>
+                <li>
+                    <a 
+href="http://localhost:8080/sites/flickrsite#sitesflickrsitewelcome">Welcome</a>
+                    <p>
+                        Page updated 2 Weeks Ago
+                    </p>
+                </li>
+                <li>
+                    <a 
+href="http://localhost:8080/sites/flickrsite#sitesflickrsitewelcome">Welcome</a>
+                    <p>
+                        Page updated 2 Weeks Ago
+                    </p>
+                </li>
+                <li>
+                    <a 
+href="http://localhost:8080/sites/flickrsite#sitesflickrsitewelcome">Welcome</a>
+                    <p>
+                        Page updated 2 Weeks Ago
+                    </p>
+                </li>
+                <li>
+                    <a 
+href="http://localhost:8080/sites/flickrsite#sitesflickrsitewelcome">Welcome</a>
+                    <p>
+                        Page updated 2 Weeks Ago
+                    </p>
+                </li>
+                <li>
+                    <a 
+href="http://localhost:8080/sites/cikc2#sitescikc2welcome">Home</a>
+                    <p>
+                        Page updated 52 Minutes Ago
+                    </p>
+                </li>
+            </ul></div>
+
+        <div id="siterecentactivity_container_template"><!--
+            <ul>
+            {for i in items}
+                <li>
+                    <a href="${i.page_url}">${i.page_title}</a>
+                    <p>
+                    {if i.type === "page_edit"}
+                        Page updated ${i.date_parsed}
+                    {elseif i.type === "page_create"}
+                        Page created ${i.date_parsed}
+                    {elseif i.type === "page_move"}
+                        Page moved ${i.date_parsed}
+                    {/if}
+                    </p>
+                </li>
+            {forelse}
+                <li class="siterecentactivity_empty">No recent activity available</li>
+            {/for}
+            </ul>
+        --></div>
+
+        <div class="si_bottom">
+            <div class="si_bottom_inner"><!-- --></div>
+        </div>
+
+    </div>
+</div>
+
+
+</div></div></p></div>
+
+                <!-- Site Management -->
+                <div class="site_management" id="site_management" 
+style="">
+
+                    <div class="sm_titlebar">
+                    <div class="sm_titlebar_inner"><h2 class="sm_title">Site
+ Management</h2></div>
+                    </div>
+
+                    <div class="sm_content">
+                        <ul>
+                            <li><a id="site_management_basic_link" 
+href="http://localhost:8080/dev/site_management_basic_settings.html?siteid=cikc2">Site
+ Settings</a></li>
+                            <!-- <li><a id="site_management_files_link" href="/dev/content_media.html?siteid=">Site Files</a></li> -->
+                            <li><a id="site_management_members_link" 
+href="http://localhost:8080/dev/site_management_members_manage.html?siteid=cikc2">Members</a></li>
+                            <li><a id="site_management_appearance_link" 
+href="http://localhost:8080/dev/site_management_appearance.html?siteid=cikc2">Appearance</a></li>
+                            <li><a href="javascript:;" id="edit_sidebar">Edit
+ Sidebar</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="sm_bottom">
+                        <div class="sm_bottom_inner"><!-- --></div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- TOP RIGHT MENU -->
+            <div class="content_page_options" id="content_page_options">
+                <ul class="fl-force-right">
+                    <li id="li_edit_page" style=""><a 
+href="javascript:;" id="edit_page">Edit page</a></li>
+                    <li><a href="javascript:;" id="print_page">Print 
+page</a></li>
+                    <li><a href="javascript:;" id="more_link">More</a></li>
+                </ul>
+            </div>
+
+            <!-- MAIN CONTENT -->
+            <div class="fl-col-fixed content_container">
+
+                <!-- TOP BORDER -->
+                <div class="content_top"><div class="content_top_inner"><!-- --></div></div>
+
+                <div class="sakai_site_contents_main fl-fix">
+
+                <!-- REVISION HISTORY -->
+                <div class="fl-container revision_history fl-fix" 
+id="revision_history_container" style="display: none;">
+
+                    <label class="revision_history_viewing 
+fl-force-left" for="revision_history_list">Viewing:</label>
+
+                    <div><select id="revision_history_list"></select></div>
+
+                    <button id="revision_history_revert" 
+class="s3d-button s3d-button-primary"><span class="s3d-button-inner">Use
+ this Version</span></button>
+                    <button id="revision_history_cancel" 
+class="s3d-button"><span class="s3d-button-inner">Cancel</span></button>
+
+                </div>
+
+                <!-- PAGE TITLE -->
+                <h1 id="pagetitle">Home</h1>
+
+                <!-- OPTIONS FOR THE DASHBOARD -->
+                <div class="fl-container-flex dashboard_options" 
+style="display: none;">
+                    <a href="javascript:;" id="add-goodies">Sakai 
+Goodies</a>
+                    <span class="pipe_divider">|</span>
+                    <a href="javascript:;" id="edit-layout">Change 
+layout</a>
+                </div>
+
+                <!-- MAIN CONTENT -->
+                <div id="main-content-div">
+
+                <div class="content" id="sitescikc2welcome"><h1><span 
+style="font-size: xx-large;"><strong><span style="color: rgb(0, 0, 0);">CIKC
+ </span><span style="font-size: large;"><span style="color: rgb(0, 204, 
+255);">Cambridge Integrated Knowledge center</span></span></strong></span></h1>
+<p><span style="color: rgb(128, 128, 128);"><strong>Advanced 
+Manufacturing Technologies for photonics and electronics - </strong></span></p>
+<p><strong><span style="color: rgb(0, 204, 255);"><span style="color: 
+rgb(128, 128, 128);">Exploiting molecular and macromolecular 
+technologies</span></span></strong></p>
+<p>The Cambridge Integrated Knowledge Centre (CIKC) is a centre of  
+excellence for low temperature processing of  			macromolecular 
+materials, such as polymers, liquid crystals and  nanostructures, for 
+applications in  			computers, displays and communications.</p>
+<p>CIKC brings together world-class research activities in Cambridge  
+University in molecular and macromolecular materials  in the Electrical 
+Engineering Division and the Cavendish Laboratory with  the expertise of
+ the Judge  Business School, the Institute for Manufacturing (IfM) and 
+the Centre  for Business Research (CBR)  and industry partners to 
+accelerate the commercialisation of emerging  technology.</p>
+<p>CIKC technologies include:</p>
+<ul class="content">
+<li> inkjet-printed poylmer TFTs </li>
+<li>roll-to-roll printing of organic solar cells, </li>
+<li> transparent inorganic microelectronics, </li>
+<li>LCOS devices for holographic projection, </li>
+<li>low cost polymer photonic components </li>
+<li>large area liquid crystal displays on plastic. </li>
+</ul>
+<p>The Mission of the Centre is to provide the business and technical 
+expertise and infrastructure to enable those with exploitable concepts 
+to achieve commercial success</p></div></div>
+
+                <!-- DASHBOARD PAGES  -->
+
+                <!-- CONTENT -->
+                <div id="dashboard_container_template"><!--
+                    <div class="fl-col-flex${size} sakai_dashboard_page">
+                        {var index = 0}
+                        <div class="content">
+                            {for c in columns}
+                            ${index++|eat}
+                            <div class="fl-col groupWrapper" id="column_uid_${index}">
+                                {for p in c.portlets}
+                                <div class="fl-widget widget1 ${p.id}" id="${p.id}_${p.uid}">
+                                    <div class="fl-widget-titlebar widget1-head" id="draghandle_${p.id}_${p.uid}">
+                                        <div class="widget-titlebar-inner">
+                                            <h2 class="widget_title">${p.title}</h2>
+                                            <a href="javascript:;" id="${p.id}_${p.uid}_settings" class="fl-force-right fl-icon settings" style="display:none">Settings</a>
+                                        </div>
+                                    </div>
+                                    {if p.display == "none"}
+                                    <div id="${p.uid}_container" style="display:none">
+                                        {else}
+                                        <div id="${p.uid}_container">
+                                            {/if}
+                                            <div id="widget_${p.id}_${p.uid}_${p.placement}" class="widget_inline">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {/for}
+                                </div>
+                                {/for}
+                            </div>
+                        </div>
+                --></div>
+
+                <!-- Dropdown menu shown when clicking on a widget's pencil -->
+                <div class="add_new_menu" id="widget_settings_menu" 
+style="display: none;">
+                    <ul>
+                        <li id="settings_remove" class="more_option"><a 
+href="javascript:;">Remove</a></li>
+                        <li id="settings_hide" class="more_option"><a 
+id="settings_hide_link" href="javascript:;">Hide</a></li>
+                        <li id="settings_settings" class="more_option"><a
+ id="settings_settings_link" href="javascript:;">Settings</a></li>
+                    </ul>
+                </div>
+
+                <!-- Change the layout for a dashboard page. -->
+                <div id="change_layout_dialog" class="dialog jqmID2">
+                    <div class="dialog_header">
+                        <div class="dialog_header_inner">
+                        <h1>Change layout</h1>
+                        <a href="javascript:;" class="jqmClose 
+dialog_close_image" title="Close Dialog">Close Dialog</a>
+                        </div>
+                    </div>
+                    <div class="dialog_content">
+                        <div class="add-tools-right">
+                            <h4>Select a layout for your dashboard page:</h4>
+                            <div class="elf-right-up fl-fix">
+                                <div id="layouts_list"></div>
+                            </div>
+                        </div>
+                        <!-- DIALOG BUTTONS -->
+                        <div class="dialog_buttons">
+                            <a href="javascript:;" 
+id="select-layout-finished" class="button-default">Save</a>
+                            <a href="javascript:;" 
+id="select-layout-cancel" class="button jqmClose">Cancel</a>
+                        </div>
+                    </div>
+                    <!-- DIALOG FOOTER -->
+                    <div class="dialog_footer">
+                        <div class="dialog_footer_inner"><!-- --></div>
+                    </div>
+                </div>
+
+                <!-- Change layout template -->
+                <div id="layouts_template" style="display: none;"><!--
+                    {for i in layouts}
+                        {if i.siteportal}
+                            {if i_index == selected}
+                                <div class="layout_container">
+                                        <table cellpadding="0" cellspacing="0" class="layout_picker_item">
+                                            <tr>
+                                                {for w in i.widths}
+                                                <td style="width:${w}%;" class="layout_picker_item_column layout-picker" id="layout-picker-${w}-${i_index}">
+                                                    &nbsp;
+                                                </td>
+                                                {/for}
+                                            </tr>
+                                        </table>
+                                    <input type="radio" name="layoutselect" id="layout-picker-${i_index}" class="layout-picker layout_picker_item_radio" checked="true"/>
+                                </div>
+                            {else}
+                                <div class="layout_container_unselected">
+                                    <table cellpadding="0" cellspacing="0" class="layout_picker_item_unselected">
+                                        <tr>
+                                            {for w in i.widths}
+                                            <td style="width:${w}%;" class="layout_picker_item_column_unselected layout-picker" id="layout-picker-${w}-${i_index}">
+                                                &nbsp;
+                                            </td>
+                                            {/for}
+                                        </tr>
+                                    </table>
+                                    <input type="radio" name="layoutselect" id="layout-picker-${i_index}" class="layout-picker layout_picker_item_radio_unselected"/>
+                                </div>
+                            {/if}
+                        {/if}
+                    {/for}
+                --></div>
+
+                <!-- ADD GOODIES DIALOG -->
+                <div id="add_goodies_dialog" class="dialog add_goodies 
+jqmID1">
+
+                    <!-- DIALOG HEADER -->
+                    <div class="dialog_header">
+                        <div class="dialog_header_inner">
+                            <h1>Add Goodies</h1>
+                            <a href="javascript:;" class="jqmClose 
+dialog_close_image" title="Close Dialog">Close Dialog</a>
+                        </div>
+                    </div>
+                    <!-- DIALOG CONTENT -->
+                    <div class="dialog_content">
+                        <div id="add_goodies_body" class="dialog_body">
+                        </div>
+                    </div>
+
+                    <!-- DIALOG FOOTER -->
+                    <div class="dialog_footer">
+                        <div class="dialog_footer_inner"><!-- --></div>
+                    </div>
+                    <div id="add_goodies_body_template"><!--
+                        <table>
+                        {for i in items}
+                        {if i.alreadyIn}
+                        <tr class="add" id="row_add_${i.id}" style="display:none">
+                        {else}
+                        <tr id="row_add_${i.id}" class="add">
+                        {/if}
+                        <td class="remove_add_column"><a href="javascript:;" id="btn_add_${i.id}" class="add-button add active-primary goodies_add_button">Add</a></td>
+                        <td>
+                        <div class="dialogue_add_goodies_title">${i.title}</div>
+                        <div class="dialogue_add_goodies_description">
+                        ${i.description}
+                        </div>
+                        </td>
+                        </tr>
+                        {if i.alreadyIn}
+                        <tr id="row_remove_${i.id}" class="remove">
+                        {else}
+                        <tr id="row_remove_${i.id}" class="remove" style="display:none">
+                        {/if}
+                        <td width="80px"><a href="javascript:;" id="btn_remove_${i.id}" class="add-button remove goodies_remove_button">Remove</a></td>
+                        <td>
+                        <div class="dialogue_remove_goodies_title">${i.title}</div>
+                        <div class="dialogue_remove_goodies_description">
+                        ${i.description}
+                        </div>
+                        </td>
+                        </tr>
+                        {/for}
+                        </table>
+                    --></div>
+
+                </div>
+                </div>
+                <!-- BOTTOM BORDER -->
+                <div class="content_bottom"><div 
+class="content_bottom_inner"><!-- --></div></div>
+
+            </div>
+
+        </div>
+
+        <!-- WORK AREA -->
+        <div class="fl-fix edit_view" id="edit_view_container" 
+style="display: none;">
+        <div class="main_container content_container">
+
+            <!--//desNote: row of buttons need to coexist horizontally with tabs,hence the //-->
+            <div>
+                <button class="s3d-button s3d-button-primary 
+save_button"><span class="s3d-button-inner">Save</span></button>
+                <button class="s3d-button cancel-button"><span 
+class="s3d-button-inner">Cancel</span></button>
+                <span class="messageInformation" id="messageInformation"
+ style="display: none;">Auto saved at <span id="realtime"></span></span>
+            </div>
+
+            <!-- TAB NAVIGATION -->
+            <div class="s3d-primary-tabs">
+                <ul class="fl-tabs fl-tabs-right">
+                    <li class="fl-tabs-active" id="tab_text_editor"><a 
+href="http://localhost:8080/sites/javascript">Text Editor</a></li>
+                    <li id="tab_html"><a href="javascript:;">HTML</a></li>
+                    <li id="tab_preview"><a href="javascript:;">Preview</a></li>
+                </ul>
+            </div>
+
+            <!-- TAB CONTENT -->
+            <div class="fl-centered fl-container fl-tab-content 
+edit_container">
+
+                <!-- TOP BORDER -->
+                <div class="content_top"><div class="content_top_inner"><!-- --></div></div>
+
+                <!-- TOOLBAR -->
+                <div style="" class="toolbar toolbar-placeholder" 
+id="toolbarplaceholder"></div>
+
+                    <div style="width: 0px; position: absolute; top: 
+176px;" class="toolbar" id="toolbarcontainer">
+                    <div class="mceToolbarExternal mceEditor 
+defaultSkin"><!-- --></div>
+                </div>
+
+                <!-- EDIT CONTENTS -->
+                <div class="edit_contents_main">
+
+                    <div class="title_input_container" 
+id="title-input-container">
+                    <input value="Untitled" maxlength="255" 
+class="title-input" id="title-input" type="text">
+                    </div>
+
+                    <div id="fl-tab-content-editor">
+                        <div id="placeholderforeditor" class="textarea">
+
+                            <!-- Gets replaced with TinyMCE, remember HTML in a textarea should be encoded -->
+                            <textarea id="elm1" name="elm1" rows="15" 
+cols="80" style="width: 100%;">                                &nbsp;
+                            </textarea>
+                        </div>
+                    </div>
+
+                    <div id="html-editor" style="display: none;">
+                        <textarea id="html-editor-content" rows="20" 
+wrap="hard"></textarea>
+                    </div>
+
+                <div class="new_page_path" id="new_page_path">
+
+                </div>
+
+                <div class="content_container fl-fix" 
+id="page_preview_content" style="display: none;">
+
+                </div>
+
+                <div>
+                    <button class="s3d-button s3d-button-primary 
+save_button"><span class="s3d-button-inner">Save</span></button>
+                    <button class="s3d-button cancel-button"><span 
+class="s3d-button-inner">Cancel</span></button>
+                </div>
+
+                </div>
+
+                <div class="content_bottom"><div 
+class="content_bottom_inner"><!-- --></div></div>
+
+            </div>
+        </div>
+        </div>
+    </div>
+
+<!-- FOOTER WIDGET -->
+<div id="footercontainer" class="inline_class_widget_nofloat"><div><!-- CSS -->
+
+
+<!-- FOOTER CONTENT -->
+<div style="height: 65px;" id="footer_main" class="fl-container-flex 
+sakai-footer">
+    <div class="fl-fix fl-centered fixed-container">
+        <img src="cikc2_files/sakai_logo.png" alt="Sakai">
+        <a href="javascript:;" class="back-top">Top</a>
+        <p>Portions of Sakai are copyrighted by other parties as 
+described in the <a 
+href="http://www.sakaiproject.org/portal/site/sakai-home/page/49575118-a888-48ba-bdca-ba3a904895b0"
+ target="_blank">acknowledgements section</a></p>
+        <p>© 2004 - <span id="footer_date_end">2010</span> <a 
+href="http://www.sakaiproject.org/" target="_blank">The Sakai Foundation</a></p>
+
+        <p id="debug_info" class="debug_info" style="">DEBUG: UX git: <a
+ href="http://github.com/oszkarnagy/3akai-ux/tree/v_0.3.0_release">v_0.3.0_release</a>
+ | KERNEL git: <a 
+href="http://github.com/ieb/open-experiments/commit/cb0169cfbf2810a50e64494d074939f580b88660"
+ target="_blank">cb0169cfbf2810a50e64494d074939f580b88660</a> | DOC mod 
+date: 05/06/2010 11:35:25 | PLACE: cikc2</p>
+    </div>
+</div>
+
+<!-- SETTINGS VIEW -->
+<div id="footer_settings" style="display: none;">
+
+</div>
+
+<!-- JAVASCRIPT -->
+</div></div>
+
+
+
+
+<!-- DIALOGS, MENUS, MISC STUFF -->
+
+        <!-- TrimPath Templates -->
+        <div id="editor_extra_buttons"><!--
+            <td>
+                <span class='mceSeparator' style='width:5px'/>
+            </td>
+            <td>
+                <table cellspacing='0' cellpadding='0' class='mceListBox mceListBoxEnabled mce_formatselect' id='content_formatselect'>
+                    <tbody>
+                        <tr>
+                            <td class='mceFirst'>
+                                <a onmousedown='return false;' onclick='return false;' class='mceText insert_more_dropdown_activator' href='javascript:;' id='insert_more_dropdown_main'>Insert More</a>
+                            </td>
+                            <td class='mceLast'>
+                                <a onmousedown='return false;' onclick='return false;' class='mceOpen insert_more_dropdown_activator' href='javascript:;' tabindex='-1' id='content_formatselect_open'><span/></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+
+        --></div>
+
+        <!-- ADD NEW MENU -->
+        <div class="add_new_menu" id="add_new_menu" style="display: 
+none;">
+                <ul>
+                    <li id="option_blank_page"><a href="javascript:;">Blank
+ Page</a></li>
+                    <li id="option_page_from_template"><a 
+href="javascript:;">Page from Template</a></li>
+                    <li id="option_page_dashboard"><a 
+href="javascript:;">Dashboard Page</a></li>
+                </ul>
+            </div>
+
+        <!-- ADD MORE MENU -->
+        <div class="add_more_menu" id="more_menu" style="display: none;">
+            <ul>
+                <li id="more_permissions" class="more_option"><a 
+href="javascript:;">Permissions</a></li>
+                <li id="more_revision_history" class="more_option" 
+style="border-bottom: 1px solid rgb(204, 204, 204);"><a 
+href="javascript:;">Revision History</a></li>
+                <li id="more_move" class="more_option 
+move_dialog_trigger"><a href="javascript:;">Move</a></li>
+                <li id="more_save_as_template" class="more_option"><a 
+href="javascript:;">Save as Template</a></li>
+                <li id="more_delete" class="more_option"><a 
+href="javascript:;">Delete</a></li>
+            </ul>
+        </div>
+
+
+        <!-- INSERT MORE MENU -->
+        <div id="insert_more_menu" class="insert_more_menu" 
+style="display: none; position: absolute; top: 204px;">
+            <div class="insert_more_menu_border">
+                <ul>
+                    <li><a href="javascript:;" id="link_dialog_trigger">Link</a></li>
+                    <li><a href="javascript:;" 
+id="horizontal_line_insert">Horizontal Line</a></li>
+                </ul>
+            </div>
+            <div id="insert_more_media" class="insert_more_menu_border">
+            <ul>
+                <li class="insert_more_menu_inactive">Media:</li>
+                    <li><a href="javascript:;" 
+id="insert_more_widget_video" class="insert_more_widget">Video</a></li>
+            </ul></div>
+            <div id="insert_more_goodies">            <ul>
+                <li class="insert_more_menu_inactive">Sakai Goodies:</li>
+                    <li><a href="javascript:;" 
+id="insert_more_widget_basiclti" class="insert_more_widget">Basic LTI</a></li>
+                    <li><a href="javascript:;" 
+id="insert_more_widget_comments" class="insert_more_widget">Comments</a></li>
+                    <li><a href="javascript:;" 
+id="insert_more_widget_discussion" class="insert_more_widget">Discussion</a></li>
+                    <li><a href="javascript:;" 
+id="insert_more_widget_flickr" class="insert_more_widget">flickr</a></li>
+                    <li><a href="javascript:;" 
+id="insert_more_widget_googlemaps" class="insert_more_widget">Google 
+maps</a></li>
+                    <li><a href="javascript:;" 
+id="insert_more_widget_poll" class="insert_more_widget">Poll</a></li>
+                    <li><a href="javascript:;" 
+id="insert_more_widget_quiz" class="insert_more_widget">Quiz</a></li>
+                    <li><a href="javascript:;" 
+id="insert_more_widget_remotecontent" class="insert_more_widget">Remote 
+Content</a></li>
+                    <li><a href="javascript:;" 
+id="insert_more_widget_rss" class="insert_more_widget">RSS Feed</a></li>
+                    <li><a href="javascript:;" 
+id="insert_more_widget_sitemembers" class="insert_more_widget">Site 
+members</a></li>
+                    <li><a href="javascript:;" 
+id="insert_more_widget_tangler" class="insert_more_widget">Tangler Forum</a></li>
+                <li class="insert_more_menu_inactive">(More coming soon)</li>
+            </ul></div>
+            <div id="insert_more_sidebar">            <ul>
+                <li class="insert_more_menu_inactive">Sidebar Goodies:</li>
+                    <li><a href="javascript:;" 
+id="insert_more_widget_navigation" class="insert_more_widget">Navigation</a></li>
+                    <li><a href="javascript:;" 
+id="insert_more_widget_siterecentactivity" class="insert_more_widget">Recent
+ Activity</a></li>
+            </ul></div>
+        </div>
+
+        <div id="insert_more_media_template" style="display: none;"><!--
+            <ul>
+                <li class="insert_more_menu_inactive">Media:</li>
+                {for i in items}
+                    <li><a href="javascript:;" id="insert_more_widget_${i.id}" class="insert_more_widget">${i.name}</a></li>
+                {forelse}
+                    <li class="insert_more_menu_inactive"><i>No available</i></li>
+                {/for}
+            </ul>
+        --></div>
+
+        <div id="insert_more_goodies_template" style="display: none;"><!--
+            <ul>
+                <li class="insert_more_menu_inactive">Sakai Goodies:</li>
+                {for i in items}
+                    <li><a href="javascript:;" id="insert_more_widget_${i.id}" class="insert_more_widget">${i.name}</a></li>
+                {/for}
+                <li class="insert_more_menu_inactive">(More coming soon)</li>
+            </ul>
+        --></div>
+
+        <div id="insert_more_sidebar_template" style="display: none;"><!--
+            <ul>
+                <li class="insert_more_menu_inactive">Sidebar Goodies:</li>
+                {for i in items}
+                    <li><a href="javascript:;" id="insert_more_widget_${i.id}" class="insert_more_widget">${i.name}</a></li>
+                {/for}
+            </ul>
+        --></div>
+
+
+        <!-- INSERT DIALOG -->
+        <div id="insert_dialog" class="dialog jqmID10" style="width: 
+650px; margin-left: -325px;">
+            <!-- DIALOG HEADER -->
+            <div class="dialog_header">
+                <div class="dialog_header_inner">
+                <h1 id="dialog_title"></h1>
+                <a href="javascript:;" class="jqmClose 
+dialog_close_image" title="Close Dialog">Close Dialog</a>
+                </div>
+            </div>
+            <!-- DIALOG CONTENT -->
+            <div id="dialog_content" class="dialog_content"></div>
+            <!-- DIALOG FOOTER -->
+            <div class="dialog_footer">
+                <div class="dialog_footer_inner"><!-- --></div>
+            </div>
+        </div>
+
+
+        <!-- WRAPPING DIALOG -->
+        <div id="wrapping_dialog" class="dialog jqmID4" style="width: 
+400px; margin-left: -200px;">
+            <div class="dialog_header">
+                <div class="dialog_header_inner">
+                <h1>Appearance</h1>
+                <a href="javascript:;" class="jqmClose 
+dialog_close_image" title="Close Dialog">Close Dialog</a>
+                </div>
+            </div>
+
+            <div class="dialog_content">
+
+                <h3 style="margin-top: 0px;">Select wrapping for your 
+widget</h3>
+
+                <ul style="margin-left: 1em;">
+                    <li style="list-style-type: none;"><a 
+id="wrapping_no" href="javascript:;">No wrapping</a></li>
+                    <li style="list-style-type: none;"><a 
+id="wrapping_left" href="javascript:;">Left wrapping</a></li>
+                    <li style="list-style-type: none;"><a 
+id="wrapping_right" href="javascript:;">Right wrapping</a></li>
+                </ul>
+
+                <div class="dialog_buttons">
+                    <!--<a href="javascript:;" class="button-default">Save</a>-->
+                    <a href="javascript:;" class="button jqmClose">Cancel</a>
+                 </div>
+            </div>
+
+            <!-- DIALOG FOOTER -->
+            <div class="dialog_footer">
+                <div class="dialog_footer_inner"><!-- --></div>
+            </div>
+        </div>
+
+        <!-- AUTOSAVE DIALOG -->
+        <div id="autosave_dialog" class="dialog jqmID3" style="width: 
+400px; margin-left: -200px;">
+            <div class="dialog_header">
+                <div class="dialog_header_inner">
+                <h1>Auto-save</h1>
+                <a href="javascript:;" class="jqmClose 
+dialog_close_image" title="Close Dialog">Close Dialog</a>
+                </div>
+            </div>
+
+            <div class="dialog_content">
+
+                <h3 style="margin-top: 0px;">An unsaved version of this 
+page has been found.</h3>
+
+                <p>Do you want to load this unsaved version?</p>
+
+                <div class="dialog_buttons">
+                    <a href="javascript:;" id="autosave_revert" 
+class="button-default">Yes</a>
+                    <a href="javascript:;" class="button jqmClose">No</a>
+                </div>
+            </div>
+
+            <!-- DIALOG FOOTER -->
+            <div class="dialog_footer">
+                <div class="dialog_footer_inner"><!-- --></div>
+            </div>
+        </div>
+
+        <div id="delete_dialog" class="dialog jqmID9" style="width: 
+400px; margin-left: -200px;">
+            <div class="dialog_header">
+                <div class="dialog_header_inner">
+                <h1>Delete a page</h1>
+                <a href="javascript:;" class="jqmClose 
+dialog_close_image" title="Close Dialog">Close Dialog</a>
+                </div>
+            </div>
+
+            <div class="dialog_content">
+
+                <h4>Are you sure you want to delete this page?</h4>
+
+                <p>Note: by deleting this page you will also delete all 
+of its child pages</p>
+
+                <div class="dialog_buttons">
+                    <a href="javascript:;" id="delete_confirm" 
+class="button-default">Yes</a>
+                    <a href="javascript:;" class="button jqmClose">No</a>
+                </div>
+            </div>
+
+            <!-- DIALOG FOOTER -->
+            <div class="dialog_footer">
+                <div class="dialog_footer_inner"><!-- --></div>
+            </div>
+        </div>
+
+        <div id="link_dialog" class="dialog jqmID5" style="width: 400px;
+ margin-left: -200px;">
+            <div class="dialog_header">
+                <div class="dialog_header_inner">
+                <h1>Insert a link</h1>
+                <a href="javascript:;" class="jqmClose 
+dialog_close_image" title="Close Dialog">Close Dialog</a>
+                </div>
+            </div>
+
+            <div class="dialog_content">
+
+                <h3 style="margin-top: 0px;">To insert a page link, 
+select the right page and hit Insert</h3>
+
+                <div id="link_container" class="link_container">
+
+                </div>
+
+                <div class="dialog_buttons">
+                    <a href="javascript:;" id="insert_link_confirm" 
+class="button-default">Insert</a>
+                    <a href="javascript:;" class="button jqmClose">Cancel</a>
+                </div>
+
+            </div>
+
+            <!-- DIALOG FOOTER -->
+            <div class="dialog_footer">
+                <div class="dialog_footer_inner"><!-- --></div>
+            </div>
+        </div>
+
+        <div class="context_menu" id="context_menu" style="display: 
+none;">
+            <img src="cikc2_files/edit_icon.png" alt="Edit Widget" 
+width="20px">
+            <br>
+            <ul>
+                <li id="context_settings"><a href="javascript:;">Settings</a></li>
+                <li id="context_remove"><a href="javascript:;">Remove</a></li>
+                <li id="context_appearance"><a href="javascript:;" 
+id="context_appearance_trigger">Wrapping</a></li>
+            </ul>
+        </div>
+
+
+        <!-- SAVE AS TEMPLATE DIALOG -->
+        <div class="dialog jqmID7" id="save_as_template_container">
+            <div class="dialog_header">
+                <div class="dialog_header_inner">
+                <h1>Save as Template</h1>
+                <a href="javascript:;" class="jqmClose 
+dialog_close_image" title="Close Dialog">Close Dialog</a>
+                </div>
+            </div>
+
+            <div class="dialog_content">
+
+                <h1>Template name</h1>
+                <textarea id="template_name"></textarea>
+
+                <h1>Description</h1>
+                <textarea id="template_description"></textarea>
+
+                <p><small>Maximum 250 characters!</small></p>
+
+                <div class="dialog_buttons">
+                    <a href="javascript:;" class="button-default" 
+id="save_as_page_template_button">Save</a>
+                    <a href="javascript:;" class="button jqmClose">Cancel</a>
+                </div>
+            </div>
+
+            <!-- DIALOG FOOTER -->
+            <div class="dialog_footer">
+                <div class="dialog_footer_inner"><!-- --></div>
+            </div>
+        </div>
+
+
+        <!-- PAGE TEMPLATE SELECTION DIALOG -->
+        <div class="dialog jqmID8" id="select_template_for_page">
+            <div class="dialog_header">
+                <div class="dialog_header_inner">
+                <h1>Add page from template</h1>
+                <a href="javascript:;" class="jqmClose 
+dialog_close_image" title="Close Dialog">Close Dialog</a>
+                </div>
+            </div>
+
+            <div class="dialog_content">
+
+                <div id="list_container" class="fl-container 
+template_list_container">
+                </div>
+                <div id="list_container_template"><!--
+                    {if size > 0}
+                    <ul class="fl-list-menu template_list">
+                        {for i in items}
+                    <li>
+                            <a class="fl-icon fl-force-right delete template_delete" id="template_delete_${i.id}" href="javascript:;"></a>
+                            <a href="javascript:;" id="page_template_selection_${i.id}" class="page_template_selection">
+                                <span class="menu_title">${i.name}</span>
+                                <span class="description">${i.description}</span>
+                            </a>
+                        </li>
+                        {/for}
+                </ul>
+                    {else}
+                        <span>No templates available. In order to create one, go to the page you would like to use as a template, hit the
+                        more menu and select Save As Page Template.</span>
+                    {/if}
+                --></div>
+                <!-- DIALOG BUTTONS -->
+                <div class="dialog_buttons">
+                    <a href="javascript:;" class="button jqmClose">Cancel</a>
+                </div>
+            </div>
+
+            <!-- DIALOG FOOTER -->
+            <div class="dialog_footer">
+                <div class="dialog_footer_inner"><!-- --></div>
+            </div>
+        </div>
+
+        <!-- ADD DASHBOARD -->
+        <div class="dialog jqmID6" id="dashboard_addpage_dialog">
+            <div class="dialog_header">
+                <div class="dialog_header_inner">
+                <h1>Add a dashboard page.</h1>
+                <a href="javascript:;" class="jqmClose 
+dialog_close_image" title="Close Dialog">Close Dialog</a>
+                </div>
+            </div>
+
+            <div class="dialog_content">
+                <form>
+                <label for="dashboard_addpage_title">What is the title 
+for your new dashboard page.</label><br>
+                <input maxlength="255" id="dashboard_addpage_title" 
+type="text">
+
+                <!-- DIALOG BUTTONS -->
+                <div class="dialog_buttons">
+                     <input value="Add" class="button button-default" 
+type="submit">
+                        <input value="Cancel" class="button jqmClose" 
+type="button">
+                </div>
+                </form>
+            </div>
+
+            <!-- DIALOG FOOTER -->
+            <div class="dialog_footer">
+                <div class="dialog_footer_inner"><!-- --></div>
+            </div>
+        </div>
+
+        <script type="text/javascript" src="cikc2_files/site.js"></script>
+        <script type="text/javascript" src="cikc2_files/tiny_mce.js"></script>
+    <div style="display: none;" id="jstree-marker"></div></body></html>

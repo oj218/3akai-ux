@@ -1668,9 +1668,6 @@ sakai.site.site_admin = function(){
             }
 
         });
-
-
-
     };
 
 

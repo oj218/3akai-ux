@@ -1,0 +1,393 @@
+/*
+ * Licensed to the Sakai Foundation (SF) under one
+ * or more contributor license agreements. See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership. The SF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License. You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied. See the License for the
+ * specific language governing permissions and limitations under the License.
+ */
+
+*{
+	margin: 0;
+	padding: 0;
+}
+
+
+.content_page_options ul li a{
+    background-image:none !important;
+    text-decoration:none!important;
+    color:#003366!important;
+    font-weight:normal!important;
+}
+
+.content_page_options ul li a:hover{
+    background-image:none !important;
+    text-decoration:none!important;
+    color:#CC6600!important;
+}
+
+.navigation{
+    overflow:n
+}
+
+.content_page_options{
+    background-image:none!important;
+    margin-left:70px!important;
+}
+
+#edit_page{
+    background-image:none!important;
+    border-right:none!important;
+}
+
+#content_page_options ul {
+    float:left!important;
+}
+
+#content_page_options ul {
+    background-image:none;
+}
+
+ html{
+ 	background:#9cc;
+ }
+
+.sakai_site_contents_main{
+    border:none!important;
+    float:left!important;
+    padding: 0!important;
+}
+
+#pagetitle{
+    display:none;
+}
+
+.add_a_new_container{
+    width:100px!important;
+    background-color:#999!important;
+}
+
+.add_a_new_container a{
+    padding-top:7px!important;
+    text-decoration:none!important;
+    color:#fff!important;
+} 
+.s3d-button{
+    background-image:none;
+}
+
+.save_button{
+    background-color:#fff!important;
+    color:#fff!important;
+}
+
+.cancel-button{
+    margin-top:20px;
+    background-color:#fff!important;
+}
+
+.s3d-search-button{
+    background:#999!important;
+    background-image:none!important;
+}
+
+.s3d-button-inner{
+    background-image:none!important;
+    color:#003C79!important;
+    font-size:1.5em!important;
+}
+
+.s3d-button-inner span {
+    background-image:none!important;
+}
+
+ img {
+ 	border: none;
+ }
+ 
+.content {
+	padding-right: 10px;
+}
+
+#explore_nav_container {
+    color:#003C79;
+    background: #fff;
+    width: 960px;
+    margin-left:20px;
+}
+
+a:link, a:focus, a:active {
+	color: #003c79;
+	text-decoration: underline;
+}
+
+a:hover {
+	text-decoration: underline;
+	color: #003366;
+}
+ 
+body{
+ 	color:#333333;
+ 	font-family:Arial,Helvetica,sans-serif;
+	font-size:80%;
+	line-height:1.4em;
+ 	padding: 0 20px;
+}
+
+#maincontainer {
+ 	background:#fff none repeat scroll 0 0;
+	border-bottom:1px solid #006666;
+	border-left:1px solid #006666;
+	border-right:1px solid #006666;
+	margin:0 auto;
+	max-width:1214px;
+	min-width:694px;
+}
+
+#container {
+	padding:0 20px;
+}
+
+.content h3 {
+	margin-bottom: 1em;
+}
+
+/* Header */
+.header {
+	height: 70px;
+	margin-left:auto;
+    margin-right:auto;
+	max-width:1294px;
+    min-width:734px;
+	overflow:hidden;
+	padding:0;
+    background:#fff;
+    margin-top:2px;
+}
+
+#cikc_header{
+    margin-bottom:3px;
+}
+
+#navigationchatcontainer{
+    max-width:1294px;
+    min-width:734px;
+    margin-left:auto;
+    margin-right:auto;
+    background-color:#fff;
+}
+
+.fixed-container {
+    max-width:1254px!important;
+    min-width:734px!important;
+    background-image:none!important;
+}
+
+#branding {
+	left:0;
+	margin-top:-5px;
+	position:relative;
+	top:0;
+}
+
+#branding img {
+	float: left;
+}
+#branding .header-logo {
+	padding:15px 0 18px 18px;
+}
+
+#sitetitle {
+    color:#CF5200;
+    float:left;
+    font-size:1.6em;
+    line-height:1.125em;
+    margin:0;
+    padding:0;
+    width:100%;
+}
+
+/* Content */
+#main-content-div {
+	float: left!important;
+	width: 70%!important;
+}
+
+#pagetitle{
+    margin-top:10px !important;
+}
+
+#main-content-div p {
+	padding-bottom:10px;
+}
+#main-content-div h1 {
+	font-size:1.35em;
+	font-weight:normal;
+	margin:0.5em 0;
+	padding:0.7em 0 0.5em;
+}
+#container h2 {
+	font-size:1.15em;
+	font-weight:normal;
+	margin:0.5em 0;
+	padding:0.7em 0 0.5em;
+}
+#main-content-div ol {
+	list-style-type:decimal;
+	margin:0 0 1em 2.4em;
+}
+#main-content-div ul {
+	list-style-type:square;
+	margin:0 0 1em 2em;
+}
+/* Navigation */
+.page_nav {
+	height:100%;
+	margin-bottom: 10px;
+	width:35%;
+}
+
+.page_nav ul {
+	list-style-type: none;
+	margin-left:1px;
+}
+.page_nav ul li a {
+	background:#E8F0FF url(/dev/_skins/camuniversity/images/icon-arrow-nav-primary.gif) no-repeat scroll 20px 8px;
+	border-bottom:1px solid white;
+	border-top:1px solid white;
+	color:#003366;
+	display:block;
+	font-weight:bold;
+	height:100%;
+	margin-right: 1px;
+	padding:0.2em 20px 0.1em 47px;
+	text-decoration:none;
+}
+.page_nav ul li a:hover {
+	background:#fff url(/dev/_skins/camuniversity/images/icon-arrow-nav-primary-orange.gif) no-repeat scroll 20px 8px;
+	color:#cc6600;
+	text-decoration:none;
+}
+
+.page_nav h3{
+	background:transparent url(/dev/_skins/camuniversity/images/icon-section.gif) no-repeat scroll 20px 55%;
+	color:#cc6600;
+	font-family:Arial,Helvetica,sans-serif;
+	font-size: 1.2em;
+	margin-left:2px;
+	padding:0.75em 20px 0.6em 47px;
+}
+
+.page_nav #siterecentactivity_output p {
+	display: none;
+}
+
+.clicked{
+    border:none!important;
+}
+
+#footer_line{
+    background:none repeat scroll 0 0 #99CCCC;
+    border:medium none !important;
+    font-size:15px;
+    height:2px;
+    margin-left:auto;
+    margin-right:auto;
+    max-width:1220px;
+    min-width:820px;
+}
+
+#footer_line_container{
+    background-color:#fff;
+    margin-left:auto;
+    margin-right:auto;
+    max-width:1294px;
+    min-width:734px;
+}
+
+/* Footer */
+.footer_copyright {
+    background: none repeat scroll 0 0 #FFFFFF;
+    clear: both;
+    font-size: 1.2em;
+    list-style-type: none;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 2em;
+    padding-left: 20px;
+    padding-top: 1em;
+    max-width:1274px;
+    min-width:734px;
+}
+
+.navigation ul{
+    margin-bottom:0px!important;
+}
+
+#page_nav_content p{
+    margin-bottom:0px!important;
+}
+
+.footer_copyright #more_link{
+	display: none;
+}
+.fl-force-left {
+	float: left;
+    margin-left:20px;
+    margin-top:25px;
+}
+#content_page_options ul {
+	float: right!important;
+}
+#content_page_options ul li {
+	list-style-type: none;
+	display: inline;
+}
+
+/** Widget overrides **/
+
+.si_titlebar_icon {
+	display: none;
+}
+.nav_titlebar_icon {
+	display:none;
+}
+
+
+#site_management {
+	margin-bottom: 20px;
+}
+
+/** Edit Page **/
+
+.mceIframeContainer {
+	border: 1px solid #ccc !important;
+	padding: 10px !important;
+}
+.mceToolbarExternal {
+	border: 1px solid #ccc;
+	background-color: #eee;
+}
+
+.buttonBar {
+	margin-bottom: 10px;
+}
+
+.tab-nav {
+	float: right;
+}
+
+.tab-nav li {
+	display: inline;
+	list-style-type: none;
+	margin-right: 5px;
+}

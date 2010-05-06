@@ -4,6 +4,7 @@
 
 .fixed-container {
     padding: 0 20px;
+    width:1294px;
 }
 
 /********************************************/
@@ -224,7 +225,7 @@
     font-style:normal;
 }
 /* overrides for standard fl-col */
-.fl-col-fixed .content_container { margin-left:20px;}
+.fl-col-fixed .content_container { margin-left: 230px; }
 
 .buttonBar .button, .buttonBar .button-default, .button-default {
     background:#FFFFFF url(../../_images/custom_button_gradient.png) repeat-x scroll center bottom;
