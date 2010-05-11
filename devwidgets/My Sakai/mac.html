@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link rel="stylesheet" type="text/css" href="http://localhost:8080/devwidgets/My Sakai/css/mac.css" />
+        <title>Sakai mac widget </title>
+    </head>
+    <body>
+        <div id="header">
+            <div id="sakai_logo_container">
+                <img src="http://localhost:8080/devwidgets/My Sakai/images/sakai_logo.png" id="sakai_logo" alt= "Sakai logo" title="Sakai logo">
+            </div>
+            <div id="sakai_tabs">
+                <ul>
+                    <li>
+                        <a href="javascript:;">Recent Messages</a>
+                    </li>
+                    <li>
+              
+                        <a href="javascript:;">Recent Activities</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="sakai_body"><!--
+
+        --></div>
+       <div id="mySakWi_login_template"><!--
+               <form class="login-container" id="login-container" method="post" action="javascript:;">
+                    <label for="username">Username</label><br/>
+                    <input type="text" alt="Username" maxlength="255" id="username" name="username" class="login-container-textfield"/><br/>
+                    <label for="password">Password:</label><br/>
+                    <input type="password" alt="Password" maxlength="255" id="password" name="password" class="login-container-textfield"/>
+
+                    <div class="login-container-button">
+                        <button id="loginbutton" type="submit" class="s3d-button s3d-button-primary"><span class="s3d-button-inner">Log in</span></button>
+                    </div>
+                </form>
+        --></div>
+        <div id="mySakWi_status_template"><!--
+            <div id="mySakWi_status">
+                <p>Welcome <span>${all.user.userid}</span> <a href="javascript:;" id="mySakWi_logout"> Log out </a></p>
+            </div>
+        --></div>
+    </body>
+
+    <script type="text/javascript" src="http://localhost:8080/dev/_lib/jquery/jquery.js"></script>
+    <script type="text/javascript" src="http://localhost:8080/dev/_lib/jquery/jquery-ui.custom.js"></script>
+    <script type="text/javascript" src="http://localhost:8080/dev/_lib/jquery/plugins/jquery.json.js"></script>
+    <script type="text/javascript" src="http://localhost:8080/dev/_configuration/widgets.js"></script>
+    <script type="text/javascript" src="http://localhost:8080/dev/_configuration/config.js"></script>
+    <script type="text/javascript" src="http://localhost:8080/dev/_lib/sakai_util/trimpath.template.js"></script>
+    <script type="text/javascript" src="http://localhost:8080/dev/_lib/sakai_util/sakai_magic.js"></script>
+    <script type="text/javascript" src="http://localhost:8080/dev/_lib/Fluid/3akai_Infusion.js"></script>
+    <script type="text/javascript" src="http://localhost:8080/dev/_lib/sakai_util/sdata.js"></script>
+    <script type="text/javascript" src="http://localhost:8080/devwidgets/My Sakai/javascript/mac.js"></script>
+</html>

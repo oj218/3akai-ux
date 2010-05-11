@@ -1,0 +1,101 @@
+body {
+    background-image:url('http://localhost:8080/devwidgets/My Sakai/Default.png');
+    background-repeat:no-repeat;
+}
+
+html {
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 120%;
+}
+
+#sakai_logo{
+    margin:10px 0 0 10px;
+}
+
+#sakai_logo_container{
+    width:100px;
+    float:left;
+}
+
+#sakai_tabs{
+   width:500px
+}
+
+/* BODY */
+#sakai_body{
+    width:500px;
+}
+
+/* Login */
+
+#sakai_login_username{
+    margin:40px 0 0 20px;
+}
+
+#sakai_login_password{
+    margin-left:24px;
+    margin:20px 0 0 24px;
+}
+
+
+/* HEADER */
+
+#header ul {
+    margin-top:8px;
+    margin:8px 0 0 60px;
+}
+
+#header ul li {
+    display:inline-block;
+    list-style-type:none;
+    height:50px;
+    margin-left:20px;
+}
+
+#header{
+    float:left;
+}
+
+#header ul li:hover {
+    opacity:0.5;
+}
+
+#header ul li a{
+    text-decoration:none;
+    color:#777;
+    display:inline-block;
+    margin-top:20px;
+}
+
+#sakai_login_button{
+    margin:15px 0 0 270px;
+}
+
+#login-container{
+    padding:40px 0 0 140px;
+}
+
+/* USer status bar */
+
+#mySakWi_status p{
+    font-size:0.7em;
+    padding-left:260px;
+}
+
+#mySakWi_status p a{
+    text-decoration:none;
+    color:#000;
+    font-weight:bold;
+}
+
+#mySakWi_status p a:hover{
+    color:#006E96;
+}
+
+
+
+#mySakWi_status {
+    border-bottom:1px solid #AAAAAA;
+    height:80px;
+    margin:0 30px 0 14px;
+}
