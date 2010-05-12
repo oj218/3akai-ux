@@ -23,7 +23,7 @@
     var $sakaiTabs = $("#sakai_tabs");
     var $sakaiBody = $('#sakai_body');
 
-    //Glob vars
+    //Front, Form
     var redirectUrl = sakai.config.URL.MY_DASHBOARD_URL;
     var usernameField = "username";
     var passwordField = "password";
@@ -33,90 +33,80 @@
     var loginButton = "#loginbutton";
     var loginForm = "#login-container";
 
+    //Backm form
+    var $mySakWiTokenForm = $("#mySakWi_token_form");
+
     //Templates
-    var $loginTemplate = $('#mySakWi_login_template');
-    var $statusTemplate = $("#mySakWi_status_template");
-    var localhost = "http://localhost:8080"
+   var $statusTemplate = $("#mySakWi_status_template");
+
+    function showfrontside(event)
+    {
+        var front = document.getElementById("front");
+        var back = document.getElementById("back");
+
+        if (window.widget)
+            widget.prepareForTransition("ToFront");
+
+        front.style.display="block";
+        back.style.display="none";
+
+        if (window.widget)
+            setTimeout ('widget.performTransition();', 0);
+
+    }
+
+    function getLocalizedString (key)
+    {
+        try {
+            var ret = localizedStrings[key];
+            if (ret == undefined)
+                ret = key;
+            return ret;
+        } catch (ex) {}
+
+        return key;
+    }
 
 
-    /**
-     * If the user is logged in succesful the username is displayed
-     * @param {Object} data
-     */
-    var decideLoggedIn = function(data){
+    function showbackside(event)
+    {
+        var front = document.getElementById("front");
+        var back = document.getElementById("back");
+        
+        if (window.widget)
+            widget.prepareForTransition("ToBack");
 
-        var mejson = (data === undefined ? sakai.data.me : data);
-        if (mejson.user.userid) {
-            var userObj = {
-                'all': data
-            };
-           $sakaiBody.html($.TemplateRenderer($statusTemplate,userObj));
-        } else {
-            //CheckLogin
-            Renderlogin();
+        front.style.display="none";
+        back.style.display="block";
+
+        if (window.widget)      
+            setTimeout ('widget.performTransition();', 0);  
+    }
+
+    var displayRecentMessages= function(data){
+        alert(data.results[0]['sakai:subject']);
+    }
+
+    var saveToken = function(){
+
+        var values = sakai.api.UI.Forms.form2json($mySakWiTokenForm);
+        if (window.widget) {
+            widget.setPreferenceForKey(values.token, 'token');
         }
 
-    };
-
-    /**
-     * This function will check if the login was succesful
-     */
-    var checkLogInSuccess = function(){
-
         $.ajax({
-            url : localhost + sakai.config.URL.ME_SERVICE,
-            cache : false,
-            success : decideLoggedIn,
-            error: function(xhr, textStatus, thrownError) {
-                throw "Me service has failed";
-            }
-        });
-
-    };
-
-    /**
-     * This function will login the user
-     */
-    var login = function(){
-
-        var values = sakai.api.UI.Forms.form2json($(loginForm));
-
-        var data = {"sakaiauth:login" : 1, "sakaiauth:un" : values[usernameField], "sakaiauth:pw" : values[passwordField], "_charset_":"utf-8"};
-
-        $.ajax({
-            url : localhost + sakai.config.URL.LOGIN_SERVICE,
-            type : "POST",
-            success : checkLogInSuccess,
-            error : checkLogInSuccess,
-            data : data
-        });
-
-        return false;
-
-    };
-
-    /**
-     * This funtion will render the html for the login
-     */
-    var Renderlogin = function(){
-
-        $sakaiBody.html($.TemplateRenderer($loginTemplate,{}));
-        $sakaiLoginButton = $("#sakai_login_button");
-        $(loginForm).submit(login);
-    };
-
-    var logout = function(){
-        $.ajax({
-            url: localhost + sakai.config.URL.LOGOUT_SERVICE,
-            type: "POST",
-            complete: function(){
-                Renderlogin();
+            url: "http://localhost:8080/var/message/box.json?box=inbox",
+            beforeSend:function(xhr){
+                xhr.setRequestHeader("x-sakai-token",values.token);
             },
-            data: {
-                "sakaiauth:logout": "1",
-                "_charset_": "utf-8"
+            success: function(data){
+                displayRecentMessages(data);
+            },
+            error: function(xhr, textStatus, thrownError){
+                fluid.log("Error at the request for new images after the drag and drop");
             }
         });
+
     };
 
     /**
@@ -124,10 +114,10 @@
      */
     var init = function(){
 
-        //Check if the user is logged in
-        checkLogInSuccess();
-        
-        $('#mySakWi_logout').live('click',logout);
+        new AppleInfoButton(document.getElementById("infoButton"), document.getElementById("front"), "black", "black", showbackside);
+        new AppleGlassButton(document.getElementById('doneButton'), getLocalizedString('Done'), showfrontside);
+
+        $mySakWiTokenForm.submit(saveToken);
     };
     init();
 

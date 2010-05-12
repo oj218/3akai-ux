@@ -6,6 +6,8 @@
         <title>Sakai mac widget </title>
     </head>
     <body>
+    <div id="front">
+       <img src="http://localhost:8080/devwidgets/My Sakai/Default.png" id='frontImg'>
         <div id="header">
             <div id="sakai_logo_container">
                 <img src="http://localhost:8080/devwidgets/My Sakai/images/sakai_logo.png" id="sakai_logo" alt= "Sakai logo" title="Sakai logo">
@@ -16,33 +18,46 @@
                         <a href="javascript:;">Recent Messages</a>
                     </li>
                     <li>
-              
                         <a href="javascript:;">Recent Activities</a>
                     </li>
                 </ul>
             </div>
         </div>
-        <div id="sakai_body"><!--
-
-        --></div>
-       <div id="mySakWi_login_template"><!--
-               <form class="login-container" id="login-container" method="post" action="javascript:;">
-                    <label for="username">Username</label><br/>
-                    <input type="text" alt="Username" maxlength="255" id="username" name="username" class="login-container-textfield"/><br/>
-                    <label for="password">Password:</label><br/>
-                    <input type="password" alt="Password" maxlength="255" id="password" name="password" class="login-container-textfield"/>
-
-                    <div class="login-container-button">
-                        <button id="loginbutton" type="submit" class="s3d-button s3d-button-primary"><span class="s3d-button-inner">Log in</span></button>
-                    </div>
-                </form>
-        --></div>
-        <div id="mySakWi_status_template"><!--
-            <div id="mySakWi_status">
-                <p>Welcome <span>${all.user.userid}</span> <a href="javascript:;" id="mySakWi_logout"> Log out </a></p>
+        <div id="sakai_body">
+            <!--
+            -->
+        </div>
+        <div id="mySakWi_info">
+            <div id="infoButton">
             </div>
-        --></div>
+        </div>
+
+
+        <div id='mySakWi'>
+            
+        </div>
+
+        <div id="mySakWi_status_template">
+            <!--
+            <div id="mySakWi_status">
+            <p>Welcome <span>${all.user.userid}</span> <a href="javascript:;" id="mySakWi_logout"> Log out </a></p>
+            </div>
+            -->
+        </div>
+
+    </div>
+    <div id="back">
+        <img src="http://localhost:8080/devwidgets/My Sakai/Default.png" id='backImg'>
+        <form id="mySakWi_token_form" method="post" action="javascript:;">
+            <label id="mySakWi_token" for="token">Your token:</label><br/>
+            <input type="text" name="token" id="mySakWi_token"/>
+            <button id="mySakWi_token" type="submit" class="s3d-button s3d-button-primary"><span class="s3d-button-inner">Submit</span></button>
+        </form>
+        <div id="doneButton">
+        </div>
+    </div>
     </body>
+
 
     <script type="text/javascript" src="http://localhost:8080/dev/_lib/jquery/jquery.js"></script>
     <script type="text/javascript" src="http://localhost:8080/dev/_lib/jquery/jquery-ui.custom.js"></script>
@@ -53,5 +68,8 @@
     <script type="text/javascript" src="http://localhost:8080/dev/_lib/sakai_util/sakai_magic.js"></script>
     <script type="text/javascript" src="http://localhost:8080/dev/_lib/Fluid/3akai_Infusion.js"></script>
     <script type="text/javascript" src="http://localhost:8080/dev/_lib/sakai_util/sdata.js"></script>
+    <script type="text/javascript" src="file:///System/Library/WidgetResources/AppleClasses/AppleAnimator.js" charset="utf-8"></script>
+    <script type="text/javascript" src="file:///System/Library/WidgetResources/AppleClasses/AppleButton.js" charset="utf-8"></script>
+    <script type="text/javascript" src="file:///System/Library/WidgetResources/AppleClasses/AppleInfoButton.js" charset="utf-8"></script>
     <script type="text/javascript" src="http://localhost:8080/devwidgets/My Sakai/javascript/mac.js"></script>
 </html>

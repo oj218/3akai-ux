@@ -1,5 +1,5 @@
 body {
-    background-image:url('http://localhost:8080/devwidgets/My Sakai/Default.png');
+    /*background-image:url('http://localhost:8080/devwidgets/My Sakai/Default.png');*/
     background-repeat:no-repeat;
 }
 
@@ -24,6 +24,7 @@ html {
 /* BODY */
 #sakai_body{
     width:500px;
+    position:absolute;
 }
 
 /* Login */
@@ -37,6 +38,33 @@ html {
     margin:20px 0 0 24px;
 }
 
+#mySakWi_token_form{
+    position:absolute;
+    top:100px;
+    left:50px;
+}
+
+#back {
+    display:none;
+    position:absolute;
+}
+
+#infoButton {
+    position:absolute;
+    right: 25px;
+    top: 20px;
+
+    width:13px;
+    height:13px;
+}
+
+#front, #frontImg {
+    position:absolute;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+}
 
 /* HEADER */
 
@@ -54,6 +82,7 @@ html {
 
 #header{
     float:left;
+    position:absolute;
 }
 
 #header ul li:hover {
@@ -92,6 +121,11 @@ html {
     color:#006E96;
 }
 
+#doneButton {
+    position:absolute;
+    right: 25px;
+    top: 20px;
+}
 
 
 #mySakWi_status {
