@@ -8,23 +8,73 @@ html {
     line-height: 120%;
 }
 
-#sakai_logo{
+.sakai_logo{
     margin:10px 0 0 10px;
 }
 
-#sakai_logo_container{
+.sakai_logo_container{
     width:100px;
     float:left;
 }
 
-#sakai_tabs{
+.sakai_tabs {
    width:500px
 }
 
 /* BODY */
 #sakai_body{
+    margin-top:20px;
+    font-size:0.8em;
     width:500px;
+    top:30px;
+    left:-18px;
     position:absolute;
+}
+
+#mySakWi_message{
+    margin-top:20px;
+    font-size:0.8em;
+    width:400px;
+    top:50px;
+    left:40px;
+    position:absolute;
+}
+
+#mySakWi_message{
+    display:none;
+}
+
+#mySakWi_message_text{
+    height:90px;
+    overflow:auto;
+}
+}
+
+#mySakWi_message p span {
+    font-weight:bold;
+}
+
+#sakai_body ul li {
+    padding-left:30px;
+}
+
+.mySakWi_background{
+    background-color:#eee;
+}
+
+#mySakWi_table_header{
+    font-weight:bold;
+    font-size:1em;
+    color:#666!important;
+}
+
+#mySakWi_table_header{
+    margin-bottom:0px!important;
+    padding-bottom:0px!important;
+}
+
+#mySakWi_table_header span{
+    margin-left:6px;
 }
 
 /* Login */
@@ -40,8 +90,8 @@ html {
 
 #mySakWi_token_form{
     position:absolute;
-    top:100px;
-    left:50px;
+    top:50px;
+    left:20px;
 }
 
 #back {
@@ -49,11 +99,14 @@ html {
     position:absolute;
 }
 
+html {
+    background:none!important;
+}
+
 #infoButton {
     position:absolute;
     right: 25px;
     top: 20px;
-
     width:13px;
     height:13px;
 }
@@ -68,30 +121,33 @@ html {
 
 /* HEADER */
 
-#header ul {
+.header ul {
     margin-top:8px;
     margin:8px 0 0 60px;
 }
 
-#header ul li {
+.header ul li {
     display:inline-block;
     list-style-type:none;
     height:50px;
     margin-left:20px;
 }
 
-#header{
+.header {
     float:left;
     position:absolute;
+    top:10px;
+    left:10px;
 }
 
-#header ul li:hover {
+.header ul li a:hover, {
     opacity:0.5;
 }
 
-#header ul li a{
+.header ul li a , .header ul li p{
     text-decoration:none;
     color:#777;
+    font-size:1.0em;
     display:inline-block;
     margin-top:20px;
 }
@@ -104,7 +160,7 @@ html {
     padding:40px 0 0 140px;
 }
 
-/* USer status bar */
+/* USER status bar */
 
 #mySakWi_status p{
     font-size:0.7em;
@@ -133,3 +189,46 @@ html {
     height:80px;
     margin:0 30px 0 14px;
 }
+
+#mySakWi_NoTokenError, #mySakWi_AnotherToken{
+    position:absolute;
+    top:150px;
+    left:50px;
+    display:none;
+    color:#ff0000;
+}
+
+hr{
+    margin-right:3px;
+}
+#sakai_body ul li{
+    list-style-type:none;
+    width:426px;
+    color:#AAA;
+}
+
+.mySakWi_hidden{
+    display:none;
+}
+
+.mySakWi_scroll{
+    height:70px;
+    overflow-y:scroll;
+}
+
+#mySakWi_RecentMessages ul li a:hover{
+    color:#3399CC!important;
+    text-decoration:none;
+}
+
+#mySakWi_token_button{
+    top:10px;
+}
+
+#mySakWi_token{float:left; border:1px solid #777777; font-size:1em; height:20px; margin:10px 14px 0 30px ; padding:1px 5px ; width:10em;}
+
+/*These classes can be added to a textbox to change the textcolor */
+.flickr_changeColorBlack{ color:#000000;}
+
+/*These classes can be added to a textbox to change the textcolor */
+.flickr_changeColorNormal{ color:#AAAAAA;}

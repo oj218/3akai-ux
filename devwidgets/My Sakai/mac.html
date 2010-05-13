@@ -3,23 +3,24 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <link rel="stylesheet" type="text/css" href="http://localhost:8080/devwidgets/My Sakai/css/mac.css" />
+        <link rel="stylesheet" type="text/css" href="http://localhost:8080/dev/_css/sakai/sakai.base.css" />
         <title>Sakai mac widget </title>
     </head>
     <body>
     <div id="front">
-       <img src="http://localhost:8080/devwidgets/My Sakai/Default.png" id='frontImg'>
-        <div id="header">
-            <div id="sakai_logo_container">
-                <img src="http://localhost:8080/devwidgets/My Sakai/images/sakai_logo.png" id="sakai_logo" alt= "Sakai logo" title="Sakai logo">
+       <img src="http://localhost:8080/devwidgets/My Sakai/Default.png" class='frontImg'>
+        <div class="header">
+            <div class="sakai_logo_container">
+                <img src="http://localhost:8080/devwidgets/My Sakai/images/sakai_logo.png" class="sakai_logo" alt= "Sakai logo" title="Sakai logo">
             </div>
-            <div id="sakai_tabs">
+            <div class="sakai_tabs">
                 <ul>
                     <li>
                         <a href="javascript:;">Recent Messages</a>
                     </li>
-                    <li>
+                  <!-- <li>
                         <a href="javascript:;">Recent Activities</a>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
         </div>
@@ -27,15 +28,39 @@
             <!--
             -->
         </div>
+
+        <div id= "mySakWi_message">
+            
+        </div>
+
         <div id="mySakWi_info">
             <div id="infoButton">
             </div>
         </div>
 
 
-        <div id='mySakWi'>
-            
-        </div>
+        <div id='mySakWi_recentmessages_template'><!--
+            <div id="mySakWi_RecentMessages">
+                <ul>
+                    <li id='mySakWi_table_header' >From <span>Subject</span></li>
+                    <hr />
+                   {for message in results}
+                        <li {if message_index % 2} class="mySakWi_background" {/if} ><span class="mySakWi_user">${message["sakai:from"]} </span> :<a href="javascript:;"> ${message["sakai:subject"]}</span></a><br />
+                            <p class="mySakWi_hidden" >${message["sakai:body"]}</p>
+                        </li>
+                    {/for}
+                </ul>
+            </div>
+        --></div>
+
+        <div id="mySakWi_messageTemplate"><!--
+                <p><span>Sender: </span>${sender} </p>
+                <p><span>Subject: </span> ${subject} </p>
+                <p id="mySakWi_message_text">${message}</p>
+                <button id="mySakWi_back_button" type="submit" class="s3d-button s3d-button-primary">
+                    <span class="s3d-button-inner">Back</span>
+                </button>
+        --></div>
 
         <div id="mySakWi_status_template">
             <!--
@@ -48,16 +73,31 @@
     </div>
     <div id="back">
         <img src="http://localhost:8080/devwidgets/My Sakai/Default.png" id='backImg'>
+        <div class="header">
+            <div class="sakai_logo_container">
+                <img src="http://localhost:8080/devwidgets/My Sakai/images/sakai_logo.png" class="sakai_logo" alt= "Sakai logo" title="Sakai logo">
+            </div>
+            <div class="sakai_tabs">
+                <ul>
+                    <li>
+                        <p>Settings</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
         <form id="mySakWi_token_form" method="post" action="javascript:;">
-            <label id="mySakWi_token" for="token">Your token:</label><br/>
-            <input type="text" name="token" id="mySakWi_token"/>
-            <button id="mySakWi_token" type="submit" class="s3d-button s3d-button-primary"><span class="s3d-button-inner">Submit</span></button>
+            <br/>
+            <input type="text" name="token" value="Your Token" id="mySakWi_token" class="flickr_changeColorNormal"/>
+            <button id="mySakWi_token_button" type="submit" class="s3d-button s3d-button-primary">
+                <span class="s3d-button-inner">Submit</span>
+            </button>
         </form>
+        <p id="mySakWi_NoTokenError"> Enter a token please </p>
+        <p id="mySakWi_AnotherToken"> Your token is not valid</p>
         <div id="doneButton">
         </div>
     </div>
     </body>
-
 
     <script type="text/javascript" src="http://localhost:8080/dev/_lib/jquery/jquery.js"></script>
     <script type="text/javascript" src="http://localhost:8080/dev/_lib/jquery/jquery-ui.custom.js"></script>
@@ -71,5 +111,6 @@
     <script type="text/javascript" src="file:///System/Library/WidgetResources/AppleClasses/AppleAnimator.js" charset="utf-8"></script>
     <script type="text/javascript" src="file:///System/Library/WidgetResources/AppleClasses/AppleButton.js" charset="utf-8"></script>
     <script type="text/javascript" src="file:///System/Library/WidgetResources/AppleClasses/AppleInfoButton.js" charset="utf-8"></script>
+    <script type="text/javascript" src="http://localhost:8080/dev/_lib/jquery/plugins/jquery.threedots.js"></script>
     <script type="text/javascript" src="http://localhost:8080/devwidgets/My Sakai/javascript/mac.js"></script>
 </html>
