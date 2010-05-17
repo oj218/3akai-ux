@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+        <!-- CSS -->
+        <link rel="stylesheet" type="text/css" href="http://localhost:8080/devwidgets/My Sakai/css/mac.css" />
+        <link rel="stylesheet" type="text/css" href="http://localhost:8080/dev/_css/sakai/sakai.base.css" />
+        <title>Sakai mac widget </title>
+    </head>
+    <body>
+
+    <!-- THE FRONTSIDE OF THE WIDGET -->
+    <div id="front">
+       <img src="http://localhost:8080/devwidgets/My Sakai/Default.png" class='frontImg'>
+        <div class="header">
+            <div class="sakai_logo_container">
+                <img src="http://localhost:8080/devwidgets/My Sakai/images/sakai_logo.png" class="sakai_logo" alt= "Sakai logo" title="Sakai logo">
+            </div>
+            <div class="sakai_tabs">
+                <ul>
+                    <li>
+                        <a href="javascript:;">Recent Messages</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="mySakWi_body">
+            <!--
+            -->
+        </div>
+
+        <p id="mySakWi_NoMessage">You have no messages</p>
+
+        <div id= "mySakWi_message">
+
+        </div>
+
+        <div id="mySakWi_info">
+            <div id="infoButton">
+            </div>
+        </div>
+
+        <!-- TEMPLATES -->
+        <div id='mySakWi_recentmessages_template'><!--
+            <div id="mySakWi_RecentMessages">
+                <ul>
+                    <li id='mySakWi_table_header' >From <span>Subject</span> <span id="mySakWi_user">Welcome test </span></li>
+                    <hr />
+                   {for message in results}
+                        <li {if message_index % 2} class="mySakWi_background" {/if} ><span class="mySakWi_user_repeat">${message["sakai:from"]} </span> :<a href="javascript:;" class="mySakWi_short"> ${message["sakai:subject"]}</a><span class="mySakWi_hidden">${message["sakai:subject"]}<span><br />
+                            <p class="mySakWi_hidden" >${message["sakai:body"]}</p>
+                        </li>
+                    {/for}
+                </ul>
+            </div>
+        --></div>
+
+        <div id="mySakWi_messageTemplate"><!--
+                <p><span>Sender: </span>${sender} </p>
+                <p id="mySakWi_subject"><span>Subject: </span> ${subject} </p>
+                <hr id="mySakWi_hr" />
+                <div id="myScrollArea" id="mySakWi_message_text">${message}</div>
+                <div id="myScrollbar"></div>
+                <button id="mySakWi_back_button" type="submit" class="s3d-button s3d-button-primary">
+                    <span class="s3d-button-inner">Back</span>
+                </button>
+        --></div>
+
+        <div id="mySakWi_not_logged_in_template"><!--
+            <div id="mySakWi_not_logged_in">
+                <p>You are not logged in.Please go to the Sakai website and login and generate a token. Then copy paste the token into the textbox on the otherside of this widget.</p>
+            </div>
+        --></div>
+    </div>
+
+    <!-- BACKSIDE OF THE WIDGET-->
+    <div id="back">
+        <img src="http://localhost:8080/devwidgets/My Sakai/Default.png" id='backImg'>
+        <div class="header">
+            <div class="sakai_logo_container">
+                <img src="http://localhost:8080/devwidgets/My Sakai/images/sakai_logo.png" class="sakai_logo" alt= "Sakai logo" title="Sakai logo">
+            </div>
+            <div class="sakai_tabs">
+                <ul>
+                    <li>
+                        <p>Settings</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <form id="mySakWi_token_form" method="post" action="javascript:;">
+            <br/>
+            <input type="text" name="token" value="Your Token" id="mySakWi_token" class="flickr_changeColorNormal"/>
+            <button id="mySakWi_token_button" type="submit" class="s3d-button s3d-button-primary">
+                <span class="s3d-button-inner">Submit</span>
+            </button>
+        </form>
+        <p id='mySakWi_token_tag_text'>Your token:</p>
+        <p id='mySakWi_token_tag'></p>
+        <p id="mySakWi_NoTokenError"> Enter a token please </p>
+        <p id="mySakWi_AnotherToken"> Your token is not valid</p>
+        <div id="doneButton">
+        </div>
+    </div>
+    </body>
+
+
+    <!-- JAVASCRIPT -->
+    <script type="text/javascript" src="http://localhost:8080/dev/_lib/jquery/jquery.js"></script>
+    <script type="text/javascript" src="http://localhost:8080/dev/_lib/jquery/jquery-ui.custom.js"></script>
+    <script type="text/javascript" src="http://localhost:8080/dev/_lib/jquery/plugins/jquery.json.js"></script>
+    <script type="text/javascript" src="http://localhost:8080/dev/_configuration/widgets.js"></script>
+    <script type="text/javascript" src="http://localhost:8080/dev/_configuration/config.js"></script>
+    <script type="text/javascript" src="http://localhost:8080/dev/_lib/sakai_util/trimpath.template.js"></script>
+    <script type="text/javascript" src="http://localhost:8080/dev/_lib/sakai_util/sakai_magic.js"></script>
+    <script type="text/javascript" src="http://localhost:8080/dev/_lib/Fluid/3akai_Infusion.js"></script>
+    <script type="text/javascript" src="http://localhost:8080/dev/_lib/sakai_util/sdata.js"></script>
+    <script type='text/javascript' src='file:///System/Library/WidgetResources/AppleClasses/AppleScrollArea.js' charset='utf-8'/>
+    <script type='text/javascript' src='file:///System/Library/WidgetResources/AppleClasses/AppleScrollbar.js' charset='utf-8'/>
+    <script type="text/javascript" src="file:///System/Library/WidgetResources/AppleClasses/AppleAnimator.js" charset="utf-8"></script>
+    <script type="text/javascript" src="file:///System/Library/WidgetResources/AppleClasses/AppleButton.js" charset="utf-8"></script>
+    <script type="text/javascript" src="file:///System/Library/WidgetResources/AppleClasses/AppleInfoButton.js" charset="utf-8"></script>
+    <script type="text/javascript" src="http://localhost:8080/dev/_lib/jquery/plugins/jquery.threedots.js"></script>
+    <script type="text/javascript" src="http://localhost:8080/devwidgets/My Sakai/javascript/mac.js"></script>
+</html>
