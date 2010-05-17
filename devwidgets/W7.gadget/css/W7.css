@@ -1,16 +1,16 @@
 
 /* BODY */
-body,#w7_gadget_container {width:500px; height:350px;}
+body,#w7_gadget_container {width:500px; height:320px;}
 
-#w7_imgBackground{
+.w7_imgBackground{
     position:absolute;
     z-index:0;
-    background-image:url('images/Default.png');
+    background:url('../images/Default.png');
 }
 
 /* FORM */
 #w7_login-container{
     position:absolute;
-    top:20px;
-    left:20px;
+    top:60px;
+    left:40px;
 }

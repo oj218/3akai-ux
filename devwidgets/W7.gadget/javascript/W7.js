@@ -21,6 +21,8 @@
      * This funtion is executed at the start
      */
     var init = function(){
-        alert('test');
+        var oBackground = document.getElementById("imgBackground");
+        oBackground.src = "url(../images/Default.png)";
+
     };
     init();
