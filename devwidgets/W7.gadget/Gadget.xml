@@ -1,0 +1,24 @@
+<gadget>
+        <name>My Sakai</name>
+        <namespace>sakai</namespace>
+        <version>1.0.0.0</version>
+        <author name="Olivier Janssens">
+                <logo src="images/icon.png" />
+        </author>
+        <description>Widget for my Sakai.</description>
+        <icons>
+                <icon width="50" src="images/icon.png" />
+        </icons>
+        <hosts>
+                <host name="sidebar">
+
+                        <!-- New autoscaleDPI node -->
+                        <autoscaleDPI>true</autoscaleDPI>
+
+                        <base type="HTML" apiVersion="1.0.0" src="W7.html" />
+                        <permissions>Full</permissions>
+                        <platform minPlatformVersion="1.0" />
+                        <defaultImage src="images/Default.png" />
+                </host>
+        </hosts>
+</gadget>
