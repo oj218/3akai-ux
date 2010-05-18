@@ -1,16 +1,51 @@
 
 /* BODY */
 body,#w7_gadget_container {width:500px; height:320px;}
+html{font-family:Arial, Helvetica, sans-serif;line-height:120%;background:none!important;font-size:.8em;}
 
-.w7_imgBackground{
-    position:absolute;
-    z-index:0;
-    background:url('../images/Default.png');
-}
+/* Logo */
+.sakai_logo{width:100px; position:absolute; top:5px;left:5px;}
+
+/* tabs */
+.w7_tabs ul li  a{position:absolute;top:25px;left:130px;color:#fff; text-decoration:none; font-size:1.2em;}
+.w7_tabs ul li { list-style-type:none;}
+
+/* Background */
+.w7_imgBackground{position:absolute;z-index:0;background:url('../images/Default.png'); background-repeat:no-repeat;}
 
 /* FORM */
-#w7_login-container{
-    position:absolute;
-    top:60px;
-    left:40px;
-}
+#w7_login-container{position:absolute;top:60px;left:40px;}
+input{ margin-top:20px;}
+button{position:absolute; top:20px; width:90px;}
+
+/* Recent messages */
+#w7_recentMessages {position:absolute;top:70px; right:15px;}
+#w7_recentMessages ul li{padding-left:30px;list-style-type:none;width:442px;color:#fff!important;}
+#w7_recentMessages ul li a:hover{color:#CCC!important;text-decoration:none;cursor:pointer;}
+
+.w7_short{color:#fff;}
+.w7_background{background-color:#68a3cf;}
+
+.w7_user_repeat, #w7_message p span {font-weight:bold;}
+
+#w7_table_header span {display:block; font-weight:700;font-size:1em;color:#71aad5!important;margin-bottom:0!important;padding-bottom:0!important;margin-left:6px; float:left;}
+#w7_user{float:right!important;padding-right:20px;}
+
+
+/* Textboxes */
+.w7_changeColorNormal{color:#AAA;}
+.w7_changeColorBlack{color:#000;}
+
+
+/* hidden content */
+.w7_hidden{display:none;}
+
+
+/* Messages */
+#w7_message{position:absolute; top:70px;left:40px;color:#fff; width:420px;}
+#w7_hr{margin:0!important;}
+#w7_subject{margin-bottom:0!important;}
+#w7_message_text{width:430px;height:90px;overflow:auto;}
+
+/* Errors */
+#w7_log_error{color:#ff0000;display:none;}

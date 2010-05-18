@@ -1,6 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
     <head>
+         <link rel="stylesheet" type="text/css" href="http://localhost:8080/dev/_css/sakai/sakai.base.css" />
         <link rel="stylesheet" type="text/css" href="css/W7.css" />
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
         <title>My Sakai</title>
@@ -8,18 +9,63 @@
     <body>
         <div id="w7_gadget_container" class="w7_imgBackground">
         	<g:background>
+
+            <div class="header">
+            <div class="sakai_logo_container">
+                <img src="images/icon.png" class="sakai_logo" alt= "Sakai logo" title="Sakai logo" />
+            </div>
+            <div class="w7_tabs">
+                <ul>
+                    <li>
+                        <a href="javascript:;">Recent Messages</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
 			<form class="w7_login-container" id="w7_login-container" method="post" action="javascript:;">
-                    <label for="w7_username">Username :</label><br/>
-                    <input type="text" alt="__MSG__USERNAME__" maxlength="255" id="w7_username" name="w7_username" class="w7_login-container-textfield"/><br/>
-                    <label for="password">Password :</label><br/>
-                    <input type="w7_password" alt="__MSG__PASSWORD__" maxlength="255" id="w7_password" name="w7_password" class="w7_login-container-textfield"/>
+
+                    <input type="text" alt="username" value="username" maxlength="255" id="w7_username" name="w7_username" class="w7_login-container-textfield w7_changeColorNormal"/><br/>
+
+                    <input type="w7_password" value="Password" alt="password" maxlength="255" id="w7_password" name="w7_password" class="w7_login-container-textfield w7_changeColorNormal"/>
 
                     <div class="w7_login-container-button">
                         <button id="w7_loginbutton" type="submit" class="s3d-button s3d-button-primary"><span class="s3d-button-inner">Sign In</span></button>
                     </div>
                 </form>
+                <div>
+                    <p id="w7_log_error">Your credentials are not correct</p>
+                <div id='w7_recentMessages'>
+                </div>
+                <div id='w7_message'>
+                </div>
 			</g:background>
         </div>
+
+                <!-- TEMPLATES -->
+        <div id='w7_recentmessages_template'><!--
+
+                <ul>
+                    <li id='w7_table_header' ><span>From </span> <span>Subject</span> <span id="w7_user">Welcome ${user} </span></li>
+                    <hr />
+                   {for message in results}
+                        <li {if message_index % 2} class="w7_background" {/if} ><span class="w7_user_repeat">${message["sakai:from"]} </span> :<a href="javascript:;" class="w7_short"> ${message["sakai:subject"]}</a><span class="w7_hidden">${message["sakai:subject"]}</span><br />
+                            <p class="w7_hidden" >${message["sakai:body"]}</p>
+                        </li>
+                    {/for}
+                </ul>
+
+        --></div>
+
+        <div id="w7_messageTemplate"><!--
+                <p><span>Sender: </span>${sender} </p>
+                <p id="w7_subject"><span>Subject: </span> ${subject} </p>
+                <hr id="w7_hr" />
+                <div  id="w7_message_text">${message}</div>
+                <button id="w7_back_button" type="submit" class="s3d-button s3d-button-primary">
+                    <span class="s3d-button-inner">Back</span>
+                </button>
+        --></div>
+
     </body>
 
     <!-- JAVASCRIPT -->
@@ -33,5 +79,5 @@
     <script type="text/javascript" src="http://localhost:8080/dev/_lib/Fluid/3akai_Infusion.js"></script>
     <script type="text/javascript" src="http://localhost:8080/dev/_lib/sakai_util/sdata.js"></script>
     <script type="text/javascript" src="http://localhost:8080/dev/_lib/jquery/plugins/jquery.threedots.js"></script>
-    <script type="text/javascript" src="http://localhost:8080/devwidgets/W7.gadget/javascript/W7.js"></script>
+    <script type="text/javascript" src="javascript/W7.js"></script>
 </html>
