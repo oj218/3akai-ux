@@ -56,7 +56,11 @@
     var key ="toklw";
     var front = document.getElementById("mac_front");
     var back = document.getElementById("mac_back");
+    var path = 'http://localhost:8080';
 
+    // Images
+    $frontImg = $('.frontImg');
+    $macSakaiLogo = $('.mac_sakai_logo');
 
     // Errors
     var $macNoTokenError = $('#mac_notokenError');
@@ -309,6 +313,11 @@
            $logoutButton.hide();
     };
 
+    var loadImages = function(){
+        $frontImg.attr('src',path+'/devwidgets/mac/Default.png');
+        $macSakaiLogo.attr('src',path + '/devwidgets/mac/images/sakai_logo.png');
+    };
+
     /**
      * This function is executed when the widget is loaded
      */
@@ -317,6 +326,8 @@
         // Add the buttons so that the widget can be flipped
         new AppleInfoButton(document.getElementById("mac_infobutton"), document.getElementById("mac_front"), "black", "black", showbackside);
         new AppleGlassButton(document.getElementById('mac_doneButton'), getLocalizedString('Done'), showfrontside);
+
+        loadImages();
 
         //Check if this is widget mode
         if (window.widget) {
