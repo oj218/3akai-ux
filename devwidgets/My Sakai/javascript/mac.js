@@ -120,7 +120,7 @@
      * This is a function written by apple
      * @param {Object} key
      */
-    var getLocalizedString = function  (key){
+    var getLocalizedString = function(key){
         try {
             var ret = localizedStrings[key];
             if (ret === undefined) {
@@ -274,12 +274,12 @@
         } else  if (window.widget) {
 
            // Save the token
-           widget.setPreferenceForKey(token, 'tokq');
+           widget.setPreferenceForKey(token, 'takxy');
+        }
            $mySakWiTokenForm.hide();
            $mySakWiTokenTagText.show();
            $mySakWiTokenTag.html(values.token);
            saveToken(values.token);
-        }
     };
 
     /**
@@ -296,13 +296,13 @@
         if (window.widget) {
 
             // Check if the user already entered a token
-            if(widget.preferenceForKey('tokq')){
+            if(widget.preferenceForKey('takxy')){
 
                 // Get the recent messages
                 $mySakWiTokenForm.hide();
                 $mySakWiTokenTagText.show();
-                $mySakWiTokenTag.html(widget.preferenceForKey('tokq'));
-                saveToken(widget.preferenceForKey('tokq'));
+                $mySakWiTokenTag.html(widget.preferenceForKey('takxy'));
+                saveToken(widget.preferenceForKey('takxy'));
             }else{
                 var emptyObject = {};
                 $sakaiBody.html($.TemplateRenderer($mySakWiNotLoggedInTemplate,emptyObject));
