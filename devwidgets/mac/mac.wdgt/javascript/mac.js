@@ -240,7 +240,7 @@
     var saveToken = function(token){
 
         $.ajax({
-            url: path+"/var/message/box.json?box=inbox",
+            url: "http://localhost:8080/var/message/box.json?box=inbox",
             beforeSend:function(xhr){
 
                 // Set a new field in the header with a token that is generated when the user is logged in in sakai
