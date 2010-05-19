@@ -20,8 +20,8 @@
 
 
     // Front, Form
-    var $sakaiTabs = $("#mySakWi_tabs");
-    var $sakaiBody = $('#mySakWi_body');
+    var $sakaiTabs = $("#mac_tabs");
+    var $sakaiBody = $('#mac_body');
     var usernameField = "username";
     var passwordField = "password";
     var failMessage = "#login-failed";
@@ -29,37 +29,52 @@
     var registerLink = "#register_here";
     var loginButton = "#loginbutton";
     var loginForm = "#login-container";
-    var $mySakWiMessage = $('#mySakWi_message');
-    var $mySakWiBackButton = $("#mySakWi_back_button");
+    var $macMessage = $('#mac_message');
+    var $macBackButton = $("#mac_back_button");
+    var $macUserRepeat = $('.mac_user_repeat');
+    var $macHidden = $('.mac_hidden');
 
     // Back, form
-    var $mySakWiTokenForm = $("#mySakWi_token_form");
-    var $doneButton = $('#doneButton');
-    var $mySakWiToken = $("#mySakWi_token");
-    var $mySakWiRecentMessages = $('#mySakWi_RecentMessages');
-    var $mySakWiTokenTag = $('#mySakWi_token_tag');
-    var $mySakWiTokenTagText = $('#mySakWi_token_tag_text');
+    var $macTokenForm = $("#mac_token_form");
+    var $doneButton = $('#mac_doneButton');
+    var $macToken = $("#mac_token");
+    var $macRecentMessages = $('#mac_recentMessages');
+    var $macTokenTag = $('#mac_token_tag');
+    var $macTokenTagText = $('#mac_token_tag_text');
+    var $logoutButton = $('#mac_logout_button');
 
     // Templates
-   var $statusTemplate = $("#mySakWi_status_template");
-   var $mySakWiRecentmessagesTemplate = $('#mySakWi_recentmessages_template');
-   var $mySakWiMessageTemplate = $('#mySakWi_messageTemplate');
-    var $mySakWiNotLoggedInTemplate = $('#mySakWi_not_logged_in_template');
+   var $statusTemplate = $("#mac_status_template");
+   var $macRecentmessagesTemplate = $('#mac_recentmessages_template');
+   var $macMessageTemplate = $('#mac_messageTemplate');
+    var $macNotLoggedInTemplate = $('#mac_not_logged_in_template');
 
     // Global Variables
     var defaultvalue;
-    var changeColorBlack = "mySakWi_changeColorBlack"; // Css class to change the textcolour
-    var changeColorNormal = "mySakWi_changeColorNormal"; // Css class to change the textcolour
+    var changeColorBlack = "mac_changeColorBlack"; // Css class to change the textcolour
+    var changeColorNormal = "mac_changeColorNormal"; // Css class to change the textcolour
+    var key ="toklw";
+    var front = document.getElementById("mac_front");
+    var back = document.getElementById("mac_back");
+
 
     // Errors
-    var $mySakWiNoTokenError = $('#mySakWi_NoTokenError');
-    var $mySakWiAnotherToken = $('#mySakWi_AnotherToken');
-    var $mySakWiNoMessage = $('#mySakWi_NoMessage');
+    var $macNoTokenError = $('#mac_notokenError');
+    var $macAnotherToken = $('#mac_anothertoken');
+    var $macNoMessage = $('#mac_nomessage');
 
 
     ////////////////////
     // Reusable Code //
     ///////////////////
+
+    /**
+     * This function will remove the spaces from a string
+     * @param {Object} string
+     */
+     function removeSpaces(string) {
+       return string.split(' ').join('');
+     }
 
     /**
      * This function will change the colour of the text of the textbox on blur
@@ -99,25 +114,23 @@
     ///////////////
 
     /**
-     * This is a function written by apple
      * This function will show the front of the widget
      * @param {Object} event
      */
    var showfrontside = function (event){
-        var front = document.getElementById("front");
-        var back = document.getElementById("back");
         if (window.widget) {
             widget.prepareForTransition("ToFront");
         }
         front.style.display="block";
         back.style.display="none";
         if (window.widget) {
-            setTimeout('widget.performTransition();', 0);
+            setTimeout(function(){
+                widget.performTransition();
+            }, 0);
         }
     };
 
     /**
-     * This is a function written by apple
      * @param {Object} key
      */
     var getLocalizedString = function(key){
@@ -134,14 +147,10 @@
 
 
     /** 
-     * This is a function written by apple
      * This function will show the backside of the widget
      * @param {Object} event
      */
     var showbackside = function(event){
-
-        var front = document.getElementById("front");
-        var back = document.getElementById("back");
 
         if (window.widget) {
             widget.prepareForTransition("ToBack");
@@ -151,7 +160,9 @@
         back.style.display="block";
 
         if (window.widget) {
-            setTimeout('widget.performTransition();', 0);
+            setTimeout(function(){
+                widget.performTransition();
+            }, 0);
         }
     };
 
@@ -163,7 +174,7 @@
      * This function will hide the message and show the list again
      */
     var showList = function(){
-        $mySakWiMessage.hide();
+        $macMessage.hide();
         $sakaiBody.show();
     };
 
@@ -174,22 +185,24 @@
     var showMessage = function(){
         $sakaiBody.hide();
 
+        $macHidden = $('.mac_hidden');
+        $macUserRepeat = $('.mac_user_repeat');
+
         //Get the subject,message and sender from the li, the message and subject are hidden
         var messageObj = {
-            'sender': $($('.mySakWi_user_repeat'), $(this).parent()).html(),
-            "subject": $($('.mySakWi_hidden'),$(this).parent()).html(),
+            'sender': $($macUserRepeat, $(this).parent()).html(),
+            "subject": $($macHidden,$(this).parent()).html(),
             "message": $('p', $(this).parent()).html()
         };
 
         //Render the message
-        $mySakWiMessage.html($.TemplateRenderer($mySakWiMessageTemplate, messageObj));
-        $mySakWiMessage.show();
+        $macMessage.html($.TemplateRenderer($macMessageTemplate, messageObj));
+        $macMessage.show();
 
         //Make the text scrollable
-        var gMyScrollbar = new AppleVerticalScrollbar(document.getElementById("myScrollbar"));
-        var gMyScrollArea = new AppleScrollArea(document.getElementById("myScrollArea"));
+        var gMyScrollbar = new AppleVerticalScrollbar(document.getElementById("mac_myscrollbar"));
+        var gMyScrollArea = new AppleScrollArea(document.getElementById("mac_myscrollarea"));
         gMyScrollArea.addScrollbar(gMyScrollbar);
-
     };
 
     /**
@@ -197,6 +210,8 @@
      * @param {Object} data
      */
     var displayRecentMessages= function(data){
+
+        $logoutButton.show();
 
         //Clear the body
         $sakaiBody.html('');
@@ -210,19 +225,19 @@
             }
 
             //Render the messages
-            $sakaiBody.html($.TemplateRenderer($mySakWiRecentmessagesTemplate, data));
-            $mySakWiRecentMessages = $('#mySakWi_RecentMessages');
-            $("a", $mySakWiRecentMessages).bind('click', showMessage);
+            $sakaiBody.html($.TemplateRenderer($macRecentmessagesTemplate, data));
+            $macRecentMessages = $('#mac_recentMessages');
+            $("a", $macRecentMessages).bind('click', showMessage);
 
             //Make sure the subject isn't longer than the div is wide
-            $(".mySakWi_short").each(function(){
+            $(".mac_short").each(function(){
                 if ($(this).html().length > 10) {
                     $(this).html($(this).html().substring(0, 40) + "...");
                 }
             });
         }else{
             //If there are no messages show an error messages
-            $mySakWiNoMessage.show();
+            $macNoMessage.show();
         }
     };
 
@@ -255,31 +270,43 @@
     var getToken = function(){
 
         // Hide Errors if there are any
-        $mySakWiNoTokenError.hide();
-        $mySakWiAnotherToken.hide();
+        $macNoTokenError.hide();
+        $macAnotherToken.hide();
 
         // Get the token that the user just filled in
-        var values = sakai.api.UI.Forms.form2json($mySakWiTokenForm);
+        var values = sakai.api.UI.Forms.form2json($macTokenForm);
 
         //Make sure there are no blank spaces int he token or the default value for comparison
-        var token = values.token.replace(' ', '');
-        defaultvalue = defaultvalue.replace(' ','');
+        var token = removeSpaces(values.token);
+        defaultvalue = removeSpaces(defaultvalue);
 
         // Input validation
         if (token === defaultvalue) {
-            $mySakWiAnotherToken.show();
+            $macAnotherToken.show();
         } else if (!token) {
-            checkEmpty($mySakWiToken);
-            $mySakWiNoTokenError.show();
+            checkEmpty($macToken);
+            $macNoTokenError.show();
         } else  if (window.widget) {
-
            // Save the token
-           widget.setPreferenceForKey(token, 'takxy');
+           widget.setPreferenceForKey(token, key);
         }
-           $mySakWiTokenForm.hide();
-           $mySakWiTokenTagText.show();
-           $mySakWiTokenTag.html(values.token);
+        
+           $macTokenForm.hide();
+           $macTokenTagText.show();
+           $macTokenTag.html(values.token);
            saveToken(values.token);
+    };
+
+    /**
+     * This function will log the user out.
+     */
+    var logout = function(){
+            widget.setPreferenceForKey('', key);
+           $macTokenForm.show();
+           $macTokenTagText.hide();
+           $sakaiBody.html($.TemplateRenderer($macNotLoggedInTemplate,{}));
+           $macTokenTag.html("");
+           $logoutButton.hide();
     };
 
     /**
@@ -288,43 +315,44 @@
     var init = function(){
 
         // Add the buttons so that the widget can be flipped
-        new AppleInfoButton(document.getElementById("infoButton"), document.getElementById("front"), "black", "black", showbackside);
-        new AppleGlassButton(document.getElementById('doneButton'), getLocalizedString('Done'), showfrontside);
-
+        new AppleInfoButton(document.getElementById("mac_infobutton"), document.getElementById("mac_front"), "black", "black", showbackside);
+        new AppleGlassButton(document.getElementById('mac_doneButton'), getLocalizedString('Done'), showfrontside);
 
         //Check if this is widget mode
         if (window.widget) {
 
             // Check if the user already entered a token
-            if(widget.preferenceForKey('takxy')){
+            if(widget.preferenceForKey(key)){
 
                 // Get the recent messages
-                $mySakWiTokenForm.hide();
-                $mySakWiTokenTagText.show();
-                $mySakWiTokenTag.html(widget.preferenceForKey('takxy'));
-                saveToken(widget.preferenceForKey('takxy'));
+                $macTokenForm.hide();
+                $macTokenTagText.show();
+                $macTokenTag.html(widget.preferenceForKey(key));
+                $logoutButton.show();
+                saveToken(widget.preferenceForKey(key));
             }else{
-                var emptyObject = {};
-                $sakaiBody.html($.TemplateRenderer($mySakWiNotLoggedInTemplate,emptyObject));
+                $sakaiBody.html($.TemplateRenderer($macNotLoggedInTemplate,{}));
             }
         }
 
         // Get the default value form the textbox
-        defaultvalue = $mySakWiToken.val();
+        defaultvalue = $macToken.val();
 
         // On blur the textbox color should be grey
-        $mySakWiToken.blur(function(){
-            checkEmpty($mySakWiToken);
+        $macToken.blur(function(){
+            checkEmpty($macToken);
         });
 
         //If the textbox gets focussed change the colour of the text
-        $mySakWiToken.focus(function(){
-            changeColour($mySakWiToken);
+        $macToken.focus(function(){
+            changeColour($macToken);
         });
 
-        $mySakWiBackButton.live('click',showList);
+        $logoutButton.bind('click',logout);
 
-        $mySakWiTokenForm.submit(getToken);
+        $macBackButton.live('click',showList);
+
+        $macTokenForm.submit(getToken);
 
     };
     init();
