@@ -72,9 +72,9 @@ var makeArray = function(){
     urlArray.push([sakaiUrl + '/dev/_lib/sakai_util/sdata.js', 'js']);
     urlArray.push([sakaiUrl + '/dev/_lib/jquery/plugins/jquery.threedots.js', 'js']);
     urlArray.push([sakaiUrl + '/dev/_lib/sakai_util/sakai_magic.js', 'js']);
-    urlArray.push([sakaiUrl + '/devwidgets/W7.gadget/javascript/W7.js', 'js']);
+    urlArray.push([sakaiUrl + '/devwidgets/W7/javascript/W7.js', 'js']);
     urlArray.push([sakaiUrl + '/dev/_css/sakai/sakai.base.css', 'css']);
-    urlArray.push([sakaiUrl + '/devwidgets/W7.gadget/css/mac.css', 'css']);
+    urlArray.push([sakaiUrl + '/devwidgets/W7/css/mac.css', 'css']);
 
 };
 

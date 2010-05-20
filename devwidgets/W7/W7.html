@@ -50,7 +50,7 @@
         <div id='w7_recentmessages_template'>
             <!--
             <ul>
-            <li id='w7_table_header' ><span>From </span> <span>Subject</span> <span id="w7_user">Welcome ${user} </span></li>
+            <li id='w7_table_header' ><span>From </span> <span>Subject</span> <span id="w7_user">Welcome ${user} <a href="javascript:;">Logout</a></span></li>
             <hr />
             {for message in results}
             <li {if message_index % 2} class="w7_background" {/if} ><span class="w7_user_repeat">${message["sakai:from"]} </span> :<a href="javascript:;" class="w7_short"> ${message["sakai:subject"]}</a><span class="w7_hidden">${message["sakai:subject"]}</span><br />
@@ -75,4 +75,4 @@
     <!-- JAVASCRIPT -->
     <script type="text/javascript" src="javascript/loadFiles.js">
     </script>
-</html>
+</html>
