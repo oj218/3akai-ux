@@ -37,21 +37,24 @@
          * Then append it to the page and check if's loaded
          * @param {Object} file
          */
-       function include_js(file){
+       function include_js(file) {
            var oHead = document.getElementsByTagName('head')[0];
            if (urlArray[counter][1] === 'js') {
                oScript = document.createElement('script');
                oScript.type = 'text/javascript';
                oScript.src = urlArray[counter][0];
                oHead.appendChild(oScript);
-               oScript.onload = loaded;
+               oScript.onreadystatechange = function () {
+                   if (this.readyState == 'loaded') {
+                       loaded();
+                   }
+               }
            }
            else {
                oScript = document.createElement("link");
                oScript.rel = "stylesheet";
                oScript.type = "text/css";
                oScript.href = urlArray[counter][0];
-               console.log(oScript);
                oHead.appendChild(oScript);
                loaded();
            }
@@ -68,16 +71,11 @@
         urlArray.push([sakaiUrl + '/dev/_lib/sakai_util/trimpath.template.js','js']);
         urlArray.push([sakaiUrl + '/dev/_lib/Fluid/3akai_Infusion.js','js']);
         urlArray.push([sakaiUrl + '/dev/_lib/sakai_util/sdata.js','js']);
-        urlArray.push([sakaiUrl + '/devwidgets/mac/javascript/AppleScrollArea.js',"js"]);
-        urlArray.push([sakaiUrl + '/devwidgets/mac/javascript/AppleScrollbar.js','js']);
-        urlArray.push([sakaiUrl + '/devwidgets/mac/javascript/AppleAnimator.js','js']);
-        urlArray.push([sakaiUrl + '/devwidgets/mac/javascript/AppleButton.js','js']);
-        urlArray.push([sakaiUrl + '/devwidgets/mac/javascript/AppleInfoButton.js','js']);
         urlArray.push([sakaiUrl + '/dev/_lib/jquery/plugins/jquery.threedots.js','js']);
         urlArray.push([sakaiUrl + '/dev/_lib/sakai_util/sakai_magic.js','js']);
-        urlArray.push([sakaiUrl + '/devwidgets/mac/javascript/mac.js','js']);
+        urlArray.push([sakaiUrl + '/devwidgets/W7.gadget/javascript/W7.js','js']);
         urlArray.push([sakaiUrl + '/dev/_css/sakai/sakai.base.css','css']);
-        urlArray.push([sakaiUrl + '/devwidgets/mac/css/mac.css','css']);
+        urlArray.push([sakaiUrl + '/devwidgets/W7.gadget/css/mac.css','css']);
 
     };
 

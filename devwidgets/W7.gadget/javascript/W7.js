@@ -24,11 +24,15 @@
     var $w7LoginContainer = $("#w7_login-container");
     var usernameField = "w7_username";
     var passwordField = "w7_password";
+    var $w7Username = $('#w7_username');
+    var $w7Password = $('#w7_password');
+
     var $w7RecentMessages = $('#w7_recentMessages');
     var $w7Short = $(".w7_short");
     var $w7RecentMessages = $('#w7_recentMessages');
     var $w7BackButton = $("#w7_back_button");
     var $w7Message = $("#w7_message");
+    var $w7TableHeader = $("#w7_table_header");
 
     // Error messages
     var $w7LogError = $("#w7_log_error");
@@ -39,8 +43,13 @@
 
 
     // Global variables
-
+    var path = "http://localhost:8080";
     var user;
+    var first = true;
+    var defaultvalue;
+    var defaultvalue2;
+    var changeColorBlack = "w7_changeColorBlack"; // Css class to change the textcolour
+    var changeColorNormal = "w7_changeColorNormal"; // Css class to change the textcolour
 
     var showMessage = function () {
         $w7RecentMessages.hide();
@@ -63,6 +72,7 @@
             $w7LoginContainer.hide();
             data["user"] = user.user.userid
             $w7RecentMessages.html($.TemplateRenderer($w7RecentmessagesTemplate, data));
+            $w7RecentMessages.show();
         }
 
         $w7Short = $(".w7_short");
@@ -91,18 +101,17 @@
     * This will determine whether there is a valid session. If there is, we'll
     * redirect to the URL requested or the personal dashboard if nothing has been provided.
     */
-    var decideLoggedIn = function (data) {
-
-       
+    var decideLoggedIn = function(data){
         var mejson = (data === undefined ? sakai.data.me : $.evalJSON(data));
+        
         if (mejson.user.userid) {
             $w7LogError.hide();
             user = mejson;
             getRecentMessages()
-        } else {
+        }
+        else {
             $w7LogError.show();
         }
-
     };
 
     /**
@@ -117,7 +126,10 @@
         $.ajax({
             url: "http://localhost:8080/system/me",
             cache: false,
-            success: decideLoggedIn,
+            success: function (data) {
+                alert(data);
+                decideLoggedIn(data);
+            },
             error: function (xhr, textStatus, thrownError) {
                 throw "Me service has failed";
             }
@@ -156,11 +168,107 @@
     };
 
 
+    var logout = function () {
+        $.ajax({
+            url: path + "/system/sling/formlogin",
+            type: "POST",
+            complete: function () {
+                $w7RecentMessages.html('');
+                $w7Message.html('');
+                $w7LoginContainer.show();
+                $w7Username.val(defaultvalue);
+                $w7Password.val(defaultvalue2);
+            },
+            data: { "sakaiauth:logout": "1", "_charset_": "utf-8" }
+        });
+    }
+
+
+    var changeColour2 = function (textbox) {
+
+        // If the value is the default value, clear the inputbox
+        if (textbox.val() === defaultvalue2) {
+            textbox.val('');
+        }
+
+        // Change the color of the text of the inputbox
+        textbox.removeClass(changeColorNormal);
+        textbox.addClass(changeColorBlack);
+    };
+
+    /**
+    * This function will check if the inputbox is empty
+    * @param {Object} textbox
+    * @example checkEmpty($("#myTextBox"))
+    */
+    var checkEmpty2 = function (textbox) {
+
+        // Change the colour of the text in the inputbox
+        textbox.removeClass(changeColorBlack);
+        textbox.addClass(changeColorNormal);
+
+        // Check if it's empty, if it is fill it in with the default value
+        if (!textbox.val()) {
+            textbox.val(defaultvalue2);
+        }
+    }
+
+    var changeColour = function (textbox) {
+
+        // If the value is the default value, clear the inputbox
+        if (textbox.val() === defaultvalue) {
+            textbox.val('');
+        }
+
+        // Change the color of the text of the inputbox
+        textbox.removeClass(changeColorNormal);
+        textbox.addClass(changeColorBlack);
+    };
+
+    /**
+    * This function will check if the inputbox is empty
+    * @param {Object} textbox
+    * @example checkEmpty($("#myTextBox"))
+    */
+    var checkEmpty = function (textbox) {
+
+        // Change the colour of the text in the inputbox
+        textbox.removeClass(changeColorBlack);
+        textbox.addClass(changeColorNormal);
+
+        // Check if it's empty, if it is fill it in with the default value
+        if (!textbox.val()) {
+            textbox.val(defaultvalue);
+        }
+    }
+
+    $w7Username.blur(function () {
+        checkEmpty($w7Username);
+    });
+
+    //If the textbox gets focussed change the colour of the text
+    $w7Username.focus(function () {
+        changeColour($w7Username);
+    });
+
+    $w7Password.blur(function () {
+        checkEmpty2($w7Password);
+    });
+
+    //If the textbox gets focussed change the colour of the text
+    $w7Password.focus(function () {
+        changeColour2($w7Password);
+    });
+
      /**
      * This funtion is executed at the start
      */
-    var init = function(){
+    var init = function () {
+        $('a', $w7TableHeader).live('click', logout);
         $w7LoginContainer.submit(performLogIn);
+        defaultvalue = $w7Username.val();
+        defaultvalue2 = $w7Password.val();
         $w7BackButton.live('click', showList);
+
     };
     init();
