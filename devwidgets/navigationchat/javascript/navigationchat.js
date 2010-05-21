@@ -1709,8 +1709,8 @@ sakai.navigationchat = function(tuid, showSettings){
         switchToAnonymousMode();
     }
     else {
-        loadChatWindows();
-        checkOnline();
+        //loadChatWindows();
+        //checkOnline();
         doInit();
     }
 

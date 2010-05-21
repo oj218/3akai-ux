@@ -371,7 +371,14 @@ var Widgets = {
             showinsakaigoodies:true,
             url:"/devwidgets/tangler/tangler.html"
         },
-        twitter: {
+        "token": {
+            description:"Token widget",
+            id:"token",
+            name:"token",
+            personalportal:true,
+            url:"/devwidgets/token/token.html"
+        },
+        "twitter": {
             description:"Twitter Widget",
             hasSettings:true,
             i18n: {
