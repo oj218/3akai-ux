@@ -294,6 +294,7 @@
            $macTokenTag.html(values.token);
            getRecentMessages(values.token);
            getProfileInformation(values.token);
+           getOnlineContacts(values.token);
     };
 
     /**
@@ -383,6 +384,7 @@
                 $logoutButton.show();
                 getRecentMessages(widget.preferenceForKey(key));
                 getProfileInformation(widget.preferenceForKey(key));
+                getOnlineContacts();
             }else{
                 $sakaiBody.html($.TemplateRenderer($macNotLoggedInTemplate,{}));
             }

@@ -41,6 +41,9 @@
             </div>
         </div>
 
+        <div id="mac_chat">
+            
+        </div>
         <!-- TEMPLATES -->
         <div id='mac_recentmessages_template'><!--
             <div id="mac_recentMessages">
@@ -63,6 +66,14 @@
                 <p><span>Surname: </span>${profile.lastName}<p>
                 <p><span>E-mail: </span>${profile.email}<p>
             </div>
+        --></div>
+
+        <div id="mac_chat_template"><!--
+        <img src="images/chat.png" />
+           <ul>
+               {for contact in contacts}
+                <li>${contact.user}</li>
+                {/for}
         --></div>
 
         <div id="mac_messageTemplate"><!--

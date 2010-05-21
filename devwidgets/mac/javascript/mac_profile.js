@@ -29,7 +29,7 @@
     var $mac_profile = $('#mac_profile');
 
     // Global variables
-    var url = "http://localhost:8080"
+    var url = "http://localhost:8080";
 
     /**
      * This function will display the profile data

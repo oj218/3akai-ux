@@ -76,6 +76,7 @@
         urlArray.push([sakaiUrl + '/dev/_lib/jquery/plugins/jquery.threedots.js','js']);
         urlArray.push([sakaiUrl + '/dev/_lib/sakai_util/sakai_magic.js','js']);
         urlArray.push([sakaiUrl + '/devwidgets/mac/javascript/mac_profile.js','js']);
+        urlArray.push([sakaiUrl + '/devwidgets/mac/javascript/mac_chat.js','js']);
         urlArray.push([sakaiUrl + '/devwidgets/mac/javascript/mac.js','js']);
         urlArray.push([sakaiUrl + '/dev/_css/sakai/sakai.base.css','css']);
         urlArray.push([sakaiUrl + '/devwidgets/mac/css/mac.css','css']);

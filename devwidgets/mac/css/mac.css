@@ -85,3 +85,6 @@ hr{margin-right:3px;}
 #mac_profile div { position:absolute; left:80px;}
 #mac_profile p spam{ font-weight:bold;}
 
+
+#mac_chat img{position:absolute; top:267px;left:12px;}
+#mac_chat ul {bottom:20px; position:absolute; background-color:red;left:190px;}
