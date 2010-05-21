@@ -1,0 +1,87 @@
+body{background-repeat:no-repeat;}
+html{background:none!important;line-height:120%;font-family:Arial, Helvetica, sans-serif;}
+
+/* Logo */
+.mac_sakai_logo{margin:10px 0 0 10px;}
+.mac_logo_container{float:left;width:100px;}
+
+/* Header */
+.mac_tabs{width:500px;}
+.mac_header{float:left;left:10px;position:absolute;top:0;}
+.mac_header ul{margin:8px 0 0 60px;}
+.mac_header ul li{display:inline-block;height:50px;list-style-type:none;margin-left:20px;}
+.mac_header ul li a:hover,{opacity:0.5;}
+.mac_header ul li a,.mac_header ul li p{color:#fff;display:inline-block;font-size:1em;margin-top:20px;text-decoration:none;}
+
+/* CONTENT ITEMS */
+#mac_body{font-size:.8em;left:-18px;margin-top:20px;position:absolute;top:40px;width:500px;}
+#mac_body ul li{color:#fff;list-style-type:none;padding-left:30px;width:426px;}
+
+.mac_background{background-color:#68a3cf;}
+#mac_back{display:none;position:absolute;}
+#mac_user{display:block;float:right;font-weight:700;padding-right:20px;}
+#mac_front,#mac_frontImg{height:100%;left:0;position:absolute;top:0;width:100%;}
+#sakai_login_button{margin:15px 0 0 270px;}
+#login-container{padding:40px 0 0 140px;}
+#mac_subject{margin-bottom:0!important;}
+.mac_hidden{display:none;}
+
+
+/* INFO AND DONEBUTTON */
+#mac_doneButton{position:absolute;right:25px;top:20px;}
+#mac_infobutton{height:13px;position:absolute;right:25px;top:20px;width:13px;}
+
+/* STATUS */
+#mac_status{background-color:#eceff1;margin-left:40px;margin-top:15px;width:456px;}
+#mac_status p{clear:both;color:#666!important;display:block;font-size:1em;float:right;}
+
+/* RECENTMESSAGES */
+#mac_recentMessages ul li a:hover{color:#CCC!important;text-decoration:none;cursor:pointer;}
+#mac_recentMessages ul li a{color:#fff!important;text-decoration:none;}
+#mac_message_text{height:130px;overflow:auto;}
+#mac_message p span,.mac_user_repeat,#mac_status span{font-weight:700;}
+#mac_table_header{font-weight:700;font-size:1em;color:#71aad5!important;margin-bottom:0!important;padding-bottom:0!important;}
+#mac_table_header span{margin-left:6px;}
+
+/* TOKEN */
+#mac_token_tag_text{color:#fff!important;display:none;font-size:1em;left:50px;position:absolute;top:70px;}
+#mac_token_tag{color:#fff!important;font-size:.8em;position:absolute;left:50px;top:90px;}
+#mac_token_form{left:20px;position:absolute;top:50px;}
+#mac_token{border:1px solid #fff;float:left;font-size:1em;height:20px;margin:10px 14px 0 30px;padding:1px 5px;width:10em;}
+
+/* MESSAGE */
+#mac_message{color:#fff;display:none;font-size:.8em;left:40px;margin-top:10px;position:absolute;top:50px;width:400px;}
+#mac_message p{margin:7px 0 5px!important;}
+
+/* ERRORS */
+#mac_notokenterror,#mac_anothertoken{color:red;display:none;left:50px;position:absolute;top:150px;}
+#mac_nomessage{color:#fff;display:none;left:50px;position:absolute;top:50px;width:400px;}
+#mac_not_logged_in{color:#fff;left:50px;position:absolute;top:0;width:400px;}
+
+/* HRS */
+hr{margin-right:3px;}
+#mac_hr{margin:0!important;}
+
+
+/* BUTTON */
+#mac_token_button{top:10px;}
+#mac_back_button{position:absolute;top:200px;}
+
+/* SCROLL STUFF */
+#mac_myscrollarea{height:100px;position:absolute;margin-top:10px;}
+#mac_myscrollbar{height:120px;left:415px;margin-top:10px;position:absolute;width:19px;}
+
+/* TEXTBOXES */
+.mac_changeColorBlack{color:#000;}
+.mac_changeColorNormal{color:#AAA;}
+
+/* Logout */
+#mac_logout_button{display:none; left:50px; position:absolute; top:200px; }
+
+/* PROFILE */
+#mac_profile{display:none;left:30px; position:absolute; top:80px;}
+#mac_profile p{ color:#fff; width:300px;}
+#mac_profile img { position:absolute; top:30px;}
+#mac_profile div { position:absolute; left:80px;}
+#mac_profile p spam{ font-weight:bold;}
+
