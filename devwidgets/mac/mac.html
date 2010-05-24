@@ -1,0 +1,142 @@
+<!DOCTYPE HTML> 
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Sakai mac widget </title>
+    </head>
+    <body>
+
+    <!-- THE FRONTSIDE OF THE WIDGET -->
+    <div id="mac_front">
+        <img src="" alt="background Image" class='mac_frontImg'>
+        <div class="mac_header">
+            <div class="mac_logo_container">
+                <img src="" class="mac_sakai_logo" alt= "Sakai logo" title="Sakai logo" />
+            </div>
+            <div class="mac_tabs">
+                <ul>
+                    <li>
+                        <a href="javascript:;" id="mac_recent_messages_button">Recent Messages</a>
+                    </li>
+                        <li>
+                            <a href="javascript:;" id="mac_profile_button">Profile</a>
+                        </li>
+                </ul>
+            </div>
+        </div>
+        <div id="mac_body">
+            <!--
+            -->
+        </div>
+
+        <div id="mac_profile"><!--
+        --></div>
+
+        <p id="mac_nomessage">You have no messages</p>
+        <div id= "mac_message"><!--
+        --></div>
+
+        <div id="mac_info">
+            <div id="mac_infobutton">
+            </div>
+        </div>
+
+        <div id="mac_chat"><!--
+        --></div>
+
+        <div id="mac_users"><!--
+        --></div>
+
+        <!-- TEMPLATES -->
+        <div id='mac_recentmessages_template'><!--
+            <div id="mac_recentMessages">
+                <ul>
+                    <li id='mac_table_header' >From <span>Subject</span> <span id="mac_user">Welcome test </span></li>
+                    <hr />
+                   {for message in results}
+                        <li {if message_index % 2} class="mac_background" {/if} ><span class="mac_user_repeat">${message["sakai:from"]} </span> :<a href="javascript:;" class="mac_short"> ${message["sakai:subject"]}</a><span class="mac_hidden">${message["sakai:subject"]}<span><br />
+                            <p class="mac_hidden" >${message["sakai:body"]}</p>
+                        </li>
+                    {/for}
+                </ul>
+            </div>
+        --></div>
+
+        <div id="mac_profile_template"><!--
+            <img src="${userPicture}" />
+            <div>
+                <p><span>Name: </span>${profile.firstName}<p>
+                <p><span>Surname: </span>${profile.lastName}<p>
+                <p><span>E-mail: </span>${profile.email}<p>
+            </div>
+        --></div>
+
+        <div id="mac_chat_template"><!--
+        <img src="images/chat.png" />
+           <ul>
+               {for contact in contacts}
+                   {if contact['sakai:status'] == "online" && contact.chatstatus != "offline"}
+                        <li>${contact.user}</li>
+                    {/if}
+                {/for}
+        --></div>
+
+        <div id="mac_messageTemplate"><!--
+                <p><span>Sender: </span>${sender} </p>
+                <p id="mac_subject"><span>Subject: </span> ${subject} </p>
+                <hr id="mac_hr" />
+                <div id="mac_myscrollarea" id="mac_message_text">${message}</div>
+                <div id="mac_myscrollbar"></div>
+                <button id="mac_back_button" type="submit" class="s3d-button s3d-button-primary">
+                    <span class="s3d-button-inner">Back</span>
+                </button>
+        --></div>
+
+        <div id="mac_users_online_template"><!--
+            <img src="../navigationchat/images/people.png" width="16px" class="chat_people_icon" alt="Online"/>
+            (${contacts.length})
+        --></div>
+
+        <div id="mac_not_logged_in_template"><!--
+            <div id="mac_not_logged_in">
+                <p>You are not logged in.Please go to the Sakai website and login and generate a token. Then copy paste the token into the textbox on the <a href="javascript:;" id="mac_backside">otherside</a> of this widget.</p>
+            </div>
+        --></div>
+    </div>
+
+    <!-- BACKSIDE OF THE WIDGET-->
+    <div id="mac_back">
+        <img src="http://localhost:8080/devwidgets/mac/Default.png" alt="Background Image">
+        <div class="mac_header">
+            <div class="mac_logo_container">
+                <img src="" class="mac_sakai_logo" alt= "Sakai logo" title="Sakai logo">
+            </div>
+            <div class="mac_tabs">
+                <ul>
+                    <li>
+                        <p>Settings</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <form id="mac_token_form" method="post" action="javascript:;">
+            <br/>
+            <input type="text" name="token" value="Your Token" id="mac_token" class="flickr_changeColorNormal"/>
+            <button id="mac_token_button" type="submit" class="s3d-button s3d-button-primary">
+                <span class="s3d-button-inner">Submit</span>
+            </button>
+        </form>
+        <p id='mac_token_tag_text'>Your token:</p>
+        <p id='mac_token_tag'><!-- --></p>
+        <button id="mac_logout_button" type="submit" class="s3d-button s3d-button-primary">
+                <span class="s3d-button-inner">Logout</span>
+         </button>
+        <p id="mac_notokenterror">Enter a token please</p>
+        <p id="mac_anothertoken">Your token is not valid</p>
+        <div id="mac_doneButton">
+        </div>
+    </div>
+
+    <script type="text/javascript" src="javascript/loadFiles.js"></script>
+    </body>
+</html>
