@@ -41,9 +41,12 @@
             </div>
         </div>
 
-        <div id="mac_chat">
-            
-        </div>
+        <div id="mac_chat"><!--
+        --></div>
+
+        <div id="mac_users"><!--
+        --></div>
+
         <!-- TEMPLATES -->
         <div id='mac_recentmessages_template'><!--
             <div id="mac_recentMessages">
@@ -72,7 +75,9 @@
         <img src="images/chat.png" />
            <ul>
                {for contact in contacts}
-                <li>${contact.user}</li>
+                   {if contact['sakai:status'] == "online" && contact.chatstatus != "offline"}
+                        <li>${contact.user}</li>
+                    {/if}
                 {/for}
         --></div>
 
@@ -85,6 +90,11 @@
                 <button id="mac_back_button" type="submit" class="s3d-button s3d-button-primary">
                     <span class="s3d-button-inner">Back</span>
                 </button>
+        --></div>
+
+        <div id="mac_users_online_template"><!--
+            <img src="../navigationchat/images/people.png" width="16px" class="chat_people_icon" alt="Online"/>
+            (${contacts.length})
         --></div>
 
         <div id="mac_not_logged_in_template"><!--

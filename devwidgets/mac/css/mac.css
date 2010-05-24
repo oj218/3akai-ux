@@ -85,6 +85,9 @@ hr{margin-right:3px;}
 #mac_profile div { position:absolute; left:80px;}
 #mac_profile p spam{ font-weight:bold;}
 
-
+/* Chat */
 #mac_chat img{position:absolute; top:267px;left:12px;}
-#mac_chat ul {bottom:20px; position:absolute; background-color:red;left:190px;}
+#mac_chat ul {background-color:#767a7c; bottom:206px;display:none; left:380px;padding:0 20px 0 20px!important; position:absolute; top:150px; list-style-type:none;color:#fff;}
+
+/* Chat users */
+#mac_users{background-color:#454A4F; color:#fff;height:25px;padding-left:10px; width:50px; position:absolute; top:267px;left:410px; display:none;}

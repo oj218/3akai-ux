@@ -28,16 +28,38 @@
     var first = true;
 
     var $macChat = $("#mac_chat");
+    var $macUsers = $('#mac_users');
 
     // Templates
     var $macChatTemplate = $('#mac_chat_template');
+    var $macUsersOnlineTemplate = $('#mac_users_online_template');
+
+    var getOnlineUsers = function(data){
+        var onlineFriends = [];
+
+        $(data.contacts).each(function(){
+            // Check if a friend is online or not
+            alert($(this["sakai:status"]));
+
+            if (this["sakai:status"] === "online" && this.chatstatus !== "offline") {
+                onlineFriends.push($(this));
+            }
+        });
+            data.contacts = onlineFriends;
+            return data;
+    };
 
     var showOnlineFriends = function(data){
         $macChat.html($.TemplateRenderer($macChatTemplate,data));
+        $macUsers.html($.TemplateRenderer($macUsersOnlineTemplate,data));
+        if(data.contacts.length){
+            $macUsers.show();
+        }
     };
 
 
     var getOnlineContacts = function(token){
+
         if (first) {
             globToken = token;
             first= false;
