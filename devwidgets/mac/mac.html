@@ -84,10 +84,10 @@
         --></div>
 
        <div id="mac_chat_window_template"><!--
-            <div class="mac_chat_window">
+            <div class="mac_chat_window" id="chat_with_${user}" >
                 <div id='mac_content' class="mac_chat_content"></div>
                 <input class='mac_chat_input' type="text" title="Please input the chat text" />
-                <div class="mac_chat_with">${user}</div>
+                <div class="mac_chat_with" >${user}</div>
             </div>
         --></div>
 
@@ -104,7 +104,7 @@
 
         <div id="mac_users_online_template"><!--
             <img src="../navigationchat/images/people.png" width="16px" class="chat_people_icon" alt="Online"/>
-            (${contacts.length})
+            (${count})
         --></div>
 
         <div id="mac_not_logged_in_template"><!--
@@ -113,6 +113,14 @@
             <p></div></p>
         --></div>
     </div>
+
+        <!-- CHAT MESSAGE -->
+    <div id="chat_content_template"><!--
+        <div class="mac_content_container">
+            <span class="mac_content_name">${name}</span><span class="mac_content_time">${time}</span><br />
+            <span class="mac_content_message">${message}</span>
+        </div>
+    --></div>
 
     <!-- BACKSIDE OF THE WIDGET-->
     <div id="mac_back">

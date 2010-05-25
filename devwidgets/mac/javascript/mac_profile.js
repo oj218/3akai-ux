@@ -27,9 +27,13 @@
 
     // Variables
     var $mac_profile = $('#mac_profile');
-
+    var profile;
     // Global variables
     var url = "http://localhost:8080";
+
+    var getProfile = function(){
+        return profile;
+    };
 
     /**
      * This function will display the profile data
@@ -37,7 +41,7 @@
      */
     var displayProfileInformation = function(data){
 
-        var profile = data;
+        profile = data;
         profile.userPicture = constructProfilePicture(data);
         $mac_profile.html($.TemplateRenderer($macProfileTemplate,profile));
     };

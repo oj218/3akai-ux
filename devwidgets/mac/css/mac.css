@@ -87,10 +87,10 @@ hr{margin-right:3px;}
 
 /* Chat */
 #mac_chat img{position:absolute; top:267px;left:12px;}
-#mac_chat ul {bottom:226px;display:none; left:360px;padding:10px 20px 10px 10px!important; position:absolute; top:151px; list-style-type:none;background-color:#fff !important;color:#058EC4; height:80px;width:80px;}
+#mac_chat ul {bottom:226px;border:1px solid #767a7c;display:none; left:360px;padding:10px 20px 10px 10px!important; position:absolute; top:151px; list-style-type:none;background-color:#fff !important;color:#058EC4; height:80px;width:80px;}
 
 /* Chat users */
-#mac_users{background-color:#454A4F; color:#fff;font-size:0.8em;height:25px;padding-left:10px; width:50px; position:absolute; top:267px;left:410px; display:none;}
+#mac_users{background-color:#454A4F; color:#fff;font-size:0.8em;height:25px;padding-left:10px; width:50px; position:absolute; top:267px;left:410px; display:none;cursor:pointer;}
 #mac_users img {margin-top:5px;}
 
 /* Chat */
@@ -103,14 +103,24 @@ hr{margin-right:3px;}
 .mac_available_status_offline {background:url("../../navigationchat/images/bullet_red.png") no-repeat scroll -3px -1px transparent; }
 
 /* Chat Window */
-.mac_chat_window{ width:150px; position:absolute;background-color:#fff; border:1px solid #767a7c;bottom:75px;z-index:999;left:20px}
+.mac_chat_window{ width:150px; position:absolute;background-color:#fff; bottom: -38px;z-index:999;left:20px}
 
 
 /* Chat input */
-.mac_chat_input{ height:20px; border:none;border:1px solid #767a7c;}
+.mac_chat_input{ height:20px; border:none;border-right:1px solid #767a7c;border-left:1px solid #767a7c; border-bottom:1px solid #767a7c;width: 148px; padding:0px !important;margin:0px !important; }
 
 /* Chat context */
-.mac_chat_content{height:120px!important;}
+.mac_chat_content{height:120px!important; border:1px solid #767a7c;overflow:auto;}
 
 /* User box in the chat */
-.mac_chat_with{height:25px;}
+.mac_chat_with{height:18px;border-right:1px solid #767a7c;border-left:1px solid #767a7c; cursor:pointer;line-height:30px;text-align:left;padding:5px 0 0 15px;color:#666666 !important;font:13px/1.231 arial,helvetica,clean,sans-serif;}
+
+/* Chat messages */
+.mac_content_name, .mac_content_time {color:#ccc;}
+.mac_content_name {float:left;font-weight:bold;}
+.mac_content_time {float:right;}
+.mac_content_container{border-bottom:1px #d3d3d3 solid !important;padding:1px; font-size:0.8em;}
+
+/* Inactive chat */
+.mac_chat_hide{background-color:#767a7c;color:#fff!important; font-weight:bold;}
+.mac_chat_hide:hover{text-decoration:underline;}
