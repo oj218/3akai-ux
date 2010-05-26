@@ -43,8 +43,9 @@
         <div id="mac_chat_windows">
             
         </div>
-        <div id="mac_chat"><!--
-        --></div>
+        <div id="mac_chat">
+            
+        </div>
 
         <div id="mac_users"><!--
         --></div>
@@ -53,7 +54,7 @@
         <div id='mac_recentmessages_template'><!--
             <div id="mac_recentMessages">
                 <ul>
-                    <li id='mac_table_header' >From <span>Subject</span> <span id="mac_user">Welcome test </span></li>
+                    <li id='mac_table_header' >From <span>Subject</span> <span id="mac_user">Welcome ${user} </span></li>
                     <hr />
                    {for message in results}
                         <li {if message_index % 2} class="mac_background" {/if} ><span class="mac_user_repeat">${message["sakai:from"]} </span> :<a href="javascript:;" class="mac_short"> ${message["sakai:subject"]}</a><span class="mac_hidden">${message["sakai:subject"]}<span><br />
@@ -103,7 +104,7 @@
         --></div>
 
         <div id="mac_users_online_template"><!--
-            <img src="../navigationchat/images/people.png" width="16px" class="chat_people_icon" alt="Online"/>
+            <img src="" width="16px" id="mac_chat_people_icon" alt="Online"/>
             (${count})
         --></div>
 

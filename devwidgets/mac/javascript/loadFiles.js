@@ -74,6 +74,7 @@
         urlArray.push([sakaiUrl + '/devwidgets/mac/javascript/AppleButton.js','js']);
         urlArray.push([sakaiUrl + '/devwidgets/mac/javascript/AppleInfoButton.js','js']);
         urlArray.push([sakaiUrl + '/dev/_lib/jquery/plugins/jquery.threedots.js','js']);
+        urlArray.push([sakaiUrl + '/dev/_configuration/config.js','js'],'js');
         urlArray.push([sakaiUrl + '/dev/_lib/sakai_util/sakai_magic.js','js']);
         urlArray.push([sakaiUrl + '/devwidgets/mac/javascript/mac_profile.js','js']);
         urlArray.push([sakaiUrl + '/devwidgets/mac/javascript/mac_chat.js','js']);

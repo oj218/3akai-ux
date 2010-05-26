@@ -76,6 +76,41 @@
     var $macNoMessage = $('#mac_nomessage');
 
 
+    /////////////////////
+    //   Chat Status   //
+    /////////////////////
+
+
+    /**
+     * Set the chatstatus of the user
+     * @param {String} chatstatus The chatstatus which should be
+     * online/offline or busy
+     */
+    var sendChatStatus = function(){
+
+        var data = {
+            "sakai:status": "online",
+            "_charset_": "utf-8"
+        };
+
+        $.ajax({
+            url: url + sakai.config.URL.PRESENCE_SERVICE,
+            type: "POST",
+            beforeSend:function(xhr){
+            // Set a new field in the header with a token that is generated when the user is logged in in sakai
+            xhr.setRequestHeader("x-sakai-token",globToken);
+            },
+            data: data,
+            success: function(data){
+
+            },
+            error: function(xhr, textStatus, thrownError){
+                alert("An error occurend when sending the status to the server.");
+            }
+        });
+    };
+
+
     ////////////////////
     // Reusable Code //
     ///////////////////
@@ -222,6 +257,8 @@
                 data.results = data.results.splice(data.results.length - 7, data.results.length);
             }
 
+            data.user = getProfile().profile.userid;
+
             //Render the messages
             $sakaiBody.html($.TemplateRenderer($macRecentmessagesTemplate, data));
             $macRecentMessages = $('#mac_recentMessages');
@@ -294,19 +331,35 @@
            $macTokenTag.html(values.token);
            getRecentMessages(values.token);
            getProfileInformation(values.token);
-           getOnlineContacts(values.token);
     };
 
     /**
      * This function will log the user out.
      */
     var logout = function(){
-           widget.setPreferenceForKey('', key);
-           $macTokenForm.show();
-           $macTokenTagText.hide();
-           $sakaiBody.html($.TemplateRenderer($macNotLoggedInTemplate,{}));
-           $macTokenTag.html("");
-           $logoutButton.hide();
+
+           $.ajax({
+            url: sakai.config.URL.LOGOUT_SERVICE,
+            type: "POST",
+            beforeSend:function(xhr){
+
+                // Set a new field in the header with a token that is generated when the user is logged in in sakai
+                xhr.setRequestHeader("x-sakai-token",token);
+            },
+            complete: function(){
+               widget.setPreferenceForKey('', key);
+               $macTokenForm.show();
+               $macTokenTagText.hide();
+               $sakaiBody.html($.TemplateRenderer($macNotLoggedInTemplate,{}));
+               $macTokenTag.html("");
+               $logoutButton.hide();
+
+            },
+            data: {
+                "sakaiauth:logout": "1",
+                "_charset_": "utf-8"
+            }
+        });
     };
 
     var loadImages = function(){
@@ -384,7 +437,6 @@
                 $logoutButton.show();
                 getRecentMessages(widget.preferenceForKey(key));
                 getProfileInformation(widget.preferenceForKey(key));
-                getOnlineContacts();
             }else{
                 $sakaiBody.html($.TemplateRenderer($macNotLoggedInTemplate,{}));
             }

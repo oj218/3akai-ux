@@ -42,11 +42,12 @@
     var displayProfileInformation = function(data){
 
         profile = data;
+        sendChatStatus();
+        getOnlineContacts(globToken);
+        checkNewMessages();
         profile.userPicture = constructProfilePicture(data);
         $mac_profile.html($.TemplateRenderer($macProfileTemplate,profile));
     };
-
-
 
     /**
      * Check whether there is a valid picture for the user

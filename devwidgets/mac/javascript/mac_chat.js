@@ -27,6 +27,7 @@
     var globToken;
     var first = true;
     var open = false;
+    var PrevOnlineUsers;
 
     var $macChat = $("#mac_chat");
     var $macUsers = $('#mac_users');
@@ -36,6 +37,8 @@
     var $macContent = $('#mac_content');
     var $macChatContent = $('.mac_chat_content');
     var $macChatWindow = $('.mac_chat_window');
+    var $macChatPeopleIcon = $('#mac_chat_people_icon');
+    var onlineUsers;
 
     /* CSS STYLES */
    var macChatHide = 'mac_chat_hide';
@@ -45,19 +48,6 @@
     var $macUsersOnlineTemplate = $('#mac_users_online_template');
     var $macChatWindowTemplate = $('#mac_chat_window_template');
     var $chatContentTemplate = $("#chat_content_template");
-
-    var getOnlineUsers = function(data){
-        var onlineFriends = [];
-
-        $(data.contacts).each(function(){
-            if (this["sakai:status"] === "online" && this.chatstatus !== "offline") {
-                onlineFriends.push($(this));
-            }
-        });
-            data.contacts = onlineFriends;
-            return data;
-    };
-
 
     /**
      * Format the input date to a AM/PM Date
@@ -172,7 +162,7 @@
 
     var sendMessage = function(ev){
         if (ev.keyCode === 13) {
-            var to = $($macChatWith,$(this).parent()).html();
+            var to = $('.mac_chat_with',$(this).parent()).html();
             var text = $(this).val();
             if(text){
 
@@ -187,7 +177,7 @@
                         "sakai:sendstate": "pending",
                         "sakai:messagebox": "outbox",
                         "sakai:to": "chat:" + to,
-                        "sakai:from": getProfile().profile.firstName,
+                        "sakai:from": getProfile().profile.userid,
                         "sakai:subject": "",
                         "sakai:body": text,
                         "sakai:category": "chat",
@@ -201,28 +191,25 @@
     };
 
     var hideChat = function(){
-
-        $macChatContent = $('.mac_chat_content');
-        $macChatInput = $('.mac_chat_input');
-        $($macChatContent,$(this).parent()).hide();
-        $($macChatInput,$(this).parent()).hide();
-        $($macChatWith,$(this).parent()).addClass(macChatHide);
+        $('.mac_chat_content',$(this).parent()).hide();
+        $('.mac_chat_input',$(this).parent()).hide();
+        $('.mac_chat_with',$(this).parent()).addClass(macChatHide);
     };
 
     var showChat = function(){
-        $($macChatContent,$(this).parent()).show();
-        $($macChatInput,$(this).parent()).show();
-        $($macChatWith,$(this).parent()).removeClass(macChatHide);
+        $('.mac_chat_content',$(this).parent()).show();
+        $('.mac_chat_input',$(this).parent()).show();
+        $('.mac_chat_with',$(this).parent()).removeClass(macChatHide);
     };
 
     var checkExistance = function(user){
         $macChatWindow = $('.mac_chat_window');
          var check ;
 
-        $($macChatWindow).each(function(){
-
+        $($macChatWindow).each(function(index,test){
             if($(this).attr('id').split('_')[$($(this).attr('id').split('_')).length-1] === user){
                 check = true;
+                return false;
             }else{
                 check = false;
             }
@@ -232,19 +219,70 @@
 
     var startChat = function(){
 
+        // Check if the chatwindow for that user allready exists
         if (checkExistance($(this).html()) !== true) {
             var user = {
                 'user': $(this).html()
             };
+
             $macChatWindows.append($.TemplateRenderer($macChatWindowTemplate, user));
             $macChatWith = $('.mac_chat_with');
+            $macChatWindow = $('.mac_chat_window');
             if($($macChatWindow).length){
                 $($macChatWindow[$($macChatWindow).length-1]).css('left',($($macChatWindow).length -1) *150 + 'px');
+                $('.mac_chat_with',$('#chat_with_'+user.user)).toggle(hideChat, showChat);
+                $('.mac_chat_input',$('#chat_with_'+user.user)).bind("keydown", sendMessage);
             }
+        }
+    };
 
-            $macChatWith.toggle(hideChat, showChat);
-            $macChatInput = $('.mac_chat_input');
-            $macChatInput.bind("keydown", sendMessage);
+    var requestMessages = function(){
+        var tosend = onlineContacts.join(",");
+
+        $.ajax({
+            url: url + sakai.config.URL.CHAT_GET_SERVICE.replace(/__KIND__/, "unread"),
+            data: {
+                "_from": tosend,
+                "items": 1000,
+                "t": pulltime
+            },
+            cache: false,
+            sendToLoginOnFail: true,
+            success: function(data){
+                
+            },
+            error: function(xhr, textStatus, thrownError){
+            
+            }
+        });
+    };
+    var checkNewMessages = function(){
+
+        // Send an Ajax request to check if there are any new messages, but only if there are contacts online
+        if (onlineUsers) {
+            if (onlineUsers.count > 0) {
+                $.ajax({
+                    url:  url + "/_user" + getProfile().profile.path + "/message.chatupdate.json",
+                    beforeSend:function(xhr){
+
+                    // Set a new field in the header with a token that is generated when the user is logged in in sakai
+                    xhr.setRequestHeader("x-sakai-token",globToken);
+                    },
+                    success: function(data){
+
+                        // Get the time
+                        time = data.time;
+                        pulltime = data.pulltime;
+
+                        if (data.update) {
+                            requestMessages()
+                        }
+                        else {
+                            setTimeout(checkNewMessages, 5000);
+                        }
+                    }
+                });
+            }
         }
     };
 
@@ -262,7 +300,6 @@
      */
     var showOnlineUsers = function(){
         open = true;
-
          $('ul',$macChat).show();
          $(this).addClass('activeChat');
     };
@@ -273,26 +310,39 @@
      */
     var showOnlineFriends = function(data){
         var count = 0;
+        onlineContacts = [];
+
         $macChat.html($.TemplateRenderer($macChatTemplate,data));
         $(data.contacts).each(function(){
             if((this['sakai:status'] !== "offline")){
                 if ((this.profile.chatstatus !== "offline")) {
+                    onlineContacts.push(this.user);
                     count++;
                 }
             }
         });
-        var onlineUsers = {
+         onlineUsers = {
             'count':count
         };
-        $macUsers.html($.TemplateRenderer($macUsersOnlineTemplate,onlineUsers));
-        $('a',$macChat).bind('click',startChat);
 
-        if(open === true){
-            $('ul',$macChat).show();
+        if(PrevOnlineUsers !== onlineUsers.count){
+            checkNewMessages();
         }
-        if(data.contacts.length){
-            $macUsers.show();
-            $macUsers.toggle(showOnlineUsers,hideOnlineUsers);
+
+        PrevOnlineUsers = onlineUsers.count;
+        if (count) {
+            $macUsers.html($.TemplateRenderer($macUsersOnlineTemplate, onlineUsers));
+            $('a', $macChat).bind('click', startChat);
+            $macChatPeopleIcon = $('#mac_chat_people_icon');
+            $('#mac_chat_people_icon').attr('src',url+'/devwidgets/navigationchat/images/people.png');
+            if (open === true) {
+                $('ul', $macChat).show();
+            }
+            if (data.contacts.length) {
+                $macUsers.show();
+                $macUsers.unbind('click');
+                $macUsers.toggle(showOnlineUsers, hideOnlineUsers);
+            }
         }
     };
 

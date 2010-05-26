@@ -65,7 +65,7 @@ hr{margin-right:3px;}
 
 /* BUTTON */
 #mac_token_button{top:10px;}
-#mac_back_button{position:absolute;top:200px;}
+#mac_back_button{position:absolute;top:160px;}
 
 /* SCROLL STUFF */
 #mac_myscrollarea{height:100px;position:absolute;margin-top:10px;}
@@ -103,7 +103,7 @@ hr{margin-right:3px;}
 .mac_available_status_offline {background:url("../../navigationchat/images/bullet_red.png") no-repeat scroll -3px -1px transparent; }
 
 /* Chat Window */
-.mac_chat_window{ width:150px; position:absolute;background-color:#fff; bottom: -38px;z-index:999;left:20px}
+.mac_chat_window{ width:150px; position:absolute;background-color:#fff; z-index:999; bottom:0px;left:10px;}
 
 
 /* Chat input */
@@ -124,3 +124,6 @@ hr{margin-right:3px;}
 /* Inactive chat */
 .mac_chat_hide{background-color:#767a7c;color:#fff!important; font-weight:bold;}
 .mac_chat_hide:hover{text-decoration:underline;}
+
+/* Container for all the chat windows */
+#mac_chat_windows{ width:474px; height:26px; bottom:20px; left:20px; position:absolute; bottom:10px; }
