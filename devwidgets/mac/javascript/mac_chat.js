@@ -28,6 +28,8 @@
     var first = true;
     var open = false;
     var PrevOnlineUsers;
+    var time = [];
+    var pulltime = "2100-10-10T10:10:10.000Z";
 
     var $macChat = $("#mac_chat");
     var $macUsers = $('#mac_users');
@@ -85,8 +87,10 @@
      * @param {Object} inputmessage The text that needs to be added to the message
      * @param {Object} inputdate The date of the message
      */
-    var createChatMessage = function(isMessageFromOtherUser, otherUserName, inputmessage, inputdate){
+    var createChatMessage = function(isMessageFromOtherUser, otherUserName, inputmessage, inputdate,addId){
+
         var message = {};
+        message.id = addId;
 
         // Check if the message is from the other user
         if (isMessageFromOtherUser) {
@@ -128,9 +132,9 @@
      * @param {Object} el Element where the element needs to be attached to
      * @param {Object} message Message that needs to be appended
      */
-    var addChatMessage = function(el, message){
+    var addChatMessage = function(el, message,addId){
         if (el.length > 0) {
-            message = createChatMessage(false, message['sakai:from'], message["sakai:body"], message["sakai:created"]);
+            message = createChatMessage(false, message['sakai:from'], message["sakai:body"], message["sakai:created"],addId);
             el.append(renderChatMessage(message));
         }
     };
@@ -148,7 +152,7 @@
             success: function(data){
 
                 // Append the message to the chatbox
-                addChatMessage($('.mac_chat_content',$chatWindow.parent()),data.message);
+                addChatMessage($('.mac_chat_content',$chatWindow.parent()),data.message,true);
 
                 $chatWindow.val('');
             },
@@ -170,7 +174,7 @@
                     var message = {};
 
                     // Fill in the object with the appropriate data
-                    message = createChatMessage(false, "", text, new Date());
+                    message = createChatMessage(false, "", text, new Date(),false);
 
                     var data = {
                         "sakai:type": "chat",
@@ -236,33 +240,96 @@
         }
     };
 
+    var appendMessageToHTML = function(htmlMessage,userId){
+
+        user = {
+            'user':userId
+        }
+
+
+        if (!$('#mac_delete').length) {
+            if (checkExistance(userId)) {
+                $('.mac_chat_content', $('#chat_with_' + userId)).append(htmlMessage);
+            }
+            else {
+                $macChatWindows.append($.TemplateRenderer($macChatWindowTemplate, user));
+                $macChatWith = $('.mac_chat_with');
+                $macChatWindow = $('.mac_chat_window');
+                if ($($macChatWindow).length) {
+                    $($macChatWindow[$($macChatWindow).length - 1]).css('left', ($($macChatWindow).length - 1) * 150 + 'px');
+                    $('.mac_chat_with', $('#chat_with_' + user.user)).toggle(hideChat, showChat);
+                    $('.mac_chat_input', $('#chat_with_' + user.user)).bind("keydown", sendMessage);
+                }
+                $('.mac_chat_content', $('#chat_with_' + userId)).append(htmlMessage);
+            }
+        }else{
+            $('#mac_delete').removeAttr('id');
+        }
+    };
+
+    var renderReceivedChatMessage = function(data){
+        var userid;
+        if(data.results){
+            $(data.results).each(function(){
+                var isMessageFromOtherUser;
+                var profile = getProfile();
+
+               if(this.userFrom[0].userid === profile.profile['rep:userId']){
+                        isMessageFromOtherUsertrue = false 
+                        chatwithusername = 'me';
+                        userid = this.userTo[0].userid;
+                  } else{
+                        isMessageFromOtherUser = true;
+                        chatwithusername = this.userFrom[0].userid;
+                        userid = this.userFrom[0].userid;
+                }
+                var message = createChatMessage(isMessageFromOtherUser, chatwithusername,this['sakai:body'], this['sakai:created'],false)
+                appendMessageToHTML(renderChatMessage(message),userid);
+            })
+        }
+    };
+
     var requestMessages = function(){
         var tosend = onlineContacts.join(",");
-
+        
         $.ajax({
             url: url + sakai.config.URL.CHAT_GET_SERVICE.replace(/__KIND__/, "unread"),
+            beforeSend: function(xhr){
+
+                // Set a new field in the header with a token that is generated when the user is logged in in sakai
+                xhr.setRequestHeader("x-sakai-token", globToken);
+            },
             data: {
                 "_from": tosend,
                 "items": 1000,
                 "t": pulltime
             },
             cache: false,
-            sendToLoginOnFail: true,
+
             success: function(data){
-                
+               renderReceivedChatMessage(data);
             },
             error: function(xhr, textStatus, thrownError){
-            
+                alert('error');
             }
         });
     };
     var checkNewMessages = function(){
+
+        // Create a data object
+        var data = {};
+
+        // Check if the time is not 0, if so set the current time
+        if (time.length !== 0) {
+            data.t = time;
+        }
 
         // Send an Ajax request to check if there are any new messages, but only if there are contacts online
         if (onlineUsers) {
             if (onlineUsers.count > 0) {
                 $.ajax({
                     url:  url + "/_user" + getProfile().profile.path + "/message.chatupdate.json",
+                    data:data,
                     beforeSend:function(xhr){
 
                     // Set a new field in the header with a token that is generated when the user is logged in in sakai
@@ -272,14 +339,15 @@
 
                         // Get the time
                         time = data.time;
+
                         pulltime = data.pulltime;
 
                         if (data.update) {
                             requestMessages()
                         }
-                        else {
-                            setTimeout(checkNewMessages, 5000);
-                        }
+
+                            setTimeout(checkNewMessages, 3000);
+
                     }
                 });
             }

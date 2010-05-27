@@ -338,15 +338,6 @@
      */
     var logout = function(){
 
-           $.ajax({
-            url: sakai.config.URL.LOGOUT_SERVICE,
-            type: "POST",
-            beforeSend:function(xhr){
-
-                // Set a new field in the header with a token that is generated when the user is logged in in sakai
-                xhr.setRequestHeader("x-sakai-token",token);
-            },
-            complete: function(){
                widget.setPreferenceForKey('', key);
                $macTokenForm.show();
                $macTokenTagText.hide();
@@ -354,9 +345,20 @@
                $macTokenTag.html("");
                $logoutButton.hide();
 
+           $.ajax({
+            url: url + sakai.config.URL.PRESENCE_SERVICE,
+            type: "POST",
+            beforeSend:function(xhr){
+
+                // Set a new field in the header with a token that is generated when the user is logged in in sakai
+                xhr.setRequestHeader("x-sakai-token",token);
+            },
+            complete: function(){
+               
+
             },
             data: {
-                "sakaiauth:logout": "1",
+                "sakai:status": "offline",
                 "_charset_": "utf-8"
             }
         });

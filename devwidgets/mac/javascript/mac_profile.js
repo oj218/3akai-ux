@@ -32,6 +32,7 @@
     var url = "http://localhost:8080";
 
     var getProfile = function(){
+
         return profile;
     };
 

@@ -117,7 +117,7 @@
 
         <!-- CHAT MESSAGE -->
     <div id="chat_content_template"><!--
-        <div class="mac_content_container">
+        <div class="mac_content_container" {if id} id="mac_delete" {/if} >
             <span class="mac_content_name">${name}</span><span class="mac_content_time">${time}</span><br />
             <span class="mac_content_message">${message}</span>
         </div>
