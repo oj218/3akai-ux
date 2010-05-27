@@ -345,6 +345,11 @@
                $macTokenTag.html("");
                $logoutButton.hide();
 
+     var data = {
+            "sakai:status": "offline",
+            "_charset_": "utf-8"
+        };
+
            $.ajax({
             url: url + sakai.config.URL.PRESENCE_SERVICE,
             type: "POST",
@@ -353,14 +358,12 @@
                 // Set a new field in the header with a token that is generated when the user is logged in in sakai
                 xhr.setRequestHeader("x-sakai-token",token);
             },
-            complete: function(){
-               
+            succes: function(){
+
+
 
             },
-            data: {
-                "sakai:status": "offline",
-                "_charset_": "utf-8"
-            }
+            data:data
         });
     };
 

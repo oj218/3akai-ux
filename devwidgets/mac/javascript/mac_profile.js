@@ -69,6 +69,7 @@
      *  This function will get the profile information
      */
     var getProfileInformation = function(token){
+        globToken = token;
         $.ajax({
             url: path+"/system/me",
             beforeSend:function(xhr){

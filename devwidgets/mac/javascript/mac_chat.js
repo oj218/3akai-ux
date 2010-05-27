@@ -117,7 +117,6 @@
         return message;
     };
 
-
     /**
      * Return the render of a certain chat message
      * @param {Object} message Message that needs to be rendered
@@ -126,7 +125,6 @@
         return $.TemplateRenderer($chatContentTemplate, message);
     };
 
-
     /**
      * Add a chat message
      * @param {Object} el Element where the element needs to be attached to
@@ -134,12 +132,17 @@
      */
     var addChatMessage = function(el, message,addId){
         if (el.length > 0) {
-            message = createChatMessage(false, message['sakai:from'], message["sakai:body"], message["sakai:created"],addId);
-            el.append(renderChatMessage(message));
+            messageHTML = createChatMessage(false, message['sakai:from'], message["sakai:body"], message["sakai:created"],addId);
+            el.append(renderChatMessage(messageHTML));
+            el.attr("scrollTop", el.attr("scrollHeight"));
         }
     };
 
-
+    /**
+     * 
+     * @param {Object} data, The response from the ajax call
+     * @param {Object} $chatWindow, This is the jQuery object to which the message will be appended to
+     */
     var sendMessageAjax = function(data,$chatWindow){
 
         $.ajax({
@@ -164,17 +167,21 @@
         
     };
 
+    /**
+     * This function is executed when a user does a keypress
+     * @param {Object} ev
+     */
     var sendMessage = function(ev){
+
+        //Check if enter is pressed
         if (ev.keyCode === 13) {
+
+            // Check to who the message has to be sent
             var to = $('.mac_chat_with',$(this).parent()).html();
+
+            // Get the message
             var text = $(this).val();
             if(text){
-
-                    // Create a chat message object
-                    var message = {};
-
-                    // Fill in the object with the appropriate data
-                    message = createChatMessage(false, "", text, new Date(),false);
 
                     var data = {
                         "sakai:type": "chat",
@@ -194,22 +201,34 @@
         }
     };
 
+    /**
+     *  This function will hide the chat
+     */
     var hideChat = function(){
         $('.mac_chat_content',$(this).parent()).hide();
         $('.mac_chat_input',$(this).parent()).hide();
         $('.mac_chat_with',$(this).parent()).addClass(macChatHide);
     };
 
+    /**
+     * This function will show the chat
+     */
     var showChat = function(){
         $('.mac_chat_content',$(this).parent()).show();
         $('.mac_chat_input',$(this).parent()).show();
         $('.mac_chat_with',$(this).parent()).removeClass(macChatHide);
     };
 
+    /**
+     * Check if a chat conversation exists
+     * @param {Object} user
+     * @example checkExistance('admin')
+     */
     var checkExistance = function(user){
         $macChatWindow = $('.mac_chat_window');
          var check ;
 
+        //Loop over all the conversation and see if there's a div with the id with the userid in 
         $($macChatWindow).each(function(index,test){
             if($(this).attr('id').split('_')[$($(this).attr('id').split('_')).length-1] === user){
                 check = true;
@@ -221,18 +240,22 @@
         return check;
     };
 
+    /**
+     * This function will create a chat frame if there is no chat frame for the conversation
+     */
     var startChat = function(){
 
         // Check if the chatwindow for that user allready exists
-        if (checkExistance($(this).html()) !== true) {
+        if (!checkExistance($(this).html())) {
             var user = {
                 'user': $(this).html()
             };
-
             $macChatWindows.append($.TemplateRenderer($macChatWindowTemplate, user));
             $macChatWith = $('.mac_chat_with');
             $macChatWindow = $('.mac_chat_window');
             if($($macChatWindow).length){
+
+                // Add a chat frame next to the other chat frame
                 $($macChatWindow[$($macChatWindow).length-1]).css('left',($($macChatWindow).length -1) *150 + 'px');
                 $('.mac_chat_with',$('#chat_with_'+user.user)).toggle(hideChat, showChat);
                 $('.mac_chat_input',$('#chat_with_'+user.user)).bind("keydown", sendMessage);
@@ -240,17 +263,31 @@
         }
     };
 
+    /**
+     * This function will append a received message to the right frame
+     * @param {Object} htmlMessage
+     * @param {Object} userId
+     */
     var appendMessageToHTML = function(htmlMessage,userId){
 
         user = {
             'user':userId
         }
 
+        // When the users sends a message it's appended to the frame
+        // But every 3 sec there's a check if there are new message
+        // This will return this just sent message too, it's essential this isn't shown too
+        // So when it's appended to the frame it gets a unique id
+        // If this id exists it shouldn't be appended to the frame a second time
 
         if (!$('#mac_delete').length) {
+
+            // check if there's alleady a converstion with this user
+            // IF there is one append the message to that conversation
             if (checkExistance(userId)) {
                 $('.mac_chat_content', $('#chat_with_' + userId)).append(htmlMessage);
             }
+            // else make a new conversation
             else {
                 $macChatWindows.append($.TemplateRenderer($macChatWindowTemplate, user));
                 $macChatWith = $('.mac_chat_with');
@@ -265,11 +302,23 @@
         }else{
             $('#mac_delete').removeAttr('id');
         }
+
+        $('.mac_chat_content', $('#chat_with_' + userId)).attr("scrollTop", $('.mac_chat_content', $('#chat_with_' + userId)).attr("scrollHeight"));
+        
     };
 
+    /**
+     * The purpose of this function is to render html based on an object
+     * @param {Object} data
+     */
     var renderReceivedChatMessage = function(data){
         var userid;
+
+        // Check if there are chat messages
         if(data.results){
+
+            // Loop over them to check if it's from the user himself or another user
+            // This can happen when a user sends a chat message from another platform( mobile, website)
             $(data.results).each(function(){
                 var isMessageFromOtherUser;
                 var profile = getProfile();
@@ -289,9 +338,12 @@
         }
     };
 
+    /**
+     * This function will request the chatmessages
+     */
     var requestMessages = function(){
         var tosend = onlineContacts.join(",");
-        
+
         $.ajax({
             url: url + sakai.config.URL.CHAT_GET_SERVICE.replace(/__KIND__/, "unread"),
             beforeSend: function(xhr){
@@ -314,6 +366,10 @@
             }
         });
     };
+
+    /**
+     * This function will check if there are any new chatmessages
+     */
     var checkNewMessages = function(){
 
         // Create a data object
