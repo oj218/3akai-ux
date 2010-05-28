@@ -49,7 +49,7 @@
 
         <div id="mac_users"><!--
         --></div>
-
+        <a href="javascript:;" id="mac_more" ><img src="images/more.png"  alt="All the conversations"></a>
         <!-- TEMPLATES -->
         <div id='mac_recentmessages_template'><!--
             <div id="mac_recentMessages">
@@ -68,9 +68,9 @@
         <div id="mac_profile_template"><!--
             <img src="${userPicture}" />
             <div>
-                <p><span>Name: </span>${profile.firstName}<p>
-                <p><span>Surname: </span>${profile.lastName}<p>
-                <p><span>E-mail: </span>${profile.email}<p>
+                {if profile.firstName}<p><span>Name: </span>${profile.firstName}<p>{/if}
+                {if profile.lastName}<p><span>Surname: </span>${profile.lastName}<p>{/if}
+                {if profile.email}<p><span>E-mail: </span>${profile.email}<p>{/if}
             </div>
         --></div>
 
@@ -79,14 +79,14 @@
            <ul>
                {for contact in contacts}
                    {if contact['sakai:status'] == "online" && contact.profile.chatstatus != "offline"}
-                        <li class="mac_available_status_${contact.profile.chatstatus}"><a href="javascript:;">${contact.user}</a></li>
+                        <li class="mac_available_status_{if contact.profile.chatstatus}${contact.profile.chatstatus}{else}online{/if}"><a href="javascript:;">${contact.user}</a></li>
                     {/if}
                 {/for}
         --></div>
 
        <div id="mac_chat_window_template"><!--
             <div class="mac_chat_window" id="chat_with_${user}" >
-                <div id='mac_content' class="mac_chat_content"></div>
+                <div id='mac_content' class="mac_chat_content"><div><img src="" class="mac_close_chat" alt="Close that chat"></div></div>
                 <input class='mac_chat_input' type="text" title="Please input the chat text" />
                 <div class="mac_chat_with" >${user}</div>
             </div>
@@ -105,7 +105,7 @@
 
         <div id="mac_users_online_template"><!--
             <img src="" width="16px" id="mac_chat_people_icon" alt="Online"/>
-            (${count})
+            <span>(${count})</span>
         --></div>
 
         <div id="mac_not_logged_in_template"><!--

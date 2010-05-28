@@ -36,6 +36,7 @@
     var $macBackButton = $("#mac_back_button");
     var $macUserRepeat = $('.mac_user_repeat');
     var $macHidden = $('.mac_hidden');
+    var $macCloseChat = $("#mac_close_chat");
 
     // Back, form
     var $macTokenForm = $("#mac_token_form");
@@ -94,7 +95,7 @@
         };
 
         $.ajax({
-            url: url + sakai.config.URL.PRESENCE_SERVICE,
+            url: path + sakai.config.URL.PRESENCE_SERVICE,
             type: "POST",
             beforeSend:function(xhr){
             // Set a new field in the header with a token that is generated when the user is logged in in sakai
@@ -257,7 +258,7 @@
                 data.results = data.results.splice(data.results.length - 7, data.results.length);
             }
 
-            data.user = getProfile().profile.userid;
+            data.user = sakai.mac.profile.getProfile().profile.userid;
 
             //Render the messages
             $sakaiBody.html($.TemplateRenderer($macRecentmessagesTemplate, data));
@@ -283,8 +284,15 @@
      */
     var getRecentMessages = function(token){
 
+      var params = $.param({
+            box: "inbox",
+            category: "message",
+            sortOn: "sakai:created",
+            sortOrder: "descending"
+        });
+
         $.ajax({
-            url: path+"/var/message/box.json?box=inbox",
+            url: path+sakai.config.URL.MESSAGE_BOXCATEGORY_SERVICE + "?" + params,
             beforeSend:function(xhr){
 
                 // Set a new field in the header with a token that is generated when the user is logged in in sakai
@@ -293,6 +301,7 @@
             success: function(data){
                 displayRecentMessages(data);
             },
+
             error: function(xhr, textStatus, thrownError){
                 fluid.log("Error at the request for new images after the drag and drop");
             }
@@ -330,7 +339,7 @@
            $macTokenTagText.show();
            $macTokenTag.html(values.token);
            getRecentMessages(values.token);
-           getProfileInformation(values.token);
+           sakai.mac.profile.getProfileInformation(values.token);
     };
 
     /**
@@ -441,7 +450,7 @@
                 $macTokenTag.html(widget.preferenceForKey(key));
                 $logoutButton.show();
                 getRecentMessages(widget.preferenceForKey(key));
-                getProfileInformation(widget.preferenceForKey(key));
+                sakai.mac.profile.getProfileInformation(widget.preferenceForKey(key));
             }else{
                 $sakaiBody.html($.TemplateRenderer($macNotLoggedInTemplate,{}));
             }

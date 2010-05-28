@@ -18,38 +18,43 @@
 
 /*global Config, $, sData, sakai window widget localizedStrings  AppleVerticalScrollbar fluid AppleScrollArea AppleInfoButton AppleGlassButton*/
 
+var sakai = sakai || {};
+sakai.mac = sakai.mac || {};
+sakai.mac.profile = sakai.mac.profile || {};
+
+sakai.mac.profile = function(){
     ///////////////////////
     // Global variables //
     //////////////////////
-
+    
     // Templates
     var $macProfileTemplate = $("#mac_profile_template");
-
+    
     // Variables
     var $mac_profile = $('#mac_profile');
     var profile;
     // Global variables
     var url = "http://localhost:8080";
-
-    var getProfile = function(){
-
+    
+    sakai.mac.profile.getProfile = function(){
+    
         return profile;
     };
-
+    
     /**
      * This function will display the profile data
      * @param {Object} data, the response gotten from the ajax call
      */
     var displayProfileInformation = function(data){
-
+    
         profile = data;
         sendChatStatus();
-        getOnlineContacts(globToken);
-        checkNewMessages();
+        sakai.mac.chat.getOnlineContacts(globToken);
+        sakai.mac.chat.checkNewMessages();
         profile.userPicture = constructProfilePicture(data);
-        $mac_profile.html($.TemplateRenderer($macProfileTemplate,profile));
+        $mac_profile.html($.TemplateRenderer($macProfileTemplate, profile));
     };
-
+    
     /**
      * Check whether there is a valid picture for the user
      * @param {Object} profile The profile object that could contain the profile picture
@@ -59,22 +64,23 @@
      */
     var constructProfilePicture = function(profile){
         if (profile.picture && profile.path) {
-            return url+"/_user" + profile.path + "/public/profile/" + $.parseJSON(profile.picture).name;
-        } else {
-            return url+"/dev/_images/person_icon.jpg";
+            return url + "/_user" + profile.path + "/public/profile/" + $.parseJSON(profile.picture).name;
+        }
+        else {
+            return url + "/dev/_images/person_icon.jpg";
         }
     };
-
+    
     /**
      *  This function will get the profile information
      */
-    var getProfileInformation = function(token){
+    sakai.mac.profile.getProfileInformation = function(token){
         globToken = token;
         $.ajax({
-            url: path+"/system/me",
-            beforeSend:function(xhr){
+            url: path + "/system/me",
+            beforeSend: function(xhr){
                 // Set a new field in the header with a token that is generated when the user is logged in in sakai
-                xhr.setRequestHeader("x-sakai-token",token);
+                xhr.setRequestHeader("x-sakai-token", token);
             },
             success: function(data){
                 displayProfileInformation(data);
@@ -84,4 +90,5 @@
             }
         });
     };
-
+}
+sakai.mac.profile();

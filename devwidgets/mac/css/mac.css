@@ -81,16 +81,16 @@ hr{margin-right:3px;}
 /* PROFILE */
 #mac_profile{display:none;left:30px; position:absolute; top:80px;}
 #mac_profile p{ color:#fff; width:300px;}
-#mac_profile img { position:absolute; top:30px;}
+#mac_profile img { position:absolute; top:18px;}
 #mac_profile div { position:absolute; left:80px;}
 #mac_profile p spam{ font-weight:bold;}
 
 /* Chat */
 #mac_chat img{position:absolute; top:267px;left:12px;}
-#mac_chat ul {bottom:226px;border:1px solid #767a7c;display:none; left:360px;padding:10px 20px 10px 10px!important; position:absolute; top:151px; list-style-type:none;background-color:#fff !important;color:#058EC4; height:80px;width:80px;}
+#mac_chat ul {bottom:200px;border:1px solid #767a7c;display:none; left:359px;padding:10px 20px 10px 10px!important; position:absolute; top:150px; list-style-type:none;background-color:#fff !important;color:#058EC4; height:80px;width:80px;}
 
 /* Chat users */
-#mac_users{background-color:#454A4F; color:#fff;font-size:0.8em;height:25px;padding-left:10px; width:50px; position:absolute; top:267px;left:410px; display:none;cursor:pointer;}
+#mac_users{background-color:#454A4F; color:#fff;font-size:0.8em;height:25px;padding-left:10px; width:50px; position:absolute; top:267px;left:360px; display:none;cursor:pointer;}
 #mac_users img {margin-top:5px;}
 
 /* Chat */
@@ -103,8 +103,7 @@ hr{margin-right:3px;}
 .mac_available_status_offline {background:url("../../navigationchat/images/bullet_red.png") no-repeat scroll -3px -1px transparent; }
 
 /* Chat Window */
-.mac_chat_window{ width:150px; position:absolute;background-color:#fff; z-index:999; bottom:0px;left:10px;}
-
+.mac_chat_window{ width:150px; position:absolute;background-color:#fff; z-index:999; bottom:0px;left:10px; display:none;}
 
 /* Chat input */
 .mac_chat_input{ height:20px; border:none;border-right:1px solid #767a7c;border-left:1px solid #767a7c; border-bottom:1px solid #767a7c;width: 148px; padding:0px !important;margin:0px !important; }
@@ -127,3 +126,11 @@ hr{margin-right:3px;}
 
 /* Container for all the chat windows */
 #mac_chat_windows{ width:474px; height:26px; bottom:20px; left:20px; position:absolute; bottom:10px; }
+
+/* X in the top right corner of a chat frame */
+.mac_close_chat{
+    float:right;
+}
+
+/* More converstations button */
+#mac_more{position:absolute; top:269px; left:440px; display:none;}
