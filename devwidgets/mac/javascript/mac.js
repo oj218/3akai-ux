@@ -369,8 +369,6 @@
             },
             succes: function(){
 
-
-
             },
             data:data
         });

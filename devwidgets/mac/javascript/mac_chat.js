@@ -48,6 +48,7 @@ sakai.mac.chat = function(){
     var $macChatPeopleIcon = $('#mac_chat_people_icon');
     var onlineUsers;
     var $macMore = $('#mac_more');
+    var $macPrev = $('#mac_prev');
 
     /* CSS STYLES */
     var macChatHide = 'mac_chat_hide';
@@ -214,6 +215,7 @@ sakai.mac.chat = function(){
     var hideChat = function(){
         $('.mac_chat_content', $(this).parent()).hide();
         $('.mac_chat_input', $(this).parent()).hide();
+        $('.mac_chattop', $(this).parent()).hide();
         $('.mac_chat_with', $(this).parent()).addClass(macChatHide);
     };
     
@@ -223,6 +225,7 @@ sakai.mac.chat = function(){
     var showChat = function(){
         $('.mac_chat_content', $(this).parent()).show();
         $('.mac_chat_input', $(this).parent()).show();
+        $('.mac_chattop', $(this).parent()).show();
         $('.mac_chat_with', $(this).parent()).removeClass(macChatHide);
     };
     
@@ -252,19 +255,140 @@ sakai.mac.chat = function(){
      * This function will remove the chat frame
      */
     var removeChat = function(){
+
+        //Get all the visible items
+        var $macChatWindowVisible = $('.mac_chat_window:visible');
+        var $macChatWindow = $('.mac_chat_window');
+
+        // Only 2 Chat windows can be online at the same time, so here's a check to see if it's the 1ste one or 2nd one
+        if ($(this).parent().parent().parent().attr('id') === $($macChatWindowVisible[0]).attr('id')){
+
+            // Check if there's a chat window after the next one
+            if($($macChatWindow[($macChatWindow.index($($macChatWindowVisible[0])))+2]).length){
+
+                // Move the 2nd window to the place of the 1ste
+                $($macChatWindow[($macChatWindow.index($($macChatWindowVisible[0])))+1]).css('left',0);
+
+                // Show the 2nd
+                $($macChatWindow[($macChatWindow.index($($macChatWindowVisible[0])))+2]).show();
+            }else if($($macChatWindow[($macChatWindow.index($($macChatWindowVisible[0]))) - 1]).length) {
+
+                    // If it does, show it
+                    $($macChatWindow[($macChatWindow.index($($macChatWindowVisible[0]))) - 1]).show();
+
+            }else{
+                    $($macChatWindow[($macChatWindow.index($($macChatWindowVisible[0])))+1]).css('left',0);
+            }
+        }else{
+
+            // Check if there's a next chat window
+            if($($macChatWindow[$macChatWindow.index($($macChatWindowVisible[1]))+1]).length){
+                // Display the next chat window
+                $macChatWindow[$macChatWindow.index($($macChatWindowVisible[1]))+1].show();
+
+            }else{
+                // Check if there's a chat window before the 1ste one
+                if($($macChatWindow[$macChatWindow.index($($macChatWindowVisible[1]))-2]).length){
+                    $($macChatWindow[$macChatWindow.index($($macChatWindowVisible[1]))-2]).show();
+                    $($macChatWindow[$macChatWindow.index($($macChatWindowVisible[1]))-1]).css('left',153);
+                }
+            }
+        }
+
         $(this).parent().parent().parent().remove();
+        checkPaging();
+
     };
 
     /**
      * This function will get all the frames that are shown
      */
-    var getAllShownframes = function(user){
+    var hideFirstChat = function(user){
         $macChatWindowVisible = $('.mac_chat_window:visible');
         $($macChatWindowVisible[0]).hide();
         $($macChatWindowVisible[1]).css('left',0);
-        $('#chat_with_' + user).css('left',150);
+        $('#chat_with_' + user).css('left',153);
         $('#chat_with_' + user).show();
     }
+
+    /**
+     * This function will check if there are more than 2 open conversations
+     */
+    var checkPaging = function(){
+        $macChatWindow = $('.mac_chat_window');
+        $macChatWindowVisible = $('.mac_chat_window:visible');
+        if ($macChatWindow.length >= 3) {
+            if($($macChatWindow[($macChatWindow.index($($macChatWindowVisible[1]))) + 1]).length){
+                 $macMore.show();
+            }else{
+                $macMore.hide();
+            }
+
+            if($($macChatWindow[($macChatWindow.index($($macChatWindowVisible[0]))) - 1]).length){
+                $macPrev.show();
+            }else{
+                $macPrev.hide();
+            }
+
+        }else{
+            $macMore.hide();
+            $macPrev.hide();
+        }
+    }
+
+    var renderChatWindow = function(data){
+
+            var user = data.results[0];
+            user.userId = user['rep:userId'];
+            if (user.picture) {
+                user.url = url + '/_user' + user.path + "/public/profile/" + $.parseJSON(user.picture).name
+            }
+            else {
+                user.url = url + "/dev/_images/person_icon.jpg";
+            }
+            $macChatWindows.append($.TemplateRenderer($macChatWindowTemplate, user));
+            $macChatWith = $('.mac_chat_with');
+            $macChatWindow = $('.mac_chat_window');
+            if ($($macChatWindow).length) {
+                // Add a chat frame next to the other chat frame
+                $($macChatWindow[$($macChatWindow).length - 1]).css('left', ($($macChatWindow).length - 1) * 153 + 'px');
+                $('.mac_chat_with', $('#chat_with_' + user.userId)).toggle(hideChat, showChat);
+                $('.mac_chat_input', $('#chat_with_' + user.userId)).bind("keydown", sendMessage);
+                $macCloseChat = $(".mac_close_chat");
+                $macCloseChat.attr('src', url + "/devwidgets/navigationchat/images/chat_close.png");
+                $(".mac_close_chat", $('#chat_with_' + user.userId)).bind('click', removeChat);
+
+                // Only 2 chat frames should be shown at the same time
+                if($($macChatWindow).length <= 2){
+                     $('#chat_with_' + user.userId).show();
+                }else{
+                    hideFirstChat(user.userId);
+                }
+
+                checkPaging();
+
+            }
+    };
+
+    /**
+     * This function will do an ajax call to get the profile information from a user
+     */
+    var getUserInformation = function(userId,callback){
+
+        $.ajax({
+            data:{
+                "username": userId
+            },
+            url: url + sakai.config.URL.SEARCH_USERS,
+            success: function(data){
+                callback(data)
+            },
+            error: function(){
+                console.log("getUserImage: Could not find the user");
+            }
+        });
+    };
+
 
     /**
      * This function will create a chat frame if there is no chat frame for the conversation
@@ -273,48 +397,23 @@ sakai.mac.chat = function(){
 
         // Check if the chatwindow for that user allready exists
         if (!checkExistance($(this).html())) {
-            var user = {
-                'user': $(this).html()
-            };
-            $macChatWindows.append($.TemplateRenderer($macChatWindowTemplate, user));
-            $macChatWith = $('.mac_chat_with');
-            $macChatWindow = $('.mac_chat_window');
-            if ($($macChatWindow).length) {
-                // Add a chat frame next to the other chat frame
-                $($macChatWindow[$($macChatWindow).length - 1]).css('left', ($($macChatWindow).length - 1) * 150 + 'px');
-                $('.mac_chat_with', $('#chat_with_' + user.user)).toggle(hideChat, showChat);
-                $('.mac_chat_input', $('#chat_with_' + user.user)).bind("keydown", sendMessage);
-                $macCloseChat = $(".mac_close_chat");
-                $macCloseChat.attr('src', url + "/devwidgets/navigationchat/images/chat_close.png");
-                $macCloseChat.bind('click', removeChat);
-
-                // Only 2 chat frames should be shown at the same time
-                if($($macChatWindow).length <= 2){
-                     $('#chat_with_' + user.user).show();
-                }else{
-                    getAllShownframes(user.user);
-                }
-            }
+            getUserInformation($(this).html(),renderChatWindow);
         }
     };
-    
+
     /**
      * This function will append a received message to the right frame
      * @param {Object} htmlMessage
      * @param {Object} userId
      */
     var appendMessageToHTML = function(htmlMessage, userId){
-    
-        user = {
-            'user': userId
-        }
-        
+
         // When the users sends a message it's appended to the frame
         // But every 3 sec there's a check if there are new message
         // This will return this just sent message too, it's essential this isn't shown too
         // So when it's appended to the frame it gets a unique id
         // If this id exists it shouldn't be appended to the frame a second time
-        
+
         if (!$('#mac_delete').length) {
 
             // check if there's alleady a converstion with this user
@@ -324,18 +423,7 @@ sakai.mac.chat = function(){
             }
             // else make a new conversation
             else {
-                $macChatWindows.append($.TemplateRenderer($macChatWindowTemplate, user));
-                $macChatWith = $('.mac_chat_with');
-                $macChatWindow = $('.mac_chat_window');
-                if ($($macChatWindow).length) {
-                    $($macChatWindow[$($macChatWindow).length - 1]).css('left', ($($macChatWindow).length - 1) * 150 + 'px');
-                    $('.mac_chat_with', $('#chat_with_' + user.user)).toggle(hideChat, showChat);
-                    $('.mac_chat_input', $('#chat_with_' + user.user)).bind("keydown", sendMessage);
-                }
-                $('.mac_chat_content', $('#chat_with_' + userId)).append(htmlMessage);
-                $macCloseChat = $(".mac_close_chat");
-                $macCloseChat.attr('src', url + "/devwidgets/navigationchat/images/chat_close.png")
-                $macCloseChat.bind('click', removeChat);
+                    getUserInformation(userId,renderChatWindow);
             }
         }
         else {
@@ -377,17 +465,17 @@ sakai.mac.chat = function(){
             })
         }
     };
-    
+
     /**
      * This function will request the chatmessages
      */
     var requestMessages = function(){
         var tosend = onlineContacts.join(",");
-        
+
         $.ajax({
             url: url + sakai.config.URL.CHAT_GET_SERVICE.replace(/__KIND__/, "unread"),
             beforeSend: function(xhr){
-            
+
                 // Set a new field in the header with a token that is generated when the user is logged in in sakai
                 xhr.setRequestHeader("x-sakai-token", globToken);
             },
@@ -397,7 +485,7 @@ sakai.mac.chat = function(){
                 "t": pulltime
             },
             cache: false,
-            
+
             success: function(data){
                 renderReceivedChatMessage(data);
             },
@@ -411,7 +499,7 @@ sakai.mac.chat = function(){
      * This function will check if there are any new chatmessages
      */
     sakai.mac.chat.checkNewMessages = function(){
-    
+
         // Create a data object
         var data = {};
         
@@ -419,7 +507,7 @@ sakai.mac.chat = function(){
         if (time.length !== 0) {
             data.t = time;
         }
-        
+
         // Send an Ajax request to check if there are any new messages, but only if there are contacts online
         if (onlineUsers) {
             if (onlineUsers.count > 0) {
@@ -435,9 +523,9 @@ sakai.mac.chat = function(){
                     
                         // Get the time
                         time = data.time;
-                        
+
                         pulltime = data.pulltime;
-                        
+
                         if (data.update) {
                             requestMessages()
                         }
@@ -468,8 +556,28 @@ sakai.mac.chat = function(){
         $(this).addClass('activeChat');
     };
 
-    var getCurrentConversations = function(){
-        
+    var showPrevChat = function(){
+        $macChatWindow = $('.mac_chat_window');
+        $macChatWindowVisible = $('.mac_chat_window:visible');
+
+        if($($macChatWindow[($macChatWindow.index($($macChatWindowVisible[0]))) - 1]).length){
+            $($macChatWindow[($macChatWindow.index($($macChatWindowVisible[0]))) - 1]).show();
+            $($macChatWindow[($macChatWindow.index($($macChatWindowVisible[0])))]).css('left',153);
+            $($macChatWindow[($macChatWindow.index($($macChatWindowVisible[0]))) + 1]).hide();
+        }
+        checkPaging();
+    };
+
+    var showNextChat = function(){
+        $macChatWindow = $('.mac_chat_window');
+        $macChatWindowVisible = $('.mac_chat_window:visible');
+
+        if($($macChatWindow[($macChatWindow.index($($macChatWindowVisible[1]))) + 1]).length){
+            $($macChatWindow[($macChatWindow.index($($macChatWindowVisible[1]))) + 1]).show();
+            $($macChatWindow[($macChatWindow.index($($macChatWindowVisible[1])))]).css('left',0);
+            $($macChatWindow[($macChatWindow.index($($macChatWindowVisible[1]))) - 1]).hide();
+        }
+        checkPaging();
     };
 
     /**
@@ -492,11 +600,11 @@ sakai.mac.chat = function(){
         onlineUsers = {
             'count': count
         };
-        
+
         if (PrevOnlineUsers !== onlineUsers.count) {
             sakai.mac.chat.checkNewMessages();
         }
-        
+
         PrevOnlineUsers = onlineUsers.count;
         if (count) {
             $macUsers.html($.TemplateRenderer($macUsersOnlineTemplate, onlineUsers));
@@ -508,8 +616,12 @@ sakai.mac.chat = function(){
             }
             if (data.contacts.length) {
                 $macUsers.show();
-                $macMore.show();
-                $macMore.bind('click',getCurrentConversations);
+
+                $macMore.unbind()
+                $macPrev.unbind();
+
+                $macMore.bind('click',showNextChat);
+                $macPrev.bind('click',showPrevChat);
                 $macUsers.unbind('click');
                 $macUsers.toggle(showOnlineUsers, hideOnlineUsers);
             }

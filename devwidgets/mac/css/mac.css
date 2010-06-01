@@ -90,8 +90,10 @@ hr{margin-right:3px;}
 #mac_chat ul {bottom:200px;border:1px solid #767a7c;display:none; left:359px;padding:10px 20px 10px 10px!important; position:absolute; top:150px; list-style-type:none;background-color:#fff !important;color:#058EC4; height:80px;width:80px;}
 
 /* Chat users */
-#mac_users{background-color:#454A4F; color:#fff;font-size:0.8em;height:25px;padding-left:10px; width:50px; position:absolute; top:267px;left:360px; display:none;cursor:pointer;}
-#mac_users img {margin-top:5px;}
+#mac_users{background-color:#646768; color:#fff;font-size:0.8em;height:25px;padding-left:10px; width:50px; position:absolute; top:267px;left:360px; display:none;cursor:pointer; }
+#mac_users img {position:relative; top:4px;}
+#mac_users span {margin-bottom:5px;}
+
 
 /* Chat */
 .activeChat{background-color:#fff!important;color:#666!important;}
@@ -104,6 +106,11 @@ hr{margin-right:3px;}
 
 /* Chat Window */
 .mac_chat_window{ width:150px; position:absolute;background-color:#fff; z-index:999; bottom:0px;left:10px; display:none;}
+.mac_chat_window span { position:absolute; top:5px; left:40px; color:#767a7c;}
+.mac_userpicture { height:25px; padding:3px;}
+
+/* The top of a chat frame */
+.mac_chattop {height:30px; border:none;border-right:1px solid #767a7c;border-left:1px solid #767a7c; border-top:1px solid #767a7c;width: 148px; padding:0px !important;margin:0px !important;}
 
 /* Chat input */
 .mac_chat_input{ height:20px; border:none;border-right:1px solid #767a7c;border-left:1px solid #767a7c; border-bottom:1px solid #767a7c;width: 148px; padding:0px !important;margin:0px !important; }
@@ -112,7 +119,8 @@ hr{margin-right:3px;}
 .mac_chat_content{height:120px!important; border:1px solid #767a7c;overflow:auto;}
 
 /* User box in the chat */
-.mac_chat_with{height:18px;border-right:1px solid #767a7c;border-left:1px solid #767a7c; cursor:pointer;line-height:30px;text-align:left;padding:5px 0 0 15px;color:#666666 !important;font:13px/1.231 arial,helvetica,clean,sans-serif;}
+.mac_chat_with{cursor:pointer; height:18px;border-right:1px solid #767a7c;border-left:1px solid #767a7c; cursor:pointer;line-height:30px;text-align:left;padding:5px 0 0 15px;color:#666666 !important;font:13px/1.231 arial,helvetica,clean,sans-serif;}
+
 
 /* Chat messages */
 .mac_content_name, .mac_content_time {color:#ccc;}
@@ -121,16 +129,15 @@ hr{margin-right:3px;}
 .mac_content_container{border-bottom:1px #d3d3d3 solid !important;padding:1px; font-size:0.8em;}
 
 /* Inactive chat */
-.mac_chat_hide{background-color:#767a7c;color:#fff!important; font-weight:bold;}
+.mac_chat_hide{background-color:#767a7c;color:#fff!important; font-weight:bold; background-image:url('../images/bg_chat.png');background-repeat:repeat-x; border:solid #aaafb2 1px;}
 .mac_chat_hide:hover{text-decoration:underline;}
 
 /* Container for all the chat windows */
-#mac_chat_windows{ width:474px; height:26px; bottom:20px; left:20px; position:absolute; bottom:10px; }
+#mac_chat_windows{ width:474px; height:26px; bottom:20px; left:50px; position:absolute; bottom:8px; }
 
 /* X in the top right corner of a chat frame */
-.mac_close_chat{
-    float:right;
-}
+.mac_close_chat{position:absolute; bottom:180px;left:130px;}
 
-/* More converstations button */
+/* Pagging buttons */
 #mac_more{position:absolute; top:269px; left:440px; display:none;}
+#mac_prev{position:absolute; top:269px; left:20px; display:none;}

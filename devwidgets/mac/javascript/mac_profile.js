@@ -26,7 +26,7 @@ sakai.mac.profile = function(){
     ///////////////////////
     // Global variables //
     //////////////////////
-    
+
     // Templates
     var $macProfileTemplate = $("#mac_profile_template");
     
@@ -46,7 +46,7 @@ sakai.mac.profile = function(){
      * @param {Object} data, the response gotten from the ajax call
      */
     var displayProfileInformation = function(data){
-    
+
         profile = data;
         sendChatStatus();
         sakai.mac.chat.getOnlineContacts(globToken);

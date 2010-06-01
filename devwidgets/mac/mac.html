@@ -40,16 +40,17 @@
             <div id="mac_infobutton">
             </div>
         </div>
-        <div id="mac_chat_windows">
-            
-        </div>
-        <div id="mac_chat">
-            
-        </div>
+
+        <div id="mac_chat_windows"><!--
+        --></div>
+
+        <div id="mac_chat"><!--
+        --></div>
 
         <div id="mac_users"><!--
         --></div>
-        <a href="javascript:;" id="mac_more" ><img src="images/more.png"  alt="All the conversations"></a>
+        <a href="javascript:;" id="mac_prev" ><img src="images/prev.png"  alt="Prev"></a>
+        <a href="javascript:;" id="mac_more" ><img src="images/more.png"  alt="Next"></a>
         <!-- TEMPLATES -->
         <div id='mac_recentmessages_template'><!--
             <div id="mac_recentMessages">
@@ -85,10 +86,11 @@
         --></div>
 
        <div id="mac_chat_window_template"><!--
-            <div class="mac_chat_window" id="chat_with_${user}" >
+            <div class="mac_chat_window" id="chat_with_${userId}" >
+                <div class='mac_chattop'>{if url }<img src="${url}" alt="userPicture" class="mac_userpicture">{/if} <span>${firstName}</span></div>
                 <div id='mac_content' class="mac_chat_content"><div><img src="" class="mac_close_chat" alt="Close that chat"></div></div>
                 <input class='mac_chat_input' type="text" title="Please input the chat text" />
-                <div class="mac_chat_with" >${user}</div>
+                <div class="mac_chat_with" >${userId}</div>
             </div>
         --></div>
 
