@@ -8,7 +8,7 @@
 
     <!-- THE FRONTSIDE OF THE WIDGET -->
     <div id="mac_front">
-        <img src="" alt="background Image" class='mac_frontImg'>
+        <img src="" alt="background Image" class="mac_frontImg" alt="Background image">
         <div class="mac_header">
             <div class="mac_logo_container">
                 <img src="" class="mac_sakai_logo" alt= "Sakai logo" title="Sakai logo" />
@@ -52,10 +52,10 @@
         <a href="javascript:;" id="mac_prev" ><img src="images/prev.png"  alt="Prev"></a>
         <a href="javascript:;" id="mac_more" ><img src="images/more.png"  alt="Next"></a>
         <!-- TEMPLATES -->
-        <div id='mac_recentmessages_template'><!--
+        <div id="mac_recentmessages_template"><!--
             <div id="mac_recentMessages">
                 <ul>
-                    <li id='mac_table_header' >From <span>Subject</span> <span id="mac_user">Welcome ${user} </span></li>
+                    <li id="mac_table_header" >From <span>Subject</span> <span id="mac_user">Welcome ${user} </span></li>
                     <hr />
                    {for message in results}
                         <li {if message_index % 2} class="mac_background" {/if} ><span class="mac_user_repeat">${message["sakai:from"]} </span> :<a href="javascript:;" class="mac_short"> ${message["sakai:subject"]}</a><span class="mac_hidden">${message["sakai:subject"]}<span><br />
@@ -67,7 +67,7 @@
         --></div>
 
         <div id="mac_profile_template"><!--
-            <img src="${userPicture}" />
+            <img src="${userPicture}" alt="user picture"/>
             <div>
                 {if profile.firstName}<p><span>Name: </span>${profile.firstName}<p>{/if}
                 {if profile.lastName}<p><span>Surname: </span>${profile.lastName}<p>{/if}
@@ -76,10 +76,10 @@
         --></div>
 
         <div id="mac_chat_template"><!--
-        <img src="images/chat.png" />
+        <img src="images/chat.png" alt="chat icon" />
            <ul>
                {for contact in contacts}
-                   {if contact['sakai:status'] == "online" && contact.profile.chatstatus != "offline"}
+                   {if contact["sakai:status"] == "online" && contact.profile.chatstatus !== "offline"}
                         <li class="mac_available_status_{if contact.profile.chatstatus}${contact.profile.chatstatus}{else}online{/if}"><a href="javascript:;">${contact.user}</a></li>
                     {/if}
                 {/for}
@@ -87,10 +87,11 @@
 
        <div id="mac_chat_window_template"><!--
             <div class="mac_chat_window" id="chat_with_${userId}" >
-                <div class='mac_chattop'>{if url }<img src="${url}" alt="userPicture" class="mac_userpicture">{/if} <span class= "mac_message_placed">${firstName}</span></div>
-                <div id='mac_content' class="mac_chat_content"><div><img src="" class="mac_close_chat" alt="Close that chat"></div></div>
-                <input class='mac_chat_input' type="text" title="Please input the chat text" />
-                <div class="mac_chat_with" >${userId}</div>
+                <div class="mac_chattop">{if url }<img src="${url}" alt="userPicture" class="mac_userpicture">{/if} <span class= "mac_message_placed">${firstName}</span></div>
+                <div id="mac_content" class="mac_chat_content"><div><img src="" class="mac_close_chat" alt="Close that chat"></div></div>
+                <input class="mac_chat_input" type="text" title="Please input the chat text" />
+                <div class="mac_chat_with" >${firstName}</div>
+                <span class="mac_hidden_userid s3d-hidden">${userId}</span>
             </div>
         --></div>
 
@@ -127,7 +128,7 @@
 
     <!-- BACKSIDE OF THE WIDGET-->
     <div id="mac_back">
-        <img src="http://localhost:8080/devwidgets/mac/Default.png" alt="Background Image">
+        <img class="mac_frontImg" alt="Background Image">
         <div class="mac_header">
             <div class="mac_logo_container">
                 <img src="" class="mac_sakai_logo" alt= "Sakai logo" title="Sakai logo">
@@ -147,8 +148,8 @@
                 <span class="s3d-button-inner">Submit</span>
             </button>
         </form>
-        <p id='mac_token_tag_text'>Your token:</p>
-        <p id='mac_token_tag'><!-- --></p>
+        <p id="mac_token_tag_text">Your token:</p>
+        <p id="mac_token_tag"><!-- --></p>
         <button id="mac_logout_button" type="submit" class="s3d-button s3d-button-primary">
                 <span class="s3d-button-inner">Logout</span>
          </button>

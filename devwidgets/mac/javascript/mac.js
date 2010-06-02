@@ -35,7 +35,7 @@
     var $macMessage = $('#mac_message');
     var $macBackButton = $("#mac_back_button");
     var $macUserRepeat = $('.mac_user_repeat');
-    var $macHidden = $('.mac_hidden');
+    var $macHidden = $('.s3d-hidden');
     var $macCloseChat = $("#mac_close_chat");
 
     // Back, form
@@ -76,6 +76,7 @@
     var $macAnotherToken = $('#mac_anothertoken');
     var $macNoMessage = $('#mac_nomessage');
 
+     var stopTimer = false;
 
     /////////////////////
     //   Chat Status   //
@@ -217,7 +218,7 @@
     var showMessage = function(){
         $sakaiBody.hide();
 
-        $macHidden = $('.mac_hidden');
+        $macHidden = $('.s3d-hidden');
         $macUserRepeat = $('.mac_user_repeat');
 
         //Get the subject,message and sender from the li, the message and subject are hidden
@@ -258,7 +259,7 @@
                 data.results = data.results.splice(data.results.length - 7, data.results.length);
             }
 
-            data.user = sakai.mac.profile.getProfile().profile.userid;
+            data.user = sakai.mac.profile.getProfile().profile.firstName;
 
             //Render the messages
             $sakaiBody.html($.TemplateRenderer($macRecentmessagesTemplate, data));
@@ -331,15 +332,22 @@
             checkEmpty($macToken);
             $macNoTokenError.show();
         } else  if (window.widget) {
-           // Save the token
-           widget.setPreferenceForKey(token, key);
+
+            widget.setPreferenceForKey(token, key);
         }
-        globToken = token;
-           $macTokenForm.hide();
-           $macTokenTagText.show();
-           $macTokenTag.html(values.token);
-           getRecentMessages(values.token);
-           sakai.mac.profile.getProfileInformation(values.token);
+                   // Save the token
+            stopTimer = false;
+            globToken = token;
+            $('#mac_chat').show();
+            $('#mac_chat_windows').show();
+            $('#mac_users').show();
+            $macProfileButton.show();
+            $macRecentMessagesButton.show();
+            $macTokenForm.hide();
+            $macTokenTagText.show();
+            $macTokenTag.html(values.token);
+            getRecentMessages(values.token);
+            sakai.mac.profile.getProfileInformation(values.token);
     };
 
     /**
@@ -347,27 +355,33 @@
      */
     var logout = function(){
 
-               widget.setPreferenceForKey('', key);
-               $macTokenForm.show();
-               $macTokenTagText.hide();
-               $sakaiBody.html($.TemplateRenderer($macNotLoggedInTemplate,{}));
-               $macTokenTag.html("");
-               $logoutButton.hide();
-
      var data = {
             "sakai:status": "offline",
             "_charset_": "utf-8"
         };
 
            $.ajax({
-            url: url + sakai.config.URL.PRESENCE_SERVICE,
+            url: path + sakai.config.URL.PRESENCE_SERVICE,
             type: "POST",
             beforeSend:function(xhr){
 
                 // Set a new field in the header with a token that is generated when the user is logged in in sakai
-                xhr.setRequestHeader("x-sakai-token",token);
+                xhr.setRequestHeader("x-sakai-token",globToken);
             },
-            succes: function(){
+            complete: function(){
+
+               widget.setPreferenceForKey('', key);
+               $macTokenForm.show();
+               $macTokenTagText.hide();
+               $sakaiBody.html($.TemplateRenderer($macNotLoggedInTemplate,{}));
+               $macTokenTag.html("");
+               $('#mac_chat').hide();
+               $('#mac_chat_windows').hide();
+               $('#mac_users').hide();
+               $macProfileButton.hide();
+               $macRecentMessagesButton.hide();
+               $logoutButton.hide();
+               stopTimer = true;
 
             },
             data:data

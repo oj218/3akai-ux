@@ -10,7 +10,7 @@ html{background:none!important;line-height:120%;font-family:Arial, Helvetica, sa
 .mac_header{float:left;left:10px;position:absolute;top:0;}
 .mac_header ul{margin:8px 0 0 60px;}
 .mac_header ul li{display:inline-block;height:50px;list-style-type:none;margin-left:20px;}
-.mac_header ul li a:hover,{opacity:0.5;}
+.mac_header ul li a:hover {opacity:0.5;}
 .mac_header ul li a,.mac_header ul li p{color:#fff;display:inline-block;font-size:1em;margin-top:20px;text-decoration:none;}
 
 /* CONTENT ITEMS */
@@ -19,13 +19,11 @@ html{background:none!important;line-height:120%;font-family:Arial, Helvetica, sa
 
 .mac_background{background-color:#68a3cf;}
 #mac_back{display:none;position:absolute;}
-#mac_user{display:block;float:right;font-weight:700;padding-right:20px;}
+#mac_user{display:block;float:right;font-weight:700;padding-right:20px;color:#CCC!important;}
 #mac_front,#mac_frontImg{height:100%;left:0;position:absolute;top:0;width:100%;}
 #sakai_login_button{margin:15px 0 0 270px;}
 #login-container{padding:40px 0 0 140px;}
 #mac_subject{margin-bottom:0!important;}
-.mac_hidden{display:none;}
-
 
 /* INFO AND DONEBUTTON */
 #mac_doneButton{position:absolute;right:25px;top:20px;}
@@ -59,7 +57,7 @@ html{background:none!important;line-height:120%;font-family:Arial, Helvetica, sa
 #mac_not_logged_in{color:#fff;left:50px;position:absolute;top:0;width:400px;}
 
 /* HRS */
-hr{margin-right:3px;}
+#mac_front hr{margin-right:3px;}
 #mac_hr{margin:0!important;}
 
 

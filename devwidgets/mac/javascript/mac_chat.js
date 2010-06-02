@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations under the License.
  */
 
-/*global Config, $, sData, sakai window widget localizedStrings  AppleVerticalScrollbar fluid AppleScrollArea AppleInfoButton AppleGlassButton*/
+/*global Config, $, sData, sakai window widget localizedStrings  AppleVerticalScrollbar fluid AppleScrollArea AppleInfoButton AppleGlassButton Fluid*/
 
 var sakai = sakai || {};
 sakai.mac = sakai.mac || {};
@@ -36,6 +36,7 @@ sakai.mac.chat = function(){
     var PrevOnlineUsers;
     var time = [];
     var pulltime = "2100-10-10T10:10:10.000Z";
+    var onlineContacts = [];
 
     var $macChat = $("#mac_chat");
     var $macUsers = $('#mac_users');
@@ -52,13 +53,20 @@ sakai.mac.chat = function(){
 
     /* CSS STYLES */
     var macChatHide = 'mac_chat_hide';
-    
+    var macFlash = 'mac_flash';
+
+
     // Templates
     var $macChatTemplate = $('#mac_chat_template');
     var $macUsersOnlineTemplate = $('#mac_users_online_template');
     var $macChatWindowTemplate = $('#mac_chat_window_template');
     var $chatContentTemplate = $("#chat_content_template");
-    
+
+
+    ///////////////
+    // Flashing //
+    //////////////
+
     /**
      * Format the input date to a AM/PM Date
      * @param {Date} d Date that needs to be formatted
@@ -140,7 +148,7 @@ sakai.mac.chat = function(){
      */
     var addChatMessage = function(el, message, addId){
         if (el.length > 0) {
-            messageHTML = createChatMessage(false, message['sakai:from'], message["sakai:body"], message["sakai:created"], addId);
+            var messageHTML = createChatMessage(false, message['sakai:from'], message["sakai:body"], message["sakai:created"], addId);
             el.append(renderChatMessage(messageHTML));
             el.attr("scrollTop", el.attr("scrollHeight"));
         }
@@ -164,11 +172,11 @@ sakai.mac.chat = function(){
             
                 // Append the message to the chatbox
                 addChatMessage($('.mac_chat_content', $chatWindow.parent()), data.message, true);
-                
+
                 $chatWindow.val('');
             },
             error: function(xhr, textStatus, thrownError){
-                alert("An error has occured when sending the message.");
+                Fluid.log("An error has occured when sending the message.");
             },
             data: data
         });
@@ -182,14 +190,14 @@ sakai.mac.chat = function(){
 
         //Check if enter is pressed
         if (ev.keyCode === 13) {
-
+            var $that = $(this);
             // Check to who the message has to be sent
-            var to = $('.mac_chat_with', $(this).parent()).html();
+            var to = $('.mac_hidden_userid',$that.parent()).html();
 
             // Get the message
-            var text = $(this).val();
+            var text = $that.val();
             if (text) {
-            
+
                 var data = {
                     "sakai:type": "chat",
                     "sakai:sendstate": "pending",
@@ -202,7 +210,7 @@ sakai.mac.chat = function(){
                     "_charset_": "utf-8"
                 };
 
-                sendMessageAjax(data, $(this));
+                sendMessageAjax(data, $that);
 
             }
         }
@@ -212,20 +220,22 @@ sakai.mac.chat = function(){
      *  This function will hide the chat
      */
     var hideChat = function(){
-        $('.mac_chat_content', $(this).parent()).hide();
-        $('.mac_chat_input', $(this).parent()).hide();
-        $('.mac_chattop', $(this).parent()).hide();
-        $('.mac_chat_with', $(this).parent()).addClass(macChatHide);
+        var $that = $(this);
+        $('.mac_chat_content', $that.parent()).hide();
+        $('.mac_chat_input', $that.parent()).hide();
+        $('.mac_chattop', $that.parent()).hide();
+        $('.mac_chat_with', $that.parent()).addClass(macChatHide);
     };
 
     /**
      * This function will show the chat
      */
     var showChat = function(){
-        $('.mac_chat_content', $(this).parent()).show();
-        $('.mac_chat_input', $(this).parent()).show();
-        $('.mac_chattop', $(this).parent()).show();
-        $('.mac_chat_with', $(this).parent()).removeClass(macChatHide);
+        var $that = $(this);
+        $('.mac_chat_content', $that.parent()).show();
+        $('.mac_chat_input', $that.parent()).show();
+        $('.mac_chattop', $that.parent()).show();
+        $('.mac_chat_with', $that.parent()).removeClass(macChatHide);
     };
 
     /**
@@ -249,6 +259,33 @@ sakai.mac.chat = function(){
         });
         return check;
     };
+
+
+    /**
+     * This function will check if there are more than 2 open conversations
+     */
+    var checkPaging = function(){
+        var $macChatWindow = $('.mac_chat_window');
+        var $macChatWindowVisible = $('.mac_chat_window:visible');
+        if ($macChatWindow.length >= 3) {
+            if($($macChatWindow[($macChatWindow.index($($macChatWindowVisible[1]))) + 1]).length){
+                 $macMore.show();
+            }else{
+                $macMore.hide();
+            }
+
+            if($($macChatWindow[($macChatWindow.index($($macChatWindowVisible[0]))) - 1]).length){
+                $macPrev.show();
+            }else{
+                $macPrev.hide();
+            }
+
+        }else{
+            $macMore.hide();
+            $macPrev.hide();
+        }
+    };
+
 
     /**
      * This function will remove the chat frame
@@ -303,44 +340,19 @@ sakai.mac.chat = function(){
      * This function will get all the frames that are shown
      */
     var hideFirstChat = function(user){
-        $macChatWindowVisible = $('.mac_chat_window:visible');
+       var  $macChatWindowVisible = $('.mac_chat_window:visible');
         $($macChatWindowVisible[0]).hide();
         $($macChatWindowVisible[1]).css('left',0);
         $('#chat_with_' + user).css('left',153);
         $('#chat_with_' + user).show();
-    }
-
-    /**
-     * This function will check if there are more than 2 open conversations
-     */
-    var checkPaging = function(){
-        $macChatWindow = $('.mac_chat_window');
-        $macChatWindowVisible = $('.mac_chat_window:visible');
-        if ($macChatWindow.length >= 3) {
-            if($($macChatWindow[($macChatWindow.index($($macChatWindowVisible[1]))) + 1]).length){
-                 $macMore.show();
-            }else{
-                $macMore.hide();
-            }
-
-            if($($macChatWindow[($macChatWindow.index($($macChatWindowVisible[0]))) - 1]).length){
-                $macPrev.show();
-            }else{
-                $macPrev.hide();
-            }
-
-        }else{
-            $macMore.hide();
-            $macPrev.hide();
-        }
-    }
+    };
 
     var renderChatWindow = function(data){
 
             var user = data.results[0];
             user.userId = user['rep:userId'];
             if (user.picture) {
-                user.url = url + '/_user' + user.path + "/public/profile/" + $.parseJSON(user.picture).name
+                user.url = url + '/_user' + user.path + "/public/profile/" + $.parseJSON(user.picture).name;
             }
             else {
                 user.url = url + "/dev/_images/person_icon.jpg";
@@ -353,7 +365,7 @@ sakai.mac.chat = function(){
                 $($macChatWindow[$($macChatWindow).length - 1]).css('left', ($($macChatWindow).length - 1) * 153 + 'px');
                 $('.mac_chat_with', $('#chat_with_' + user.userId)).toggle(hideChat, showChat);
                 $('.mac_chat_input', $('#chat_with_' + user.userId)).bind("keydown", sendMessage);
-                $macCloseChat = $(".mac_close_chat");
+                var $macCloseChat = $(".mac_close_chat");
                 $macCloseChat.attr('src', url + "/devwidgets/navigationchat/images/chat_close.png");
                 $(".mac_close_chat", $('#chat_with_' + user.userId)).bind('click', removeChat);
 
@@ -373,7 +385,7 @@ sakai.mac.chat = function(){
     /**
      * This function will get the profile information from a certain user
      * @param {Object} userId
-     * @param {Object} callback
+     * @param {Object} [callback]
      * @example getUserInformation('admin','renderChatWindow');
      */
     var getUserInformation = function(userId,callback){
@@ -384,10 +396,10 @@ sakai.mac.chat = function(){
             },
             url: url + sakai.config.URL.SEARCH_USERS,
             success: function(data){
-                callback(data)
+                callback(data);
             },
             error: function(){
-                console.log("getUserImage: Could not find the user");
+                Fluid.log("getUserImage: Could not find the user");
             }
         });
     };
@@ -452,11 +464,13 @@ sakai.mac.chat = function(){
             // This can happen when a user sends a chat message from another platform( mobile, website)
             $(data.results).each(function(){
                 var isMessageFromOtherUser;
+                var chatwithusername;
                 var profile = sakai.mac.profile.getProfile();
-                
+
+
                 if (this.userFrom[0].userid === profile.profile['rep:userId']) {
-                    isMessageFromOtherUsertrue = false
-                    chatwithusername = 'me';
+                    isMessageFromOtherUsertrue = false;
+                     chatwithusername = 'me';
                     userid = this.userTo[0].userid;
                 }
                 else {
@@ -464,9 +478,9 @@ sakai.mac.chat = function(){
                     chatwithusername = this.userFrom[0].userid;
                     userid = this.userFrom[0].userid;
                 }
-                var message = createChatMessage(isMessageFromOtherUser, chatwithusername, this['sakai:body'], this['sakai:created'], false)
+                var message = createChatMessage(isMessageFromOtherUser, chatwithusername, this['sakai:body'], this['sakai:created'], false);
                 appendMessageToHTML(renderChatMessage(message), userid);
-            })
+            });
         }
     };
 
@@ -494,7 +508,7 @@ sakai.mac.chat = function(){
                 renderReceivedChatMessage(data);
             },
             error: function(xhr, textStatus, thrownError){
-                alert('error');
+                Fluid.log('error at getting the message');
             }
         });
     };
@@ -503,41 +517,42 @@ sakai.mac.chat = function(){
      * This function will check if there are any new chatmessages
      */
     sakai.mac.chat.checkNewMessages = function(){
-
-        // Create a data object
-        var data = {};
-        
-        // Check if the time is not 0, if so set the current time
-        if (time.length !== 0) {
-            data.t = time;
-        }
-
-        // Send an Ajax request to check if there are any new messages, but only if there are contacts online
-        if (onlineUsers) {
-            if (onlineUsers.count > 0) {
-                $.ajax({
-                    url: url + "/_user" + sakai.mac.profile.getProfile().profile.path + "/message.chatupdate.json",
-                    data: data,
-                    beforeSend: function(xhr){
-                    
-                        // Set a new field in the header with a token that is generated when the user is logged in in sakai
-                        xhr.setRequestHeader("x-sakai-token", globToken);
-                    },
-                    success: function(data){
-
-                        // Get the time
-                        time = data.time;
-
-                        pulltime = data.pulltime;
-
-                        if (data.update) {
-                            requestMessages()
-                        }
-
-                        setTimeout(sakai.mac.chat.checkNewMessages, 3000);
+        if (!stopTimer) {
+            // Create a data object
+            var data = {};
+            
+            // Check if the time is not 0, if so set the current time
+            if (time.length !== 0) {
+                data.t = time;
+            }
+            
+            // Send an Ajax request to check if there are any new messages, but only if there are contacts online
+            if (onlineUsers) {
+                if (onlineUsers.count > 0) {
+                    $.ajax({
+                        url: url + "/_user" + sakai.mac.profile.getProfile().profile.path + "/message.chatupdate.json",
+                        data: data,
+                        beforeSend: function(xhr){
                         
-                    }
-                });
+                            // Set a new field in the header with a token that is generated when the user is logged in in sakai
+                            xhr.setRequestHeader("x-sakai-token", globToken);
+                        },
+                        success: function(data){
+                        
+                            // Get the time
+                            time = data.time;
+                            
+                            pulltime = data.pulltime;
+                            
+                            if (data.update) {
+                                requestMessages();
+                            }
+                            
+                            setTimeout(sakai.mac.chat.checkNewMessages, 3000);
+                            
+                        }
+                    });
+                }
             }
         }
     };
@@ -561,25 +576,27 @@ sakai.mac.chat = function(){
     };
 
     var showPrevChat = function(){
-        $macChatWindow = $('.mac_chat_window');
-        $macChatWindowVisible = $('.mac_chat_window:visible');
-
-        if($($macChatWindow[($macChatWindow.index($($macChatWindowVisible[0]))) - 1]).length){
-            $($macChatWindow[($macChatWindow.index($($macChatWindowVisible[0]))) - 1]).show();
-            $($macChatWindow[($macChatWindow.index($($macChatWindowVisible[0])))]).css('left',153);
-            $($macChatWindow[($macChatWindow.index($($macChatWindowVisible[0]))) + 1]).hide();
+        var $macChatWindow = $('.mac_chat_window');
+        var $macChatWindowVisible = $('.mac_chat_window:visible');
+        var $items = $macChatWindow.index($($macChatWindowVisible[0]));
+        if($($macChatWindow[($items) - 1]).length){
+            $($macChatWindow[($items) - 1]).show();
+            $($macChatWindow[($items)]).css('left',153);
+            $($macChatWindow[($items) + 1]).hide();
         }
         checkPaging();
     };
 
     var showNextChat = function(){
-        $macChatWindow = $('.mac_chat_window');
-        $macChatWindowVisible = $('.mac_chat_window:visible');
+        var $macChatWindow = $('.mac_chat_window');
+        var $macChatWindowVisible = $('.mac_chat_window:visible');
 
-        if($($macChatWindow[($macChatWindow.index($($macChatWindowVisible[1]))) + 1]).length){
-            $($macChatWindow[($macChatWindow.index($($macChatWindowVisible[1]))) + 1]).show();
-            $($macChatWindow[($macChatWindow.index($($macChatWindowVisible[1])))]).css('left',0);
-            $($macChatWindow[($macChatWindow.index($($macChatWindowVisible[1]))) - 1]).hide();
+        var $items = $macChatWindow.index($($macChatWindowVisible[1]));
+
+        if($($macChatWindow[($items) + 1]).length){
+            $($macChatWindow[($items) + 1]).show();
+            $($macChatWindow[($items)]).css('left',0);
+            $($macChatWindow[($items) - 1]).hide();
         }
         checkPaging();
     };
@@ -594,11 +611,9 @@ sakai.mac.chat = function(){
 
         $macChat.html($.TemplateRenderer($macChatTemplate, data));
         $(data.contacts).each(function(){
-            if ((this['sakai:status'] !== "offline")) {
-                if ((this.profile.chatstatus !== "offline")) {
+            if ((this['sakai:status'] !== "offline")&&(this.profile.chatstatus !== "offline")) {
                     onlineContacts.push(this.user);
-                    count++;
-                }
+                    count = count + 1;
             }
         });
         onlineUsers = {
@@ -621,7 +636,7 @@ sakai.mac.chat = function(){
             if (data.contacts.length) {
                 $macUsers.show();
 
-                $macMore.unbind()
+                $macMore.unbind();
                 $macPrev.unbind();
 
                 $macMore.bind('click',showNextChat);
@@ -638,23 +653,25 @@ sakai.mac.chat = function(){
      * @param {Object} token
      */
     sakai.mac.chat.getOnlineContacts = function(token){
-        if (first) {
-            globToken = token;
-            first = false;
-        }
-        // Receive your online friends through an Ajax request
-        $.ajax({
-            url: url + "/var/presence.contacts.json",
-            beforeSend: function(xhr){
-                cache: false;
-                // Set a new field in the header with a token that is generated when the user is logged in in sakai
-                xhr.setRequestHeader("x-sakai-token", globToken);
-            },
-            success: function(data){
-                showOnlineFriends(data);
-                setTimeout(sakai.mac.chat.getOnlineContacts, 5000);
+        if (!stopTimer) {
+            if (first) {
+                globToken = token;
+                first = false;
             }
-        });
+            // Receive your online friends through an Ajax request
+            $.ajax({
+                url: url + "/var/presence.contacts.json",
+                beforeSend: function(xhr){
+                    cache: false;
+                    // Set a new field in the header with a token that is generated when the user is logged in in sakai
+                    xhr.setRequestHeader("x-sakai-token", globToken);
+                },
+                success: function(data){
+                    showOnlineFriends(data);
+                    setTimeout(sakai.mac.chat.getOnlineContacts, 5000);
+                }
+            });
+        }
     };
-}
+};
 sakai.mac.chat();
