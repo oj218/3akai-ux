@@ -132,7 +132,7 @@ sakai.mac.chat = function(){
     var renderChatMessage = function(message){
         return $.TemplateRenderer($chatContentTemplate, message);
     };
-    
+
     /**
      * Add a chat message
      * @param {Object} el Element where the element needs to be attached to
@@ -145,14 +145,14 @@ sakai.mac.chat = function(){
             el.attr("scrollTop", el.attr("scrollHeight"));
         }
     };
-    
+
     /**
      *
      * @param {Object} data, The response from the ajax call
      * @param {Object} $chatWindow, This is the jQuery object to which the message will be appended to
      */
     var sendMessageAjax = function(data, $chatWindow){
-    
+
         $.ajax({
             url: url + "/_user" + sakai.mac.profile.getProfile().user.properties.path + "/message.create.html",
             beforeSend: function(xhr){
@@ -172,21 +172,20 @@ sakai.mac.chat = function(){
             },
             data: data
         });
-        
     };
-    
+
     /**
      * This function is executed when a user does a keypress
      * @param {Object} ev
      */
     var sendMessage = function(ev){
-    
+
         //Check if enter is pressed
         if (ev.keyCode === 13) {
-        
+
             // Check to who the message has to be sent
             var to = $('.mac_chat_with', $(this).parent()).html();
-            
+
             // Get the message
             var text = $(this).val();
             if (text) {
@@ -202,13 +201,13 @@ sakai.mac.chat = function(){
                     "sakai:category": "chat",
                     "_charset_": "utf-8"
                 };
-                
+
                 sendMessageAjax(data, $(this));
-                
+
             }
         }
     };
-    
+
     /**
      *  This function will hide the chat
      */
@@ -218,7 +217,7 @@ sakai.mac.chat = function(){
         $('.mac_chattop', $(this).parent()).hide();
         $('.mac_chat_with', $(this).parent()).addClass(macChatHide);
     };
-    
+
     /**
      * This function will show the chat
      */
@@ -228,7 +227,7 @@ sakai.mac.chat = function(){
         $('.mac_chattop', $(this).parent()).show();
         $('.mac_chat_with', $(this).parent()).removeClass(macChatHide);
     };
-    
+
     /**
      * Check if a chat conversation exists
      * @param {Object} user
@@ -237,7 +236,7 @@ sakai.mac.chat = function(){
     var checkExistance = function(user){
         $macChatWindow = $('.mac_chat_window');
         var check;
-        
+
         //Loop over all the conversation and see if there's a div with the id with the userid in 
         $($macChatWindow).each(function(index, test){
             if ($(this).attr('id').split('_')[$($(this).attr('id').split('_')).length - 1] === user) {
@@ -250,7 +249,7 @@ sakai.mac.chat = function(){
         });
         return check;
     };
-    
+
     /**
      * This function will remove the chat frame
      */
@@ -370,8 +369,12 @@ sakai.mac.chat = function(){
             }
     };
 
+
     /**
-     * This function will do an ajax call to get the profile information from a user
+     * This function will get the profile information from a certain user
+     * @param {Object} userId
+     * @param {Object} callback
+     * @example getUserInformation('admin','renderChatWindow');
      */
     var getUserInformation = function(userId,callback){
 
@@ -398,6 +401,7 @@ sakai.mac.chat = function(){
         // Check if the chatwindow for that user allready exists
         if (!checkExistance($(this).html())) {
             getUserInformation($(this).html(),renderChatWindow);
+            $macUsers.trigger('click');
         }
     };
 
@@ -494,7 +498,7 @@ sakai.mac.chat = function(){
             }
         });
     };
-    
+
     /**
      * This function will check if there are any new chatmessages
      */
@@ -520,7 +524,7 @@ sakai.mac.chat = function(){
                         xhr.setRequestHeader("x-sakai-token", globToken);
                     },
                     success: function(data){
-                    
+
                         // Get the time
                         time = data.time;
 
@@ -537,7 +541,7 @@ sakai.mac.chat = function(){
             }
         }
     };
-    
+
     /**
      * Hide the online users
      */
@@ -546,7 +550,7 @@ sakai.mac.chat = function(){
         $('ul', $macChat).hide();
         $(this).removeClass('activeChat');
     };
-    
+
     /**
      * Show the online users
      */

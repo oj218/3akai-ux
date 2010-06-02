@@ -106,7 +106,7 @@ hr{margin-right:3px;}
 
 /* Chat Window */
 .mac_chat_window{ width:150px; position:absolute;background-color:#fff; z-index:999; bottom:0px;left:10px; display:none;}
-.mac_chat_window span { position:absolute; top:5px; left:40px; color:#767a7c;}
+.mac_message_placed { position:absolute; top:5px; left:40px; color:#767a7c;}
 .mac_userpicture { height:25px; padding:3px;}
 
 /* The top of a chat frame */
