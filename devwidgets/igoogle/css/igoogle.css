@@ -1,3 +1,37 @@
-h1{
-    color:red;
-}
+html{background:none!important;line-height:120%;font-family:Arial, Helvetica, sans-serif; }
+
+/* Error messages */
+#ig_login_failed{color:#ff0000;display:none;}
+
+/* Login */
+#ig_login{width:10em;margin-left:auto;margin-right:auto;}
+#ig_password, #w7_username {border:1px solid #b0b0b0;float:left;font-size:0.8em;height:20px;margin-bottom:5px;width:10em;}
+#ig_logo{margin:0 0 15px 5px; width:100px;}
+#ig_loginbutton{margin:20px;}
+
+/* textboxes */
+.ig_change_color_black{color:#000;}
+.ig_change_color_normal{color:#AAA;}
+
+/* header */
+#ig_header{display:none;}
+#ig_header div{display:block;list-style:none; float:left; margin-right:7px;}
+#ig_header div a:hover {color:#AAA;}
+#ig_header hr {color:#888;}
+
+/* Links */
+.ig_activelink{color:#AAA; text-decoration:underline;}
+.ig_inactivelink{color:#888;}
+
+/* Recent Messages */
+#ig_recent_messages {width:100%;}
+#ig_recent_messages ul { float:left; width:100%; padding-left:0px!important;margin-top:5px;}
+#ig_recent_messages ul li {font-size:0.8em; list-style-type:none; color:#888}
+#ig_recent_messages ul li a {color:#666; text-decoration:none; font-weight:bold;}
+#ig_recent_messages ul li a:hover {color:#AAA;}
+
+/* Message */
+#ig_user{float:right; color:#AAA;}
+#ig_message{font-size:0.8em; color:#888;}
+#ig_message p {margin:0px;}
+#mac_subject span{color:#666;}

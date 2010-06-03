@@ -4,8 +4,64 @@
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
         <title>Sakai</title>
     </head>
-    <body>
-        <h1>hi</h1>
+    <body style="display:none;">
+
+            <div id="ig_login">
+            <!-- LOGIN -->
+            <form class="ig_login-container" id="ig_login-container" method="post" action="javascript:;">
+                <img src = "images/icon.png" alt="Sakai logo" title="Sakai" id="ig_logo">
+                <input type="text" alt="username" value="username" maxlength="255" id="w7_username" name="ig_username" class="ig_login-container-textfield ig_change_color_normal"/>
+                <br/>
+                <input type="ig_password" value="Password" alt="password" maxlength="255" id="ig_password" name="ig_password" class="ig_login-container-textfield ig_change_color_normal"/>
+                <div class="ig_login-container-button">
+                    <button id="ig_loginbutton" type="submit" class="s3d-button s3d-button-primary">
+                        <span class="s3d-button-inner">Sign In</span>
+                    </button>
+                </div>
+            </form>
+            </div>
+
+            <div id="ig_header">
+                <div><img src="/dev/_images/messages_icon.png" alt="Message icon" title="Message icon"></div>
+                <div>
+                      <a href="javascript:;" id="ig_recent_message_button" class="ig_inactivelink">Recent Messages</a>
+                </div>
+                <div>
+                     <a href="javascript:;" id="ig_profile" class="ig_inactivelink">Profile </a>
+                </div>
+                <br />
+                <hr />
+            </div>
+
+            <div id='ig_recent_messages'><!--
+            --></div>
+            <div id="ig_message"><!--
+             --></div>
+            <p id="ig_login_failed">Login failed, please check your credentials</p>
+
+            <!-- TEMPLATES -->
+            <div id="ig_recent_messages_template"><!--
+                <ul>
+                    <li id="ig_table_header" >From <span>Subject</span> <span id="ig_user">Welcome ${user} </span></li>
+                    <hr />
+                   {for message in results}
+                        <li {if message_index % 2} class="ig_background" {/if} ><span class="ig_user_repeat">${message["sakai:from"]} </span> :<a href="javascript:;" class="ig_short"> ${message["sakai:subject"]}</a><span class="s3d-hidden">${message["sakai:subject"]}<span><br />
+                            <p class="s3d-hidden" >${message["sakai:body"]}</p>
+                        </li>
+                    {/for}
+                </ul>
+            --></div>
+
+            <div id="ig_message_template"><!--
+                    <p><span>Sender: </span>${sender} </p>
+                    <p id="mac_subject"><span>Subject: </span> ${subject} </p>
+                    <hr id="mac_hr" />
+                    <div id="mac_myscrollarea" id="mac_message_text">${message}</div>
+                    <div id="mac_myscrollbar"></div>
+                    <button id="mac_back_button" type="submit" class="s3d-button s3d-button-primary">
+                        <span class="s3d-button-inner">Back</span>
+                    </button>
+            --></div>
 
         <!-- JAVASCRIPT -->
         <script type="text/javascript" src="javascript/loadFiles.js"></script>
