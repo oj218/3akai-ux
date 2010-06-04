@@ -27,43 +27,43 @@ sakai.igoogle = function(){
     //////////////////////
 
     // Login
-    var $igLoginContainer = $('#ig_login-container');
-    var usernameField = "ig_username";
-    var passwordField = "ig_password";
-    var $igPassword = $('#ig_password');
-    var $igUsername = $('#w7_username');
-    var $igHeader = $('#ig_header');
+    var $igLoginContainer = $('#igoogle_login-container');
+    var usernameField = "igoogle_username";
+    var passwordField = "igoogle_password";
+    var $igPassword = $('#igoogle_password');
+    var $igUsername = $('#igoogle_username');
+    var $igHeader = $('#igoogle_header');
 
     // Header
-    var $igProfileHeader = $("#ig_profile");
-    var $igRecentMessageButton = $('#ig_recent_message_button');
+    var $igProfileHeader = $("#igoogle_profile");
+    var $igRecentMessageButton = $('#igoogle_recent_message_button');
 
     // Recent messages
-    var $igRecentMessages = $('#ig_recent_messages');
-    var $igShort = $(".ig_short");
+    var $igRecentMessages = $('#igoogle_recent_messages');
+    var $igShort = $(".igoogle_short");
     var $igHidden = $('.s3d-hidden');
-    var $igUserRepeat = $('.ig_user_repeat');
-    var $igMessage = $('#ig_message');
+    var $igUserRepeat = $('.igoogle_user_repeat');
+    var $igMessage = $('#igoogle_message');
 
     // Message 
-    var $igBackuBtton = $('#ig_back_button');
-    var $igSubject = $('#ig_subject');
+    var $igBackuBtton = $('#igoogle_back_button');
+    var $igSubject = $('#igoogle_subject');
 
     // Profile
-    var $igProfile = $('#ig_profile_tab');
+    var $igProfile = $('#igoogle_profile_tab');
 
     // Error messages
-    var $igLoginFailed = $('#ig_login_failed');
-    var $igNoMessage = $('#ig_no_message');
+    var $igLoginFailed = $('#igoogle_login_failed');
+    var $igNoMessage = $('#igoogle_no_message');
 
     // Logout
-    var $igLogoutButton = $('#ig_logout');
+    var $igLogoutButton = $('#igoogle_logout');
 
     // CSS classes
-    var changeColorNormal = 'ig_change_color_normal';
-    var changeColorBlack = 'ig_change_color_black';
-    var inactivelink = 'ig_inactivelink';
-    var activelink = 'ig_activelink';
+    var changeColorNormal = 'igoogle_change_color_normal';
+    var changeColorBlack = 'igoogle_change_color_black';
+    var inactivelink = 'igoogle_inactivelink';
+    var activelink = 'igoogle_activelink';
 
     // Global variables
     var defaultvalue;
@@ -71,9 +71,9 @@ sakai.igoogle = function(){
     var currentUser;
 
     // Templates
-    var $igRecentmessagesTemplate = $('#ig_recent_messages_template');
-    var $igMessageTemplate = $('#ig_message_template');
-    var $igProfileTemplate = $('#ig_profile_template');
+    var $igRecentmessagesTemplate = $('#igoogle_recent_messages_template');
+    var $igMessageTemplate = $('#igoogle_message_template');
+    var $igProfileTemplate = $('#igoogle_profile_template');
 
      /**
      * Check whether there is a valid picture for the user
@@ -120,7 +120,7 @@ sakai.igoogle = function(){
         $igRecentMessages.hide();
         var $that = $(this);
         $igHidden = $('.s3d-hidden');
-        $igUserRepeat = $('.ig_user_repeat');
+        $igUserRepeat = $('.igoogle_user_repeat');
 
         // Construct the message object
         var messageObj = {
@@ -132,10 +132,10 @@ sakai.igoogle = function(){
         //Render the message in html
         $igMessage.html($.TemplateRenderer($igMessageTemplate,messageObj));
         $igMessage.show();
-        $igBackuBtton = $('#ig_back_button');
+        $igBackuBtton = $('#igoogle_back_button');
         $igBackuBtton.bind('click',showRecentMessageList);
 
-        $igSubject = $('#ig_subject');
+        $igSubject = $('#igoogle_subject');
 
         // Make sure no subject is longer than 80 chars
         $igSubject.each(function(){
@@ -159,9 +159,9 @@ sakai.igoogle = function(){
             $igProfile.hide();
             $igMessage.hide();
 
-            //If there are more than 7 messages, only show the last 7
-            if(data.results.length > 7){
-                data.results = data.results.splice(data.results.length - 7, data.results.length);
+            //If there are more than 7 messages, only show the last 10
+            if(data.results.length > 10){
+                data.results = data.results.splice(data.results.length - 10, data.results.length);
             }
 
             data.user = currentUser.user.properties.firstName;
@@ -172,7 +172,7 @@ sakai.igoogle = function(){
             //$macRecentMessages = $('#mac_recentMessages');
             $("a", $igRecentMessages).bind('click', showMessage);
 
-            $igShort = $(".ig_short");
+            $igShort = $(".igoogle_short");
 
             //Make sure the subject isn't longer than the div is wide
             $igShort.each(function(){
@@ -331,7 +331,7 @@ sakai.igoogle = function(){
      * This function will show the profile information of the user
      */
     var showProfileInformation = function(){
-        $igProfile = $('#ig_profile_tab');
+        $igProfile = $('#igoogle_profile_tab');
         $igNoMessage.hide();
         $igProfile.show();
         $igRecentMessages.hide();

@@ -1,50 +1,51 @@
-html{background:none!important;line-height:120%;font-family:Arial, Helvetica, sans-serif; }
+html{background:none!important;line-height:120%;font-family:Arial, Helvetica, sans-serif;}
 
 /* Error messages */
-#ig_login_failed, #ig_no_message{color:#ff0000;display:none;}
+#igoogle_login_failed, #igoogle_no_message{color:#ff0000;display:none;}
 
 /* Login */
-#ig_login{width:10em;margin-left:auto;margin-right:auto;}
-#ig_password, #w7_username {border:1px solid #b0b0b0;float:left;font-size:0.8em;height:20px;margin-bottom:5px;width:10em;}
-#ig_logo{margin:0 0 15px 5px; width:100px;}
-#ig_loginbutton{margin:20px;}
+#igoogle_login{width:8.2em;margin-left:auto;margin-right:auto;}
+#igoogle_password, #igoogle_username {border:1px solid #b0b0b0;float:left;font-size:0.8em;height:20px;margin-bottom:5px;width:10em;}
+#igoogle_logo{margin:0 0 15px 5px; width:100px;}
+#igoogle_loginbutton{margin:20px;}
+
 
 /* textboxes */
-.ig_change_color_black{color:#000;}
-.ig_change_color_normal{color:#AAA;}
+.igoogle_change_color_black{color:#000;}
+.igoogle_change_color_normal{color:#AAA;}
 
 /* header */
-#ig_header{display:none; border-bottom:#888 solid 1px; height:30px;}
-#ig_header div{display:block;list-style:none; float:left; margin-right:15px;}
-#ig_header div a:hover {color:#AAA;}
-#ig_header hr {color:#888;}
+#igoogle_header{display:none; border-bottom:#888 solid 1px; height:30px;}
+#igoogle_header div{display:block;list-style:none; float:left; margin-right:15px;}
+#igoogle_header div a:hover {color:#AAA;}
+#igoogle_header hr {color:#888;}
 
 /* Links */
-.ig_activelink{color:#AAA; text-decoration:underline;}
-.ig_inactivelink{color:#888;}
+.igoogle_activelink{color:#AAA; text-decoration:underline;}
+.igoogle_inactivelink{color:#888;}
 
 /* Recent Messages */
-#ig_recent_messages {width:100%;}
-#ig_recent_messages ul { float:left; width:100%; padding-left:0px!important;margin-top:5px;}
-#ig_recent_messages ul li {font-size:0.8em; list-style-type:none; color:#888}
-#ig_recent_messages ul li a {color:#666; text-decoration:none; font-weight:bold;}
-#ig_recent_messages ul li a:hover {color:#AAA;}
+#igoogle_recent_messages {width:100%;}
+#igoogle_recent_messages ul { float:left; width:100%; padding-left:0px!important;margin-top:5px;}
+#igoogle_recent_messages ul li {font-size:0.8em; list-style-type:none; color:#888}
+#igoogle_recent_messages ul li a {color:#666; text-decoration:none; font-weight:bold;}
+#igoogle_recent_messages ul li a:hover {color:#AAA;}
 
 /* Message */
-#ig_user{float:right; color:#BBB!important;}
-#ig_message{font-size:0.8em; color:#888;}
-#ig_message p {margin:0px;}
-#ig_message_text {height:75px; overflow:auto;}
-#ig_subject span{color:#666;}
-#ig_back_button{margin-top:10px;}
+#igoogle_user{float:right; color:#BBB!important;}
+#igoogle_message{font-size:0.8em; color:#888;}
+#igoogle_message p {margin:0px;}
+#igoogle_message_text {height:175px; overflow:auto;}
+#igoogle_subject span{color:#666;}
+#igoogle_back_button{margin-top:10px;}
 
 /* Profile */
-#ig_profile_tab{display:none;left:30px; font-size:0.8em}
-#ig_profile_tab p{ color:#666; width:20em;}
-#ig_profile_tab img {float:left; margin:15px 15px 0 0;}
-#ig_profile_tab div { overflow:auto; margin-left:10px;}
-#ig_profile_tab p spam{ font-weight:bold;}
+#igoogle_profile_tab{display:none;left:30px; font-size:0.8em}
+#igoogle_profile_tab p{ color:#666; width:20em;}
+#igoogle_profile_tab img {float:left; margin:15px 15px 0 0;}
+#igoogle_profile_tab div { overflow:auto; margin-left:10px;}
+#igoogle_profile_tab p spam{ font-weight:bold;}
 
 /* Log out */
-#ig_logout_div{margin-right:0 !important;width:143px;}
-#ig_logout{float:right; font-size:0.7em;}
+#igoogle_logout_div{margin-right:0 !important;width:143px;}
+#igoogle_logout{float:right; font-size:0.7em;}

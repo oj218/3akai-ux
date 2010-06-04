@@ -6,76 +6,74 @@
     </head>
     <body style="display:none;">
 
-            <div id="ig_login">
+            <div id="igoogle_login">
             <!-- LOGIN -->
-            <form class="ig_login-container" id="ig_login-container" method="post" action="javascript:;">
-                <img src = "images/icon.png" alt="Sakai logo" title="Sakai" id="ig_logo">
-                <input type="text" alt="username" value="username" maxlength="255" id="w7_username" name="ig_username" class="ig_login-container-textfield ig_change_color_normal"/>
+            <form class="igoogle_login-container" id="igoogle_login-container" method="post" action="javascript:;">
+                <img src = "images/icon.png" alt="Sakai logo" title="Sakai" id="igoogle_logo">
+                <input type="text" alt="username" value="username" maxlength="255" id="igoogle_username" name="igoogle_username" class="igoogle_login-container-textfield igoogle_change_color_normal"/>
                 <br/>
-                <input type="password" value="Password" alt="password" maxlength="255" id="ig_password" name="ig_password" class="ig_login-container-textfield ig_change_color_normal"/>
-                <div class="ig_login-container-button">
-                    <button id="ig_loginbutton" type="submit" class="s3d-button s3d-button-primary">
+                <input type="password" value="Password" alt="password" maxlength="255" id="igoogle_password" name="igoogle_password" class="igoogle_login-container-textfield igoogle_change_color_normal"/>
+                    <button id="igoogle_loginbutton" type="submit" class="s3d-button s3d-button-primary">
                         <span class="s3d-button-inner">Sign In</span>
                     </button>
-                </div>
             </form>
             </div>
 
             <!-- HEADER -->
-            <div id="ig_header">
+            <div id="igoogle_header">
                 <div><img src="/dev/_images/messages_icon.png" alt="Message icon" title="Message icon"></div>
                 <div>
-                      <a href="javascript:;" id="ig_recent_message_button" class="ig_inactivelink">Recent Messages</a>
+                      <a href="javascript:;" id="igoogle_recent_message_button" class="igoogle_inactivelink">Recent Messages</a>
                 </div>
                 <div>
-                     <a href="javascript:;" id="ig_profile" class="ig_inactivelink">Profile </a>
+                     <a href="javascript:;" id="igoogle_profile" class="igoogle_inactivelink">Profile </a>
                 </div>
-                <div id="ig_logout_div">
-                    <a href="javascript:;" id="ig_logout" class="ig_inactivelink">Logout </a>
+                <div id="igoogle_logout_div">
+                    <a href="javascript:;" id="igoogle_logout" class="igoogle_inactivelink">Logout </a>
                 </div>
             </div>
 
             <!-- RECENTMESSAGES -->
-            <div id='ig_recent_messages'><!--
+            <div id='igoogle_recent_messages'><!--
             --></div>
 
             <!-- MESSAGE -->
-            <div id="ig_message"><!--
+            <div id="igoogle_message"><!--
              --></div>
 
             <!-- PROFILE -->
-            <div id="ig_profile_tab"><!--
+            <div id="igoogle_profile_tab"><!--
             --></div>
 
             <!-- ERROR MESSAGES -->
-            <p id="ig_login_failed">Login failed, please check your credentials</p>
-            <p id="ig_no_message">You have no messages</p>
+            <p id="igoogle_login_failed">Login failed, please check your credentials</p>
+            <p id="igoogle_no_message">You have no messages</p>
 
 
             <!-- TEMPLATES -->
-            <div id="ig_recent_messages_template"><!--
+            <div id="igoogle_recent_messages_template"><!--
                 <ul>
-                    <li id="ig_table_header" >From <span>Subject</span> <span id="ig_user">Welcome ${user} </span></li>
+                    <li id="igoogle_table_header" >From <span>Subject</span> <span id="igoogle_user">Welcome ${user} </span></li>
                     <hr />
                    {for message in results}
-                        <li {if message_index % 2} class="ig_background" {/if} ><span class="ig_user_repeat">${message["sakai:from"]} </span> :<a href="javascript:;" class="ig_short"> ${message["sakai:subject"]}</a><span class="s3d-hidden">${message["sakai:subject"]}<span><br />
+                        <li {if message_index % 2} class="igoogle_background" {/if} ><span class="igoogle_user_repeat">${message["sakai:from"]} </span> :<a href="javascript:;" class="igoogle_short"> ${message["sakai:subject"]}</a><span class="s3d-hidden">${message["sakai:subject"]}<span><br />
                             <p class="s3d-hidden" >${message["sakai:body"]}</p>
                         </li>
                     {/for}
                 </ul>
             --></div>
 
-            <div id="ig_message_template"><!--
+            <div id="igoogle_message_template"><!--
                     <p><span>Sender: </span>${sender} </p>
-                    <p id="ig_subject"><span>Subject: </span> ${subject} </p>
-                    <hr id="ig_hr" />
-                    <div id="ig_message_text">${message}</div>
-                    <button id="ig_back_button" type="submit" class="s3d-button s3d-button-primary">
+                    <p id="igoogle_subject"><span>Subject: </span> ${subject} </p>
+                    <hr id="igoogle_hr" />
+                    <div id="igoogle_message_text">${message}</div>
+                    <button id="igoogle_back_button" type="submit" class="s3d-button s3d-button-primary">
                         <span class="s3d-button-inner">Back</span>
                     </button>
             --></div>
 
-            <div id="ig_profile_template"><!--
+            <div id="igoogle_profile_template"><!--
             <img src="${userPicture}" alt="user picture"/>
             <div>
                 {if profile.firstName}<p><span>Name: </span>${profile.firstName}<p>{/if}
