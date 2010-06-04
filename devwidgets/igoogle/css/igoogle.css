@@ -1,7 +1,7 @@
 html{background:none!important;line-height:120%;font-family:Arial, Helvetica, sans-serif; }
 
 /* Error messages */
-#ig_login_failed{color:#ff0000;display:none;}
+#ig_login_failed, #ig_no_message{color:#ff0000;display:none;}
 
 /* Login */
 #ig_login{width:10em;margin-left:auto;margin-right:auto;}
@@ -14,8 +14,8 @@ html{background:none!important;line-height:120%;font-family:Arial, Helvetica, sa
 .ig_change_color_normal{color:#AAA;}
 
 /* header */
-#ig_header{display:none;}
-#ig_header div{display:block;list-style:none; float:left; margin-right:7px;}
+#ig_header{display:none; border-bottom:#888 solid 1px; height:30px;}
+#ig_header div{display:block;list-style:none; float:left; margin-right:15px;}
 #ig_header div a:hover {color:#AAA;}
 #ig_header hr {color:#888;}
 
@@ -31,7 +31,20 @@ html{background:none!important;line-height:120%;font-family:Arial, Helvetica, sa
 #ig_recent_messages ul li a:hover {color:#AAA;}
 
 /* Message */
-#ig_user{float:right; color:#AAA;}
+#ig_user{float:right; color:#BBB!important;}
 #ig_message{font-size:0.8em; color:#888;}
 #ig_message p {margin:0px;}
-#mac_subject span{color:#666;}
+#ig_message_text {height:75px; overflow:auto;}
+#ig_subject span{color:#666;}
+#ig_back_button{margin-top:10px;}
+
+/* Profile */
+#ig_profile_tab{display:none;left:30px; font-size:0.8em}
+#ig_profile_tab p{ color:#666; width:20em;}
+#ig_profile_tab img {float:left; margin:15px 15px 0 0;}
+#ig_profile_tab div { overflow:auto; margin-left:10px;}
+#ig_profile_tab p spam{ font-weight:bold;}
+
+/* Log out */
+#ig_logout_div{margin-right:0 !important;width:143px;}
+#ig_logout{float:right; font-size:0.7em;}

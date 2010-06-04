@@ -12,7 +12,7 @@
                 <img src = "images/icon.png" alt="Sakai logo" title="Sakai" id="ig_logo">
                 <input type="text" alt="username" value="username" maxlength="255" id="w7_username" name="ig_username" class="ig_login-container-textfield ig_change_color_normal"/>
                 <br/>
-                <input type="ig_password" value="Password" alt="password" maxlength="255" id="ig_password" name="ig_password" class="ig_login-container-textfield ig_change_color_normal"/>
+                <input type="password" value="Password" alt="password" maxlength="255" id="ig_password" name="ig_password" class="ig_login-container-textfield ig_change_color_normal"/>
                 <div class="ig_login-container-button">
                     <button id="ig_loginbutton" type="submit" class="s3d-button s3d-button-primary">
                         <span class="s3d-button-inner">Sign In</span>
@@ -21,6 +21,7 @@
             </form>
             </div>
 
+            <!-- HEADER -->
             <div id="ig_header">
                 <div><img src="/dev/_images/messages_icon.png" alt="Message icon" title="Message icon"></div>
                 <div>
@@ -29,15 +30,27 @@
                 <div>
                      <a href="javascript:;" id="ig_profile" class="ig_inactivelink">Profile </a>
                 </div>
-                <br />
-                <hr />
+                <div id="ig_logout_div">
+                    <a href="javascript:;" id="ig_logout" class="ig_inactivelink">Logout </a>
+                </div>
             </div>
 
+            <!-- RECENTMESSAGES -->
             <div id='ig_recent_messages'><!--
             --></div>
+
+            <!-- MESSAGE -->
             <div id="ig_message"><!--
              --></div>
+
+            <!-- PROFILE -->
+            <div id="ig_profile_tab"><!--
+            --></div>
+
+            <!-- ERROR MESSAGES -->
             <p id="ig_login_failed">Login failed, please check your credentials</p>
+            <p id="ig_no_message">You have no messages</p>
+
 
             <!-- TEMPLATES -->
             <div id="ig_recent_messages_template"><!--
@@ -54,14 +67,22 @@
 
             <div id="ig_message_template"><!--
                     <p><span>Sender: </span>${sender} </p>
-                    <p id="mac_subject"><span>Subject: </span> ${subject} </p>
-                    <hr id="mac_hr" />
-                    <div id="mac_myscrollarea" id="mac_message_text">${message}</div>
-                    <div id="mac_myscrollbar"></div>
-                    <button id="mac_back_button" type="submit" class="s3d-button s3d-button-primary">
+                    <p id="ig_subject"><span>Subject: </span> ${subject} </p>
+                    <hr id="ig_hr" />
+                    <div id="ig_message_text">${message}</div>
+                    <button id="ig_back_button" type="submit" class="s3d-button s3d-button-primary">
                         <span class="s3d-button-inner">Back</span>
                     </button>
             --></div>
+
+            <div id="ig_profile_template"><!--
+            <img src="${userPicture}" alt="user picture"/>
+            <div>
+                {if profile.firstName}<p><span>Name: </span>${profile.firstName}<p>{/if}
+                {if profile.lastName}<p><span>Surname: </span>${profile.lastName}<p>{/if}
+                {if profile.email}<p><span>E-mail: </span>${profile.email}<p>{/if}
+            </div>
+        --></div>
 
         <!-- JAVASCRIPT -->
         <script type="text/javascript" src="javascript/loadFiles.js"></script>
