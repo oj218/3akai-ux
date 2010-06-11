@@ -159,7 +159,11 @@ a.s3d-action, .s3d-actions a {
     padding: 0 13px 0 0;
     cursor: pointer;
     overflow: visible; /* removes extra side padding in IE */
-    background: url("../../_images/button-sprite-5state.png") no-repeat scroll right -40px transparent;
+    background-color:#454A4F;
+    -moz-border-radius: 8px;
+    -khtml-border-radius: 8px;-webkit-border-radius:8px;-o-border-radius: 8px;border-radius: 8px;
+    color:#fff;
+    padding: 3px 9px 3px 9px;
     font-size: 0.9em;
     font-weight: bold;
 }
